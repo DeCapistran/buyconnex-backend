@@ -15,7 +15,7 @@ import lombok.*;
 public class Roles {
 
     @Id
-    
+
 
     private String roleName;
     private String roleDescription;
