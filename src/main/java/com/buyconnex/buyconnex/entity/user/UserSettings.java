@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.entity;
+package com.buyconnex.buyconnex.entity.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "USERS_ROLES")
-public class UsersRoles {
+public class UserSettings {
 
     private int idUser;
     private int idRole;

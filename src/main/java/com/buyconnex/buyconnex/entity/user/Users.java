@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.entity;
+package com.buyconnex.buyconnex.entity.user;
 
 import jakarta.persistence.*;
 
@@ -10,7 +10,7 @@ public class Users {
 
     @Id
     private int userId;
-    private String userName;
+    private String userLogin;
     private String userFirstName;
     private String userLastName;
     private String userPassword;
@@ -36,12 +36,12 @@ public class Users {
         this.roles = roles;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserLogin() {
+        return userLogin;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     public String getUserFirstName() {
