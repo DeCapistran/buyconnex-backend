@@ -1,41 +1,36 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "USERS_ROLES")
+@Table(name = "USERS_DETAILS")
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class UserSettings {
 
-    private int idUser;
-    private int idRole;
-    private Date grantDate;
+    @Id
+    @SequenceGenerator(name = "USERS_DETAILS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_DETAILS_SEQ_ID")
+    @Column(name = "ID")
+    private Long id;
 
-    public int getIdUser() {
-        return idUser;
-    }
+    @JoinColumn(name = "ID_USER")
+    @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
+    private Users users;
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
+    @Column(name = "LANGUE")
+    private String langue;
 
-    public int getIdRole() {
-        return idRole;
-    }
+    @Column(name = "MFA_ACTIVE")
+    private String mfaActive;
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
-    }
-
-    public Date getGrantDate() {
-        return grantDate;
-    }
-
-    public void setGrantDate(Date grantDate) {
-        this.grantDate = grantDate;
-    }
-
+    @Column(name = "NOTIF_ACTIVE")
+    private String notifActive;
 
 }

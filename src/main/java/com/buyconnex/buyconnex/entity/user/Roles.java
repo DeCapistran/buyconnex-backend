@@ -1,8 +1,6 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,25 +13,16 @@ import lombok.*;
 public class Roles {
 
     @Id
+    @SequenceGenerator(name = "ROLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLES_SEQ_ID")
+    @Column(name = "ID")
+    private Long id;
 
-
+    @Column(name = "ROLE_NAME")
     private String roleName;
-    private String roleDescription;
 
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+    @JoinColumn(name = "ID_USER")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Users users;
 
 }

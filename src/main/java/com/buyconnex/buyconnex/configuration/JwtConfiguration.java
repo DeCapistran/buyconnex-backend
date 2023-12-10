@@ -6,10 +6,10 @@ import com.buyconnex.buyconnex.exception.JwtTokenMissingException;
 import io.jsonwebtoken.*;
 
 import java.util.Date;
-import java.util.logging.Logger;
 
 
 import io.jsonwebtoken.security.SignatureException;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -31,7 +31,7 @@ public class JwtConfiguration {
             Claims body = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
             return body.getSubject();
         } catch (Exception e) {
-            //logger.error("{} => {}", e, e.getMessage());
+            logger.error("{} => {}", e, e.getMessage());
         }
         return null;
     }
