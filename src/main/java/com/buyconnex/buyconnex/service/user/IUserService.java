@@ -3,6 +3,7 @@ package com.buyconnex.buyconnex.service.user;
 import com.buyconnex.buyconnex.entity.security.ResetPasswordToken;
 import com.buyconnex.buyconnex.entity.security.VerificationTokenMfa;
 import com.buyconnex.buyconnex.entity.user.Users;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,11 +13,11 @@ import java.util.Optional;
 
 public interface IUserService extends UserDetailsService {
 
-    public UserDetails loadUserByUserName(String userLogin) throws UsernameNotFoundException;
+    public UserDetails loadUserByUserLogin(String userLogin) throws UsernameNotFoundException;
 
-    public Optional<Users> getUsersByUsersName(String userLogin);
+    public Optional<Users> getUsersByUserLogin(String userLogin);
 
-    public UserDetails saveUser(Users users);
+    public Users saveUser(Users users);
 
     public Optional<Users> getUsersByEmail(String email);
 
@@ -28,7 +29,7 @@ public interface IUserService extends UserDetailsService {
 
     public void changeUserPassword(ResetPasswordToken resetPasswordToken, String newPassword);
 
-    public VerificationTokenMfa createOtpForUser(String users, String token);
+    public VerificationTokenMfa createOtpForUser(String login, String token);
 
     public Optional<VerificationTokenMfa> validateOtpLogin(String otp);
 
@@ -36,5 +37,6 @@ public interface IUserService extends UserDetailsService {
 
     public List<Users> findUserToCreate();
 
-    public List<Users> findUserToUpDate();
+    public List<Users> findUserToUpdate();
+
 }

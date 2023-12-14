@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.util;
+package com.buyconnex.buyconnex.utils;
 
 import com.buyconnex.buyconnex.entity.user.Users;
 import io.jsonwebtoken.Jwts;

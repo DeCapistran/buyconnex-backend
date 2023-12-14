@@ -28,9 +28,9 @@ public class UserSettings {
     private String langue;
 
     @Column(name = "MFA_ACTIVE")
-    private String mfaActive;
+    private boolean mfaActive;
 
     @Column(name = "NOTIF_ACTIVE")
-    private String notifActive;
+    private boolean notifActive;
 
 }

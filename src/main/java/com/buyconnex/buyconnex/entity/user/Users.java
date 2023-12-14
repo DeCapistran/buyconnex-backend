@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -44,5 +45,8 @@ public class Users {
     @JoinColumn(name = "ID_CONTACT")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Contacts contacts;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Roles> roles = new HashSet<>();
 
 }
