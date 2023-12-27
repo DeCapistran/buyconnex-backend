@@ -10,18 +10,18 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "DOCUMENTS")
+@Table(name = "FILES")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Documents implements Serializable {
+public class Files implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "DOCUMENTS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DOCUMENTS_SEQ_ID")
+    @SequenceGenerator(name = "FILES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FILES_SEQ_ID")
     @Column(name = "ID")
     private Long id;
 

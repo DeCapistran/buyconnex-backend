@@ -4,7 +4,6 @@ import com.buyconnex.buyconnex.configuration.JwtConfiguration;
 import com.buyconnex.buyconnex.exception.JwtTokenMalFormedException;
 import com.buyconnex.buyconnex.exception.JwtTokenMissingException;
 import com.buyconnex.buyconnex.service.user.IUserService;
-import com.buyconnex.buyconnex.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

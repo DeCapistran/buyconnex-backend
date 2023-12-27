@@ -32,6 +32,9 @@ public class Contacts {
     @Column(name = "ADRESSE")
     private String adresse;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     @Column(name = "CODE_POSTAL")
     private String codePostal;
 

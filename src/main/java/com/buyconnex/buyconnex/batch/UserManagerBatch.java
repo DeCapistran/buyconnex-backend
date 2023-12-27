@@ -2,11 +2,10 @@ package com.buyconnex.buyconnex.batch;
 
 import com.buyconnex.buyconnex.entity.user.UserSettings;
 import com.buyconnex.buyconnex.entity.user.Users;
-import com.buyconnex.buyconnex.entity.utils.Settings;
 import com.buyconnex.buyconnex.service.user.IUserService;
 import com.buyconnex.buyconnex.service.user.IUserSettingService;
 import com.buyconnex.buyconnex.service.utils.IMailService;
-import com.buyconnex.buyconnex.service.utils.ISettingService;
+import com.buyconnex.buyconnex.service.setting.ISettingService;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

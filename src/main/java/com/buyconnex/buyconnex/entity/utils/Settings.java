@@ -26,10 +26,10 @@ public class Settings {
     private String defaultValueStr;
 
     @Column(name = "VALUE_BOOL")
-    private boolean valueBool;
+    private Boolean valueBool;
 
     @Column(name = "DEFAULT_VALUE_BOOL")
-    private boolean defaultValueBool;
+    private Boolean defaultValueBool;
 
     @Column(name = "VALUE_LONG")
     private Long valueLong;
