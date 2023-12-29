@@ -1,8 +1,9 @@
 package com.buyconnex.buyconnex.service.utils;
 
 import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.MailVo;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.ws.mime.MimeMessage;
 
 import java.util.Locale;
 
@@ -14,5 +15,5 @@ public interface IMailService {
 
     public MimeMessage constructCreateAccountTokenEmail(final String contextPath, final Locale locale, final String token, final Users users);
 
-    //public MimeMessage constructEmailContact();
+    public MimeMessage constructEmailContact(MailVo mailVo, String contactEmail, Users users);
 }
