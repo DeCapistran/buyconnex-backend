@@ -1,0 +1,52 @@
+package com.buyconnex.buyconnex.entity.user;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "USERS")
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Users {
+
+    @Id
+    @SequenceGenerator(name = "USERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ_ID")
+    @Column(name = "ID_USER")
+    private Long id;
+
+    @Column(name = "LOGIN")
+    private String login;
+
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Column(name = "B_ACTIVATED")
+    private boolean bActivated;
+
+    @Column(name = "B_AUTHENTICATE")
+    private boolean bAuthenticate;
+
+    @Column(name = "B_LOCKED")
+    private boolean bLocked;
+
+    @Column(name = "DATE_CREATION")
+    private Date dateCreation;
+
+    @JoinColumn(name = "ID_CONTACT")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Contacts contacts;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Roles> roles = new HashSet<>();
+
+}
