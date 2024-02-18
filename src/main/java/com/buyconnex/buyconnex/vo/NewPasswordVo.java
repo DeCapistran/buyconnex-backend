@@ -13,7 +13,8 @@ public class NewPasswordVo {
 
     private String oldPassword;
 
-    private String token;
+    private String newPassword;
 
-    private String password;
+    private String confirmPassword;
+
 }

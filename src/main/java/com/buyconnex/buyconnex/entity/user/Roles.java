@@ -1,28 +1,59 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import jakarta.persistence.*;
-import lombok.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "ROLES")
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
-public class Roles {
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-    @Id
-    @SequenceGenerator(name = "ROLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLES_SEQ_ID")
-    @Column(name = "ID_ROLE")
-    private Long id;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_READ;
+import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_UPDATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_DELETE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_CREATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_READ;
+import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_UPDATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_DELETE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_CREATE;
 
-    @Column(name = "ROLE_NAME")
-    private String roleName;
+@RequiredArgsConstructor
+public enum Roles {
+	
+	USERS(Collections.emptySet()),
+	ADMIN(
+          Set.of(
+                  ADMIN_READ,
+                  ADMIN_UPDATE,
+                  ADMIN_DELETE,
+                  ADMIN_CREATE,
+                  MANAGER_READ,
+                  MANAGER_UPDATE,
+                  MANAGER_DELETE,
+                  MANAGER_CREATE
+          )
+	  ),
+	  MANAGER(
+	          Set.of(
+	                  MANAGER_READ,
+	                  MANAGER_UPDATE,
+	                  MANAGER_DELETE,
+	                  MANAGER_CREATE
+	          )
+	  )
 
-    @JoinColumn(name = "ID_USER")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Users users;
+	  ;
 
+	  @Getter
+	  private final Set<Permissions> permissions;
+
+	  public List<SimpleGrantedAuthority> getAuthorities() {
+	    var authorities = getPermissions()
+	            .stream()
+	            .map(permission -> new SimpleGrantedAuthority(permission.getPermissions()))
+	            .collect(Collectors.toList());
+	    authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+	    return authorities;
+	  }
 }

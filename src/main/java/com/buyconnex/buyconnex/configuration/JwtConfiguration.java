@@ -37,7 +37,7 @@ public class JwtConfiguration {
         Date expiration = new Date(nowTime + tokenValidity);
 
         Users users = (Users) authentication.getPrincipal();
-        Claims claims = Jwts.claims().setSubject(users.getLogin());
+        Claims claims = Jwts.claims().setSubject(users.getEmail());
 
         return Jwts.builder().setClaims(claims).setIssuedAt(new Date(nowTime)).setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();

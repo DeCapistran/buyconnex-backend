@@ -11,9 +11,7 @@ import java.util.List;
 @EqualsAndHashCode
 public class AuthRequestVo {
 
-    private String login;
+    private String email;
 
     private String password;
-
-    private List<String> roles;
 }

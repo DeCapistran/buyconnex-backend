@@ -22,7 +22,7 @@ public class Files implements Serializable {
     @Id
     @SequenceGenerator(name = "FILES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FILES_SEQ_ID")
-    @Column(name = "ID")
+    @Column(name = "ID_FILE")
     private Long id;
 
     @Column(name = "FILE_NAME")
@@ -48,13 +48,13 @@ public class Files implements Serializable {
     private String path;
 
     @Column(name = "OWNER1_ID")
-    private Long owner1_id;
+    private Long owner1Id;
 
     @Column(name = "OWNER2_ID")
-    private Long owner2_id;
+    private Long owner2Id;
 
     @Column(name = "OWNER3_ID")
-    private Long owner3_id;
+    private Long owner3Id;
 
     @Column(name = "TYPE_ID")
     private Long typeId;

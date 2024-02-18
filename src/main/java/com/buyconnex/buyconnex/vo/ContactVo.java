@@ -13,21 +13,27 @@ public class ContactVo {
 
     private Long idContact;
 
-    private String login;
-
-    private String password;
-
     private String firstName;
 
     private String lastName;
+    
+    private String entreprise;
+    
+    private String genre;
+    
+    private String adresse;
+    
+    private String codePostal;
+    
+    private String ville;
+    
+    private String instagram;
+    
+    private String facebook;
+    
+    private String telephone1;
 
     private String email;
 
-    private String telephone;
-
-    private boolean isActivated = true;
-
-    private boolean isLocked = false;
-
-    private List<String> roles;
+    private String telephone2;
 }
