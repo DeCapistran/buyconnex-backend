@@ -5,39 +5,30 @@ import java.util.List;
 
 import com.buyconnex.buyconnex.entity.user.Roles;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
 public class UsersVo {
+	
 
-	private Long idUser;
+    private String firstname;
+    
+    private String lastname;
 
     private String email;
 
     private String password;
     
-    private String firstname;
-    
-    private String lastname;
-
-    private boolean isActivated = true;
-    
-    private boolean isAuthenticate = true;
-
-    private boolean isLocked = false;
-    
-    private Date dateCreation;
-
     private Roles roles;
-    
-    private Long idContact;
 
 }

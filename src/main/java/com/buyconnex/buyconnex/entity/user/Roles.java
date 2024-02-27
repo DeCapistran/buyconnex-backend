@@ -13,10 +13,10 @@ import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_READ;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_UPDATE;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_DELETE;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_CREATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_READ;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_UPDATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_DELETE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_CREATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_READ;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_UPDATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_DELETE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_CREATE;
 
 @RequiredArgsConstructor
 public enum Roles {
@@ -28,18 +28,18 @@ public enum Roles {
                   ADMIN_UPDATE,
                   ADMIN_DELETE,
                   ADMIN_CREATE,
-                  MANAGER_READ,
-                  MANAGER_UPDATE,
-                  MANAGER_DELETE,
-                  MANAGER_CREATE
+                  CLIENT_READ,
+                  CLIENT_UPDATE,
+                  CLIENT_DELETE,
+                  CLIENT_CREATE
           )
 	  ),
-	  MANAGER(
+	  CLIENT(
 	          Set.of(
-	                  MANAGER_READ,
-	                  MANAGER_UPDATE,
-	                  MANAGER_DELETE,
-	                  MANAGER_CREATE
+	                  CLIENT_READ,
+	                  CLIENT_UPDATE,
+	                  CLIENT_DELETE,
+	                  CLIENT_CREATE
 	          )
 	  )
 
@@ -53,7 +53,7 @@ public enum Roles {
 	            .stream()
 	            .map(permission -> new SimpleGrantedAuthority(permission.getPermissions()))
 	            .collect(Collectors.toList());
-	    authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+	    authorities.add(new SimpleGrantedAuthority("ROLES_" + this.name()));
 	    return authorities;
 	  }
 }

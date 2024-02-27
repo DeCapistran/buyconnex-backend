@@ -31,7 +31,6 @@ public class AuthenticationService {
 
 	  public AuthentificationResponse register(UsersVo request) {
 	    Users user = Users.builder()
-	        .dateCreation(request.getDateCreation())
 	        .email(request.getEmail())
 	        .firstname(request.getFirstname())
 	        .lastname(request.getLastname())

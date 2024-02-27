@@ -17,12 +17,12 @@ import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_CREATE;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_DELETE;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_READ;
 import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_UPDATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_CREATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_DELETE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_READ;
-import static com.buyconnex.buyconnex.entity.user.Permissions.MANAGER_UPDATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_CREATE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_DELETE;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_READ;
+import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_UPDATE;
 import static com.buyconnex.buyconnex.entity.user.Roles.ADMIN;
-import static com.buyconnex.buyconnex.entity.user.Roles.MANAGER;
+import static com.buyconnex.buyconnex.entity.user.Roles.CLIENT;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -57,11 +57,11 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                .requestMatchers("/api/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
-                                .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-                                .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-                                .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
+                                .requestMatchers("/api/management/**").hasAnyRole(ADMIN.name(), CLIENT.name())
+                                .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), CLIENT_READ.name())
+                                .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), CLIENT_CREATE.name())
+                                .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), CLIENT_UPDATE.name())
+                                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), CLIENT_DELETE.name())
                                 .anyRequest()
                                 .authenticated()
                 )

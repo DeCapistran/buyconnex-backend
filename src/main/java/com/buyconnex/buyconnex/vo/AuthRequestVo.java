@@ -4,14 +4,13 @@ import lombok.*;
 
 import java.util.List;
 
+@Data
+@Builder
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@AllArgsConstructor
 public class AuthRequestVo {
 
     private String email;
 
-    private String password;
+    String password;
 }
