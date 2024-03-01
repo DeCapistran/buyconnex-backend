@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.filter;
+package com.buyconnex.buyconnex.configuration;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

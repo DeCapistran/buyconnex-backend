@@ -4,21 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.buyconnex.buyconnex.entity.security.Token;
 
 @Entity
 @Table(name = "USERS")
@@ -26,19 +14,23 @@ import com.buyconnex.buyconnex.entity.security.Token;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users implements UserDetails {
+public class Users {
 
     /**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "USERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ_ID")
     @Column(name = "ID_USER")
-    private Long id;
+    private Long user_id;
 
+	@Column(name = "USERNAME")
+    private String username;
+	
     @Column(name = "EMAIL")
     private String email;
 
@@ -62,44 +54,32 @@ public class Users implements UserDetails {
 
     @Column(name = "DATE_CREATION")
     private Date dateCreation;
-
-    @Enumerated(EnumType.STRING)
-    private Roles roles;
-
-    @OneToMany(mappedBy = "users")
-    private List<Token> tokens;
     
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-      return roles.getAuthorities();
-    }
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") , 
+			   inverseJoinColumns = @JoinColumn(name="role_id")) 
+	private List<Roles> roles;
 
-    @Override
     public String getPassword() {
       return password;
     }
 
-    @Override
     public String getUsername() {
       return email;
     }
 
-    @Override
     public boolean isAccountNonExpired() {
       return true;
     }
 
-    @Override
     public boolean isAccountNonLocked() {
       return true;
     }
 
-    @Override
     public boolean isCredentialsNonExpired() {
       return true;
     }
 
-    @Override
     public boolean isEnabled() {
       return true;
     }

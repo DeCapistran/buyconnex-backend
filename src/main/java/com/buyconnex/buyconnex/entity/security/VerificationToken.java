@@ -1,107 +1,53 @@
 package com.buyconnex.buyconnex.entity.security;
 
-import com.buyconnex.buyconnex.entity.user.Users;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.Calendar;
 import java.util.Date;
 
+import com.buyconnex.buyconnex.entity.user.Users;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 @Entity
-@Table(name = "EXPIRE_VERIF_TOKEN")
 @NoArgsConstructor
-@Getter
-@Setter
 public class VerificationToken {
 
-    private static final int EXPIRATION_RESET_PASSWORD_TOKEN = 60*2;
-    private String token;
-
-
-    @Id
-    @SequenceGenerator(name = "EXPIRE_VERIF_TOKEN_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXPIRE_VERIF_TOKEN_SEQ_ID")
-    @Column(name = "ID")
-    private Long id;
-
-    @JoinColumn(nullable = false, name = "ID_USER", foreignKey = @ForeignKey(name = "FK_VERIF_TOKEN_USER"))
-    @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER)
-    private Users users;
-
-    @Column(name = "DATE_EXPIRE")
-    private Date dateExpire;
-
-    public VerificationToken(Users users, String token, Date dateExpire) {
-        this.users = users;
-        this.token = token;
-        this.dateExpire = calculateDateExpire(EXPIRATION_RESET_PASSWORD_TOKEN);
-    }
-
-    public VerificationToken(String token) {
-        this.token = token;
-        this.dateExpire = calculateDateExpire(EXPIRATION_RESET_PASSWORD_TOKEN);
-    }
-
-    private Date calculateDateExpire(final int dateExpireInMinute) {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(new Date().getTime());
-        calendar.add(Calendar.MINUTE, dateExpireInMinute);
-        return new Date(calendar.getTime().getTime());
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getDateExpire() == null) ? 0 : getDateExpire().hashCode());
-        result = prime * result + ((getDateExpire() == null) ? 0 : getToken().hashCode());
-        result = prime * result + ((getDateExpire() == null) ? 0 : getUsers().hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        final ResetPasswordToken resetPasswordTokenOther = (ResetPasswordToken) obj;
-
-        if(this == obj) {
-            return true;
-        }
-        if(obj == null) {
-            return false;
-        }
-        if(getClass() != obj.getClass()) {
-            return false;
-        }
-        if(getDateExpire() == null) {
-            if (resetPasswordTokenOther.getDateExpire() != null) {
-                return false;
-            }
-        } else if (!getDateExpire().equals(resetPasswordTokenOther.getDateExpire())) {
-            return false;
-        }
-        if (getToken() == null) {
-            if (resetPasswordTokenOther.getToken() != null) {
-                return false;
-            }
-        } else if (!getToken().equals(resetPasswordTokenOther.getToken())) {
-            return false;
-        }
-        if (getUsers() == null) {
-            if (resetPasswordTokenOther.getUsers() != null) {
-                return false;
-            }
-        } else if (!getUsers().equals(resetPasswordTokenOther.getUsers())) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Token [String=").append(token).append("]").append("[Expires").append(dateExpire).append("]");
-        return builder.toString();
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String token;
+	private Date expirationTime;
+	private static final int EXPIRATION_TIME = 15;
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private Users user;
+	
+	public VerificationToken(String token, Users user) {
+		super();
+		this.token = token;
+		this.user = user;
+		this.expirationTime = this.getTokenExpirationTime();
+	}
+	public VerificationToken(String token) {
+		super();
+		this.token = token;
+		this.expirationTime = this.getTokenExpirationTime();
+	}
+	public Date getTokenExpirationTime() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(new Date().getTime());
+		calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
+		return new Date(calendar.getTime().getTime());
+	}
+	public Object orElse(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

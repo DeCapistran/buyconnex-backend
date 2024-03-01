@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.filter;
+package com.buyconnex.buyconnex.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

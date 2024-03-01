@@ -2,7 +2,6 @@ package com.buyconnex.buyconnex.vo;
 
 import lombok.*;
 
-import java.util.List;
 
 @NoArgsConstructor
 @Getter

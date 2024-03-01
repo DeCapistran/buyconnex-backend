@@ -1,37 +1,144 @@
 package com.buyconnex.buyconnex.service.user;
+import com.buyconnex.buyconnex.entity.security.VerificationToken;
+import com.buyconnex.buyconnex.entity.user.Roles;
 import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.exception.EmailAlreadyExistsException;
+import com.buyconnex.buyconnex.exception.ExpiredTokenException;
+import com.buyconnex.buyconnex.exception.InvalidTokenException;
+import com.buyconnex.buyconnex.repository.security.VerificationTokenRepository;
+import com.buyconnex.buyconnex.repository.user.RoleRepository;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
-import com.buyconnex.buyconnex.vo.NewPasswordVo;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.buyconnex.buyconnex.service.utils.EmailService;
+import com.buyconnex.buyconnex.vo.RegistrationRequestVo;
+
+import jakarta.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.security.Principal;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Random;
 
 @Service
-@RequiredArgsConstructor
-public class UserService {
+@Transactional
+public class UserService implements IUserService {
+	
 
-	private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
-    
-    public void changePassword(NewPasswordVo request, Principal connectedUser) {
+	@Autowired
+	UserRepository userRep;
+	
+	@Autowired
+	RoleRepository roleRep;
+	
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	VerificationTokenRepository verificationTokenRepo;
+	
+	@Autowired
+	EmailService emailSender;
+	
+	@Override
+	public Users saveUser(Users user) {
+		
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		return userRep.save(user);
+	}
 
-        Users user =  (Users) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
+	@Override
+	public Users addRoleToUser(String username, String rolename) {
+		Users user = userRep.findByUsername(username);
+		Roles role = roleRep.findByRole(rolename);
+		
+		user.getRoles().add(role);
+		return user;
+	}
 
-        // check if the current password is correct
-        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
-            throw new IllegalStateException("Mauvais Mot de Passe");
-        }
-        // check if the two new passwords are the same
-        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
-            throw new IllegalStateException("Mot de Passe non Identique");
-        }
+	
+	@Override
+	public Roles addRole(Roles role) {
+		return roleRep.save(role);
+	}
 
-        // update the password
-        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+	@Override
+	public Users findUserByUsername(String username) {	
+		return userRep.findByUsername(username);
+	}
 
-        // save the new password
-        userRepository.save(user);
-    }
+	@Override
+	public Users registerUser(RegistrationRequestVo request) {
+
+		Optional<Users>  optionalUser = userRep.findByEmail(request.getEmail());
+		if(optionalUser.isPresent())
+			throw new EmailAlreadyExistsException("Email déjà existant!");
+		
+		Users newUser = new Users();
+		newUser.setUsername(request.getUsername());
+		newUser.setEmail(request.getEmail());
+		
+		newUser.setPassword( bCryptPasswordEncoder.encode( request.getPassword() )  );
+		newUser.setBActivated(false);
+		
+		userRep.save(newUser);
+		
+		Roles role = roleRep.findByRole("USER");
+		List<Roles> roles = new ArrayList<>();
+		roles.add(role);
+		newUser.setRoles(roles);
+		
+		//génére le code secret
+		 String code = this.generateCode();
+
+		 VerificationToken token = new VerificationToken(code, newUser);
+		 verificationTokenRepo.save(token);
+		 
+		 //envoyer le code par email à l'utilisateur
+		  sendEmailUser(newUser,token.getToken());
+		
+
+		return userRep.save(newUser);
+	}
+
+	private String generateCode() {
+		 Random random = new Random();
+		 Integer code = 100000 + random.nextInt(900000);
+
+		 return code.toString();
+
+	}
+	
+	@Override
+	public void sendEmailUser(Users u, String code) {
+		 String emailBody ="Bonjour "+ "<h1>"+u.getUsername() +"</h1>" +
+		 " Votre code de validation est "+"<h1>"+code+"</h1>";
+		 
+		emailSender.sendEmail(u.getEmail(), emailBody);
+		}
+
+	@Override
+	public Users validateToken(String code) throws ExpiredTokenException {
+		VerificationToken token = verificationTokenRepo.findByToken(code);
+		
+		if(token == null){
+			throw new InvalidTokenException("Invalid Token !!!!!!!");
+		}
+
+		Users user = token.getUser();
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		if ((token.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0){
+			verificationTokenRepo.delete(token);
+			throw new ExpiredTokenException("expired Token");
+		}
+		
+		user.setBActivated(true);
+		userRep.save(user);
+		return user;
+	}
 }

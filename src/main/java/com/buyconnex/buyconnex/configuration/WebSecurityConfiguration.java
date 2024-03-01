@@ -1,81 +1,74 @@
 package com.buyconnex.buyconnex.configuration;
+import java.util.Collections;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-import com.buyconnex.buyconnex.filter.JwtAuthentificationFilter;
-import lombok.RequiredArgsConstructor;
+import org.springframework.web.cors.CorsConfigurationSource;
 
-import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_CREATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_DELETE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_READ;
-import static com.buyconnex.buyconnex.entity.user.Permissions.ADMIN_UPDATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_CREATE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_DELETE;
-import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_READ;
-import static com.buyconnex.buyconnex.entity.user.Permissions.CLIENT_UPDATE;
-import static com.buyconnex.buyconnex.entity.user.Roles.ADMIN;
-import static com.buyconnex.buyconnex.entity.user.Roles.CLIENT;
-import static org.springframework.http.HttpMethod.DELETE;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
-import static org.springframework.http.HttpMethod.PUT;
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+import jakarta.servlet.http.HttpServletRequest;
+
+import org.springframework.web.cors.CorsConfiguration;
+
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
-@EnableMethodSecurity
 public class WebSecurityConfiguration {
 
-	private static final String[] WHITE_LIST_URL = {"/api/auth/**",
-            "/v2/api-docs",
-            "/v3/api-docs",
-            "/v3/api-docs/**",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui/**",
-            "/webjars/**",
-            "/swagger-ui.html"};
-    private final JwtAuthentificationFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
-    private final LogoutHandler logoutHandler;
+	@Autowired
+	AuthenticationManager authMgr;
+	
+	@Autowired
+	LogoutHandler logoutHandler;
+	
+	
+	@Bean
+	public SecurityFilterChain filterChain (HttpSecurity http) throws Exception
+	{
+		http.sessionManagement( session -> 
+		session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+		
+		.csrf( csrf -> csrf.disable()) 
+		
+		.cors(cors -> cors.configurationSource(new CorsConfigurationSource() {
+            @Override
+            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                CorsConfiguration cors = new CorsConfiguration();
+                cors.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                cors.setAllowedMethods(Collections.singletonList("*"));
+                cors.setAllowedHeaders(Collections.singletonList("*"));
+                cors.setExposedHeaders(Collections.singletonList("Authorization"));
+                
+                return cors;
+            }}))
+		
+		.authorizeHttpRequests( requests -> requests
+				.requestMatchers("/login").permitAll()
+				.requestMatchers("/all").hasAuthority("ADMIN")
+				.anyRequest().authenticated() )
+		
+		.addFilterBefore(new JwtAuthenticationFilter(authMgr), 
+				UsernamePasswordAuthenticationFilter.class)
+		
+		.addFilterBefore(new JwtAuthorizationFilter(),
+			    UsernamePasswordAuthenticationFilter.class)
+		
+		.logout(logout ->
+        logout.logoutUrl("/logout")
+                .addLogoutHandler(logoutHandler)
+                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));
+		
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req ->
-                        req.requestMatchers(WHITE_LIST_URL)
-                                .permitAll()
-                                .requestMatchers("/api/management/**").hasAnyRole(ADMIN.name(), CLIENT.name())
-                                .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), CLIENT_READ.name())
-                                .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), CLIENT_CREATE.name())
-                                .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), CLIENT_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), CLIENT_DELETE.name())
-                                .anyRequest()
-                                .authenticated()
-                )
-                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .logout(logout ->
-                        logout.logoutUrl("/api/auth/logout")
-                                .addLogoutHandler(logoutHandler)
-                                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-                )
-        ;
-
-        return http.build();
-    } 
+	return http.build();
+	}
+	
     
 }

@@ -2,15 +2,15 @@ package com.buyconnex.buyconnex.vo;
 
 import lombok.*;
 
-import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthRequestVo {
 
-    private String email;
+    private String username;
 
     String password;
 }

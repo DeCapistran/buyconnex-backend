@@ -86,7 +86,8 @@ public class Files implements Serializable {
     @Column(name = "FILE_SIZE")
     private Long fileSize;
 
-    public Long getSizeToCompare() {
+    @SuppressWarnings("removal")
+	public Long getSizeToCompare() {
         if (getFileSize() != null) {
             return getFileSize();
         } else if (theBlob != null) {
