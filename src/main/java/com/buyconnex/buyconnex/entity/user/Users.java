@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
@@ -28,60 +31,46 @@ public class Users {
     @Column(name = "ID_USER")
     private Long user_id;
 
+	@Getter @Setter
 	@Column(name = "USERNAME")
     private String username;
 	
+	@Getter @Setter
     @Column(name = "EMAIL")
     private String email;
 
+	@Getter @Setter
     @Column(name = "PASSWORD")
     private String password;
     
+	@Getter @Setter
     @Column(name = "FIRSTNAME")
     private String firstname;
     
+	@Getter @Setter
     @Column(name = "LASTNAME")
     private String lastname;
 
+	@Getter @Setter
     @Column(name = "B_ACTIVATED")
     private boolean bActivated;
 
+	@Getter @Setter
     @Column(name = "B_AUTHENTICATE")
     private boolean bAuthenticate;
 
+	@Getter @Setter
     @Column(name = "B_LOCKED")
     private boolean bLocked;
 
+	@Getter @Setter
     @Column(name = "DATE_CREATION")
     private Date dateCreation;
     
+	@Getter @Setter
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") , 
 			   inverseJoinColumns = @JoinColumn(name="role_id")) 
 	private List<Roles> roles;
-
-    public String getPassword() {
-      return password;
-    }
-
-    public String getUsername() {
-      return email;
-    }
-
-    public boolean isAccountNonExpired() {
-      return true;
-    }
-
-    public boolean isAccountNonLocked() {
-      return true;
-    }
-
-    public boolean isCredentialsNonExpired() {
-      return true;
-    }
-
-    public boolean isEnabled() {
-      return true;
-    }
 
 }

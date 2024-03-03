@@ -41,25 +41,26 @@ public class WebSecurityConfiguration {
 		.cors(cors -> cors.configurationSource(new CorsConfigurationSource() {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                CorsConfiguration cors = new CorsConfiguration();
+            	CorsConfiguration cors = new CorsConfiguration();
                 cors.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
                 cors.setAllowedMethods(Collections.singletonList("*"));
+                cors.setAllowCredentials(true);
                 cors.setAllowedHeaders(Collections.singletonList("*"));
                 cors.setExposedHeaders(Collections.singletonList("Authorization"));
-                
+                cors.setMaxAge(3600L);
                 return cors;
             }}))
-		
-		.authorizeHttpRequests( requests -> requests
-				.requestMatchers("/login").permitAll()
-				.requestMatchers("/all").hasAuthority("ADMIN")
-				.anyRequest().authenticated() )
 		
 		.addFilterBefore(new JwtAuthenticationFilter(authMgr), 
 				UsernamePasswordAuthenticationFilter.class)
 		
 		.addFilterBefore(new JwtAuthorizationFilter(),
 			    UsernamePasswordAuthenticationFilter.class)
+		
+		.authorizeHttpRequests( requests -> requests
+				.requestMatchers("/login","/register/**","/verifyEmail/**").permitAll()
+				.requestMatchers("/all").hasAuthority("ADMIN")
+				.anyRequest().authenticated())
 		
 		.logout(logout ->
         logout.logoutUrl("/logout")

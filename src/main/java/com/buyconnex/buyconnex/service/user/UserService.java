@@ -74,11 +74,14 @@ public class UserService implements IUserService {
 	public Users registerUser(RegistrationRequestVo request) {
 
 		Optional<Users>  optionalUser = userRep.findByEmail(request.getEmail());
-		if(optionalUser.isPresent())
+		if(optionalUser.isPresent()) {
 			throw new EmailAlreadyExistsException("Email déjà existant!");
+		}
 		
 		Users newUser = new Users();
 		newUser.setUsername(request.getUsername());
+		newUser.setFirstname(request.getFirstname());
+		newUser.setLastname(request.getLastname());
 		newUser.setEmail(request.getEmail());
 		
 		newUser.setPassword( bCryptPasswordEncoder.encode( request.getPassword() )  );
