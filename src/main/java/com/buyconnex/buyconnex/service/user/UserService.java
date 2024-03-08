@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -79,7 +81,8 @@ public class UserService implements IUserService {
 		}
 		
 		Users newUser = new Users();
-		newUser.setUsername(request.getUsername());
+		newUser.setUsername(request.getEmail());
+		//newUser.setDateCreation(LocalDate.now());
 		newUser.setFirstname(request.getFirstname());
 		newUser.setLastname(request.getLastname());
 		newUser.setEmail(request.getEmail());

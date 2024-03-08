@@ -56,14 +56,6 @@ public class Users {
     private boolean bActivated;
 
 	@Getter @Setter
-    @Column(name = "B_AUTHENTICATE")
-    private boolean bAuthenticate;
-
-	@Getter @Setter
-    @Column(name = "B_LOCKED")
-    private boolean bLocked;
-
-	@Getter @Setter
     @Column(name = "DATE_CREATION")
     private Date dateCreation;
     
