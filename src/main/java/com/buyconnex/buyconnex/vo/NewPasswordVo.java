@@ -14,7 +14,7 @@ public class NewPasswordVo {
     private String oldPassword;
 
     private String newPassword;
-
-    private String confirmPassword;
+    
+    private String login;
 
 }

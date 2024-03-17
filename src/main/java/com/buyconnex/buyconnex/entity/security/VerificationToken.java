@@ -12,11 +12,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class VerificationToken {
 
 	@Id

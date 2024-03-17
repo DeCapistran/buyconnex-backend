@@ -24,6 +24,19 @@ public class GlobalExceptionHandler extends RuntimeException {
 	 );
 	 return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 	 }
+	
+	@ExceptionHandler(BadPasswordException.class)
+	 public ResponseEntity<ErrorDetails> handleBadPasswordException(BadPasswordException exception,
+	 WebRequest webRequest){
+		
+	 ErrorDetails errorDetails = new ErrorDetails(
+			 LocalDateTime.now(),
+			 exception.getMessage(),
+			 webRequest.getDescription(false),
+			 "BAD_PASSWORD"
+	 );
+	 return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+	 }
 	 
 	
 	@ExceptionHandler(ExpiredTokenException.class)

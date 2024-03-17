@@ -2,6 +2,7 @@ package com.buyconnex.buyconnex.service.user;
 import com.buyconnex.buyconnex.entity.security.VerificationToken;
 import com.buyconnex.buyconnex.entity.user.Roles;
 import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.exception.BadPasswordException;
 import com.buyconnex.buyconnex.exception.EmailAlreadyExistsException;
 import com.buyconnex.buyconnex.exception.ExpiredTokenException;
 import com.buyconnex.buyconnex.exception.InvalidTokenException;
@@ -9,6 +10,7 @@ import com.buyconnex.buyconnex.repository.security.VerificationTokenRepository;
 import com.buyconnex.buyconnex.repository.user.RoleRepository;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
 import com.buyconnex.buyconnex.service.utils.EmailService;
+import com.buyconnex.buyconnex.vo.NewPasswordVo;
 import com.buyconnex.buyconnex.vo.RegistrationRequestVo;
 
 import jakarta.transaction.Transactional;
@@ -87,7 +89,7 @@ public class UserService implements IUserService {
 		newUser.setLastname(request.getLastname());
 		newUser.setEmail(request.getEmail());
 		
-		newUser.setPassword( bCryptPasswordEncoder.encode( request.getPassword() )  );
+		newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
 		newUser.setBActivated(false);
 		
 		userRep.save(newUser);
@@ -146,5 +148,19 @@ public class UserService implements IUserService {
 		user.setBActivated(true);
 		userRep.save(user);
 		return user;
+	}
+
+	@Override
+	public void updatePassword(Users user, NewPasswordVo newPassword) {
+		if(!bCryptPasswordEncoder.matches(newPassword.getOldPassword(), user.getPassword())) {
+			throw new BadPasswordException("Ancien mot de passe incorrect!");
+		}
+		user.setPassword(bCryptPasswordEncoder.encode(newPassword.getNewPassword()));
+		userRep.save(user);
+	}
+
+	@Override
+	public VerificationToken findUserByTokenVerificationToken(String token) {
+		return verificationTokenRepo.findByToken(token);
 	}
 }
