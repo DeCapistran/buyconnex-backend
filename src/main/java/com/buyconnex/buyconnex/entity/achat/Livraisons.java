@@ -1,0 +1,81 @@
+package com.buyconnex.buyconnex.entity.achat;
+
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.entity.client.Adresses;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "LIVRAISONS")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Livraisons {
+
+	@SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
+
+	@Id
+    @SequenceGenerator(name = "LIVRAISONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LIVRAISONS_SEQ_ID")
+    @Column(name = "ID_LIVRAISONS")
+    private Long livraison_id;
+	
+	@Getter @Setter
+	@Column(name = "NUMERO_LIVRAISON")
+    private String numeroLivraison;
+	
+	@Getter @Setter
+    @Column(name = "DATE_LIVRAISON_ESTIMEE")
+    private Date dateLivraisonEstimee;
+	
+	@Getter @Setter
+    @Column(name = "DATE_LIVRAISON")
+    private Date dateLivraison;
+	
+	@Getter @Setter
+	@Column(name = "COMMENTAIRE")
+    private String commentaire;
+	
+	@Getter @Setter
+	@JoinColumn(name = "ID_STATUS_LIVRAISONS")
+    @ManyToOne(targetEntity = StatusLivraisons.class, fetch = FetchType.EAGER, optional = false)
+    private StatusLivraisons statusLivraisons;
+	
+	@Getter @Setter
+	@JoinColumn(name = "ID_COMMANDES")
+    @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
+    private Commandes commandes;
+	
+	@Getter @Setter
+	@JoinColumn(name = "ID_ADRESSE")
+    @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
+    private Adresses adresse;
+	
+	@Getter @Setter
+	@ManyToMany(mappedBy = "livraison")
+    private Set<Commandes> commande = new HashSet<>();
+}

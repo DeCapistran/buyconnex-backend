@@ -10,6 +10,13 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
+import com.buyconnex.buyconnex.entity.article.Avis;
+import com.buyconnex.buyconnex.entity.client.Clients;
+import com.buyconnex.buyconnex.entity.client.Communes;
+import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.buyconnex.buyconnex.entity.others.Newsletters;
 
 @Entity
 @Table(name = "USERS")
@@ -61,8 +68,31 @@ public class Users {
     
 	@Getter @Setter
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") , 
-			   inverseJoinColumns = @JoinColumn(name="role_id")) 
-	private List<Roles> roles;
+	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id")) 
+	 List<Roles> roles;
+	
+	@JoinColumn(name = "ID_CLIENTS")
+    @OneToOne(targetEntity = Clients.class, fetch = FetchType.EAGER, optional = false)
+    private Clients clients;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="users")
+    private Set<Notifications> notifications;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="users")
+    private Set<UserSettings> userSettings;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="users")
+    private Set<Avis> avis;
+	
+	@Getter @Setter
+	@OneToOne(mappedBy = "users")
+	private Paniers paniers;
+	
+	@Getter @Setter
+	@OneToOne(mappedBy = "users")
+	private Newsletters newsletters;
 
 }

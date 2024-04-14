@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.service.user;
 
+import java.util.Optional;
+
 import com.buyconnex.buyconnex.entity.security.VerificationToken;
 import com.buyconnex.buyconnex.entity.user.Roles;
 import com.buyconnex.buyconnex.entity.user.Users;
@@ -18,4 +20,5 @@ public interface IUserService {
 	public void sendEmailUser(Users users, String code);
 	public Users validateToken(String code) throws ExpiredTokenException;
 	VerificationToken findUserByTokenVerificationToken(String token);
+	Optional<Users> findUserByEmail(String email);
 }

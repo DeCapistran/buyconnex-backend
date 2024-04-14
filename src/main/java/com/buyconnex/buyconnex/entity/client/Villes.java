@@ -1,0 +1,52 @@
+package com.buyconnex.buyconnex.entity.client;
+
+import java.util.Set;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "VILLES")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Villes {
+
+	@SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
+
+	@Id
+    @SequenceGenerator(name = "VILLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VILLES_SEQ_ID")
+    @Column(name = "ID_VILLE")
+    private Long ville_id;
+	
+	@Getter @Setter
+	@Column(name = "VILLE")
+    private String ville;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="villes")
+    private Set<Communes> communes;
+	
+	@Getter @Setter
+	@JoinColumn(name = "ID_PAYS")
+    @ManyToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)
+    private Pays pays;
+}

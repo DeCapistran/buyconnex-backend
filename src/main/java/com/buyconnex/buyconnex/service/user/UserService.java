@@ -21,8 +21,6 @@ import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -72,6 +70,11 @@ public class UserService implements IUserService {
 	@Override
 	public Users findUserByUsername(String username) {	
 		return userRep.findByUsername(username);
+	}
+	
+	@Override
+	public Optional<Users> findUserByEmail(String email) {	
+		return userRep.findByEmail(email);
 	}
 
 	@Override
