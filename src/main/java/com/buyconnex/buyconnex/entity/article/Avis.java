@@ -50,12 +50,12 @@ public class Avis {
     private String commentaire;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_ARTICLES")
     @ManyToOne(targetEntity = Articles.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_ARTICLES", referencedColumnName = "ID_ARTICLES")
     private Articles articles;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_USER")
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     private Users users;
 }

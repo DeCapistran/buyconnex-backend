@@ -1,10 +1,11 @@
 package com.buyconnex.buyconnex.entity.client;
 
 import java.util.Set;
-
+import java.util.HashSet;
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.user.Users;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -75,11 +76,11 @@ public class Clients {
 	@Getter @Setter
 	@JoinColumn(name = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
-    private Adresses adresse;
+    private Adresses adresses;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="clients")
-    private Set<Commandes> commandes;
+	@OneToMany(mappedBy="clients", cascade = CascadeType.ALL)
+    private Set<Commandes> commandes = new HashSet<>();
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "clients")

@@ -51,7 +51,7 @@ public class Notifications {
     private Date dateNotif;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_USER")
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     private Users users;
 }

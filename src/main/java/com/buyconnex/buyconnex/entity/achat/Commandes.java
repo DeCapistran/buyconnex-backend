@@ -7,6 +7,7 @@ import java.util.Set;
 import com.buyconnex.buyconnex.entity.client.Clients;
 import com.buyconnex.buyconnex.entity.article.*;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -53,18 +55,18 @@ public class Commandes {
     private Date dateCommande;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_CLIENTS")
     @ManyToOne(targetEntity = Clients.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_CLIENT", referencedColumnName = "ID_CLIENT")
     private Clients clients;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_STATUS_COMMANDES")
     @ManyToOne(targetEntity = StatusCommandes.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_STATUS_COMMANDES", referencedColumnName = "ID_STATUS_COMMANDES")
     private StatusCommandes statusCommandes;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_MOYENS_LIVRAISONS")
     @ManyToOne(targetEntity = MoyensLivraisons.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_MOYENS_LIVRAISONS", referencedColumnName = "ID_MOYENS_LIVRAISONS")
     private MoyensLivraisons moyensLivraisons;
 	
 	@JoinColumn(name = "ID_COUPONS")
@@ -76,15 +78,16 @@ public class Commandes {
     private Set<Articles> articles = new HashSet<>();
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="commandes")
-    private Set<Expeditions> expeditions;
+	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
+    private Set<Expeditions> expeditions = new HashSet<>();
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="commandes")
-    private Set<Facturations> facturations;
+	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
+    private Set<Facturations> facturations = new HashSet<>();
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="commandes")
-    private Set<Livraisons> livraisons;
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "LIVRAISONS_DETAILS", joinColumns = { @JoinColumn(name = "commande_id") }, inverseJoinColumns = { @JoinColumn(name = "livraison_id") })
+	Set<Livraisons> livraisons = new HashSet<>();
 	
 }

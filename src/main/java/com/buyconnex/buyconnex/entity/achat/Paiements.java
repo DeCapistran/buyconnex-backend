@@ -45,12 +45,12 @@ public class Paiements {
     private Long montant;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_MOYENS_PAIEMENTS")
     @ManyToOne(targetEntity = MoyensPaiements.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_MOYENS_PAIEMENTS", referencedColumnName = "ID_MOYENS_PAIEMENTS")
     private MoyensPaiements moyensPaiements;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_STATUS_PAIEMENTS")
     @ManyToOne(targetEntity = StatusPaiements.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_STATUS_PAIEMENTS", referencedColumnName = "ID_STATUS_PAIEMENTS")
     private StatusPaiements statusPaiements;
 }

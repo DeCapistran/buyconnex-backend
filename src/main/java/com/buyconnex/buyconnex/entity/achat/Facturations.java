@@ -48,12 +48,12 @@ public class Facturations {
     private String description;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_COMMANDES")
     @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
     private Commandes commandes;
 	
 	@Getter @Setter
 	@JoinColumn(name = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
-    private Adresses adresse;
+    private Adresses adresses;
 }

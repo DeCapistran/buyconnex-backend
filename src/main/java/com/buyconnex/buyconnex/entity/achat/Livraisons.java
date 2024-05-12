@@ -61,21 +61,16 @@ public class Livraisons {
     private String commentaire;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_STATUS_LIVRAISONS")
     @ManyToOne(targetEntity = StatusLivraisons.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_STATUS_LIVRAISONS", referencedColumnName = "ID_STATUS_LIVRAISONS")
     private StatusLivraisons statusLivraisons;
-	
-	@Getter @Setter
-	@JoinColumn(name = "ID_COMMANDES")
-    @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
-    private Commandes commandes;
 	
 	@Getter @Setter
 	@JoinColumn(name = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
-    private Adresses adresse;
+    private Adresses adresses;
 	
 	@Getter @Setter
-	@ManyToMany(mappedBy = "livraison")
-    private Set<Commandes> commande = new HashSet<>();
+	@ManyToMany(mappedBy = "livraisons")
+    private Set<Commandes> commandes = new HashSet<>();
 }

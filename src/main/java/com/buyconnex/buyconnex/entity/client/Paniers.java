@@ -2,9 +2,11 @@ package com.buyconnex.buyconnex.entity.client;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.HashSet;
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.user.Users;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -50,6 +52,6 @@ public class Paniers {
     private Users users;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="paniers")
-    private Set<Articles> articles;
+	@OneToMany(mappedBy="paniers", cascade = CascadeType.ALL)
+    private Set<Articles> articles = new HashSet<>();
 }

@@ -1,6 +1,8 @@
 package com.buyconnex.buyconnex.entity.achat;
 
 import java.util.Set;
+import java.util.HashSet;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +44,6 @@ public class MoyensLivraisons {
     private String description;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="moyensLivraisons")
-    private Set<Commandes> commandes;
+	@OneToMany(mappedBy="moyensLivraisons", cascade = CascadeType.ALL)
+    private Set<Commandes> commandes = new HashSet<>();
 }

@@ -1,7 +1,8 @@
 package com.buyconnex.buyconnex.entity.article;
 
 import java.util.Set;
-
+import java.util.HashSet;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,10 +44,10 @@ public class Categories {
     private String img;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="CATEGORIES")
-    private Set<Articles> articles;
+	@OneToMany(mappedBy="categories", cascade = CascadeType.ALL)
+    private Set<Articles> articles = new HashSet<>();
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="CATEGORIES")
-    private Set<SousCategories> sousCategorie;
+	@OneToMany(mappedBy="categories", cascade = CascadeType.ALL)
+    private Set<SousCategories> sousCategorie = new HashSet<>();
 }

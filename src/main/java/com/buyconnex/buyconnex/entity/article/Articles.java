@@ -78,24 +78,24 @@ public class Articles {
     private Date dateAjout;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_CATEGORIES")
     @ManyToOne(targetEntity = Categories.class, fetch = FetchType.EAGER, optional = false)
-    private Categories categorie;
+	@JoinColumn(name = "ID_CATEGORIE", referencedColumnName = "ID_CATEGORIE")
+    private Categories categories;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_MARQUES")
     @ManyToOne(targetEntity = Marques.class, fetch = FetchType.EAGER, optional = false)
-    private Marques marque;
+	@JoinColumn(name = "ID_MARQUES", referencedColumnName = "ID_MARQUES")
+    private Marques marques;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_BOUTIQUES")
     @ManyToOne(targetEntity = Boutiques.class, fetch = FetchType.EAGER, optional = false)
-    private Boutiques boutique;
+	@JoinColumn(name = "ID_BOUTIQUES", referencedColumnName = "ID_BOUTIQUES")
+    private Boutiques boutiques;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_STATUS_ARTICLES")
     @ManyToOne(targetEntity = StatusArticles.class, fetch = FetchType.EAGER, optional = false)
-    private StatusArticles statusArticle;
+	@JoinColumn(name = "ID_STATUS_ARTICLES", referencedColumnName = "ID_STATUS_ARTICLES")
+    private StatusArticles statusArticles;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
@@ -113,11 +113,11 @@ public class Articles {
 	Set<Commandes> commandes = new HashSet<>();
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_PANIERS")
     @ManyToOne(targetEntity = Paniers.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_PANIERS", referencedColumnName = "ID_PANIERS")
     private Paniers paniers;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="articles")
-    private Set<Avis> avis;
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<Avis> avis = new HashSet<>();
 }

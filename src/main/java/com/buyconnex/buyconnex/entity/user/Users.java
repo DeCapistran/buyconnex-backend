@@ -11,10 +11,10 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 
 import com.buyconnex.buyconnex.entity.article.Avis;
 import com.buyconnex.buyconnex.entity.client.Clients;
-import com.buyconnex.buyconnex.entity.client.Communes;
 import com.buyconnex.buyconnex.entity.client.Paniers;
 import com.buyconnex.buyconnex.entity.others.Newsletters;
 
@@ -71,21 +71,17 @@ public class Users {
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id")) 
 	 List<Roles> roles;
 	
-	@JoinColumn(name = "ID_CLIENTS")
+	@JoinColumn(name = "ID_CLIENT")
     @OneToOne(targetEntity = Clients.class, fetch = FetchType.EAGER, optional = false)
     private Clients clients;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="users")
-    private Set<Notifications> notifications;
+	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+    private Set<Notifications> notifications = new HashSet<>();
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="users")
-    private Set<UserSettings> userSettings;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="users")
-    private Set<Avis> avis;
+	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
+    private Set<Avis> avis = new HashSet<>();
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "users")

@@ -1,7 +1,8 @@
 package com.buyconnex.buyconnex.entity.client;
 
 import java.util.Set;
-
+import java.util.HashSet;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,11 +43,11 @@ public class Villes {
     private String ville;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="villes")
-    private Set<Communes> communes;
+	@OneToMany(mappedBy="villes", cascade = CascadeType.ALL)
+    private Set<Communes> communes = new HashSet<>();
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_PAYS")
     @ManyToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_PAYS", referencedColumnName = "ID_PAYS")
     private Pays pays;
 }

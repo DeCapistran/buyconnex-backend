@@ -2,9 +2,11 @@ package com.buyconnex.buyconnex.entity.achat;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.HashSet;
 
 import com.buyconnex.buyconnex.entity.article.SousCategories;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -72,11 +74,12 @@ public class Coupons {
 	@Column(name = "MONTANT_MINIMUM")
     private Long montantMinimum;
 	
-	@JoinColumn(name = "ID_SOUS_CATEGORIES")
+	@Getter @Setter
     @ManyToOne(targetEntity = SousCategories.class, fetch = FetchType.EAGER, optional = false)
-    private SousCategories sousCategorie;
+	@JoinColumn(name = "ID_SOUS_CATEGORIE", referencedColumnName = "ID_SOUS_CATEGORIE")
+    private SousCategories sousCategories;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="coupons")
-    private Set<Commandes> commandes;
+	@OneToMany(mappedBy="coupons", cascade = CascadeType.ALL)
+    private Set<Commandes> commandes = new HashSet<>();
 }

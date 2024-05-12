@@ -45,7 +45,7 @@ public class Expeditions {
     private Date dateExpedition;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_COMMANDES")
     @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
     private Commandes commandes;
 }

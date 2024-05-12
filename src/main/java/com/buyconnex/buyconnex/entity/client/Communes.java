@@ -39,7 +39,7 @@ public class Communes {
     private String commune;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_VILLE")
     @ManyToOne(targetEntity = Villes.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_VILLE", referencedColumnName = "ID_VILLE")
     private Villes villes;
 }
