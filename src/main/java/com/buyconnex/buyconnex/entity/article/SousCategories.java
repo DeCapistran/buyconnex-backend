@@ -45,10 +45,6 @@ public class SousCategories {
     private String libelle;
 	
 	@Getter @Setter
-	@Column(name = "IMG")
-    private String img;
-	
-	@Getter @Setter
     @ManyToOne(targetEntity = Categories.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_CATEGORIE", referencedColumnName = "ID_CATEGORIE")
     private Categories categories;

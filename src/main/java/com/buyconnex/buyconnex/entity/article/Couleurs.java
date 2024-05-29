@@ -45,5 +45,5 @@ public class Couleurs {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "couleurs")
-    private Set<ImagesUrl> imagesUrl = new HashSet<>();
+    private Set<Images> images = new HashSet<>();
 }

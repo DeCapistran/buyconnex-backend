@@ -79,7 +79,4 @@ public class Coupons {
 	@JoinColumn(name = "ID_SOUS_CATEGORIE", referencedColumnName = "ID_SOUS_CATEGORIE")
     private SousCategories sousCategories;
 	
-	@Getter @Setter
-	@OneToMany(mappedBy="coupons", cascade = CascadeType.ALL)
-    private Set<Commandes> commandes = new HashSet<>();
 }

@@ -47,6 +47,10 @@ public class Notifications {
     private String description;
 	
 	@Getter @Setter
+	@Column(name = "STATUS")
+    private String status;
+	
+	@Getter @Setter
 	@Column(name = "DATE_NOTIF")
     private Date dateNotif;
 	

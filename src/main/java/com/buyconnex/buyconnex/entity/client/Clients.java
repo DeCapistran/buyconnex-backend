@@ -79,11 +79,13 @@ public class Clients {
     private Adresses adresses;
 	
 	@Getter @Setter
+	@JoinColumn(name = "ID_USER")
+    @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
+    private Users users;
+	
+	@Getter @Setter
 	@OneToMany(mappedBy="clients", cascade = CascadeType.ALL)
     private Set<Commandes> commandes = new HashSet<>();
 	
-	@Getter @Setter
-	@OneToOne(mappedBy = "clients")
-	private Users users;
 
 }

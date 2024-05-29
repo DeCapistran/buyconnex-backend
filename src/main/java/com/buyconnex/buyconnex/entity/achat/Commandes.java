@@ -55,6 +55,10 @@ public class Commandes {
     private Date dateCommande;
 	
 	@Getter @Setter
+	@Column(name = "CODE_COUPON")
+    private String codeCoupon;
+	
+	@Getter @Setter
     @ManyToOne(targetEntity = Clients.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_CLIENT", referencedColumnName = "ID_CLIENT")
     private Clients clients;
@@ -69,9 +73,6 @@ public class Commandes {
 	@JoinColumn(name = "ID_MOYENS_LIVRAISONS", referencedColumnName = "ID_MOYENS_LIVRAISONS")
     private MoyensLivraisons moyensLivraisons;
 	
-	@JoinColumn(name = "ID_COUPONS")
-    @OneToOne(targetEntity = Coupons.class, fetch = FetchType.EAGER, optional = false)
-    private Coupons coupons;
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "commandes")

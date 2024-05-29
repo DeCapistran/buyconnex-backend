@@ -69,11 +69,7 @@ public class Users {
 	@Getter @Setter
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id")) 
-	 List<Roles> roles;
-	
-	@JoinColumn(name = "ID_CLIENT")
-    @OneToOne(targetEntity = Clients.class, fetch = FetchType.EAGER, optional = false)
-    private Clients clients;
+	List<Roles> roles;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
@@ -86,6 +82,10 @@ public class Users {
 	@Getter @Setter
 	@OneToOne(mappedBy = "users")
 	private Paniers paniers;
+	
+	@Getter @Setter
+	@OneToOne(mappedBy = "users")
+	private Clients clients;
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "users")

@@ -14,6 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -52,6 +54,6 @@ public class Paniers {
     private Users users;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="paniers", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "paniers")
     private Set<Articles> articles = new HashSet<>();
 }

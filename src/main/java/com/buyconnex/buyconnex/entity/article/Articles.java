@@ -50,8 +50,8 @@ public class Articles {
     private String sku;
 	
 	@Getter @Setter
-	@Column(name = "IMG")
-    private String img;
+	@Column(name = "IMG_PATH")
+    private String imgPath;
 	
 	@Getter @Setter
 	@Column(name = "TITLE")
@@ -113,11 +113,15 @@ public class Articles {
 	Set<Commandes> commandes = new HashSet<>();
 	
 	@Getter @Setter
-    @ManyToOne(targetEntity = Paniers.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_PANIERS", referencedColumnName = "ID_PANIERS")
-    private Paniers paniers;
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "PANIERS_DETAILS", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "paniers_id") })
+	Set<Paniers> paniers = new HashSet<>();
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
     private Set<Avis> avis = new HashSet<>();
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<Images> images = new HashSet<>();
 }
