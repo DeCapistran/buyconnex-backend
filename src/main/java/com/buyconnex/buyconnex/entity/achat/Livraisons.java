@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.client.Adresses;
 
 import jakarta.persistence.Column;
