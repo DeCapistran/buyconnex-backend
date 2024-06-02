@@ -13,6 +13,7 @@ import com.buyconnex.buyconnex.entity.user.Users;
 public interface NewsletterRepository extends JpaRepository<Newsletters, Long> {
 
 	List<Newsletters> findByDateInscription(Date dateInscription);
+	List<Newsletters> findByDateDesinscription(Date dateDesinscription);
 	List<Newsletters> findByEmail(String email);
 	List<Newsletters> findByUsers(Users users);
 }

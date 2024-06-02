@@ -13,7 +13,7 @@ import com.buyconnex.buyconnex.entity.client.Clients;
 
 public interface CommandeRepository extends JpaRepository<Commandes, Long> {
 
-	List<Commandes> findByNumeroCommande(String numCommande);
+	Commandes findByNumeroCommande(String numCommande);
 	List<Commandes> findByClients(Clients client);
 	List<Commandes> findByDateCommande(Date date);
 	List<Commandes> findByStatusCommandes(StatusCommandes statusCommandes);

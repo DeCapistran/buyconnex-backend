@@ -1,10 +1,8 @@
 package com.buyconnex.buyconnex.entity.article;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.client.Adresses;
-
-import java.util.HashSet;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

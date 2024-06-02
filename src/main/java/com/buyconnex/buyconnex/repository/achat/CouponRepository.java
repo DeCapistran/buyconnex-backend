@@ -11,6 +11,6 @@ import com.buyconnex.buyconnex.entity.article.SousCategories;
 
 public interface CouponRepository extends JpaRepository<Coupons, Long> {
   
-	List<Coupons> findByCodeCoupon(String code);
+	Coupons findByCodeCoupon(String code);
 	List<Coupons> findBySousCategories(SousCategories sousCategories);
 }

@@ -18,6 +18,6 @@ public interface LivraisonRepository extends JpaRepository<Livraisons, Long>{
 	List<Livraisons> findByCommandes(Commandes commandes);
 	List<Livraisons> findByAdresses(Adresses adresses);
 	List<Livraisons> findByDateLivraison(Date dateLivraison);
-	List<Livraisons> findByNumeroLivraison(String numeroLivraison);
+	Livraisons findByNumeroLivraison(String numeroLivraison);
 	List<Livraisons> findByStatusLivraisons(StatusLivraisons statusLivraisons);
 }
