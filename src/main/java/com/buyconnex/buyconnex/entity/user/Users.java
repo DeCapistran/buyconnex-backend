@@ -1,22 +1,34 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import com.buyconnex.buyconnex.entity.article.Avis;
+import com.buyconnex.buyconnex.entity.client.Clients;
+import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.buyconnex.buyconnex.entity.others.Newsletters;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
-
-import com.buyconnex.buyconnex.entity.article.Avis;
-import com.buyconnex.buyconnex.entity.client.Clients;
-import com.buyconnex.buyconnex.entity.client.Paniers;
-import com.buyconnex.buyconnex.entity.others.Newsletters;
 
 @Entity
 @Table(name = "USERS")
@@ -73,11 +85,11 @@ public class Users {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
-    private Set<Notifications> notifications = new HashSet<>();
+    private Set<Notifications> notifications;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
-    private Set<Avis> avis = new HashSet<>();
+    private Set<Avis> avis;
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "users")

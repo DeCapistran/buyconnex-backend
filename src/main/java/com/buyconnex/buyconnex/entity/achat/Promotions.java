@@ -1,9 +1,10 @@
 package com.buyconnex.buyconnex.entity.achat;
 
-import com.buyconnex.buyconnex.entity.article.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Date;
+import java.util.Set;
+
+import com.buyconnex.buyconnex.entity.article.Articles;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,6 +55,6 @@ public class Promotions {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "promotions")
-    private Set<Articles> articles = new HashSet<>();
+    private Set<Articles> articles;
 
 }

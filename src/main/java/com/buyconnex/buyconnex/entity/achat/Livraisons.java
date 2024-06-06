@@ -2,7 +2,6 @@ package com.buyconnex.buyconnex.entity.achat;
 
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.client.Adresses;
@@ -71,5 +70,5 @@ public class Livraisons {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "livraisons")
-    private Set<Commandes> commandes = new HashSet<>();
+    private Set<Commandes> commandes;
 }

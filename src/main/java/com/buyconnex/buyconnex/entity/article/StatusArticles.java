@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.article;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,5 +45,5 @@ public class StatusArticles {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="statusArticles", cascade = CascadeType.ALL)
-    private Set<Articles> articles = new HashSet<>();
+    private Set<Articles> articles;
 }

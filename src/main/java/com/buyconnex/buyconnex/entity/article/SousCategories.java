@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.article;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import com.buyconnex.buyconnex.entity.achat.Coupons;
 
 import jakarta.persistence.CascadeType;
@@ -51,6 +51,6 @@ public class SousCategories {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="sousCategories", cascade = CascadeType.ALL)
-    private Set<Coupons> coupons = new HashSet<>();
+    private Set<Coupons> coupons;
 
 }

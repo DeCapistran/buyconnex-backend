@@ -1,11 +1,10 @@
 package com.buyconnex.buyconnex.entity.achat;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
+import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.client.Clients;
-import com.buyconnex.buyconnex.entity.article.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,7 +18,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -76,19 +74,19 @@ public class Commandes {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "commandes")
-    private Set<Articles> articles = new HashSet<>();
+    private Set<Articles> articles;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
-    private Set<Expeditions> expeditions = new HashSet<>();
+    private Set<Expeditions> expeditions;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
-    private Set<Facturations> facturations = new HashSet<>();
+    private Set<Facturations> facturations;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "LIVRAISONS_DETAILS", joinColumns = { @JoinColumn(name = "commande_id") }, inverseJoinColumns = { @JoinColumn(name = "livraison_id") })
-	Set<Livraisons> livraisons = new HashSet<>();
+	Set<Livraisons> livraisons;
 	
 }

@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.achat;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,5 +45,5 @@ public class StatusPaiements {
 	
 	@Getter @Setter
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="statusPaiements")
-    private Set<Paiements> paiements = new HashSet<>();
+    private Set<Paiements> paiements;
 }

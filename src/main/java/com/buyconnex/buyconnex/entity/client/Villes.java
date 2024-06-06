@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.client;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,7 +44,7 @@ public class Villes {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="villes", cascade = CascadeType.ALL)
-    private Set<Communes> communes = new HashSet<>();
+    private Set<Communes> communes;
 	
 	@Getter @Setter
     @ManyToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)

@@ -2,8 +2,6 @@ package com.buyconnex.buyconnex.entity.user;
 
 import java.util.Date;
 
-import com.buyconnex.buyconnex.entity.client.Pays;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

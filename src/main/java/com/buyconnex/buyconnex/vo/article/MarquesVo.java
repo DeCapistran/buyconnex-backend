@@ -1,0 +1,19 @@
+package com.buyconnex.buyconnex.vo.article;
+
+import com.buyconnex.buyconnex.entity.article.Articles;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class MarquesVo {
+
+	private String libelle;
+	private String img;
+	private Articles articles;
+}

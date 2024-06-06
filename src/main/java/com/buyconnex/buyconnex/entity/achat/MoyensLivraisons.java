@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.achat;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,5 +45,5 @@ public class MoyensLivraisons {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="moyensLivraisons", cascade = CascadeType.ALL)
-    private Set<Commandes> commandes = new HashSet<>();
+    private Set<Commandes> commandes;
 }

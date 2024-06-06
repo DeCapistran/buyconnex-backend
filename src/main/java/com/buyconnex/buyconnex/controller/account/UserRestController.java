@@ -15,10 +15,10 @@ import com.buyconnex.buyconnex.exception.ExpiredTokenException;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
 import com.buyconnex.buyconnex.service.user.AuthenticationService;
 import com.buyconnex.buyconnex.service.user.UserService;
-import com.buyconnex.buyconnex.vo.AuthRequestVo;
-import com.buyconnex.buyconnex.vo.AuthResponseVo;
-import com.buyconnex.buyconnex.vo.NewPasswordVo;
-import com.buyconnex.buyconnex.vo.RegistrationRequestVo;
+import com.buyconnex.buyconnex.vo.user.AuthRequestVo;
+import com.buyconnex.buyconnex.vo.user.AuthResponseVo;
+import com.buyconnex.buyconnex.vo.user.NewPasswordVo;
+import com.buyconnex.buyconnex.vo.user.RegistrationRequestVo;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,5 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -45,5 +44,5 @@ public class Tags {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "tags")
-    private Set<Articles> articles = new HashSet<>();
+    private Set<Articles> articles;
 }

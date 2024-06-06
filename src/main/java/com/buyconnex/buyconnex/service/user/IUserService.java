@@ -6,8 +6,8 @@ import com.buyconnex.buyconnex.entity.security.VerificationToken;
 import com.buyconnex.buyconnex.entity.user.Roles;
 import com.buyconnex.buyconnex.entity.user.Users;
 import com.buyconnex.buyconnex.exception.ExpiredTokenException;
-import com.buyconnex.buyconnex.vo.NewPasswordVo;
-import com.buyconnex.buyconnex.vo.RegistrationRequestVo;
+import com.buyconnex.buyconnex.vo.user.NewPasswordVo;
+import com.buyconnex.buyconnex.vo.user.RegistrationRequestVo;
 
 public interface IUserService {
 

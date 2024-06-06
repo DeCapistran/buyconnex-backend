@@ -1,12 +1,13 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import com.buyconnex.buyconnex.entity.achat.*;
-import com.buyconnex.buyconnex.entity.client.Communes;
-import com.buyconnex.buyconnex.entity.client.Paniers;
-
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+
+import com.buyconnex.buyconnex.entity.achat.Commandes;
+import com.buyconnex.buyconnex.entity.achat.Promotions;
+import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -100,28 +101,29 @@ public class Articles {
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "PROMOTIONS_DETAILS", joinColumns = { @JoinColumn(name = "article_id") }, inverseJoinColumns = { @JoinColumn(name = "promotion_id") })
-	Set<Promotions> promotions = new HashSet<>();
+	Set<Promotions> promotions;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "TAGS_DETAILS", joinColumns = { @JoinColumn(name = "article_id") }, inverseJoinColumns = { @JoinColumn(name = "tags_id") })
-	Set<Tags> tags = new HashSet<>();
+	Set<Tags> tags;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "COMMANDES_DETAILS", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "commandes_id") })
-	Set<Commandes> commandes = new HashSet<>();
+	Set<Commandes> commandes;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "PANIERS_DETAILS", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "paniers_id") })
-	Set<Paniers> paniers = new HashSet<>();
+	Set<Paniers> paniers;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
-    private Set<Avis> avis = new HashSet<>();
+    private Set<Avis> avis;
 	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
-    private Set<Images> images = new HashSet<>();
+	@ManyToOne
+	@JoinColumn (name="ID_IMAGES")
+	@JsonIgnore
+	private Images images;
 }

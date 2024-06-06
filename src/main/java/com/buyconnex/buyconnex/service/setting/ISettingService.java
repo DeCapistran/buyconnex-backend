@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.service.setting;
 
 import com.buyconnex.buyconnex.entity.utils.Settings;
-import com.buyconnex.buyconnex.vo.SettingAppVo;
+import com.buyconnex.buyconnex.vo.user.SettingAppVo;
 
 public interface ISettingService extends ISettingParams {
 

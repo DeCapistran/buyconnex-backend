@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.vo;
+package com.buyconnex.buyconnex.vo.user;
 
 
 import com.buyconnex.buyconnex.entity.user.Roles;

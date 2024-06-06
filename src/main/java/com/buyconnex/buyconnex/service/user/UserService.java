@@ -10,8 +10,8 @@ import com.buyconnex.buyconnex.repository.security.VerificationTokenRepository;
 import com.buyconnex.buyconnex.repository.user.RoleRepository;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
 import com.buyconnex.buyconnex.service.utils.EmailService;
-import com.buyconnex.buyconnex.vo.NewPasswordVo;
-import com.buyconnex.buyconnex.vo.RegistrationRequestVo;
+import com.buyconnex.buyconnex.vo.user.NewPasswordVo;
+import com.buyconnex.buyconnex.vo.user.RegistrationRequestVo;
 
 import jakarta.transaction.Transactional;
 

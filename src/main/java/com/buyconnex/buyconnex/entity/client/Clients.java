@@ -1,7 +1,7 @@
 package com.buyconnex.buyconnex.entity.client;
 
 import java.util.Set;
-import java.util.HashSet;
+
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.user.Users;
 
@@ -85,7 +85,7 @@ public class Clients {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="clients", cascade = CascadeType.ALL)
-    private Set<Commandes> commandes = new HashSet<>();
+    private Set<Commandes> commandes;
 	
 
 }

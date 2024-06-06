@@ -1,4 +1,4 @@
-package com.buyconnex.buyconnex.vo;
+package com.buyconnex.buyconnex.vo.visuel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewPasswordVo {
+public class FootersVo {
 
-    private String oldPassword;
-
-    private String newPassword;
-    
-    private String login;
-
+	private String telephone;
+	private String adresse;
+	private String mailsupport;
 }

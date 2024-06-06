@@ -12,8 +12,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.buyconnex.buyconnex.entity.user.Users;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
-import com.buyconnex.buyconnex.vo.AuthRequestVo;
-import com.buyconnex.buyconnex.vo.AuthResponseVo;
+import com.buyconnex.buyconnex.vo.user.AuthRequestVo;
+import com.buyconnex.buyconnex.vo.user.AuthResponseVo;
 
 @Service
 public class AuthenticationService {

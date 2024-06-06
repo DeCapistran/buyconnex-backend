@@ -1,6 +1,5 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -45,5 +44,5 @@ public class Couleurs {
 	
 	@Getter @Setter
 	@ManyToMany(mappedBy = "couleurs")
-    private Set<Images> images = new HashSet<>();
+    private Set<Images> images;
 }

@@ -1,4 +1,6 @@
-package com.buyconnex.buyconnex.vo;
+package com.buyconnex.buyconnex.vo.visuel;
+
+import com.buyconnex.buyconnex.entity.article.Images;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MailVo {
+public class SlidersVo {
 
-    private String sujet;
-
-    private String message;
-
-    private byte[] pj;
-
-    private String jpName;
+	private String title;
+	private Images images;
 }

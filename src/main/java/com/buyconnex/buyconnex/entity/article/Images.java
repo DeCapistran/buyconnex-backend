@@ -1,10 +1,8 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.visuel.Sliders;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -56,10 +54,10 @@ public class Images {
 	@Lob
 	private byte[] image; 
 	
-	@ManyToOne
-	@JoinColumn (name="ID_ARTICLES")
-	@JsonIgnore
-	private Articles articles;
+
+	@Getter @Setter
+	@OneToMany(mappedBy="images", cascade = CascadeType.ALL)
+    private Set<Articles> articles;
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "images")
@@ -72,5 +70,5 @@ public class Images {
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "IMAGES_COULEURS", joinColumns = { @JoinColumn(name = "image_id") }, inverseJoinColumns = { @JoinColumn(name = "couleur_id") })
-	Set<Couleurs> couleurs = new HashSet<>();
+	Set<Couleurs> couleurs;
 }

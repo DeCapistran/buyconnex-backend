@@ -17,8 +17,8 @@ import com.buyconnex.buyconnex.controller.DefaultRestController;
 import com.buyconnex.buyconnex.entity.user.UserSettings;
 import com.buyconnex.buyconnex.entity.user.Users;
 import com.buyconnex.buyconnex.service.user.IUserSettingService;
-import com.buyconnex.buyconnex.vo.GenericResponseVo;
-import com.buyconnex.buyconnex.vo.UserSettingVo;
+import com.buyconnex.buyconnex.vo.user.GenericResponseVo;
+import com.buyconnex.buyconnex.vo.user.UserSettingVo;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
