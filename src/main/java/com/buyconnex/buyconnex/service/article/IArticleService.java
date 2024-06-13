@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.Promotions;
@@ -14,7 +15,7 @@ import com.buyconnex.buyconnex.entity.client.Paniers;
 
 public interface IArticleService {
 
-	public Articles findById(Long id);
+	public Optional<Articles> findById(Long id);
 	public Articles saveArticle(Articles articles);
 	public void deleteArticles(Articles articles);
 	public Articles updateArticles(Articles articles);

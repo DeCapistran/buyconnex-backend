@@ -2,6 +2,7 @@ package com.buyconnex.buyconnex.service.achat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.MoyensLivraisons;
@@ -10,7 +11,7 @@ import com.buyconnex.buyconnex.entity.client.Clients;
 
 public interface ICommandeService {
 
-	public Commandes findById(Long id);
+	public Optional<Commandes> findById(Long id);
 	public Commandes saveCommandes(Commandes commandes);
 	public void deleteCommandes(Commandes commandes);
 	public Commandes updateCommandes(Commandes commandes);

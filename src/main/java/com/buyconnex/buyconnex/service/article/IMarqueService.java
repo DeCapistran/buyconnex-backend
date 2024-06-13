@@ -1,13 +1,14 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Marques;
 
 public interface IMarqueService {
 
-	public Marques findById(Long id);
+	public Optional<Marques> findById(Long id);
 	public Marques saveMarques(Marques marques);
 	public void deleteMarques(Marques marques);
 	public Marques updateMarques(Marques marques);

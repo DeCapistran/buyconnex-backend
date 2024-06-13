@@ -20,5 +20,5 @@ public interface ClientRepository extends JpaRepository<Clients, Long> {
 	Optional<Clients> findByEntreprise(String entreprise);
 	List<Clients> findByFristname(String fristname);
 	List<Clients> findByLastname(String lastname);
-	List<Clients> findByUsers(Users users);
+	Optional<Clients> findByUsers(Users users);
 }

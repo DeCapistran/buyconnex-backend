@@ -2,13 +2,14 @@ package com.buyconnex.buyconnex.service.achat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.Facturations;
 
 public interface IFacturationService {
 
-	public Facturations findById(Long id);
+	public Optional<Facturations> findById(Long id);
 	public Facturations saveFacturations(Facturations facturations);
 	public void deleteFacturations(Facturations facturations);
 	public Facturations updateFacturations(Facturations facturations);

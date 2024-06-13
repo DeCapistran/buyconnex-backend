@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.achat.Coupons;
 import com.buyconnex.buyconnex.entity.article.Categories;
@@ -8,7 +9,7 @@ import com.buyconnex.buyconnex.entity.article.SousCategories;
 
 public interface ISousCategorieService {
 
-	public SousCategories findById(Long id);
+	public Optional<SousCategories> findById(Long id);
 	public SousCategories saveSousCategorie(SousCategories sousCategories);
 	public void deleteSousCategorie(SousCategories sousCategories);
 	public SousCategories updateSousCategorie(SousCategories sousCategories);

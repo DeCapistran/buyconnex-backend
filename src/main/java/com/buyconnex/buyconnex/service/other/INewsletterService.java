@@ -2,13 +2,14 @@ package com.buyconnex.buyconnex.service.other;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.others.Newsletters;
 import com.buyconnex.buyconnex.entity.user.Users;
 
 public interface INewsletterService {
 
-	public Newsletters findById(Long id);
+	public Optional<Newsletters> findById(Long id);
 	public Newsletters saveNewsletters(Newsletters newsletters);
 	public void deleteNewsletters(Newsletters newsletters);
 	public Newsletters updateNewsletters(Newsletters newsletters);

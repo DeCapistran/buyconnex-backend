@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Avis;
@@ -8,7 +9,7 @@ import com.buyconnex.buyconnex.entity.user.Users;
 
 public interface IAvisService {
 
-	public Avis findById(Long id);
+	public Optional<Avis> findById(Long id);
 	public Avis saveAvis(Avis avis);
 	public void deleteAvis(Avis avis);
 	public Avis updateAvis(Avis avis);

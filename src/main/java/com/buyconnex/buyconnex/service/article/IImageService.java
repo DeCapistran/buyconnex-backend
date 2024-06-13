@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Categories;
@@ -9,7 +10,7 @@ import com.buyconnex.buyconnex.entity.visuel.Sliders;
 
 public interface IImageService {
 
-	public Images findById(Long id);
+	public Optional<Images> findById(Long id);
 	public Images saveImages(Images images);
 	public void deleteImages(Images images);
 	public Images updateImages(Images images);

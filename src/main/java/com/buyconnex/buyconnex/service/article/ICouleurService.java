@@ -1,13 +1,14 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.article.Couleurs;
 import com.buyconnex.buyconnex.entity.article.Images;
 
 public interface ICouleurService {
 
-	public Couleurs findById(Long id);
+	public Optional<Couleurs> findById(Long id);
 	public Couleurs saveCouleurs(Couleurs couleurs);
 	public void deleteCouleurs(Couleurs couleurs);
 	public Couleurs updateCouleurs(Couleurs couleurs);

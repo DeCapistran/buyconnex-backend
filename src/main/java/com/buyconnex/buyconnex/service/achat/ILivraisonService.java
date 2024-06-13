@@ -2,6 +2,7 @@ package com.buyconnex.buyconnex.service.achat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
@@ -10,7 +11,7 @@ import com.buyconnex.buyconnex.entity.client.Adresses;
 
 public interface ILivraisonService {
 
-	public Livraisons findById(Long id);
+	public Optional<Livraisons> findById(Long id);
 	public Livraisons saveLivraisons(Livraisons livraisons);
 	public void deleteLivraisons(Livraisons livraisons);
 	public Livraisons updateLivraisons(Livraisons livraisons);
