@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.achat.Coupons;
 import com.buyconnex.buyconnex.entity.article.Categories;
 
@@ -16,5 +18,5 @@ public class SousCategoriesVo {
 
 	private String libelle;
 	private Categories categories;
-	private Coupons coupons;
+	private Set<Coupons> coupons;
 }

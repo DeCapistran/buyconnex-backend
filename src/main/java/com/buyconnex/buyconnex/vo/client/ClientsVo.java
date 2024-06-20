@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.client;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.client.Adresses;
 import com.buyconnex.buyconnex.entity.user.Users;
@@ -25,5 +27,5 @@ public class ClientsVo {
 	private String telephone2;
 	private Adresses adresses;
 	private Users users;
-	private Commandes commandes;
+	private Set<Commandes> commandes;
 }

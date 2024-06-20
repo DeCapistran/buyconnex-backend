@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.Promotions;
@@ -36,10 +37,10 @@ public class ArticlesVo {
 	private Marques marques;
 	private Boutiques boutiques;
 	private StatusArticles statusArticles;
-	private Promotions promotions;
-	private Tags tags;
-	private Commandes commandes;
-	private Paniers paniers;
-	private Avis avis;
+	private Set<Promotions> promotions;
+	private Set<Tags> tags;
+	private Set<Commandes> commandes;
+	private Set<Paniers> paniers;
+	private Set<Avis> avis;
 	private Images images;
 }

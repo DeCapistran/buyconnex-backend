@@ -13,5 +13,5 @@ public class FootersVo {
 
 	private String telephone;
 	private String adresse;
-	private String mailsupport;
+	private String mailSupport;
 }

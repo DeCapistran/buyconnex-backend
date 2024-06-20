@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Couleurs;
@@ -19,8 +21,8 @@ public class ImagesVo {
 	private String name;
 	private String type;
 	private byte[] image;
-	private Articles articles;
+	private Set<Articles> articles;
 	private Categories categories;
 	private Sliders sliders;
-	private Couleurs couleurs;
+	private Set<Couleurs> couleurs;
 }

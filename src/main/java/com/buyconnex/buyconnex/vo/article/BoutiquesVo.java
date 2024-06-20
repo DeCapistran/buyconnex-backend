@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.article.Articles;
 
 import lombok.AllArgsConstructor;
@@ -17,5 +19,5 @@ public class BoutiquesVo {
 	private String email;
 	private String telephone;
 	private String img;
-	private Articles articles;
+	private Set<Articles> articles;
 }

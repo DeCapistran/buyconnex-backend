@@ -3,6 +3,7 @@ package com.buyconnex.buyconnex.vo.achat;
 import java.util.Date;
 
 import com.buyconnex.buyconnex.entity.achat.MoyensLivraisons;
+import com.buyconnex.buyconnex.entity.achat.MoyensPaiements;
 import com.buyconnex.buyconnex.entity.achat.StatusPaiements;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,6 @@ public class PaiementsVo {
 
 	private Date datePaiement;
 	private Long montant;
-	private MoyensLivraisons moyensLivraisons;
+	private MoyensPaiements moyensPaiements;
 	private StatusPaiements statusPaiements;
 }

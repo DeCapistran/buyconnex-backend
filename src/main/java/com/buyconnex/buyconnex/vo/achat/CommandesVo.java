@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Expeditions;
 import com.buyconnex.buyconnex.entity.achat.Facturations;
@@ -27,9 +28,9 @@ public class CommandesVo {
 	private Clients clients;
 	private StatusCommandes statusCommandes;
 	private MoyensLivraisons moyensLivraisons;
-	private Articles articles;
-	private Expeditions expeditions;
-	private Facturations facturations;
-	private Livraisons livraisons;
+	private Set<Articles> articles;
+	private Set<Expeditions> expeditions;
+	private Set<Facturations> facturations;
+	private Set<Livraisons> livraisons;
 	
 }

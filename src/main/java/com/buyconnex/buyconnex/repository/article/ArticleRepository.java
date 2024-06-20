@@ -15,10 +15,6 @@ import com.buyconnex.buyconnex.entity.article.StatusArticles;
 import com.buyconnex.buyconnex.entity.client.Paniers;
 
 
-
-
-
-
 public interface ArticleRepository extends JpaRepository<Articles, Long> {
 
 	List<Articles> findByBoutiques(Boutiques boutiques);

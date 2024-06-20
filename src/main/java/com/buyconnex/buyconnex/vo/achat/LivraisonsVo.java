@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.StatusLivraisons;
@@ -23,5 +24,5 @@ public class LivraisonsVo {
 	private String commentaire;
 	private StatusLivraisons statusLivraisons;
 	private Adresses adresses;
-	private Commandes commandes;
+	private Set<Commandes> commandes;
 }

@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.client;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.client.Villes;
 
 import lombok.AllArgsConstructor;
@@ -14,5 +16,5 @@ import lombok.Setter;
 public class PaysVo {
 
 	private String pays;
-	private Villes villes;
+	private Set<Villes> villes;
 }

@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class StatusCommandesVo {
 
 	private String status;
 	private String description;
-	private Commandes commandes;
+	private Set<Commandes> commandes;
 }

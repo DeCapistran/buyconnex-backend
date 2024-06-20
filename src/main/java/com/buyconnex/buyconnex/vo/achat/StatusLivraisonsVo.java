@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class StatusLivraisonsVo {
 
 	private String status;
 	private String description;
-	private Livraisons livraisons;
+	private Set<Livraisons> livraisons;
 }

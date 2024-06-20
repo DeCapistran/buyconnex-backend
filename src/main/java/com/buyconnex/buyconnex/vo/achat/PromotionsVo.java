@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
 
@@ -19,5 +20,5 @@ public class PromotionsVo {
 	private Date dateDebut;
 	private Date dateFin;
 	private int pourcentage;
-	private Articles articles;
+	private Set<Articles> articles;
 }

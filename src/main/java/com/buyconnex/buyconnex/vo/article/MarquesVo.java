@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.article.Articles;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class MarquesVo {
 
 	private String libelle;
 	private String img;
-	private Articles articles;
+	private Set<Articles> articles;
 }

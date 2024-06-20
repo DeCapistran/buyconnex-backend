@@ -16,7 +16,7 @@ import lombok.Setter;
 public class NewslettersVo {
 
 	private Date dateInscription;
-	private Date desincription;
+	private Date dateDesincription;
 	private String email;
 	private Users users;
 }

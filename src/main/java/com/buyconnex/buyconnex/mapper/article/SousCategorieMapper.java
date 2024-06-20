@@ -1,0 +1,25 @@
+package com.buyconnex.buyconnex.mapper.article;
+
+import com.buyconnex.buyconnex.entity.article.SousCategories;
+import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
+
+public class SousCategorieMapper {
+
+	public static SousCategoriesVo toVO(SousCategories sousCategories) {
+		SousCategoriesVo sousCategoriesVo = new SousCategoriesVo();
+		sousCategoriesVo.setLibelle(sousCategories.getLibelle());
+		sousCategoriesVo.setCategories(sousCategories.getCategories());
+		sousCategoriesVo.setCoupons(sousCategories.getCoupons());
+		
+		return sousCategoriesVo;
+	}
+	
+	public static SousCategories toEntity(SousCategoriesVo sousCategoriesVo) {
+		SousCategories sousCategories = new SousCategories();
+		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
+		sousCategories.setCategories(sousCategoriesVo.getCategories());
+		sousCategories.setCoupons(sousCategoriesVo.getCoupons());
+		
+		return sousCategories;
+	}
+}

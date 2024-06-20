@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.vo.client;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.user.Users;
@@ -18,5 +19,5 @@ public class PaniersVo {
 
 	private Date datePanier;
 	private Users users;
-	private Articles articles;
+	private Set<Articles> articles;
 }

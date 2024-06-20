@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.article;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.article.Images;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class CouleursVo {
 
 	private String couleur;
 	private String codeCouleur;
-	private Images images;
+	private Set<Images> images;
 }

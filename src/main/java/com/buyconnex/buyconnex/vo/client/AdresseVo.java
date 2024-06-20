@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArticlesVo {
+public class AdresseVo {
 
 	private Pays pays;
 	private Villes villes;

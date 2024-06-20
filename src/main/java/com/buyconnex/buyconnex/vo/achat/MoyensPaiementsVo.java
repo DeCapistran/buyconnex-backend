@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.vo.achat;
 
+import java.util.Set;
+
 import com.buyconnex.buyconnex.entity.achat.Paiements;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MoyensPaiementsVo {
 
-	private String moyensLivraisons;
+	private String moyensPaiements;
 	private String description;
-	private Paiements paiements;
+	private Set<Paiements> paiements;
 }
