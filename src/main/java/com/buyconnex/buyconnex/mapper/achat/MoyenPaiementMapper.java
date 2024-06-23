@@ -22,4 +22,11 @@ public class MoyenPaiementMapper {
 		
 		return moyensPaiements;
 	}
+	
+	public static void updateEntityFromVO(MoyensPaiementsVo moyensPaiementsVo, MoyensPaiements moyensPaiements) {
+		
+		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
+		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
+		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements());
+	}
 }

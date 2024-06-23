@@ -3,13 +3,18 @@ package com.buyconnex.buyconnex.service.client;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.client.Paniers;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
+import com.buyconnex.buyconnex.mapper.client.PanierMapper;
+import com.buyconnex.buyconnex.mapper.user.UserMapper;
 import com.buyconnex.buyconnex.repository.client.PanierRepository;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.client.PaniersVo;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 import jakarta.transaction.Transactional;
 
@@ -20,38 +25,45 @@ public class PanierService implements IPanierService {
 	PanierRepository panierRepository;
 
 	@Override
-	public Optional<Paniers> findById(Long id) {
-		return panierRepository.findById(id);
+	public Optional<PaniersVo> findById(Long id) {
+		return panierRepository.findById(id).map(PanierMapper::toVO);
 	}
 
 	@Override
-	public Paniers savePaniers(Paniers paniers) {
-		return panierRepository.save(paniers);
+	public PaniersVo savePaniers(PaniersVo paniersVo) {
+		Paniers paniers = PanierMapper.toEntity(paniersVo);
+		Paniers paniersSave = panierRepository.save(paniers);
+		return PanierMapper.toVO(paniersSave);
 	}
 
 	@Override
-	public void deletePaniers(Paniers paniers) {
+	public void deletePaniers(PaniersVo paniersVo) {
+		Paniers paniers = PanierMapper.toEntity(paniersVo);
 		panierRepository.delete(paniers);
 	}
 
 	@Override
-	public Paniers updatePaniers(Paniers paniers) {
-		return panierRepository.save(paniers);
+	public PaniersVo updatePaniers(Long id, PaniersVo paniersVo) {
+		return panierRepository.findById(id).map(panier -> {
+			PanierMapper.updateEntityFromVO(paniersVo, panier);
+			Paniers paniersUpdated = panierRepository.save(panier);
+			return PanierMapper.toVO(paniersUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<Paniers> findByArticles(Articles articles) {
-		return panierRepository.findByArticles(articles);
+	public List<PaniersVo> findByArticles(ArticlesVo articlesVo) {
+		return panierRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(PanierMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Paniers> findBydatePaniers(Date date) {
-		return panierRepository.findByDatePanier(date);
+	public List<PaniersVo> findBydatePaniers(Date date) {
+		return panierRepository.findByDatePanier(date).stream().map(PanierMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Paniers> findByUsers(Users users) {
-		return panierRepository.findByUsers(users);
+	public List<PaniersVo> findByUsers(UsersVo usersVo) {
+		return panierRepository.findByUsers(UserMapper.toEntity(usersVo)).stream().map(PanierMapper::toVO).collect(Collectors.toList());
 	}
 
 }

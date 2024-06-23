@@ -4,17 +4,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.others.Newsletters;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.other.NewslettersVo;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 public interface INewsletterService {
 
-	public Optional<Newsletters> findById(Long id);
-	public Newsletters saveNewsletters(Newsletters newsletters);
-	public void deleteNewsletters(Newsletters newsletters);
-	public Newsletters updateNewsletters(Newsletters newsletters);
-	public List<Newsletters> findByDateDesinscription(Date date);
-	public List<Newsletters> findByDateInscription(Date date);
-	public Newsletters findByEmail(String email);
-	public List<Newsletters> findByUsers(Users users);
+	public Optional<NewslettersVo> findById(Long id);
+	public NewslettersVo saveNewsletters(NewslettersVo newslettersVo);
+	public void deleteNewsletters(NewslettersVo newslettersVo);
+	public NewslettersVo updateNewsletters(Long id, NewslettersVo newslettersVo);
+	public List<NewslettersVo> findByDateDesinscription(Date date);
+	public List<NewslettersVo> findByDateInscription(Date date);
+	public Optional<NewslettersVo> findByEmail(String email);
+	public List<NewslettersVo> findByUsers(UsersVo usersVo);
 }

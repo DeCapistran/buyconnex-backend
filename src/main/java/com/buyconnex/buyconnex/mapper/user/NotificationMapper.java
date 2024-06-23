@@ -26,4 +26,13 @@ public class NotificationMapper {
 		
 		return notifications;
 	}
+	
+	public static void updateEntityFromVO(NotificationsVo notificationsVo, Notifications notifications) {
+		
+		notifications.setDateNotif(notificationsVo.getDateNotif());
+		notifications.setDescription(notificationsVo.getDescription());
+		notifications.setLibelle(notificationsVo.getLibelle());
+		notifications.setStatus(notificationsVo.getStatus());
+		notifications.setUsers(notificationsVo.getUsers());
+	}
 }

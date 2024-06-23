@@ -20,4 +20,9 @@ public class CommuneMapper {
 		
 		return communes;
 	}
+	
+	public static void updateEntityFromVO(CommunesVo communesVo, Communes communes) {
+		communes.setCommune(communesVo.getCommune());
+		communes.setVilles(communesVo.getVilles());
+	}
 }

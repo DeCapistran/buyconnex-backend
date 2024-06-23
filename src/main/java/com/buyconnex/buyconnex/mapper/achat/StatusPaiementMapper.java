@@ -22,4 +22,11 @@ public class StatusPaiementMapper {
 		
 		return statusPaiements;
 	}
+	
+	public static void updateEntityFromVO(StatusPaiementsVo statusPaiementsVo, StatusPaiements statusPaiements) {
+		
+		statusPaiements.setDescription(statusPaiementsVo.getDescription());
+		statusPaiements.setPaiements(statusPaiementsVo.getPaiements());
+		statusPaiements.setStatus(statusPaiementsVo.getStatus());
+	}
 }

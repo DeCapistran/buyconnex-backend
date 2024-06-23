@@ -36,4 +36,17 @@ public class CouponMapper {
 		
 		return coupons;
 	}
+	
+	public static void updateEntityFromVO(CouponsVo couponsVo, Coupons coupons) {
+		
+		coupons.setLibelle(couponsVo.getLibelle());
+		coupons.setLogo(couponsVo.getLogo());
+		coupons.setCodeCoupon(couponsVo.getCodeCoupon());
+		coupons.setDateCreation(couponsVo.getDateCreation());
+		coupons.setDateDebut(couponsVo.getDateDebut());
+		coupons.setDateFin(couponsVo.getDateFin());
+		coupons.setPourcentage(couponsVo.getPourcentage());
+		coupons.setMontantMinimum(couponsVo.getMontantMinimum());
+		coupons.setSousCategories(couponsVo.getSousCategories());
+	}
 }

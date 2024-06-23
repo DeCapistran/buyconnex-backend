@@ -3,16 +3,16 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.Marques;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.MarquesVo;
 
 public interface IMarqueService {
 
-	public Optional<Marques> findById(Long id);
-	public Marques saveMarques(Marques marques);
-	public void deleteMarques(Marques marques);
-	public Marques updateMarques(Marques marques);
-	public List<Marques> findByArticles(Articles articles);
-	public List<Marques> findByImg(String img);
-	public List<Marques> findByLibelle(String libelle);
+	public Optional<MarquesVo> findById(Long id);
+	public MarquesVo saveMarques(MarquesVo marquesVo);
+	public void deleteMarques(MarquesVo marquesVo);
+	public MarquesVo updateMarques(Long id, MarquesVo marquesVo);
+	public List<MarquesVo> findByArticles(ArticlesVo articlesVo);
+	public List<MarquesVo> findByImg(String img);
+	public List<MarquesVo> findByLibelle(String libelle);
 }

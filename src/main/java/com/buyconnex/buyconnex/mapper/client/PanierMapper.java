@@ -22,4 +22,11 @@ public class PanierMapper {
 		
 		return paniers;
 	}
+	
+	public static void updateEntityFromVO(PaniersVo paniersVo, Paniers paniers) {
+		
+		paniers.setArticles(paniersVo.getArticles());
+		paniers.setDatePanier(paniersVo.getDatePanier());
+		paniers.setUsers(paniersVo.getUsers());
+	}
 }

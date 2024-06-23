@@ -2,13 +2,17 @@ package com.buyconnex.buyconnex.service.client;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.client.Pays;
-import com.buyconnex.buyconnex.entity.client.Villes;
+import com.buyconnex.buyconnex.mapper.client.PaysMapper;
+import com.buyconnex.buyconnex.mapper.client.VilleMapper;
 import com.buyconnex.buyconnex.repository.client.PaysRepository;
+import com.buyconnex.buyconnex.vo.client.PaysVo;
+import com.buyconnex.buyconnex.vo.client.VillesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -20,33 +24,40 @@ public class PaysService implements IPaysService {
 	PaysRepository paysRepository;
 	
 	@Override
-	public Optional<Pays> findById(Long id) {
-		return paysRepository.findById(id);
+	public Optional<PaysVo> findById(Long id) {
+		return paysRepository.findById(id).map(PaysMapper::toVO);
 	}
 
 	@Override
-	public Pays savePays(Pays pays) {
-		return paysRepository.save(pays);
+	public PaysVo savePays(PaysVo paysVo) {
+		Pays pays = PaysMapper.toEntity(paysVo);
+		Pays paysSave = paysRepository.save(pays);
+		return PaysMapper.toVO(paysSave);
 	}
 
 	@Override
-	public void deletePays(Pays pays) {
+	public void deletePays(PaysVo paysVo) {
+		Pays pays = PaysMapper.toEntity(paysVo);
 		paysRepository.delete(pays);
 	}
 
 	@Override
-	public Pays updatePays(Pays pays) {
-		return paysRepository.save(pays);
+	public PaysVo updatePays(Long id, PaysVo paysVo) {
+		return paysRepository.findById(id).map(pays -> {
+			PaysMapper.updateEntityFromVO(paysVo, pays);
+			Pays paysUpdated = paysRepository.save(pays);
+			return PaysMapper.toVO(paysUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<Pays> findByPays(String pays) {
-		return paysRepository.findByPays(pays);
+	public List<PaysVo> findByPays(String pays) {
+		return paysRepository.findByPays(pays).stream().map(PaysMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Pays> findByVilles(Villes villes) {
-		return paysRepository.findByVilles(villes);
+	public List<PaysVo> findByVilles(VillesVo villesVo) {
+		return paysRepository.findByVilles(VilleMapper.toEntity(villesVo)).stream().map(PaysMapper::toVO).collect(Collectors.toList());
 	}
 
 }

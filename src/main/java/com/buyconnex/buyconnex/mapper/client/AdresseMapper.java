@@ -36,4 +36,18 @@ public class AdresseMapper {
 		
 		return adresses;
 	}
+	
+	public static void updateEntityFromVO(AdresseVo adressesVo, Adresses adresses) {
+		
+		adresses.setPays(adressesVo.getPays());
+		adresses.setVille(adressesVo.getVilles());
+		adresses.setCommune(adressesVo.getCommunes());
+		adresses.setAdresse1(adressesVo.getAdresse1());
+		adresses.setAdresse2(adressesVo.getAdresse2());
+		adresses.setCodePostal(adressesVo.getCodePostal());
+		adresses.setDescription(adressesVo.getDescription());
+		adresses.setClients(adressesVo.getClients());
+		adresses.setFacturations(adressesVo.getFacturations());
+		adresses.setLivraisons(adressesVo.getLivraisons());
+	}
 }

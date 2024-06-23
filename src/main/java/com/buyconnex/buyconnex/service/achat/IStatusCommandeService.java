@@ -3,15 +3,15 @@ package com.buyconnex.buyconnex.service.achat;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.StatusCommandes;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.StatusCommandesVo;
 
 public interface IStatusCommandeService {
 
-	public Optional<StatusCommandes> findById(Long id);
-	public StatusCommandes saveStatusCommandes(StatusCommandes statusCommandes);
-	public void deleteStatusCommandes(StatusCommandes statusCommandes);
-	public StatusCommandes updateStatusCommandes(StatusCommandes statusCommandes);
-	public List<StatusCommandes> findByCommandes(Commandes commandes);
-	public List<StatusCommandes> findByStatus(String status);
+	public Optional<StatusCommandesVo> findById(Long id);
+	public StatusCommandesVo saveStatusCommandes(StatusCommandesVo statusCommandesVo);
+	public void deleteStatusCommandes(StatusCommandesVo statusCommandesVo);
+	public StatusCommandesVo updateStatusCommandes(Long id, StatusCommandesVo statusCommandesVo);
+	public List<StatusCommandesVo> findByCommandes(CommandesVo commandesVo);
+	public List<StatusCommandesVo> findByStatus(String status);
 }

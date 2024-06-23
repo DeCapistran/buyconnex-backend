@@ -2,20 +2,31 @@ package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.Promotions;
 import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.Boutiques;
-import com.buyconnex.buyconnex.entity.article.Categories;
-import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.entity.article.Marques;
-import com.buyconnex.buyconnex.entity.article.StatusArticles;
-import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
+import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
+import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
+import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
+import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
+import com.buyconnex.buyconnex.mapper.article.ImageMapper;
+import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
+import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
+import com.buyconnex.buyconnex.mapper.client.PanierMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
+import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
+import com.buyconnex.buyconnex.vo.article.MarquesVo;
+import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
+import com.buyconnex.buyconnex.vo.client.PaniersVo;
 
 import jakarta.transaction.Transactional;
 
@@ -27,83 +38,90 @@ public class ArticleService implements IArticleService {
 	ArticleRepository articleRepository;
 	
 	@Override
-	public Optional<Articles> findById(Long id) {
-		return articleRepository.findById(id);
+	public Optional<ArticlesVo> findById(Long id) {
+		return articleRepository.findById(id).map(ArticleMapper::toVO);
 	}
 
 	@Override
-	public Articles saveArticle(Articles articles) {
-		return articleRepository.save(articles);
+	public ArticlesVo saveArticle(ArticlesVo articlesVo) {
+		Articles articles = ArticleMapper.toEntity(articlesVo);
+		Articles articlesSave = articleRepository.save(articles);
+		return ArticleMapper.toVO(articlesSave);
 	}
 
 	@Override
-	public void deleteArticles(Articles articles) {
+	public void deleteArticles(ArticlesVo articlesVo) {
+		Articles articles = ArticleMapper.toEntity(articlesVo);
 		articleRepository.delete(articles);
 	}
 
 	@Override
-	public Articles updateArticles(Articles articles) {
-		return articleRepository.save(articles);
+	public ArticlesVo updateArticles(Long id, ArticlesVo articlesVo) {
+		return articleRepository.findById(id).map(article -> {
+			ArticleMapper.updateEntityFromVO(articlesVo, article);
+			Articles articlesUpdated = articleRepository.save(article);
+			return ArticleMapper.toVO(articlesUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<Articles> findByBoutique(Boutiques boutiques) {
-		return articleRepository.findByBoutiques(boutiques);
+	public List<ArticlesVo> findByBoutique(BoutiquesVo boutiquesVo) {
+		return articleRepository.findByBoutiques(BoutiqueMapper.toEntity(boutiquesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByCategories(Categories categories) {
-		return articleRepository.findByCategories(categories);
+	public List<ArticlesVo> findByCategories(CategoriesVo categoriesVo) {
+		return articleRepository.findByCategories(CategorieMapper.toEntity(categoriesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByCommandes(Commandes commandes) {
-		return articleRepository.findByCommandes(commandes);
+	public List<ArticlesVo> findByCommandes(CommandesVo commandesVo) {
+		return articleRepository.findByCommandes(CommandeMapper.toEntity(commandesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByComposition(String composition) {
-		return articleRepository.findByComposition(composition);
+	public List<ArticlesVo> findByComposition(String composition) {
+		return articleRepository.findByComposition(composition).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByImages(Images images) {
-		return articleRepository.findByImages(images);
+	public List<ArticlesVo> findByImages(ImagesVo imagesVo) {
+		return articleRepository.findByImages(ImageMapper.toEntity(imagesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByPaniers(Paniers paniers) {
-		return articleRepository.findByPaniers(paniers);
+	public List<ArticlesVo> findByPaniers(PaniersVo paniersVo) {
+		return articleRepository.findByPaniers(PanierMapper.toEntity(paniersVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByMarques(Marques marques) {
-		return articleRepository.findByMarques(marques);
+	public List<ArticlesVo> findByMarques(MarquesVo marquesVo) {
+		return articleRepository.findByMarques(MarqueMapper.toEntity(marquesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByPrix(Long prix) {
-		return articleRepository.findByPrix(prix);
+	public List<ArticlesVo> findByPrix(Long prix) {
+		return articleRepository.findByPrix(prix).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByPromotions(Promotions promotions) {
-		return articleRepository.findByPromotions(promotions);
+	public List<ArticlesVo> findByPromotions(PromotionsVo promotionsVo) {
+		return articleRepository.findByPromotions(PromotionMapper.toEntity(promotionsVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByQuantite(int quantite) {
-		return articleRepository.findByQuantite(quantite);
+	public List<ArticlesVo> findByQuantite(int quantite) {
+		return articleRepository.findByQuantite(quantite).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByStatusArticles(StatusArticles statusArticles) {
-		return articleRepository.findByStatusArticles(statusArticles);
+	public List<ArticlesVo> findByStatusArticles(StatusArticlesVo statusArticlesVo) {
+		return articleRepository.findByStatusArticles(StatusArticleMapper.toEntity(statusArticlesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Articles> findByTitle(String title) {
-		return articleRepository.findByTitle(title);
+	public List<ArticlesVo> findByTitle(String title) {
+		return articleRepository.findByTitle(title).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 }

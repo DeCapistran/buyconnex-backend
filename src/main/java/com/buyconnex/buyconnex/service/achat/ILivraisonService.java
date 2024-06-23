@@ -4,20 +4,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.Livraisons;
-import com.buyconnex.buyconnex.entity.achat.StatusLivraisons;
-import com.buyconnex.buyconnex.entity.client.Adresses;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
+import com.buyconnex.buyconnex.vo.achat.StatusLivraisonsVo;
+import com.buyconnex.buyconnex.vo.client.AdresseVo;
 
 public interface ILivraisonService {
 
-	public Optional<Livraisons> findById(Long id);
-	public Livraisons saveLivraisons(Livraisons livraisons);
-	public void deleteLivraisons(Livraisons livraisons);
-	public Livraisons updateLivraisons(Livraisons livraisons);
-	public List<Livraisons> findByCommandes(Commandes commandes);
-	public List<Livraisons> findByAdresses(Adresses adresses);
-	public List<Livraisons> findByDateLivraisons(Date date);
-	public Livraisons findByNumeroLivraisons(String numeroLivraison);
-	public List<Livraisons> findByStatusLivraisons(StatusLivraisons statusLivraisons);
+	public Optional<LivraisonsVo> findById(Long id);
+	public LivraisonsVo saveLivraisons(LivraisonsVo livraisonsVo);
+	public void deleteLivraisons(LivraisonsVo livraisonsVo);
+	public LivraisonsVo updateLivraisons(Long id, LivraisonsVo livraisonsVo);
+	public List<LivraisonsVo> findByCommandes(CommandesVo commandesVo);
+	public List<LivraisonsVo> findByAdresses(AdresseVo adressesVo);
+	public List<LivraisonsVo> findByDateLivraisons(Date date);
+	public LivraisonsVo findByNumeroLivraisons(String numeroLivraison);
+	public List<LivraisonsVo> findByStatusLivraisons(StatusLivraisonsVo statusLivraisonsVo);
 }

@@ -30,4 +30,15 @@ public class LivraisonMapper {
 		
 		return livraisons;
 	}
+	
+	public static void updateEntityFromVO(LivraisonsVo livraisonsVo, Livraisons livraisons) {
+		
+		livraisons.setNumeroLivraison(livraisonsVo.getNumeroLivraison());
+		livraisons.setDateLivraisonEstimee(livraisonsVo.getDateLivraisonEstimee());
+		livraisons.setDateLivraison(livraisonsVo.getDateLivraison());
+		livraisons.setCommentaire(livraisonsVo.getCommentaire());
+		livraisons.setStatusLivraisons(livraisonsVo.getStatusLivraisons());
+		livraisons.setAdresses(livraisonsVo.getAdresses());
+		livraisons.setCommandes(livraisonsVo.getCommandes());
+	}
 }

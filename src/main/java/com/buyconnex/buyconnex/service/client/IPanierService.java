@@ -4,17 +4,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.client.Paniers;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.client.PaniersVo;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 public interface IPanierService {
 
-	public Optional<Paniers> findById(Long id);
-	public Paniers savePaniers(Paniers paniers);
-	public void deletePaniers(Paniers paniers);
-	public Paniers updatePaniers(Paniers paniers);
-	public List<Paniers> findByArticles(Articles articles);
-	public List<Paniers> findBydatePaniers(Date date);
-	public List<Paniers> findByUsers(Users users);
+	public Optional<PaniersVo> findById(Long id);
+	public PaniersVo savePaniers(PaniersVo paniersVo);
+	public void deletePaniers(PaniersVo paniersVo);
+	public PaniersVo updatePaniers(Long id, PaniersVo paniersVo);
+	public List<PaniersVo> findByArticles(ArticlesVo articlesVo);
+	public List<PaniersVo> findBydatePaniers(Date date);
+	public List<PaniersVo> findByUsers(UsersVo usersVo);
 }

@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.Facturations;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.FacturationsVo;
 
 public interface IFacturationService {
 
-	public Optional<Facturations> findById(Long id);
-	public Facturations saveFacturations(Facturations facturations);
-	public void deleteFacturations(Facturations facturations);
-	public Facturations updateFacturations(Facturations facturations);
-	public List<Facturations> findByDateFacturation(Date date);
-	public List<Facturations> findByCommandes(Commandes commandes);
+	public Optional<FacturationsVo> findById(Long id);
+	public FacturationsVo saveFacturations(FacturationsVo facturationsVo);
+	public void deleteFacturations(FacturationsVo facturationsVo);
+	public FacturationsVo updateFacturations(Long id, FacturationsVo facturationsVo);
+	public List<FacturationsVo> findByDateFacturation(Date date);
+	public List<FacturationsVo> findByCommandes(CommandesVo commandesVo);
 }

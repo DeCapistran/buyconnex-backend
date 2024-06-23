@@ -24,4 +24,12 @@ public class PaiementMapper {
 		
 		return paiements;
 	}
+	
+	public static void updateEntityFromVO(PaiementsVo paiementsVo, Paiements paiements) {
+		
+		paiements.setDatePaiement(paiementsVo.getDatePaiement());
+		paiements.setMontant(paiementsVo.getMontant());
+		paiements.setMoyensPaiements(paiementsVo.getMoyensPaiements());
+		paiements.setStatusPaiements(paiementsVo.getStatusPaiements());
+	}
 }

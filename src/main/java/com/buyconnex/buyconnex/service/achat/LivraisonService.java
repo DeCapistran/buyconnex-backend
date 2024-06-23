@@ -3,15 +3,21 @@ package com.buyconnex.buyconnex.service.achat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
-import com.buyconnex.buyconnex.entity.achat.StatusLivraisons;
-import com.buyconnex.buyconnex.entity.client.Adresses;
+import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
+import com.buyconnex.buyconnex.mapper.achat.LivraisonMapper;
+import com.buyconnex.buyconnex.mapper.achat.StatusLivraisonMapper;
+import com.buyconnex.buyconnex.mapper.client.AdresseMapper;
 import com.buyconnex.buyconnex.repository.achat.LivraisonRepository;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
+import com.buyconnex.buyconnex.vo.achat.StatusLivraisonsVo;
+import com.buyconnex.buyconnex.vo.client.AdresseVo;
 
 import jakarta.transaction.Transactional;
 
@@ -23,48 +29,55 @@ public class LivraisonService implements ILivraisonService {
 	LivraisonRepository livraisonRepository;
 	
 	@Override
-	public Optional<Livraisons> findById(Long id) {
-		return livraisonRepository.findById(id);
+	public Optional<LivraisonsVo> findById(Long id) {
+		return livraisonRepository.findById(id).map(LivraisonMapper::toVO);
 	}
 
 	@Override
-	public Livraisons saveLivraisons(Livraisons livraisons) {
-		return livraisonRepository.save(livraisons);
+	public LivraisonsVo saveLivraisons(LivraisonsVo livraisonsVo) {
+		Livraisons livraisons = LivraisonMapper.toEntity(livraisonsVo);
+		Livraisons livraisonsSave = livraisonRepository.save(livraisons);
+		return LivraisonMapper.toVO(livraisonsSave);
 	}
 
 	@Override
-	public void deleteLivraisons(Livraisons livraisons) {
+	public void deleteLivraisons(LivraisonsVo livraisonsVo) {
+		Livraisons livraisons = LivraisonMapper.toEntity(livraisonsVo);
 		livraisonRepository.delete(livraisons);
 	}
 
 	@Override
-	public Livraisons updateLivraisons(Livraisons livraisons) {
-		return livraisonRepository.save(livraisons);
+	public LivraisonsVo updateLivraisons(Long id, LivraisonsVo livraisonsVo) {
+		return livraisonRepository.findById(id).map(livraison -> {
+			LivraisonMapper.updateEntityFromVO(livraisonsVo, livraison);
+			Livraisons livraisonsUpdate = livraisonRepository.save(livraison);
+			return LivraisonMapper.toVO(livraisonsUpdate);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<Livraisons> findByCommandes(Commandes commandes) {
-		return livraisonRepository.findByCommandes(commandes);
+	public List<LivraisonsVo> findByCommandes(CommandesVo commandesVo) {
+		return livraisonRepository.findByCommandes(CommandeMapper.toEntity(commandesVo)).stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Livraisons> findByAdresses(Adresses adresses) {
-		return livraisonRepository.findByAdresses(adresses);
+	public List<LivraisonsVo> findByAdresses(AdresseVo adressesVo) {
+		return livraisonRepository.findByAdresses(AdresseMapper.toEntity(adressesVo)).stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Livraisons> findByDateLivraisons(Date date) {
-		return livraisonRepository.findByDateLivraison(date);
+	public List<LivraisonsVo> findByDateLivraisons(Date date) {
+		return livraisonRepository.findByDateLivraison(date).stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public Livraisons findByNumeroLivraisons(String numeroLivraison) {
-		return livraisonRepository.findByNumeroLivraison(numeroLivraison);
+	public LivraisonsVo findByNumeroLivraisons(String numeroLivraison) {
+		return LivraisonMapper.toVO(livraisonRepository.findByNumeroLivraison(numeroLivraison));
 	}
 
 	@Override
-	public List<Livraisons> findByStatusLivraisons(StatusLivraisons statusLivraisons) {
-		return livraisonRepository.findByStatusLivraisons(statusLivraisons);
+	public List<LivraisonsVo> findByStatusLivraisons(StatusLivraisonsVo statusLivraisonsVo) {
+		return livraisonRepository.findByStatusLivraisons(StatusLivraisonMapper.toEntity(statusLivraisonsVo)).stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
 }

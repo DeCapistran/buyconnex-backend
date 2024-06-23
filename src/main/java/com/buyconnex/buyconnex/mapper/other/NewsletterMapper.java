@@ -24,4 +24,12 @@ public class NewsletterMapper {
 		
 		return newsletters;
 	}
+	
+	public static void updateEntityFromVO(NewslettersVo newslettersVo, Newsletters newsletters) {
+		
+		newsletters.setDateInscription(newslettersVo.getDateInscription());
+		newsletters.setDateDesinscription(newslettersVo.getDateDesincription());
+		newsletters.setEmail(newslettersVo.getEmail());
+		newsletters.setUsers(newslettersVo.getUsers());
+	}
 }

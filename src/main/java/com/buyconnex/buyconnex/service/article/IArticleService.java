@@ -3,33 +3,33 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.Promotions;
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.Boutiques;
-import com.buyconnex.buyconnex.entity.article.Categories;
-import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.entity.article.Marques;
-import com.buyconnex.buyconnex.entity.article.StatusArticles;
-import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
+import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
+import com.buyconnex.buyconnex.vo.article.MarquesVo;
+import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
+import com.buyconnex.buyconnex.vo.client.PaniersVo;
 
 public interface IArticleService {
 
-	public Optional<Articles> findById(Long id);
-	public Articles saveArticle(Articles articles);
-	public void deleteArticles(Articles articles);
-	public Articles updateArticles(Articles articles);
-	public List<Articles> findByBoutique(Boutiques boutiques);
-	public List<Articles> findByCategories(Categories categories);
-	public List<Articles> findByCommandes(Commandes commandes);
-	public List<Articles> findByComposition(String composition);
-	public List<Articles> findByImages(Images images);
-	public List<Articles> findByPaniers(Paniers paniers);
-	public List<Articles> findByMarques(Marques marques);
-	public List<Articles> findByPrix(Long prix);
-	public List<Articles> findByPromotions(Promotions promotions);
-	public List<Articles> findByQuantite(int quantite);
-	public List<Articles> findByStatusArticles(StatusArticles statusArticles);
-	public List<Articles> findByTitle(String title);
+	public Optional<ArticlesVo> findById(Long id);
+	public ArticlesVo saveArticle(ArticlesVo articlesVo);
+	public void deleteArticles(ArticlesVo articlesVo);
+	public ArticlesVo updateArticles(Long id, ArticlesVo articlesVo);
+	public List<ArticlesVo> findByBoutique(BoutiquesVo boutiquesVo);
+	public List<ArticlesVo> findByCategories(CategoriesVo categoriesVo);
+	public List<ArticlesVo> findByCommandes(CommandesVo commandesVo);
+	public List<ArticlesVo> findByComposition(String composition);
+	public List<ArticlesVo> findByImages(ImagesVo imagesVo);
+	public List<ArticlesVo> findByPaniers(PaniersVo paniersVo);
+	public List<ArticlesVo> findByMarques(MarquesVo marquesVo);
+	public List<ArticlesVo> findByPrix(Long prix);
+	public List<ArticlesVo> findByPromotions(PromotionsVo promotionsVo);
+	public List<ArticlesVo> findByQuantite(int quantite);
+	public List<ArticlesVo> findByStatusArticles(StatusArticlesVo statusArticlesVo);
+	public List<ArticlesVo> findByTitle(String title);
 	
 }

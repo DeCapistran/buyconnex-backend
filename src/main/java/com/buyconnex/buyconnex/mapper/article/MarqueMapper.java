@@ -22,4 +22,11 @@ public class MarqueMapper {
 		
 		return marques;
 	}
+	
+	public static void updateEntityFromVO(MarquesVo marquesVo, Marques marques) {
+		
+		marques.setLibelle(marquesVo.getLibelle());
+		marques.setImg(marquesVo.getImg());
+		marques.setArticles(marquesVo.getArticles());
+	}
 }

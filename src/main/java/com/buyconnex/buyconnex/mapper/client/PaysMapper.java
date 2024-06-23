@@ -20,4 +20,10 @@ public class PaysMapper {
 		
 		return pays;
 	}
+	
+	public static void updateEntityFromVO(PaysVo paysVo, Pays pays) {
+		
+		pays.setPays(paysVo.getPays());
+		pays.setVilles(paysVo.getVilles());
+	}
 }

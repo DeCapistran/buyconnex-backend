@@ -52,4 +52,26 @@ public class ArticleMapper {
 		
 		return articles;
 	}
+	
+	public static void updateEntityFromVO(ArticlesVo articlesVo, Articles articles) {
+		
+		articles.setSku(articlesVo.getSku());
+		articles.setImgPath(articlesVo.getImgPath());
+		articles.setTitle(articlesVo.getTitle());
+		articles.setPrix(articlesVo.getPrix());
+		articles.setQuantite(articlesVo.getQuantite());
+		articles.setDescription(articlesVo.getDescription());
+		articles.setComposition(articlesVo.getComposition());
+		articles.setDateAjout(articlesVo.getDateAjout());
+		articles.setCategories(articlesVo.getCategories());
+		articles.setMarques(articlesVo.getMarques());
+		articles.setBoutiques(articlesVo.getBoutiques());
+		articles.setStatusArticles(articlesVo.getStatusArticles());
+		articles.setPromotions(articlesVo.getPromotions());
+		articles.setTags(articlesVo.getTags());
+		articles.setCommandes(articlesVo.getCommandes());
+		articles.setPaniers(articlesVo.getPaniers());
+		articles.setAvis(articlesVo.getAvis());
+		articles.setImages(articlesVo.getImages());
+	}
 }

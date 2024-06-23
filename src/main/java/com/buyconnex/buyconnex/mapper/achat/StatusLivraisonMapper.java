@@ -22,4 +22,11 @@ public class StatusLivraisonMapper {
 		
 		return statusLivraisons;
 	}
+	
+	public static void updateEntityFromVO(StatusLivraisonsVo statusLivraisonsVo, StatusLivraisons statusLivraisons) {
+		
+		statusLivraisons.setDescription(statusLivraisonsVo.getDescription());
+		statusLivraisons.setLivraisons(statusLivraisonsVo.getLivraisons());
+		statusLivraisons.setStatus(statusLivraisonsVo.getStatus());
+	}
 }

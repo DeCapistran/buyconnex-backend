@@ -22,4 +22,11 @@ public class TagMapper {
 		
 		return tags;
 	}
+	
+	public static void updateEntityFromVO(TagsVo tagsVo, Tags tags) {
+		
+		tags.setArticles(tagsVo.getArticles());
+		tags.setDescription(tagsVo.getDescription());
+		tags.setNom(tagsVo.getNom());
+	}
 }

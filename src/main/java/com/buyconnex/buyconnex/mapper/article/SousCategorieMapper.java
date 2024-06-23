@@ -22,4 +22,11 @@ public class SousCategorieMapper {
 		
 		return sousCategories;
 	}
+	
+	public static void updetEntityFromVO(SousCategoriesVo sousCategoriesVo, SousCategories sousCategories) {
+		
+		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
+		sousCategories.setCategories(sousCategoriesVo.getCategories());
+		sousCategories.setCoupons(sousCategoriesVo.getCoupons());
+	}
 }

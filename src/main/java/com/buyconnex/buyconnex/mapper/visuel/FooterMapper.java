@@ -22,4 +22,11 @@ public class FooterMapper {
 		
 		return footers;
 	}
+	
+	public static void updateEntityFromVO(FootersVo footersVo, Footers footers) {
+		
+		footers.setAdresse(footersVo.getAdresse());
+		footers.setMailSupport(footersVo.getMailSupport());
+		footers.setTelephone(footersVo.getTelephone());
+	}
 }

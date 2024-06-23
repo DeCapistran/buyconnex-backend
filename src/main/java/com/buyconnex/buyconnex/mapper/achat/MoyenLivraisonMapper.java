@@ -15,7 +15,7 @@ public class MoyenLivraisonMapper {
 		return moyensLivraisonsVo;
 	}
 	
-public static MoyensLivraisons toEntity(MoyensLivraisonsVo moyensLivraisonsVo) {
+	public static MoyensLivraisons toEntity(MoyensLivraisonsVo moyensLivraisonsVo) {
 		
 		MoyensLivraisons moyensLivraisons = new MoyensLivraisons();
 		moyensLivraisons.setCommandes(moyensLivraisonsVo.getCommandes());
@@ -23,5 +23,12 @@ public static MoyensLivraisons toEntity(MoyensLivraisonsVo moyensLivraisonsVo) {
 		moyensLivraisons.setMoyenLivraison(moyensLivraisonsVo.getMoyenLivraisons());
 		
 		return moyensLivraisons;
+	}
+
+	public static void updateEntityFromVO(MoyensLivraisonsVo moyensLivraisonsVo, MoyensLivraisons moyensLivraisons) {
+		
+		moyensLivraisons.setCommandes(moyensLivraisonsVo.getCommandes());
+		moyensLivraisons.setDescription(moyensLivraisonsVo.getDescription());
+		moyensLivraisons.setMoyenLivraison(moyensLivraisonsVo.getMoyenLivraisons());
 	}
 }

@@ -22,4 +22,11 @@ public class VilleMapper {
 		
 		return villes;
 	}
+	
+	public static void updateEntityFromVO(VillesVo villesVo, Villes villes) {
+		
+		villes.setCommunes(villesVo.getCommunes());
+		villes.setPays(villesVo.getPays());
+		villes.setVille(villesVo.getVille());
+	}
 }

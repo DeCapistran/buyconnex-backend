@@ -22,4 +22,11 @@ public class StatusCommandeMapper {
 		
 		return statusCommandes;
 	}
+	
+	public static void updateEntityFromVO(StatusCommandesVo statusCommandesVo, StatusCommandes statusCommandes) {
+		
+		statusCommandes.setCommandes(statusCommandesVo.getCommandes());
+		statusCommandes.setDescription(statusCommandesVo.getDescription());
+		statusCommandes.setStatus(statusCommandesVo.getStatus());
+	}
 }

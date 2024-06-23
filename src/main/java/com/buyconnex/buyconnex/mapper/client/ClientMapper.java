@@ -38,5 +38,20 @@ public class ClientMapper {
 		
 		return clients;	
 	}
+	
+	public static void updateEntityFromVO(ClientsVo clientsVo, Clients clients) {
+		
+		clients.setFristname(clientsVo.getFirstname());
+		clients.setLastname(clientsVo.getLastname());
+		clients.setEntreprise(clientsVo.getEntreprise());
+		clients.setGenre(clientsVo.getGenre());
+		clients.setFacebook(clientsVo.getFacebook());
+		clients.setInstagram(clientsVo.getInstagram());
+		clients.setTelephone1(clientsVo.getTelephone1());
+		clients.setTelephone2(clientsVo.getTelephone2());
+		clients.setAdresses(clientsVo.getAdresses());
+		clients.setUsers(clientsVo.getUsers());
+		clients.setCommandes(clientsVo.getCommandes());
+	}
 
 }

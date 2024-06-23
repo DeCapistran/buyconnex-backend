@@ -22,4 +22,11 @@ public class StatusArticleMapper {
 		
 		return statusArticles;
 	}
+	
+	public static void updateEntityFromVO(StatusArticlesVo statusArticlesVo, StatusArticles statusArticles) {
+		
+		statusArticles.setArticles(statusArticlesVo.getArticles());
+		statusArticles.setDescription(statusArticlesVo.getDescription());
+		statusArticles.setStatus(statusArticlesVo.getStatus());
+	}
 }

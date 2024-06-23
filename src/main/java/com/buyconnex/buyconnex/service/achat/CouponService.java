@@ -2,13 +2,17 @@ package com.buyconnex.buyconnex.service.achat;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.achat.Coupons;
-import com.buyconnex.buyconnex.entity.article.SousCategories;
+import com.buyconnex.buyconnex.mapper.achat.CouponMapper;
+import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.repository.achat.CouponRepository;
+import com.buyconnex.buyconnex.vo.achat.CouponsVo;
+import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -20,33 +24,41 @@ public class CouponService implements ICouponService {
 	CouponRepository couponRepository;
 	
 	@Override
-	public Optional<Coupons> findById(Long id) {
-		return couponRepository.findById(id);
+	public Optional<CouponsVo> findById(Long id) {
+		return couponRepository.findById(id).map(CouponMapper::toVO);
 	}
 
 	@Override
-	public Coupons saveCoupons(Coupons coupons) {
-		return couponRepository.save(coupons);
+	public CouponsVo saveCoupons(CouponsVo couponsVo) {
+		Coupons coupons = CouponMapper.toEntity(couponsVo);
+		Coupons couponsSave = couponRepository.save(coupons);
+		return CouponMapper.toVO(couponsSave);
 	}
 
 	@Override
-	public void deleteCoupons(Coupons coupons) {
+	public void deleteCoupons(CouponsVo couponsVo) {
+		Coupons coupons = CouponMapper.toEntity(couponsVo);
 		couponRepository.delete(coupons);
 	}
 
 	@Override
-	public Coupons updateCoupons(Coupons coupons) {
-		return couponRepository.save(coupons);
+	public CouponsVo updateCoupons(Long id, CouponsVo couponsVo) {
+		return couponRepository.findById(id).map(coupon -> {
+			CouponMapper.updateEntityFromVO(couponsVo, coupon);
+			Coupons couponUpdated = couponRepository.save(coupon);
+			return CouponMapper.toVO(couponUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public Coupons findByCodeCoupons(String codeCoupon) {
-		return couponRepository.findByCodeCoupon(codeCoupon);
+	public CouponsVo findByCodeCoupons(String codeCoupon) {
+		return CouponMapper.toVO(couponRepository.findByCodeCoupon(codeCoupon));
 	}
 
 	@Override
-	public List<Coupons> findBySousCategories(SousCategories sousCategories) {
-		return couponRepository.findBySousCategories(sousCategories);
+	public List<CouponsVo> findBySousCategories(SousCategoriesVo sousCategoriesVo) {
+		
+		return couponRepository.findBySousCategories(SousCategorieMapper.toEntity(sousCategoriesVo)).stream().map(CouponMapper::toVO).collect(Collectors.toList());
 	}
 
 }

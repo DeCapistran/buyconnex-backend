@@ -1,4 +1,14 @@
 package com.buyconnex.buyconnex.service.user;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.buyconnex.buyconnex.entity.security.VerificationToken;
 import com.buyconnex.buyconnex.entity.user.Roles;
 import com.buyconnex.buyconnex.entity.user.Users;
@@ -14,15 +24,6 @@ import com.buyconnex.buyconnex.vo.user.NewPasswordVo;
 import com.buyconnex.buyconnex.vo.user.RegistrationRequestVo;
 
 import jakarta.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-import java.util.ArrayList;
-import java.util.Random;
 
 @Service
 @Transactional
@@ -98,7 +99,7 @@ public class UserService implements IUserService {
 		userRep.save(newUser);
 		
 		Roles role = roleRep.findByRole("USER");
-		List<Roles> roles = new ArrayList<>();
+		Set<Roles> roles = new HashSet<>();
 		roles.add(role);
 		newUser.setRoles(roles);
 		

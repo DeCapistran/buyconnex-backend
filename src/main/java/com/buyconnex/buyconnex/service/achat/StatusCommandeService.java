@@ -2,13 +2,17 @@ package com.buyconnex.buyconnex.service.achat;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.achat.StatusCommandes;
+import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
+import com.buyconnex.buyconnex.mapper.achat.StatusCommandeMapper;
 import com.buyconnex.buyconnex.repository.achat.StatusCommandeRepository;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.StatusCommandesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -20,33 +24,40 @@ public class StatusCommandeService implements IStatusCommandeService {
 	StatusCommandeRepository statusCommandeRepository;
 	
 	@Override
-	public Optional<StatusCommandes> findById(Long id) {
-		return statusCommandeRepository.findById(id);
+	public Optional<StatusCommandesVo> findById(Long id) {
+		return statusCommandeRepository.findById(id).map(StatusCommandeMapper::toVO);
 	}
 
 	@Override
-	public StatusCommandes saveStatusCommandes(StatusCommandes statusCommandes) {
-		return statusCommandeRepository.save(statusCommandes);
+	public StatusCommandesVo saveStatusCommandes(StatusCommandesVo statusCommandesVo) {
+		StatusCommandes statusCommandes = StatusCommandeMapper.toEntity(statusCommandesVo);
+		StatusCommandes statusCommandesSave = statusCommandeRepository.save(statusCommandes);
+		return StatusCommandeMapper.toVO(statusCommandesSave);
 	}
 
 	@Override
-	public void deleteStatusCommandes(StatusCommandes statusCommandes) {
+	public void deleteStatusCommandes(StatusCommandesVo statusCommandesVo) {
+		StatusCommandes statusCommandes = StatusCommandeMapper.toEntity(statusCommandesVo);
 		statusCommandeRepository.delete(statusCommandes);
 	}
 
 	@Override
-	public StatusCommandes updateStatusCommandes(StatusCommandes statusCommandes) {
-		return statusCommandeRepository.save(statusCommandes);
+	public StatusCommandesVo updateStatusCommandes(Long id, StatusCommandesVo statusCommandesVo) {
+		return statusCommandeRepository.findById(id).map(statusCommande -> {
+			StatusCommandeMapper.updateEntityFromVO(statusCommandesVo, statusCommande);
+			StatusCommandes statusCommandesUpdated = statusCommandeRepository.save(statusCommande);
+			return StatusCommandeMapper.toVO(statusCommandesUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<StatusCommandes> findByCommandes(Commandes commandes) {
-		return statusCommandeRepository.findByCommandes(commandes);
+	public List<StatusCommandesVo> findByCommandes(CommandesVo commandesVo) {
+		return statusCommandeRepository.findByCommandes(CommandeMapper.toEntity(commandesVo)).stream().map(StatusCommandeMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<StatusCommandes> findByStatus(String status) {
-		return statusCommandeRepository.findByStatus(status);
+	public List<StatusCommandesVo> findByStatus(String status) {
+		return statusCommandeRepository.findByStatus(status).stream().map(StatusCommandeMapper::toVO).collect(Collectors.toList());
 	}
 
 }

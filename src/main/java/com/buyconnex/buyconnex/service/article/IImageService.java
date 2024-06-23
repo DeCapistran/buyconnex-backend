@@ -3,19 +3,19 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.Categories;
-import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.entity.visuel.Sliders;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
+import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
 
 public interface IImageService {
 
-	public Optional<Images> findById(Long id);
-	public Images saveImages(Images images);
-	public void deleteImages(Images images);
-	public Images updateImages(Images images);
-	public List<Images> findByArticles(Articles articles);
-	public List<Images> findByCategories(Categories categories);
-	public List<Images> findByName(String name);
-	public List<Images> findBySlider(Sliders sliders);
+	public Optional<ImagesVo> findById(Long id);
+	public ImagesVo saveImages(ImagesVo imagesVo);
+	public void deleteImages(ImagesVo imagesVo);
+	public ImagesVo updateImages(Long id, ImagesVo imagesVo);
+	public List<ImagesVo> findByArticles(ArticlesVo articlesVo);
+	public List<ImagesVo> findByCategories(CategoriesVo categoriesVo);
+	public List<ImagesVo> findByName(String name);
+	public List<ImagesVo> findBySlider(SlidersVo slidersVo);
 }

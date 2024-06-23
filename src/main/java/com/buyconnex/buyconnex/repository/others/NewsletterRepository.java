@@ -2,6 +2,7 @@ package com.buyconnex.buyconnex.repository.others;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,6 +15,6 @@ public interface NewsletterRepository extends JpaRepository<Newsletters, Long> {
 
 	List<Newsletters> findByDateInscription(Date dateInscription);
 	List<Newsletters> findByDateDesinscription(Date dateDesinscription);
-	Newsletters findByEmail(String email);
+	Optional<Newsletters> findByEmail(String email);
 	List<Newsletters> findByUsers(Users users);
 }

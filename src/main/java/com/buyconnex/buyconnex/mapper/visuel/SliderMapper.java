@@ -20,4 +20,10 @@ public class SliderMapper {
 		
 		return sliders;
 	}
+	
+	public static void updateEntityFromVO(SlidersVo slidersVo, Sliders sliders) {
+		
+		sliders.setImages(slidersVo.getImages());
+		sliders.setTittle(slidersVo.getTitle());
+	}
 }

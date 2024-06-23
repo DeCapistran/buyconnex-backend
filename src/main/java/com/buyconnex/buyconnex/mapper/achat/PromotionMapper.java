@@ -26,4 +26,13 @@ public class PromotionMapper {
 		
 		return promotions;
 	}
+	
+	public static void updateEntityFromVO(PromotionsVo promotionsVo, Promotions promotions) {
+		
+		promotions.setDateCreation(promotionsVo.getDateCreation());
+		promotions.setDateDebut(promotionsVo.getDateDebut());
+		promotions.setDateFin(promotionsVo.getDateFin());
+		promotions.setPourcentage(promotionsVo.getPourcentage());
+		promotions.setArticles(promotionsVo.getArticles());
+	}
 }

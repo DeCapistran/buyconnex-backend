@@ -3,15 +3,15 @@ package com.buyconnex.buyconnex.service.achat;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Paiements;
-import com.buyconnex.buyconnex.entity.achat.StatusPaiements;
+import com.buyconnex.buyconnex.vo.achat.PaiementsVo;
+import com.buyconnex.buyconnex.vo.achat.StatusPaiementsVo;
 
 public interface IStatusPaiementService {
 
-	public Optional<StatusPaiements> findById(Long id);
-	public StatusPaiements saveStatusPaiements(StatusPaiements statusPaiements);
-	public void deleteStatusPaiements(StatusPaiements statusPaiements);
-	public StatusPaiements updateStatusPaiements(StatusPaiements statusPaiements);
-	public List<StatusPaiements> findByPaiements(Paiements paiements);
-	public List<StatusPaiements> findByStatus(String status);
+	public Optional<StatusPaiementsVo> findById(Long id);
+	public StatusPaiementsVo saveStatusPaiements(StatusPaiementsVo statusPaiementsVo);
+	public void deleteStatusPaiements(StatusPaiementsVo statusPaiementsVo);
+	public StatusPaiementsVo updateStatusPaiements(Long id, StatusPaiementsVo statusPaiementsVo);
+	public List<StatusPaiementsVo> findByPaiements(PaiementsVo paiementsVo);
+	public List<StatusPaiementsVo> findByStatus(String status);
 }

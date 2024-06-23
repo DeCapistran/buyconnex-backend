@@ -3,15 +3,15 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.StatusArticles;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
 
 public interface IStatusArticle {
 
-	public Optional<StatusArticles> findById(Long id);
-	public StatusArticles saveStatusArticles(StatusArticles articles);
-	public void deleteStatusArticles(StatusArticles statusArticles);
-	public StatusArticles updateStatusArticles(StatusArticles statusArticles);
-	public List<StatusArticles> findByArticles(Articles articles);
-	public List<StatusArticles> findByStatus(String status);
+	public Optional<StatusArticlesVo> findById(Long id);
+	public StatusArticlesVo saveStatusArticles(StatusArticlesVo articlesVo);
+	public void deleteStatusArticles(StatusArticlesVo statusArticlesVo);
+	public StatusArticlesVo updateStatusArticles(Long id, StatusArticlesVo statusArticlesVo);
+	public List<StatusArticlesVo> findByArticles(ArticlesVo articlesVo);
+	public List<StatusArticlesVo> findByStatus(String status);
 }

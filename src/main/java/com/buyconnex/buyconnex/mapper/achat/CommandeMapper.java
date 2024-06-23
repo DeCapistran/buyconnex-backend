@@ -36,4 +36,17 @@ public class CommandeMapper {
 		
 		return commandes;
 	}
+	
+	public static void updateEntityFromVO(CommandesVo commandesVo, Commandes commandes) {
+		commandes.setNumeroCommande(commandesVo.getNumeroCommande());
+		commandes.setDateCommande(commandesVo.getDateCommande());
+		commandes.setCodeCoupon(commandesVo.getCodeCoupon());
+		commandes.setClients(commandesVo.getClients());
+		commandes.setStatusCommandes(commandesVo.getStatusCommandes());
+		commandes.setMoyensLivraisons(commandesVo.getMoyensLivraisons());
+		commandes.setArticles(commandesVo.getArticles());
+		commandes.setExpeditions(commandesVo.getExpeditions());
+		commandes.setFacturations(commandesVo.getFacturations());
+		commandes.setLivraisons(commandesVo.getLivraisons());
+	}
 }

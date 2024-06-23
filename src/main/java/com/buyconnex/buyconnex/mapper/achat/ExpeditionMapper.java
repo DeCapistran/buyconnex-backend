@@ -22,4 +22,11 @@ public class ExpeditionMapper {
 		
 		return expeditions;
 	}
+	
+	public static void updateEntityFromVO(ExpeditionsVo expeditionsVo, Expeditions expeditions) {
+		
+		expeditions.setCommentaire(expeditionsVo.getCommentaire());
+		expeditions.setDateExpedition(expeditionsVo.getDateExpedition());
+		expeditions.setCommandes(expeditionsVo.getCommandes());
+	}
 }

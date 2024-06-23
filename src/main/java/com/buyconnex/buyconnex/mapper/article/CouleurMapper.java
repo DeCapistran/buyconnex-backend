@@ -22,4 +22,11 @@ public class CouleurMapper {
 		
 		return couleurs;
 	}
+	
+	public static void updateEntityFromVO(CouleursVo couleursVo, Couleurs couleurs) {
+		
+		couleurs.setCouleur(couleursVo.getCouleur());
+		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
+		couleurs.setImages(couleursVo.getImages());
+	}
 }

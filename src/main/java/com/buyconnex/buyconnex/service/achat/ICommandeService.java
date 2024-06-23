@@ -4,20 +4,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.MoyensLivraisons;
-import com.buyconnex.buyconnex.entity.achat.StatusCommandes;
-import com.buyconnex.buyconnex.entity.client.Clients;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.MoyensLivraisonsVo;
+import com.buyconnex.buyconnex.vo.achat.StatusCommandesVo;
+import com.buyconnex.buyconnex.vo.client.ClientsVo;
 
 public interface ICommandeService {
 
-	public Optional<Commandes> findById(Long id);
-	public Commandes saveCommandes(Commandes commandes);
-	public void deleteCommandes(Commandes commandes);
-	public Commandes updateCommandes(Commandes commandes);
-	public Commandes findByNumeroCommande(String numeroCommande);
-	public List<Commandes> findByClients(Clients clients);
-	public List<Commandes> findByDateCommande(Date date);
-	public List<Commandes> findByStatusCommandes(StatusCommandes statusCommandes);
-	public List<Commandes> findBymoyensLivraisons(MoyensLivraisons moyensLivraisons);
+	public Optional<CommandesVo> findById(Long id);
+	public CommandesVo saveCommandes(CommandesVo commandesVo);
+	public void deleteCommandes(CommandesVo commandesVo);
+	public CommandesVo updateCommandes(Long id, CommandesVo commandesVo);
+	public CommandesVo findByNumeroCommande(String numeroCommande);
+	public List<CommandesVo> findByClients(ClientsVo clients);
+	public List<CommandesVo> findByDateCommande(Date date);
+	public List<CommandesVo> findByStatusCommandes(StatusCommandesVo statusCommandes);
+	public List<CommandesVo> findBymoyensLivraisons(MoyensLivraisonsVo moyensLivraisons);
 }

@@ -1,7 +1,6 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.article.Avis;
@@ -21,6 +20,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -76,12 +76,12 @@ public class Users {
 
 	@Getter @Setter
     @Column(name = "DATE_CREATION")
-    private Date dateCreation;
+    private LocalDateTime dateCreation;
     
 	@Getter @Setter
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id")) 
-	List<Roles> roles;
+	Set<Roles> roles;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
@@ -102,5 +102,10 @@ public class Users {
 	@Getter @Setter
 	@OneToOne(mappedBy = "users")
 	private Newsletters newsletters;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateCreation = LocalDateTime.now();
+    }
 
 }

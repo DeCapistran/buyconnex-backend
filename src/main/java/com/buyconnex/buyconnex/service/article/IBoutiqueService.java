@@ -3,16 +3,16 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.article.Boutiques;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 
 public interface IBoutiqueService {
 
-	public Optional<Boutiques> findById(Long id);
-	public Boutiques saveBoutique(Boutiques boutiques);
-	public void deleteBoutique(Boutiques boutiques);
-	public Boutiques updateBoutique(Boutiques boutiques);
-	public List<Boutiques> findByArticle(Articles articles);
-	public List<Boutiques> findByNom(String nom);
-	public List<Boutiques> findByimg(String img);
+	public Optional<BoutiquesVo> findById(Long id);
+	public BoutiquesVo saveBoutique(BoutiquesVo boutiquesVo);
+	public void deleteBoutique(BoutiquesVo boutiquesVo);
+	public BoutiquesVo updateBoutique(Long id, BoutiquesVo boutiquesVo);
+	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo);
+	public List<BoutiquesVo> findByNom(String nom);
+	public List<BoutiquesVo> findByImg(String img);
 }

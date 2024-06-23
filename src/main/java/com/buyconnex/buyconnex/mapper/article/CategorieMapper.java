@@ -26,4 +26,13 @@ public class CategorieMapper {
 		
 		return categories;
 	}
+	
+	public static void updateEntityFromVO(CategoriesVo categoriesVo, Categories categories) {
+		
+		categories.setLibelle(categoriesVo.getLibelle());
+		categories.setImg(categoriesVo.getImg());
+		categories.setArticles(categoriesVo.getArticles());
+		categories.setSousCategorie(categoriesVo.getSousCategories());
+		categories.setImages(categoriesVo.getImages());
+	}
 }

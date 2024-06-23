@@ -24,4 +24,12 @@ public class FacturationMapper {
 		
 		return facturations;
 	}
+	
+	public static void updateEntityFromVO(FacturationsVo facturationsVo, Facturations facturations) {
+		
+		facturations.setDateFacturation(facturationsVo.getDateFacturation());
+		facturations.setDescription(facturationsVo.getDescription());
+		facturations.setCommandes(facturationsVo.getCommandes());
+		facturations.setAdresses(facturationsVo.getAdresses());
+	}
 }

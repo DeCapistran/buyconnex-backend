@@ -26,4 +26,13 @@ public class BoutiqueMapper {
 		
 		return boutiques;
 	}
+	
+	public static void updateEntityFromVO(BoutiquesVo boutiquesVo, Boutiques boutiques) {
+		
+		boutiques.setNom(boutiquesVo.getNom());
+		boutiques.setEmail(boutiquesVo.getEmail());
+		boutiques.setTelephone(boutiquesVo.getTelephone());
+		boutiques.setImg(boutiquesVo.getImg());
+		boutiques.setArticles(boutiquesVo.getArticles());
+	}
 }

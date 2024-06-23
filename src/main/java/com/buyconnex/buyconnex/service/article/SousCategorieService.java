@@ -2,14 +2,19 @@ package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.achat.Coupons;
-import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.SousCategories;
+import com.buyconnex.buyconnex.mapper.achat.CouponMapper;
+import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
+import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.repository.article.SousCategorieRepository;
+import com.buyconnex.buyconnex.vo.achat.CouponsVo;
+import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -21,38 +26,45 @@ public class SousCategorieService implements ISousCategorieService{
 	SousCategorieRepository sousCategorieRepository;
 	
 	@Override
-	public Optional<SousCategories> findById(Long id) {
-		return sousCategorieRepository.findById(id);
+	public Optional<SousCategoriesVo> findById(Long id) {
+		return sousCategorieRepository.findById(id).map(SousCategorieMapper::toVO);
 	}
 
 	@Override
-	public SousCategories saveSousCategorie(SousCategories sousCategories) {
-		return sousCategorieRepository.save(sousCategories);
+	public SousCategoriesVo saveSousCategorie(SousCategoriesVo sousCategoriesVo) {
+		SousCategories sousCategories = SousCategorieMapper.toEntity(sousCategoriesVo);
+		SousCategories sousCategoriesSave = sousCategorieRepository.save(sousCategories);
+		return SousCategorieMapper.toVO(sousCategoriesSave);
 	}
 
 	@Override
-	public void deleteSousCategorie(SousCategories sousCategories) {
+	public void deleteSousCategorie(SousCategoriesVo sousCategoriesVo) {
+		SousCategories sousCategories = SousCategorieMapper.toEntity(sousCategoriesVo);
 		sousCategorieRepository.delete(sousCategories);
 	}
 
 	@Override
-	public SousCategories updateSousCategorie(SousCategories sousCategories) {
-		return sousCategorieRepository.save(sousCategories);
+	public SousCategoriesVo updateSousCategorie(Long id, SousCategoriesVo sousCategoriesVo) {
+		return sousCategorieRepository.findById(id).map(sousCategorie -> {
+			SousCategorieMapper.updetEntityFromVO(sousCategoriesVo, sousCategorie);
+			SousCategories sousCategoriesUpdated = sousCategorieRepository.save(sousCategorie);
+			return SousCategorieMapper.toVO(sousCategoriesUpdated);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<SousCategories> findByCategories(Categories categories) {
-		return sousCategorieRepository.findByCategories(categories);
+	public List<SousCategoriesVo> findByCategories(CategoriesVo categoriesVo) {
+		return sousCategorieRepository.findByCategories(CategorieMapper.toEntity(categoriesVo)).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<SousCategories> findByCoupons(Coupons coupons) {
-		return sousCategorieRepository.findByCoupons(coupons);
+	public List<SousCategoriesVo> findByCoupons(CouponsVo couponsVo) {
+		return sousCategorieRepository.findByCoupons(CouponMapper.toEntity(couponsVo)).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<SousCategories> findByLibelle(String libelle) {
-		return sousCategorieRepository.findByLibelle(libelle);
+	public List<SousCategoriesVo> findByLibelle(String libelle) {
+		return sousCategorieRepository.findByLibelle(libelle).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
 	}
 
 }

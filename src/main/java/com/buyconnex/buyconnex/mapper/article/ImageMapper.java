@@ -30,4 +30,15 @@ public class ImageMapper {
 		
 		return images;
 	}
+	
+	public static void updateEntityFromVO(ImagesVo imagesVo, Images images) {
+		
+		images.setName(imagesVo.getName());
+		images.setType(imagesVo.getType());
+		images.setImage(imagesVo.getImage());
+		images.setArticles(imagesVo.getArticles());
+		images.setCategories(imagesVo.getCategories());
+		images.setSliders(imagesVo.getSliders());
+		images.setCouleurs(imagesVo.getCouleurs());
+	}
 }

@@ -26,4 +26,13 @@ public class AvisMapper {
 		
 		return avis;
 	}
+	
+	public static void updateEntityFromVO(AvisVo avisVo, Avis avis) {
+		
+		avis.setDateAvis(avisVo.getDateAvis());
+		avis.setEtoile(avisVo.getEtoile());
+		avis.setCommentaire(avisVo.getCommentaire());
+		avis.setArticles(avisVo.getArticles());
+		avis.setUsers(avisVo.getUsers());
+	}
 }

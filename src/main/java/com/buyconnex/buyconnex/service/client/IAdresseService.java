@@ -3,23 +3,23 @@ package com.buyconnex.buyconnex.service.client;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.achat.Facturations;
-import com.buyconnex.buyconnex.entity.achat.Livraisons;
-import com.buyconnex.buyconnex.entity.client.Adresses;
-import com.buyconnex.buyconnex.entity.client.Clients;
-import com.buyconnex.buyconnex.entity.client.Pays;
-import com.buyconnex.buyconnex.entity.client.Villes;
+import com.buyconnex.buyconnex.vo.achat.FacturationsVo;
+import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
+import com.buyconnex.buyconnex.vo.client.AdresseVo;
+import com.buyconnex.buyconnex.vo.client.ClientsVo;
+import com.buyconnex.buyconnex.vo.client.PaysVo;
+import com.buyconnex.buyconnex.vo.client.VillesVo;
 
 public interface IAdresseService {
 	
-	public Optional<Adresses> findById(Long id);
-	public Adresses saveAdresse(Adresses adresses);
-	public void deleteAdresse(Adresses adresses);
-	public Adresses updateAdresse(Adresses adresses);
-	public List<Adresses> findByFacturations(Facturations facturations);
-	public List<Adresses> findByLivraisons(Livraisons livraisons);
-	public List<Adresses> findByPays(Pays pays);
-	public List<Adresses> findByVilles(Villes villes);
-	public List<Adresses> findByClients(Clients clients);
+	public Optional<AdresseVo> findById(Long id);
+	public AdresseVo saveAdresse(AdresseVo adresseVo);
+	public void deleteAdresse(AdresseVo adresseVo);
+	public AdresseVo updateAdresse(Long id, AdresseVo adresseVo);
+	public List<AdresseVo> findByFacturations(FacturationsVo facturationsVo);
+	public List<AdresseVo> findByLivraisons(LivraisonsVo livraisonsVo);
+	public List<AdresseVo> findByPays(PaysVo paysVo);
+	public List<AdresseVo> findByVilles(VillesVo villesVo);
+	public List<AdresseVo> findByClients(ClientsVo clientsVo);
 	
 }

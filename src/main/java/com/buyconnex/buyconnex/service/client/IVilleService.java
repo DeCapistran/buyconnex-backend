@@ -3,17 +3,17 @@ package com.buyconnex.buyconnex.service.client;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.client.Communes;
-import com.buyconnex.buyconnex.entity.client.Pays;
-import com.buyconnex.buyconnex.entity.client.Villes;
+import com.buyconnex.buyconnex.vo.client.CommunesVo;
+import com.buyconnex.buyconnex.vo.client.PaysVo;
+import com.buyconnex.buyconnex.vo.client.VillesVo;
 
 public interface IVilleService {
 
-	public Optional<Villes> findById(Long id);
-	public Villes saveVilles(Villes villes);
-	public void deleteVilles(Villes villes);
-	public Villes updateVilles(Villes villes);
-	public List<Villes> findByCommunes(Communes communes);
-	public List<Villes> findByPays(Pays pays);
-	public List<Villes> findByVilles(String ville);
+	public Optional<VillesVo> findById(Long id);
+	public VillesVo saveVilles(VillesVo villesVo);
+	public void deleteVilles(VillesVo villesVo);
+	public VillesVo updateVilles(Long id, VillesVo villesVo);
+	public List<VillesVo> findByCommunes(CommunesVo communesVo);
+	public List<VillesVo> findByPays(PaysVo paysVo);
+	public List<VillesVo> findByVilles(String ville);
 }

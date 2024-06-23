@@ -2,12 +2,16 @@ package com.buyconnex.buyconnex.service.article;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
+import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
+import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -18,42 +22,45 @@ public class BoutiqueService implements IBoutiqueService {
 	BoutiqueRepository boutiqueRepository;
 	
 	@Override
-	public Optional<Boutiques> findById(Long id) {
-		return boutiqueRepository.findById(id);
+	public Optional<BoutiquesVo> findById(Long id) {
+		return boutiqueRepository.findById(id).map(BoutiqueMapper::toVO);
 	}
 
 	@Override
-	public Boutiques saveBoutique(Boutiques boutiques) {
-		return boutiqueRepository.save(boutiques);
+	public BoutiquesVo saveBoutique(BoutiquesVo boutiquesVo) {
+		Boutiques boutiques = BoutiqueMapper.toEntity(boutiquesVo);
+		Boutiques boutiquesSave = boutiqueRepository.save(boutiques);
+		return BoutiqueMapper.toVO(boutiquesSave);
 	}
-
+	
 	@Override
-	public void deleteBoutique(Boutiques boutiques) {
+	public void deleteBoutique(BoutiquesVo boutiquesVo) {
+		Boutiques boutiques = BoutiqueMapper.toEntity(boutiquesVo);
 		boutiqueRepository.delete(boutiques);
 	}
 
 	@Override
-	public Boutiques updateBoutique(Boutiques boutiques) {
-		// TODO Auto-generated method stub
-		return null;
+	public BoutiquesVo updateBoutique(Long id, BoutiquesVo boutiquesVo) {
+		return boutiqueRepository.findById(id).map(boutique -> {
+			BoutiqueMapper.updateEntityFromVO(boutiquesVo, boutique);
+			Boutiques boutiques = boutiqueRepository.save(boutique);
+			return BoutiqueMapper.toVO(boutiques);
+		}).orElse(null);
 	}
 
 	@Override
-	public List<Boutiques> findByArticle(Articles articles) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo) {
+		return boutiqueRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Boutiques> findByNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoutiquesVo> findByNom(String nom) {
+		return boutiqueRepository.findByNom(nom).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Boutiques> findByimg(String img) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoutiquesVo> findByImg(String img) {
+		return boutiqueRepository.findByImg(img).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
 	}
 
 }
