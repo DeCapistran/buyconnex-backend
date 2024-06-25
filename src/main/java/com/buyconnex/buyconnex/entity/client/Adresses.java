@@ -32,6 +32,7 @@ public class Adresses {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "ADRESSES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADRESSES_SEQ_ID")
     @Column(name = "ID_ADRESSE")

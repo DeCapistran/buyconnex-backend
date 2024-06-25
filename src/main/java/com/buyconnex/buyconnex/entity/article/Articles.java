@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
@@ -20,6 +20,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ public class Articles {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "ARTICLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ARTICLES_SEQ_ID")
     @Column(name = "ID_ARTICLES")
@@ -76,7 +78,7 @@ public class Articles {
 	
 	@Getter @Setter
 	@Column(name = "DATE_AJOUT")
-    private Date dateAjout;
+    private LocalDateTime dateAjout;
 	
 	@Getter @Setter
     @ManyToOne(targetEntity = Categories.class, fetch = FetchType.EAGER, optional = false)
@@ -126,4 +128,9 @@ public class Articles {
 	@JoinColumn (name="ID_IMAGES")
 	@JsonIgnore
 	private Images images;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateAjout = LocalDateTime.now();
+    }
 }

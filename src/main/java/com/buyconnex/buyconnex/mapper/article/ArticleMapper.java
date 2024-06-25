@@ -7,6 +7,7 @@ public class ArticleMapper {
 
 	public static ArticlesVo toVO(Articles articles) {
 		ArticlesVo articlesVo = new ArticlesVo();
+		articlesVo.setIdArticle(articles.getArticle_id());
 		articlesVo.setSku(articles.getSku());
 		articlesVo.setImgPath(articles.getImgPath());
 		articlesVo.setTitle(articles.getTitle());
@@ -31,6 +32,7 @@ public class ArticleMapper {
 	
 	public static Articles toEntity(ArticlesVo articlesVo) {
 		Articles articles = new Articles();
+		articles.setArticle_id(articlesVo.getIdArticle());
 		articles.setSku(articlesVo.getSku());
 		articles.setImgPath(articlesVo.getImgPath());
 		articles.setTitle(articlesVo.getTitle());

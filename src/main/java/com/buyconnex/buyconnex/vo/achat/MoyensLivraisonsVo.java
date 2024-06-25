@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MoyensLivraisonsVo {
-
+	private Long id;
 	private String moyenLivraisons;
 	private String description;
 	private Set<Commandes> commandes;

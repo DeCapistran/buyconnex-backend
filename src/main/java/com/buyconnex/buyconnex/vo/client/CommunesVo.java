@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommunesVo {
-
+	private Long id;
 	private String commune;
 	private Villes villes;
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MarquesVo {
-
+	private Long id;
 	private String libelle;
 	private String img;
 	private Set<Articles> articles;

@@ -29,6 +29,7 @@ public class Tags {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "TAGS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TAGS_SEQ_ID")
     @Column(name = "ID_TAGS")

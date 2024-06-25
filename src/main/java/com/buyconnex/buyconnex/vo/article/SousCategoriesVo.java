@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SousCategoriesVo {
-
+	private Long id;
 	private String libelle;
 	private Categories categories;
 	private Set<Coupons> coupons;

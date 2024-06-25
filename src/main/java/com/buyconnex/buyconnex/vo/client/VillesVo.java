@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VillesVo {
-
+	private Long id;
 	private String ville;
 	private Set<Communes> communes;
 	private Pays pays;

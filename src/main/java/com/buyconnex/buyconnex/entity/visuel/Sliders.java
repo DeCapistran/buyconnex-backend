@@ -31,6 +31,7 @@ public class Sliders {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "SLIDERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SLIDERS_SEQ_ID")
     @Column(name = "ID_SLIDER")

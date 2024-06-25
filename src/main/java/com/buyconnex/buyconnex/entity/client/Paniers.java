@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.client;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class Paniers {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "PANIERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PANIERS_SEQ_ID")
     @Column(name = "ID_PANIERS")
@@ -43,7 +45,7 @@ public class Paniers {
 	
 	@Getter @Setter
     @Column(name = "DATE_PANIERS")
-    private Date datePanier;
+    private LocalDateTime datePanier;
 	
 	@Getter @Setter
 	@JoinColumn(name = "ID_USER")
@@ -53,4 +55,9 @@ public class Paniers {
 	@Getter @Setter
 	@ManyToMany(mappedBy = "paniers")
     private Set<Articles> articles;
+	
+	@PrePersist
+    protected void onCreate() {
+		datePanier = LocalDateTime.now();
+    }
 }

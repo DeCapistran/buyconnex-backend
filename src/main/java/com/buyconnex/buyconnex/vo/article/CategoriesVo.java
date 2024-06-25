@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoriesVo {
-
+	private Long id;
 	private String libelle;
 	private String img;
 	private Set<Articles> articles;

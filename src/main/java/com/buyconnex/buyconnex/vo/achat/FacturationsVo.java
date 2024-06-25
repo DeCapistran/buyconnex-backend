@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.achat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
 import com.buyconnex.buyconnex.entity.client.Adresses;
@@ -15,8 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FacturationsVo {
-
-	private Date dateFacturation;
+	private Long id;
+	private LocalDateTime dateFacturation;
 	private String description;
 	private Commandes commandes;
 	private Adresses adresses;

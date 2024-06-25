@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.article;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Commandes;
@@ -24,7 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticlesVo {
-
+	private Long idArticle;
 	private String sku;
 	private String imgPath;
 	private String title; 
@@ -32,7 +32,7 @@ public class ArticlesVo {
 	private int quantite;
 	private String description;
 	private String composition;
-	private Date dateAjout;
+	private LocalDateTime dateAjout;
 	private Categories categories;
 	private Marques marques;
 	private Boutiques boutiques;

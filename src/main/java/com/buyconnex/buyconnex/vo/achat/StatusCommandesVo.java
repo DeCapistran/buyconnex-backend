@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StatusCommandesVo {
-
+	private Long id;
 	private String status;
 	private String description;
 	private Set<Commandes> commandes;

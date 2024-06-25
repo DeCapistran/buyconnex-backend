@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationsVo {
-
+	private Long id;
 	private String libelle;
 	private String description;
 	private String status;

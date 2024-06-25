@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MoyensPaiementsVo {
-
+	private Long id;
 	private String moyensPaiements;
 	private String description;
 	private Set<Paiements> paiements;

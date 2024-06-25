@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TagsVo {
-
+	private Long id;
 	private String nom;
 	private String description;
 	private Set<Articles> articles;

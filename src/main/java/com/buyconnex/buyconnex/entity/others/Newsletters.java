@@ -33,6 +33,7 @@ public class Newsletters {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "NEWSLETTERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NEWSLETTERS_SEQ_ID")
     @Column(name = "ID_NEWSLETTERS")

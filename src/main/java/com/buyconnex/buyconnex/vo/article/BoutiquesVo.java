@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoutiquesVo {
-
+	private Long id;
 	private String nom;
 	private String email;
 	private String telephone;

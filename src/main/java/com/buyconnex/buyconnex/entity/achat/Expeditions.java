@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.achat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class Expeditions {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "EXPEDITIONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXPEDITIONS_SEQ_ID")
     @Column(name = "ID_EXPEDITIONS")
@@ -42,10 +44,15 @@ public class Expeditions {
 	
 	@Getter @Setter
     @Column(name = "DATE_EXPEDITION")
-    private Date dateExpedition;
+    private LocalDateTime dateExpedition;
 	
 	@Getter @Setter
     @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
     private Commandes commandes;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateExpedition = LocalDateTime.now();
+    }
 }

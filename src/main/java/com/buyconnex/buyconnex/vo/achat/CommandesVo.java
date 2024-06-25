@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.achat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.achat.Expeditions;
@@ -21,9 +21,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommandesVo {
-	
+	private Long id;
 	private String numeroCommande;
-	private Date dateCommande;
+	private LocalDateTime dateCommande;
 	private String codeCoupon;
 	private Clients clients;
 	private StatusCommandes statusCommandes;

@@ -16,6 +16,7 @@ import java.util.Date;
 public class Settings {
 
     @Id
+    @Getter
     @Column(name = "ID_SETTING")
     private Long id;
 

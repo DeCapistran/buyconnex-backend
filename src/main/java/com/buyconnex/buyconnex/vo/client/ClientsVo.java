@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientsVo {
-
+	private Long id;
 	private String firstname;
 	private String lastname;
 	private String entreprise;

@@ -19,6 +19,7 @@ public class ResetPasswordToken {
     private static final int EXPIRATION_RESET_PASSWORD_TOKEN = 60*3;
 
     @Id
+    @Getter
     @SequenceGenerator(name = "EXPIRE_RESET_PASSWORD_TOKEN_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXPIRE_RESET_PASSWORD_TOKEN_SEQ_ID")
     private Long id;

@@ -1,11 +1,15 @@
 package com.buyconnex.buyconnex.service.article;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
@@ -73,5 +77,29 @@ public class ImageService implements IImageService {
 	public List<ImagesVo> findBySlider(SlidersVo slidersVo) {
 		return imageRepository.findBySliders(SliderMapper.toEntity(slidersVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
 	}
+	
+	@Override
+	public ImagesVo uploadImage(MultipartFile file) throws IOException {
+		return ImageMapper.toVO(imageRepository.save(Images.builder().name(file.getOriginalFilename()).type(file.getContentType()).image(file.getBytes()).build()));
+	}
+	
+	@Override
+	public ImagesVo getImageDetail(Long id) throws IOException {
+		final Optional<Images> dbImage = imageRepository.findById(id);
+		return ImageMapper.toVO(Images.builder().image_id(dbImage.get().getImage_id()).name(dbImage.get().getName()).type(dbImage.get().getType()).image(dbImage.get().getImage()).build());
+	}
+	
+	@Override
+	public ResponseEntity<byte[]> getImage(Long id) throws IOException {
+		final Optional<Images> dbImage = imageRepository.findById(id);
+		return ResponseEntity.ok().contentType(MediaType.valueOf(dbImage.get().getType())).body(dbImage.get().getImage());
+	}
+	
+	/*@Override
+	public ImagesVo uploadImageArticle(MultipartFile file, Long id) throws IOException {
+		Set<Articles> article = new Articles();
+		article.setArticle_id(id);
+		return imageRepository.save(Images.builder().name(file.getOriginalFilename()).type(file.getContentType()).image(file.getBytes()).articles(article))
+	}*/
 
 }

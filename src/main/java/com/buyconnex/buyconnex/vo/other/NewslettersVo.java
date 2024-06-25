@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewslettersVo {
-
+	private Long id;
 	private Date dateInscription;
 	private Date dateDesincription;
 	private String email;

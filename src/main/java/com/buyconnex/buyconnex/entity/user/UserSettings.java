@@ -14,6 +14,7 @@ import lombok.*;
 public class UserSettings {
 
     @Id
+    @Getter
     @SequenceGenerator(name = "USERS_DETAILS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_DETAILS_SEQ_ID")
     @Column(name = "ID_USER_DETAIL")

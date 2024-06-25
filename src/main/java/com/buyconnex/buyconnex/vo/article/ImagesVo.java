@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImagesVo {
-
+	private Long id;
 	private String name;
 	private String type;
 	private byte[] image;

@@ -24,6 +24,7 @@ import lombok.Setter;
 public class VerificationToken {
 
 	@Id
+	@Getter
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String token;

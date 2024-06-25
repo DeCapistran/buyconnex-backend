@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FootersVo {
-
+	private Long id;
 	private String telephone;
 	private String adresse;
 	private String mailSupport;

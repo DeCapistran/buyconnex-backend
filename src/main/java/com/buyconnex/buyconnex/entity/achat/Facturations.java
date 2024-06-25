@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.achat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.buyconnex.buyconnex.entity.client.Adresses;
 
@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -42,7 +43,7 @@ public class Facturations {
 	
 	@Getter @Setter
     @Column(name = "DATE_FACTURATION")
-    private Date dateFacturation;
+    private LocalDateTime dateFacturation;
 	
 	@Getter @Setter
 	@Column(name = "DESCRIPTION")
@@ -57,4 +58,9 @@ public class Facturations {
 	@JoinColumn(name = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateFacturation = LocalDateTime.now();
+    }
 }

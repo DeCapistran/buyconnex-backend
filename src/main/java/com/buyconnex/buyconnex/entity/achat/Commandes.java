@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.achat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
@@ -18,6 +18,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,7 @@ public class Commandes {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "COMMANDES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMMANDES_SEQ_ID")
     @Column(name = "ID_COMMANDES")
@@ -50,7 +52,7 @@ public class Commandes {
 	
 	@Getter @Setter
     @Column(name = "DATE_COMMANDE")
-    private Date dateCommande;
+    private LocalDateTime dateCommande;
 	
 	@Getter @Setter
 	@Column(name = "CODE_COUPON")
@@ -88,5 +90,10 @@ public class Commandes {
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "LIVRAISONS_DETAILS", joinColumns = { @JoinColumn(name = "commande_id") }, inverseJoinColumns = { @JoinColumn(name = "livraison_id") })
 	Set<Livraisons> livraisons;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateCommande = LocalDateTime.now();
+    }
 	
 }

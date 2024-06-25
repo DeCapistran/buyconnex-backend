@@ -26,6 +26,7 @@ public class Footers {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "FOOTERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FOOTERS_SEQ_ID")
     @Column(name = "ID_FOOTERS")

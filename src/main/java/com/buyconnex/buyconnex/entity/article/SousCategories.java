@@ -35,6 +35,7 @@ public class SousCategories {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Getter
     @SequenceGenerator(name = "SOUS_CATEGORIES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SOUS_CATEGORIES_SEQ_ID")
     @Column(name = "ID_SOUS_CATEGORIE")

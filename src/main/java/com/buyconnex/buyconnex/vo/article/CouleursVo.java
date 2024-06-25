@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CouleursVo {
-
+	private Long id;
 	private String couleur;
 	private String codeCouleur;
 	private Set<Images> images;

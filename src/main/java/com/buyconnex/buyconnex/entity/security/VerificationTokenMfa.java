@@ -21,6 +21,7 @@ public class VerificationTokenMfa {
     private String token;
 
     @Id
+    @Getter
     @SequenceGenerator(name = "EXPIRE_VERIF_MFA_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXPIRE_VERIF_MFA_SEQ_ID")
     @Column(name = "ID")

@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaysVo {
-
+	private Long id;
 	private String pays;
 	private Set<Villes> villes;
 }

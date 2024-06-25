@@ -1,5 +1,6 @@
 package com.buyconnex.buyconnex.vo.achat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,8 +16,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PromotionsVo {
-
-	private Date dateCreation;
+	private Long id;
+	private LocalDateTime dateCreation;
 	private Date dateDebut;
 	private Date dateFin;
 	private int pourcentage;

@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SlidersVo {
-
+	private Long id;
 	private String title;
 	private Images images;
 }
