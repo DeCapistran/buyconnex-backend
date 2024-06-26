@@ -14,4 +14,5 @@ public interface CouleurRepository extends JpaRepository<Couleurs, Long> {
 	List<Couleurs> findByCodeCouleur(String codeCouleur);
 	List<Couleurs> findByCouleur(String couleur);
 	List<Couleurs> findByImages(Images images);
+	boolean existByCouleur(String couleur);
 }

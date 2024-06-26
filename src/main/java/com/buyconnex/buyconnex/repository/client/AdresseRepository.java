@@ -20,4 +20,5 @@ public interface AdresseRepository extends JpaRepository<Adresses, Long> {
 	List<Adresses> findByPays(Pays pays);
 	List<Adresses> findByVille(Villes ville);
 	List<Adresses> findByClients(Clients clients);
+	boolean existByAdresse(String adresse);
 }

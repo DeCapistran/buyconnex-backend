@@ -2,8 +2,6 @@ package com.buyconnex.buyconnex.vo.achat;
 
 import java.time.LocalDateTime;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +15,5 @@ public class ExpeditionsVo {
 	private Long id;
 	private String commentaire;
 	private LocalDateTime dateExpedition;
-	private Commandes commandes;
+	private CommandesVo commandes;
 }

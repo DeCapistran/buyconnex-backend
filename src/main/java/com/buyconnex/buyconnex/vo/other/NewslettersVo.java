@@ -2,7 +2,7 @@ package com.buyconnex.buyconnex.vo.other;
 
 import java.util.Date;
 
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +18,5 @@ public class NewslettersVo {
 	private Date dateInscription;
 	private Date dateDesincription;
 	private String email;
-	private Users users;
+	private UsersVo users;
 }

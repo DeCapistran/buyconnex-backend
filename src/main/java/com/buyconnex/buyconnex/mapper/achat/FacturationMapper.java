@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
 import com.buyconnex.buyconnex.entity.achat.Facturations;
+import com.buyconnex.buyconnex.mapper.client.AdresseMapper;
 import com.buyconnex.buyconnex.vo.achat.FacturationsVo;
 
 public class FacturationMapper {
@@ -9,8 +10,8 @@ public class FacturationMapper {
 		FacturationsVo facturationsVo = new FacturationsVo();
 		facturationsVo.setDateFacturation(facturations.getDateFacturation());
 		facturationsVo.setDescription(facturations.getDescription());
-		facturationsVo.setCommandes(facturations.getCommandes());
-		facturationsVo.setAdresses(facturations.getAdresses());
+		facturationsVo.setCommandes(CommandeMapper.toVO(facturations.getCommandes()));
+		facturationsVo.setAdresses(AdresseMapper.toVO(facturations.getAdresses()));
 		
 		return facturationsVo;
 	}
@@ -19,8 +20,8 @@ public class FacturationMapper {
 		Facturations facturations = new Facturations();
 		facturations.setDateFacturation(facturationsVo.getDateFacturation());
 		facturations.setDescription(facturationsVo.getDescription());
-		facturations.setCommandes(facturationsVo.getCommandes());
-		facturations.setAdresses(facturationsVo.getAdresses());
+		facturations.setCommandes(CommandeMapper.toEntity(facturationsVo.getCommandes()));
+		facturations.setAdresses(AdresseMapper.toEntity(facturationsVo.getAdresses()));
 		
 		return facturations;
 	}
@@ -29,7 +30,7 @@ public class FacturationMapper {
 		
 		facturations.setDateFacturation(facturationsVo.getDateFacturation());
 		facturations.setDescription(facturationsVo.getDescription());
-		facturations.setCommandes(facturationsVo.getCommandes());
-		facturations.setAdresses(facturationsVo.getAdresses());
+		facturations.setCommandes(CommandeMapper.toEntity(facturationsVo.getCommandes()));
+		facturations.setAdresses(AdresseMapper.toEntity(facturationsVo.getAdresses()));
 	}
 }

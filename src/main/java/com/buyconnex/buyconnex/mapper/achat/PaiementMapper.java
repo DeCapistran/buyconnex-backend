@@ -9,8 +9,8 @@ public class PaiementMapper {
 		PaiementsVo paiementsVo = new PaiementsVo();
 		paiementsVo.setDatePaiement(paiements.getDatePaiement());
 		paiementsVo.setMontant(paiements.getMontant());
-		paiementsVo.setMoyensPaiements(paiements.getMoyensPaiements());
-		paiementsVo.setStatusPaiements(paiements.getStatusPaiements());
+		paiementsVo.setMoyensPaiements(MoyenPaiementMapper.toVO(paiements.getMoyensPaiements()));
+		paiementsVo.setStatusPaiements(StatusPaiementMapper.toVO(paiements.getStatusPaiements()));
 		
 		return paiementsVo;
 	}
@@ -19,8 +19,8 @@ public class PaiementMapper {
 		Paiements paiements = new Paiements();
 		paiements.setDatePaiement(paiementsVo.getDatePaiement());
 		paiements.setMontant(paiementsVo.getMontant());
-		paiements.setMoyensPaiements(paiementsVo.getMoyensPaiements());
-		paiements.setStatusPaiements(paiementsVo.getStatusPaiements());
+		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));
+		paiements.setStatusPaiements(StatusPaiementMapper.toEntity(paiementsVo.getStatusPaiements()));
 		
 		return paiements;
 	}
@@ -29,7 +29,7 @@ public class PaiementMapper {
 		
 		paiements.setDatePaiement(paiementsVo.getDatePaiement());
 		paiements.setMontant(paiementsVo.getMontant());
-		paiements.setMoyensPaiements(paiementsVo.getMoyensPaiements());
-		paiements.setStatusPaiements(paiementsVo.getStatusPaiements());
+		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));
+		paiements.setStatusPaiements(StatusPaiementMapper.toEntity(paiementsVo.getStatusPaiements()));
 	}
 }

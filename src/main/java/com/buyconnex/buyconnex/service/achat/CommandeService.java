@@ -17,6 +17,7 @@ import com.buyconnex.buyconnex.repository.achat.CommandeRepository;
 import com.buyconnex.buyconnex.vo.achat.CommandesVo;
 import com.buyconnex.buyconnex.vo.achat.MoyensLivraisonsVo;
 import com.buyconnex.buyconnex.vo.achat.StatusCommandesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.client.ClientsVo;
 
 import jakarta.transaction.Transactional;
@@ -78,6 +79,16 @@ public class CommandeService implements ICommandeService {
 	@Override
 	public List<CommandesVo> findBymoyensLivraisons(MoyensLivraisonsVo moyensLivraisonsVo) {
 		return commandeRepository.findByMoyensLivraisons(MoyenLivraisonMapper.toEntity(moyensLivraisonsVo)).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
+	}
+	
+	private void validateCommande(CommandesVo commandesVo) {
+		if(commandesVo.getArticles() == null || commandesVo.getArticles().isEmpty()) {
+			throw new IllegalArgumentException("La commande ne contient pas d'articles");
+		}
+		
+		for(ArticlesVo articlesVo : commandesVo.getArticles()) {
+			
+		}
 	}
 	
 }

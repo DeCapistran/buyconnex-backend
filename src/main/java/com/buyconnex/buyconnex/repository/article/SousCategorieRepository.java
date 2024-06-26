@@ -15,4 +15,5 @@ public interface SousCategorieRepository extends JpaRepository<SousCategories, L
 	List<SousCategories> findByCategories(Categories categories);
 	List<SousCategories> findByCoupons(Coupons coupons);
 	List<SousCategories> findByLibelle(String libelle);
+	boolean existByLibelle(String libelle);
 }

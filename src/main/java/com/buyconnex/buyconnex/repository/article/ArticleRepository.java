@@ -29,4 +29,5 @@ public interface ArticleRepository extends JpaRepository<Articles, Long> {
 	List<Articles> findByQuantite(int quantite);
 	List<Articles> findByStatusArticles(StatusArticles statusArticles);
 	List<Articles> findByTitle(String title);
+	boolean existByLibelle(String libelle);
 }

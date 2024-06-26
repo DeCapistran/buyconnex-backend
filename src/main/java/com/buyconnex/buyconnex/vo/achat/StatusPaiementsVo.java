@@ -2,8 +2,6 @@ package com.buyconnex.buyconnex.vo.achat;
 
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.achat.Paiements;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +15,5 @@ public class StatusPaiementsVo {
 	private Long id;
 	private String status;
 	private String description;
-	private Set<Paiements> paiements;
+	private Set<PaiementsVo> paiements;
 }

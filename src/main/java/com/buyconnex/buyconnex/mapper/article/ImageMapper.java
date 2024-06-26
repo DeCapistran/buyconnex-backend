@@ -1,6 +1,9 @@
 package com.buyconnex.buyconnex.mapper.article;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.article.Images;
+import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 public class ImageMapper {
@@ -10,10 +13,10 @@ public class ImageMapper {
 		imagesVo.setName(images.getName());
 		imagesVo.setType(images.getType());
 		imagesVo.setImage(images.getImage());
-		imagesVo.setArticles(images.getArticles());
-		imagesVo.setCategories(images.getCategories());
-		imagesVo.setSliders(images.getSliders());
-		imagesVo.setCouleurs(images.getCouleurs());
+		imagesVo.setArticles(images.getArticles().stream().map(ArticleMapper::toVO).collect(Collectors.toSet()));
+		imagesVo.setCategories(CategorieMapper.toVO(images.getCategories()));
+		imagesVo.setSliders(SliderMapper.toVO(images.getSliders()));
+		imagesVo.setCouleurs(images.getCouleurs().stream().map(CouleurMapper::toVO).collect(Collectors.toSet()));
 		
 		return imagesVo;
 	}
@@ -23,10 +26,10 @@ public class ImageMapper {
 		images.setName(imagesVo.getName());
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
-		images.setArticles(imagesVo.getArticles());
-		images.setCategories(imagesVo.getCategories());
-		images.setSliders(imagesVo.getSliders());
-		images.setCouleurs(imagesVo.getCouleurs());
+		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
+		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
+		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
+		images.setCouleurs(imagesVo.getCouleurs().stream().map(CouleurMapper::toEntity).collect(Collectors.toSet()));
 		
 		return images;
 	}
@@ -36,9 +39,10 @@ public class ImageMapper {
 		images.setName(imagesVo.getName());
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
-		images.setArticles(imagesVo.getArticles());
-		images.setCategories(imagesVo.getCategories());
-		images.setSliders(imagesVo.getSliders());
-		images.setCouleurs(imagesVo.getCouleurs());
+		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
+		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
+		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
+		images.setCouleurs(imagesVo.getCouleurs().stream().map(CouleurMapper::toEntity).collect(Collectors.toSet()));
+		
 	}
 }

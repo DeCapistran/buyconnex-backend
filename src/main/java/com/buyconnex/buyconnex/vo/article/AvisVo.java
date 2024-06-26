@@ -2,8 +2,7 @@ package com.buyconnex.buyconnex.vo.article;
 
 import java.time.LocalDateTime;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +18,6 @@ public class AvisVo {
 	private LocalDateTime dateAvis;
 	private int etoile;
 	private String commentaire;
-	private Articles articles;
-	private Users users;
+	private ArticlesVo articles;
+	private UsersVo users;
 }

@@ -1,6 +1,10 @@
 package com.buyconnex.buyconnex.mapper.client;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.client.Clients;
+import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
+import com.buyconnex.buyconnex.mapper.user.UserMapper;
 import com.buyconnex.buyconnex.vo.client.ClientsVo;
 
 public class ClientMapper {
@@ -15,9 +19,9 @@ public class ClientMapper {
 		clientsVo.setInstagram(clients.getInstagram());
 		clientsVo.setTelephone1(clients.getTelephone1());
 		clientsVo.setTelephone2(clients.getTelephone2());
-		clientsVo.setAdresses(clients.getAdresses());
-		clientsVo.setUsers(clients.getUsers());
-		clientsVo.setCommandes(clients.getCommandes());
+		clientsVo.setAdresses(AdresseMapper.toVO(clients.getAdresses()));
+		clientsVo.setUsers(UserMapper.toVO(clients.getUsers()));
+		clientsVo.setCommandes(clients.getCommandes().stream().map(CommandeMapper::toVO).collect(Collectors.toSet()));
 		
 		return clientsVo;	
 	}
@@ -32,9 +36,9 @@ public class ClientMapper {
 		clients.setInstagram(clientsVo.getInstagram());
 		clients.setTelephone1(clientsVo.getTelephone1());
 		clients.setTelephone2(clientsVo.getTelephone2());
-		clients.setAdresses(clientsVo.getAdresses());
-		clients.setUsers(clientsVo.getUsers());
-		clients.setCommandes(clientsVo.getCommandes());
+		clients.setAdresses(AdresseMapper.toEntity(clientsVo.getAdresses()));
+		clients.setUsers(UserMapper.toEntity(clientsVo.getUsers()));
+		clients.setCommandes(clientsVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
 		
 		return clients;	
 	}
@@ -49,9 +53,10 @@ public class ClientMapper {
 		clients.setInstagram(clientsVo.getInstagram());
 		clients.setTelephone1(clientsVo.getTelephone1());
 		clients.setTelephone2(clientsVo.getTelephone2());
-		clients.setAdresses(clientsVo.getAdresses());
-		clients.setUsers(clientsVo.getUsers());
-		clients.setCommandes(clientsVo.getCommandes());
+		clients.setAdresses(AdresseMapper.toEntity(clientsVo.getAdresses()));
+		clients.setUsers(UserMapper.toEntity(clientsVo.getUsers()));
+		clients.setCommandes(clientsVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
+		
 	}
 
 }

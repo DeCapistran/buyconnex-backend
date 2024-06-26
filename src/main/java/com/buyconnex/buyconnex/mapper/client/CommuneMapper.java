@@ -8,7 +8,7 @@ public class CommuneMapper {
 	public static CommunesVo toVO(Communes communes) {
 		CommunesVo communesVo = new CommunesVo();
 		communesVo.setCommune(communes.getCommune());
-		communesVo.setVilles(communes.getVilles());
+		communesVo.setVilles(VilleMapper.toVO(communes.getVilles()));
 		
 		return communesVo;
 	}
@@ -16,13 +16,13 @@ public class CommuneMapper {
 	public static Communes toEntity(CommunesVo communesVo) {
 		Communes communes = new Communes();
 		communes.setCommune(communesVo.getCommune());
-		communes.setVilles(communesVo.getVilles());
+		communes.setVilles(VilleMapper.toEntity(communesVo.getVilles()));
 		
 		return communes;
 	}
 	
 	public static void updateEntityFromVO(CommunesVo communesVo, Communes communes) {
 		communes.setCommune(communesVo.getCommune());
-		communes.setVilles(communesVo.getVilles());
+		communes.setVilles(VilleMapper.toEntity(communesVo.getVilles()));
 	}
 }

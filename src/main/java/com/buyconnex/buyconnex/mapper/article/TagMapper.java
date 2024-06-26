@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.mapper.article;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.article.Tags;
 import com.buyconnex.buyconnex.vo.article.TagsVo;
 
@@ -7,7 +9,7 @@ public class TagMapper {
 
 	public static TagsVo toVO(Tags tags) {
 		TagsVo tagsVo = new TagsVo();
-		tagsVo.setArticles(tags.getArticles());
+		tagsVo.setArticles(tags.getArticles().stream().map(ArticleMapper::toVO).collect(Collectors.toSet()));
 		tagsVo.setDescription(tags.getDescription());
 		tagsVo.setNom(tags.getNom());
 		
@@ -16,7 +18,7 @@ public class TagMapper {
 	
 	public static Tags toEntity(TagsVo tagsVo) {
 		Tags tags = new Tags();
-		tags.setArticles(tagsVo.getArticles());
+		tags.setArticles(tagsVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		tags.setDescription(tagsVo.getDescription());
 		tags.setNom(tagsVo.getNom());
 		
@@ -25,7 +27,7 @@ public class TagMapper {
 	
 	public static void updateEntityFromVO(TagsVo tagsVo, Tags tags) {
 		
-		tags.setArticles(tagsVo.getArticles());
+		tags.setArticles(tagsVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		tags.setDescription(tagsVo.getDescription());
 		tags.setNom(tagsVo.getNom());
 	}

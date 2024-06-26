@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.StatusLivraisons;
-import com.buyconnex.buyconnex.entity.client.Adresses;
+import com.buyconnex.buyconnex.vo.client.AdresseVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +21,7 @@ public class LivraisonsVo {
 	private Date dateLivraisonEstimee;
 	private LocalDateTime dateLivraison;
 	private String commentaire;
-	private StatusLivraisons statusLivraisons;
-	private Adresses adresses;
-	private Set<Commandes> commandes;
+	private StatusLivraisonsVo statusLivraisons;
+	private AdresseVo adresses;
+	private Set<CommandesVo> commandes;
 }

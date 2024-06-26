@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.achat.MoyensPaiements;
 import com.buyconnex.buyconnex.vo.achat.MoyensPaiementsVo;
 
@@ -9,7 +11,7 @@ public class MoyenPaiementMapper {
 		MoyensPaiementsVo moyensPaiementsVo = new MoyensPaiementsVo();
 		moyensPaiementsVo.setMoyensPaiements(moyensPaiements.getMoyenPaiement());
 		moyensPaiementsVo.setDescription(moyensPaiements.getDescription());
-		moyensPaiementsVo.setPaiements(moyensPaiements.getPaiements());
+		moyensPaiementsVo.setPaiements(moyensPaiements.getPaiements().stream().map(PaiementMapper::toVO).collect(Collectors.toSet()));
 		
 		return moyensPaiementsVo;
 	}
@@ -18,7 +20,7 @@ public class MoyenPaiementMapper {
 		MoyensPaiements moyensPaiements = new MoyensPaiements();
 		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
 		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
-		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements());
+		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));
 		
 		return moyensPaiements;
 	}
@@ -27,6 +29,6 @@ public class MoyenPaiementMapper {
 		
 		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
 		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
-		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements());
+		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));
 	}
 }

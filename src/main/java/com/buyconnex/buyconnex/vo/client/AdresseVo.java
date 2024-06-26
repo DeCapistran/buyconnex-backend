@@ -1,11 +1,7 @@
 package com.buyconnex.buyconnex.vo.client;
 
-import com.buyconnex.buyconnex.entity.achat.Facturations;
-import com.buyconnex.buyconnex.entity.achat.Livraisons;
-import com.buyconnex.buyconnex.entity.client.Clients;
-import com.buyconnex.buyconnex.entity.client.Communes;
-import com.buyconnex.buyconnex.entity.client.Pays;
-import com.buyconnex.buyconnex.entity.client.Villes;
+import com.buyconnex.buyconnex.vo.achat.FacturationsVo;
+import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,14 +14,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AdresseVo {
 	private Long id;
-	private Pays pays;
-	private Villes villes;
-	private Communes communes;
+	private PaysVo pays;
+	private VillesVo villes;
+	private CommunesVo communes;
 	private String adresse1;
 	private String adresse2;
 	private int codePostal;
 	private String description;
-	private Clients clients;
-	private Facturations facturations;
-	private Livraisons livraisons;
+	private ClientsVo clients;
+	private FacturationsVo facturations;
+	private LivraisonsVo livraisons;
 }

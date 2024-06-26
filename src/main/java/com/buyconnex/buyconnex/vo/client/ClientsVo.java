@@ -2,9 +2,8 @@ package com.buyconnex.buyconnex.vo.client;
 
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.client.Adresses;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +24,7 @@ public class ClientsVo {
 	private String instagram;
 	private String telephone1;
 	private String telephone2;
-	private Adresses adresses;
-	private Users users;
-	private Set<Commandes> commandes;
+	private AdresseVo adresses;
+	private UsersVo users;
+	private Set<CommandesVo> commandes;
 }

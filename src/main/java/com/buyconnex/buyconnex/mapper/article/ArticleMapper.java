@@ -1,6 +1,11 @@
 package com.buyconnex.buyconnex.mapper.article;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
+import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
+import com.buyconnex.buyconnex.mapper.client.PanierMapper;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 public class ArticleMapper {
@@ -16,16 +21,16 @@ public class ArticleMapper {
 		articlesVo.setDescription(articles.getDescription());
 		articlesVo.setComposition(articles.getComposition());
 		articlesVo.setDateAjout(articles.getDateAjout());
-		articlesVo.setCategories(articles.getCategories());
-		articlesVo.setMarques(articles.getMarques());
-		articlesVo.setBoutiques(articles.getBoutiques());
-		articlesVo.setStatusArticles(articles.getStatusArticles());
-		articlesVo.setPromotions(articles.getPromotions());
-		articlesVo.setTags(articles.getTags());
-		articlesVo.setCommandes(articles.getCommandes());
-		articlesVo.setPaniers(articles.getPaniers());
-		articlesVo.setAvis(articles.getAvis());
-		articlesVo.setImages(articles.getImages());
+		articlesVo.setCategories(CategorieMapper.toVO(articles.getCategories()));
+		articlesVo.setMarques(MarqueMapper.toVO(articles.getMarques()));
+		articlesVo.setBoutiques(BoutiqueMapper.toVO(articles.getBoutiques()));
+		articlesVo.setStatusArticles(StatusArticleMapper.toVO(articles.getStatusArticles()));
+		articlesVo.setPromotions(articles.getPromotions().stream().map(PromotionMapper::toVo).collect(Collectors.toSet()));
+		articlesVo.setTags(articles.getTags().stream().map(TagMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setCommandes(articles.getCommandes().stream().map(CommandeMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setPaniers(articles.getPaniers().stream().map(PanierMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setAvis(articles.getAvis().stream().map(AvisMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setImages(ImageMapper.toVO(articles.getImages()));
 		
 		return articlesVo;
 	}
@@ -41,16 +46,16 @@ public class ArticleMapper {
 		articles.setDescription(articlesVo.getDescription());
 		articles.setComposition(articlesVo.getComposition());
 		articles.setDateAjout(articlesVo.getDateAjout());
-		articles.setCategories(articlesVo.getCategories());
-		articles.setMarques(articlesVo.getMarques());
-		articles.setBoutiques(articlesVo.getBoutiques());
-		articles.setStatusArticles(articlesVo.getStatusArticles());
-		articles.setPromotions(articlesVo.getPromotions());
-		articles.setTags(articlesVo.getTags());
-		articles.setCommandes(articlesVo.getCommandes());
-		articles.setPaniers(articlesVo.getPaniers());
-		articles.setAvis(articlesVo.getAvis());
-		articles.setImages(articlesVo.getImages());
+		articles.setCategories(CategorieMapper.toEntity(articlesVo.getCategories()));
+		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
+		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
+		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
+		articles.setPromotions(articlesVo.getPromotions().stream().map(PromotionMapper::toEntity).collect(Collectors.toSet()));
+		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
+		articles.setCommandes(articlesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPaniers(articlesVo.getPaniers().stream().map(PanierMapper::toEntity).collect(Collectors.toSet()));
+		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
+		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
 		
 		return articles;
 	}
@@ -65,15 +70,15 @@ public class ArticleMapper {
 		articles.setDescription(articlesVo.getDescription());
 		articles.setComposition(articlesVo.getComposition());
 		articles.setDateAjout(articlesVo.getDateAjout());
-		articles.setCategories(articlesVo.getCategories());
-		articles.setMarques(articlesVo.getMarques());
-		articles.setBoutiques(articlesVo.getBoutiques());
-		articles.setStatusArticles(articlesVo.getStatusArticles());
-		articles.setPromotions(articlesVo.getPromotions());
-		articles.setTags(articlesVo.getTags());
-		articles.setCommandes(articlesVo.getCommandes());
-		articles.setPaniers(articlesVo.getPaniers());
-		articles.setAvis(articlesVo.getAvis());
-		articles.setImages(articlesVo.getImages());
+		articles.setCategories(CategorieMapper.toEntity(articlesVo.getCategories()));
+		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
+		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
+		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
+		articles.setPromotions(articlesVo.getPromotions().stream().map(PromotionMapper::toEntity).collect(Collectors.toSet()));
+		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
+		articles.setCommandes(articlesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPaniers(articlesVo.getPaniers().stream().map(PanierMapper::toEntity).collect(Collectors.toSet()));
+		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
+		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
 	}
 }

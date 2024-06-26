@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.mapper.article;
 
 import com.buyconnex.buyconnex.entity.article.Avis;
+import com.buyconnex.buyconnex.mapper.user.UserMapper;
 import com.buyconnex.buyconnex.vo.article.AvisVo;
 
 public class AvisMapper {
@@ -10,8 +11,8 @@ public class AvisMapper {
 		avisVo.setDateAvis(avis.getDateAvis());
 		avisVo.setEtoile(avis.getEtoile());
 		avisVo.setCommentaire(avis.getCommentaire());
-		avisVo.setArticles(avis.getArticles());
-		avisVo.setUsers(avis.getUsers());
+		avisVo.setArticles(ArticleMapper.toVO(avis.getArticles()));
+		avisVo.setUsers(UserMapper.toVO(avis.getUsers()));
 		
 		return avisVo;
 	}
@@ -21,8 +22,8 @@ public class AvisMapper {
 		avis.setDateAvis(avisVo.getDateAvis());
 		avis.setEtoile(avisVo.getEtoile());
 		avis.setCommentaire(avisVo.getCommentaire());
-		avis.setArticles(avisVo.getArticles());
-		avis.setUsers(avisVo.getUsers());
+		avis.setArticles(ArticleMapper.toEntity(avisVo.getArticles()));
+		avis.setUsers(UserMapper.toEntity(avisVo.getUsers()));
 		
 		return avis;
 	}
@@ -32,7 +33,7 @@ public class AvisMapper {
 		avis.setDateAvis(avisVo.getDateAvis());
 		avis.setEtoile(avisVo.getEtoile());
 		avis.setCommentaire(avisVo.getCommentaire());
-		avis.setArticles(avisVo.getArticles());
-		avis.setUsers(avisVo.getUsers());
+		avis.setArticles(ArticleMapper.toEntity(avisVo.getArticles()));
+		avis.setUsers(UserMapper.toEntity(avisVo.getUsers()));
 	}
 }

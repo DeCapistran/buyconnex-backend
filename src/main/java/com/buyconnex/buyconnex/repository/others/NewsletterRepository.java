@@ -17,4 +17,5 @@ public interface NewsletterRepository extends JpaRepository<Newsletters, Long> {
 	List<Newsletters> findByDateDesinscription(Date dateDesinscription);
 	Optional<Newsletters> findByEmail(String email);
 	List<Newsletters> findByUsers(Users users);
+	boolean existByEmail(String email);
 }

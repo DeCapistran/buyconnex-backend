@@ -13,4 +13,5 @@ public interface MarqueRepository extends JpaRepository<Marques, Long> {
 	List<Marques> findByArticles(Articles articles);
 	List<Marques> findByImg(String img);
 	List<Marques> findByLibelle(String libelle);
+	boolean existByLibelle(String libelle);
 }

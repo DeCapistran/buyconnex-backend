@@ -2,8 +2,7 @@ package com.buyconnex.buyconnex.vo.achat;
 
 import java.time.LocalDateTime;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.client.Adresses;
+import com.buyconnex.buyconnex.vo.client.AdresseVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +17,6 @@ public class FacturationsVo {
 	private Long id;
 	private LocalDateTime dateFacturation;
 	private String description;
-	private Commandes commandes;
-	private Adresses adresses;
+	private CommandesVo commandes;
+	private AdresseVo adresses;
 }

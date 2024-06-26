@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
 import com.buyconnex.buyconnex.entity.achat.Coupons;
+import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.vo.achat.CouponsVo;
 
 public class CouponMapper {
@@ -16,7 +17,7 @@ public class CouponMapper {
 		couponsVo.setDateFin(coupons.getDateFin());
 		couponsVo.setPourcentage(coupons.getPourcentage());
 		couponsVo.setMontantMinimum(coupons.getMontantMinimum());
-		couponsVo.setSousCategories(coupons.getSousCategories());
+		couponsVo.setSousCategories(SousCategorieMapper.toVO(coupons.getSousCategories()));
 		
 		return couponsVo;
 	}
@@ -32,7 +33,7 @@ public class CouponMapper {
 		coupons.setDateFin(couponsVo.getDateFin());
 		coupons.setPourcentage(couponsVo.getPourcentage());
 		coupons.setMontantMinimum(couponsVo.getMontantMinimum());
-		coupons.setSousCategories(couponsVo.getSousCategories());
+		coupons.setSousCategories(SousCategorieMapper.toEntity(couponsVo.getSousCategories()));
 		
 		return coupons;
 	}
@@ -47,6 +48,6 @@ public class CouponMapper {
 		coupons.setDateFin(couponsVo.getDateFin());
 		coupons.setPourcentage(couponsVo.getPourcentage());
 		coupons.setMontantMinimum(couponsVo.getMontantMinimum());
-		coupons.setSousCategories(couponsVo.getSousCategories());
+		coupons.setSousCategories(SousCategorieMapper.toEntity(couponsVo.getSousCategories()));
 	}
 }

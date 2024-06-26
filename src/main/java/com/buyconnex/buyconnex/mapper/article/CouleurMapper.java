@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.mapper.article;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.article.Couleurs;
 import com.buyconnex.buyconnex.vo.article.CouleursVo;
 
@@ -9,7 +11,7 @@ public class CouleurMapper {
 		CouleursVo couleursVo = new CouleursVo();
 		couleursVo.setCouleur(couleurs.getCouleur());
 		couleursVo.setCodeCouleur(couleurs.getCodeCouleur());
-		couleursVo.setImages(couleurs.getImages());
+		couleursVo.setImages(couleurs.getImages().stream().map(ImageMapper::toVO).collect(Collectors.toSet()));
 		
 		return couleursVo;
 	}
@@ -18,7 +20,7 @@ public class CouleurMapper {
 		Couleurs couleurs = new Couleurs();
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
-		couleurs.setImages(couleursVo.getImages());
+		couleurs.setImages(couleursVo.getImages().stream().map(ImageMapper::toEntity).collect(Collectors.toSet()));
 		
 		return couleurs;
 	}
@@ -27,6 +29,6 @@ public class CouleurMapper {
 		
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
-		couleurs.setImages(couleursVo.getImages());
+		couleurs.setImages(couleursVo.getImages().stream().map(ImageMapper::toEntity).collect(Collectors.toSet()));
 	}
 }

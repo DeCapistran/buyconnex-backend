@@ -1,6 +1,12 @@
 package com.buyconnex.buyconnex.mapper.user;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.mapper.article.AvisMapper;
+import com.buyconnex.buyconnex.mapper.client.ClientMapper;
+import com.buyconnex.buyconnex.mapper.client.PanierMapper;
+import com.buyconnex.buyconnex.mapper.other.NewsletterMapper;
 import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 public class UserMapper {
@@ -14,11 +20,11 @@ public class UserMapper {
 		usersVo.setLastname(users.getLastname());
 		usersVo.setDateCreation(users.getDateCreation());
 		usersVo.setRoles(users.getRoles());
-		usersVo.setNotifications(users.getNotifications());
-		usersVo.setAvis(users.getAvis());
-		usersVo.setPaniers(users.getPaniers());
-		usersVo.setClients(users.getClients());
-		usersVo.setNewsletters(users.getNewsletters());
+		usersVo.setNotifications(users.getNotifications().stream().map(NotificationMapper::toVO).collect(Collectors.toSet()));
+		usersVo.setAvis(users.getAvis().stream().map(AvisMapper::toVO).collect(Collectors.toSet()));
+		usersVo.setPaniers(PanierMapper.toVO(users.getPaniers()));
+		usersVo.setClients(ClientMapper.toVO(users.getClients()));
+		usersVo.setNewsletters(NewsletterMapper.toVO(users.getNewsletters()));
 		
 		return usersVo;
 	}
@@ -32,11 +38,11 @@ public class UserMapper {
 		users.setLastname(usersVo.getLastname());
 		users.setDateCreation(usersVo.getDateCreation());
 		users.setRoles(usersVo.getRoles());
-		users.setNotifications(usersVo.getNotifications());
-		users.setAvis(usersVo.getAvis());
-		users.setPaniers(usersVo.getPaniers());
-		users.setClients(usersVo.getClients());
-		users.setNewsletters(usersVo.getNewsletters());
+		users.setNotifications(usersVo.getNotifications().stream().map(NotificationMapper::toEntity).collect(Collectors.toSet()));
+		users.setAvis(usersVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
+		users.setPaniers(PanierMapper.toEntity(usersVo.getPaniers()));
+		users.setClients(ClientMapper.toEntity(usersVo.getClients()));
+		users.setNewsletters(NewsletterMapper.toEntity(usersVo.getNewsletters()));
 		
 		return users;
 	}
@@ -49,10 +55,10 @@ public class UserMapper {
 		users.setLastname(usersVo.getLastname());
 		users.setDateCreation(usersVo.getDateCreation());
 		users.setRoles(usersVo.getRoles());
-		users.setNotifications(usersVo.getNotifications());
-		users.setAvis(usersVo.getAvis());
-		users.setPaniers(usersVo.getPaniers());
-		users.setClients(usersVo.getClients());
-		users.setNewsletters(usersVo.getNewsletters());
+		users.setNotifications(usersVo.getNotifications().stream().map(NotificationMapper::toEntity).collect(Collectors.toSet()));
+		users.setAvis(usersVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
+		users.setPaniers(PanierMapper.toEntity(usersVo.getPaniers()));
+		users.setClients(ClientMapper.toEntity(usersVo.getClients()));
+		users.setNewsletters(NewsletterMapper.toEntity(usersVo.getNewsletters()));
 	}
 }

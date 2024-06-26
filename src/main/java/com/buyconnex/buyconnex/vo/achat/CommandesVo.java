@@ -3,13 +3,8 @@ package com.buyconnex.buyconnex.vo.achat;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.achat.Expeditions;
-import com.buyconnex.buyconnex.entity.achat.Facturations;
-import com.buyconnex.buyconnex.entity.achat.Livraisons;
-import com.buyconnex.buyconnex.entity.achat.MoyensLivraisons;
-import com.buyconnex.buyconnex.entity.achat.StatusCommandes;
-import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.entity.client.Clients;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.client.ClientsVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,12 +20,12 @@ public class CommandesVo {
 	private String numeroCommande;
 	private LocalDateTime dateCommande;
 	private String codeCoupon;
-	private Clients clients;
-	private StatusCommandes statusCommandes;
-	private MoyensLivraisons moyensLivraisons;
-	private Set<Articles> articles;
-	private Set<Expeditions> expeditions;
-	private Set<Facturations> facturations;
-	private Set<Livraisons> livraisons;
+	private ClientsVo clients;
+	private StatusCommandesVo statusCommandes;
+	private MoyensLivraisonsVo moyensLivraisons;
+	private Set<ArticlesVo> articles;
+	private Set<ExpeditionsVo> expeditions;
+	private Set<FacturationsVo> facturations;
+	private Set<LivraisonsVo> livraisons;
 	
 }

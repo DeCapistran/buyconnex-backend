@@ -9,7 +9,7 @@ public class ExpeditionMapper {
 		ExpeditionsVo expeditionsVo = new ExpeditionsVo();
 		expeditionsVo.setCommentaire(expeditions.getCommentaire());
 		expeditionsVo.setDateExpedition(expeditions.getDateExpedition());
-		expeditionsVo.setCommandes(expeditions.getCommandes());
+		expeditionsVo.setCommandes(CommandeMapper.toVO(expeditions.getCommandes()));
 		
 		return expeditionsVo;
 	}
@@ -18,7 +18,7 @@ public class ExpeditionMapper {
 		Expeditions expeditions = new Expeditions();
 		expeditions.setCommentaire(expeditionsVo.getCommentaire());
 		expeditions.setDateExpedition(expeditionsVo.getDateExpedition());
-		expeditions.setCommandes(expeditionsVo.getCommandes());
+		expeditions.setCommandes(CommandeMapper.toEntity(expeditionsVo.getCommandes()));
 		
 		return expeditions;
 	}
@@ -27,6 +27,6 @@ public class ExpeditionMapper {
 		
 		expeditions.setCommentaire(expeditionsVo.getCommentaire());
 		expeditions.setDateExpedition(expeditionsVo.getDateExpedition());
-		expeditions.setCommandes(expeditionsVo.getCommandes());
+		expeditions.setCommandes(CommandeMapper.toEntity(expeditionsVo.getCommandes()));
 	}
 }

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,5 +21,5 @@ public class PromotionsVo {
 	private Date dateDebut;
 	private Date dateFin;
 	private int pourcentage;
-	private Set<Articles> articles;
+	private Set<ArticlesVo> articles;
 }

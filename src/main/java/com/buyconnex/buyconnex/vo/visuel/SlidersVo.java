@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.visuel;
 
-import com.buyconnex.buyconnex.entity.article.Images;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,5 +14,5 @@ import lombok.Setter;
 public class SlidersVo {
 	private Long id;
 	private String title;
-	private Images images;
+	private ImagesVo images;
 }

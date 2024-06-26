@@ -11,7 +11,7 @@ public class NotificationMapper {
 		notificationsVo.setDescription(notifications.getDescription());
 		notificationsVo.setLibelle(notifications.getLibelle());
 		notificationsVo.setStatus(notifications.getStatus());
-		notificationsVo.setUsers(notifications.getUsers());
+		notificationsVo.setUsers(UserMapper.toVO(notifications.getUsers()));
 		
 		return notificationsVo;
 	}
@@ -22,7 +22,7 @@ public class NotificationMapper {
 		notifications.setDescription(notificationsVo.getDescription());
 		notifications.setLibelle(notificationsVo.getLibelle());
 		notifications.setStatus(notificationsVo.getStatus());
-		notifications.setUsers(notificationsVo.getUsers());
+		notifications.setUsers(UserMapper.toEntity(notificationsVo.getUsers()));
 		
 		return notifications;
 	}
@@ -33,6 +33,6 @@ public class NotificationMapper {
 		notifications.setDescription(notificationsVo.getDescription());
 		notifications.setLibelle(notificationsVo.getLibelle());
 		notifications.setStatus(notificationsVo.getStatus());
-		notifications.setUsers(notificationsVo.getUsers());
+		notifications.setUsers(UserMapper.toEntity(notificationsVo.getUsers()));
 	}
 }

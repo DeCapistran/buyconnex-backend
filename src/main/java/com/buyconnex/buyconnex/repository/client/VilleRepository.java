@@ -14,4 +14,5 @@ public interface VilleRepository extends JpaRepository<Villes, Long> {
 	List<Villes> findByCommunes(Communes communes);
 	List<Villes> findByPays(Pays pays);
 	List<Villes> findByVille(String ville);
+	boolean existByVille(String ville);
 }

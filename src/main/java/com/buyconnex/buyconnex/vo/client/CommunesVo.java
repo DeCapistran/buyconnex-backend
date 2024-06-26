@@ -1,7 +1,5 @@
 package com.buyconnex.buyconnex.vo.client;
 
-import com.buyconnex.buyconnex.entity.client.Villes;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +12,5 @@ import lombok.Setter;
 public class CommunesVo {
 	private Long id;
 	private String commune;
-	private Villes villes;
+	private VillesVo villes;
 }
