@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.buyconnex.buyconnex.vo.article.CouleursVo;
-import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 public interface ICouleurService {
 
@@ -14,5 +13,4 @@ public interface ICouleurService {
 	public CouleursVo updateCouleurs(Long id, CouleursVo couleursVo);
 	public List<CouleursVo> findByCodeCouleurs(String codeCouleur);
 	public List<CouleursVo> findByCouleur(String couleur);
-	public List<CouleursVo> findByImages(ImagesVo imagesVo);
 }

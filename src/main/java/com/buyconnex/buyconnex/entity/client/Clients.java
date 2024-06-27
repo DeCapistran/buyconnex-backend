@@ -75,12 +75,12 @@ public class Clients {
     private String telephone2;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_ADRESSE")
+	@JoinColumn(name = "ID_ADRESSE", referencedColumnName = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_USER")
+	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
     private Users users;
 	

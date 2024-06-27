@@ -8,25 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
-import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
 import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
-import com.buyconnex.buyconnex.mapper.client.PanierMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
-import com.buyconnex.buyconnex.vo.achat.CommandesVo;
-import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
-import com.buyconnex.buyconnex.vo.client.PaniersVo;
 
 import jakarta.transaction.Transactional;
 
@@ -75,11 +69,6 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public List<ArticlesVo> findByCommandes(CommandesVo commandesVo) {
-		return articleRepository.findByCommandes(CommandeMapper.toEntity(commandesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
 	public List<ArticlesVo> findByComposition(String composition) {
 		return articleRepository.findByComposition(composition).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
@@ -90,11 +79,6 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public List<ArticlesVo> findByPaniers(PaniersVo paniersVo) {
-		return articleRepository.findByPaniers(PanierMapper.toEntity(paniersVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
 	public List<ArticlesVo> findByMarques(MarquesVo marquesVo) {
 		return articleRepository.findByMarques(MarqueMapper.toEntity(marquesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
@@ -102,11 +86,6 @@ public class ArticleService implements IArticleService {
 	@Override
 	public List<ArticlesVo> findByPrix(Long prix) {
 		return articleRepository.findByPrix(prix).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ArticlesVo> findByPromotions(PromotionsVo promotionsVo) {
-		return articleRepository.findByPromotions(PromotionMapper.toEntity(promotionsVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

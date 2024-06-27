@@ -1,13 +1,14 @@
 package com.buyconnex.buyconnex.vo.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

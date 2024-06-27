@@ -14,6 +14,7 @@ import com.buyconnex.buyconnex.mapper.achat.MoyenLivraisonMapper;
 import com.buyconnex.buyconnex.mapper.achat.StatusCommandeMapper;
 import com.buyconnex.buyconnex.mapper.client.ClientMapper;
 import com.buyconnex.buyconnex.repository.achat.CommandeRepository;
+import com.buyconnex.buyconnex.repository.article.ArticleRepository;
 import com.buyconnex.buyconnex.vo.achat.CommandesVo;
 import com.buyconnex.buyconnex.vo.achat.MoyensLivraisonsVo;
 import com.buyconnex.buyconnex.vo.achat.StatusCommandesVo;
@@ -28,6 +29,9 @@ public class CommandeService implements ICommandeService {
 	
 	@Autowired
 	CommandeRepository commandeRepository;
+	
+	//@Autowired
+	//ArticleRepository articleRepository;
 
 	@Override
 	public Optional<CommandesVo> findById(Long id) {
@@ -36,7 +40,13 @@ public class CommandeService implements ICommandeService {
 	
 	@Override
 	public CommandesVo saveCommandes(CommandesVo commandesVo) {
+		//validateCommande(commandesVo);
 		Commandes commandes = CommandeMapper.toEntity(commandesVo);
+		/*commandes.getArticles().forEach(commande -> {
+			Articles articles = articleRepository.findById(commande.getArticle_id())
+					.orElseThrow() -> new RuntimeException("Article non trouvé.");
+					commande.set
+		});*/
 		Commandes commandeSave = commandeRepository.save(commandes);
 		return CommandeMapper.toVO(commandeSave);
 	}
@@ -81,14 +91,19 @@ public class CommandeService implements ICommandeService {
 		return commandeRepository.findByMoyensLivraisons(MoyenLivraisonMapper.toEntity(moyensLivraisonsVo)).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
 	}
 	
-	private void validateCommande(CommandesVo commandesVo) {
+	/*private void validateCommande(CommandesVo commandesVo) {
 		if(commandesVo.getArticles() == null || commandesVo.getArticles().isEmpty()) {
-			throw new IllegalArgumentException("La commande ne contient pas d'articles");
+			throw new IllegalArgumentException("La commande ne contient pas d'articles.");
+		} else {
+			for(ArticlesVo articlesVo : commandesVo.getArticles()) {
+				if (articlesVo.getQuantite() <= 0) {
+					throw new IllegalArgumentException("La quantité ne doit pas être nulle.");
+				} 
+				if(articleRepository.existsById(articlesVo.getIdArticle())) {
+					throw new IllegalArgumentException("Le produit avec ID: " + articlesVo.getIdArticle() + " n'existe pas.");
+				}
+			}
 		}
-		
-		for(ArticlesVo articlesVo : commandesVo.getArticles()) {
-			
-		}
-	}
+	}*/
 	
 }

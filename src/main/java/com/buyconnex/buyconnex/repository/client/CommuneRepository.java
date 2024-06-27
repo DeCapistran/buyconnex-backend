@@ -12,5 +12,5 @@ public interface CommuneRepository extends JpaRepository<Communes, Long> {
 
 	List<Communes> findByCommune(String commune);
 	List<Communes> findByVilles(Villes villes);
-	boolean existByCommune(String commune);
+	//boolean existByCommune(String commune);
 }

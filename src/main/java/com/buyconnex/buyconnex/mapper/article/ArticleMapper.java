@@ -3,9 +3,6 @@ package com.buyconnex.buyconnex.mapper.article;
 import java.util.stream.Collectors;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
-import com.buyconnex.buyconnex.mapper.achat.CommandeMapper;
-import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
-import com.buyconnex.buyconnex.mapper.client.PanierMapper;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 public class ArticleMapper {
@@ -25,10 +22,7 @@ public class ArticleMapper {
 		articlesVo.setMarques(MarqueMapper.toVO(articles.getMarques()));
 		articlesVo.setBoutiques(BoutiqueMapper.toVO(articles.getBoutiques()));
 		articlesVo.setStatusArticles(StatusArticleMapper.toVO(articles.getStatusArticles()));
-		articlesVo.setPromotions(articles.getPromotions().stream().map(PromotionMapper::toVo).collect(Collectors.toSet()));
 		articlesVo.setTags(articles.getTags().stream().map(TagMapper::toVO).collect(Collectors.toSet()));
-		articlesVo.setCommandes(articles.getCommandes().stream().map(CommandeMapper::toVO).collect(Collectors.toSet()));
-		articlesVo.setPaniers(articles.getPaniers().stream().map(PanierMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setAvis(articles.getAvis().stream().map(AvisMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setImages(ImageMapper.toVO(articles.getImages()));
 		
@@ -50,10 +44,7 @@ public class ArticleMapper {
 		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
 		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
 		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
-		articles.setPromotions(articlesVo.getPromotions().stream().map(PromotionMapper::toEntity).collect(Collectors.toSet()));
 		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
-		articles.setCommandes(articlesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
-		articles.setPaniers(articlesVo.getPaniers().stream().map(PanierMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
 		
@@ -74,10 +65,7 @@ public class ArticleMapper {
 		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
 		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
 		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
-		articles.setPromotions(articlesVo.getPromotions().stream().map(PromotionMapper::toEntity).collect(Collectors.toSet()));
 		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
-		articles.setCommandes(articlesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
-		articles.setPaniers(articlesVo.getPaniers().stream().map(PanierMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
 	}

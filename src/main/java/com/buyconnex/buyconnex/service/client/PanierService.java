@@ -8,11 +8,9 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.client.Paniers;
-import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.client.PanierMapper;
 import com.buyconnex.buyconnex.mapper.user.UserMapper;
 import com.buyconnex.buyconnex.repository.client.PanierRepository;
-import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.client.PaniersVo;
 import com.buyconnex.buyconnex.vo.user.UsersVo;
 
@@ -49,11 +47,6 @@ public class PanierService implements IPanierService {
 			Paniers paniersUpdated = panierRepository.save(panier);
 			return PanierMapper.toVO(paniersUpdated);
 		}).orElse(null);
-	}
-
-	@Override
-	public List<PaniersVo> findByArticles(ArticlesVo articlesVo) {
-		return panierRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(PanierMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

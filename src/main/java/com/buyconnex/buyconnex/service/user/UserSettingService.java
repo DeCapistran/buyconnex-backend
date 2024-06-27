@@ -1,12 +1,14 @@
 package com.buyconnex.buyconnex.service.user;
 
-import com.buyconnex.buyconnex.entity.user.UserSettings;
-import com.buyconnex.buyconnex.repository.user.UserSettingsRepository;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import java.util.Locale;
+
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
+import com.buyconnex.buyconnex.entity.user.UserSettings;
+import com.buyconnex.buyconnex.repository.user.UserSettingsRepository;
+
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

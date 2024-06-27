@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -57,8 +56,8 @@ public class Promotions {
     private int pourcentage;
 	
 	@Getter @Setter
-	@ManyToMany(mappedBy = "promotions")
-    private Set<Articles> articles;
+	@OneToMany(mappedBy="promotions", cascade = CascadeType.ALL)
+    private Set<PromotionsDetails> promotionsDetails;
 	
 	@PrePersist
     protected void onCreate() {

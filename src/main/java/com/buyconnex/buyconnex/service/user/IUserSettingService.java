@@ -1,8 +1,8 @@
 package com.buyconnex.buyconnex.service.user;
 
-import com.buyconnex.buyconnex.entity.user.UserSettings;
-
 import java.util.Locale;
+
+import com.buyconnex.buyconnex.entity.user.UserSettings;
 
 public interface IUserSettingService {
 

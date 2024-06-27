@@ -13,5 +13,5 @@ public interface PaysRepository extends JpaRepository<Pays, Long> {
 
 	List<Pays> findByPays(String pays);
 	List<Pays> findByVilles(Villes villes);
-	boolean existByPays(String pays);
+	//boolean existByPays(String pays);
 }

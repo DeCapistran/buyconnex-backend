@@ -3,7 +3,6 @@ package com.buyconnex.buyconnex.entity.achat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.client.Adresses;
 
@@ -14,7 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
@@ -67,13 +65,14 @@ public class Livraisons {
     private StatusLivraisons statusLivraisons;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_ADRESSE")
+	@JoinColumn(name = "ID_ADRESSE", referencedColumnName = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;
 	
 	@Getter @Setter
-	@ManyToMany(mappedBy = "livraisons")
-    private Set<Commandes> commandes;
+    @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
+    private Commandes commandes;
 	
 	@PrePersist
     protected void onCreate() {

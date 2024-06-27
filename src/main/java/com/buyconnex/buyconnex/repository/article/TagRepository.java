@@ -12,5 +12,5 @@ public interface TagRepository extends JpaRepository<Tags, Long> {
 
 	List<Tags> findByArticles(Articles articles);
 	List<Tags> findByNom(String nom);
-	boolean existByTags(String tags);
+	//boolean existByTags(String tags);
 }

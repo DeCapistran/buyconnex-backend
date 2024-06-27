@@ -3,9 +3,9 @@ package com.buyconnex.buyconnex.entity.article;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import com.buyconnex.buyconnex.entity.achat.Commandes;
-import com.buyconnex.buyconnex.entity.achat.Promotions;
-import com.buyconnex.buyconnex.entity.client.Paniers;
+import com.buyconnex.buyconnex.entity.achat.CommandesDetails;
+import com.buyconnex.buyconnex.entity.achat.PromotionsDetails;
+import com.buyconnex.buyconnex.entity.client.PaniersDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -101,9 +101,8 @@ public class Articles {
     private StatusArticles statusArticles;
 	
 	@Getter @Setter
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "PROMOTIONS_DETAILS", joinColumns = { @JoinColumn(name = "article_id") }, inverseJoinColumns = { @JoinColumn(name = "promotion_id") })
-	Set<Promotions> promotions;
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<PromotionsDetails> promotionsDetails;
 	
 	@Getter @Setter
 	@ManyToMany(cascade = { CascadeType.ALL })
@@ -111,21 +110,19 @@ public class Articles {
 	Set<Tags> tags;
 	
 	@Getter @Setter
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "COMMANDES_DETAILS", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "commandes_id") })
-	Set<Commandes> commandes;
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<CommandesDetails> commandesDetails;	
 	
 	@Getter @Setter
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "PANIERS_DETAILS", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "paniers_id") })
-	Set<Paniers> paniers;
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<PaniersDetails> paniersDetails;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
     private Set<Avis> avis;
 	
-	@ManyToOne
-	@JoinColumn (name="ID_IMAGES")
+	@ManyToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
 	@JsonIgnore
 	private Images images;
 	

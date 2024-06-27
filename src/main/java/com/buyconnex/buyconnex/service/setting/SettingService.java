@@ -1,12 +1,13 @@
 package com.buyconnex.buyconnex.service.setting;
 
+import org.springframework.stereotype.Service;
+
 import com.buyconnex.buyconnex.entity.utils.Settings;
 import com.buyconnex.buyconnex.repository.utils.SettingRepository;
 import com.buyconnex.buyconnex.vo.user.SettingAppVo;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

@@ -1,11 +1,10 @@
 package com.buyconnex.buyconnex.controller.account;
 
-import org.slf4j.LoggerFactory;
-
 import java.security.Principal;
 import java.util.Optional;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

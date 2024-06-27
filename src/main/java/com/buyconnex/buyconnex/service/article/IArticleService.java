@@ -3,15 +3,12 @@ package com.buyconnex.buyconnex.service.article;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.vo.achat.CommandesVo;
-import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
-import com.buyconnex.buyconnex.vo.client.PaniersVo;
 
 public interface IArticleService {
 
@@ -21,13 +18,10 @@ public interface IArticleService {
 	public ArticlesVo updateArticles(Long id, ArticlesVo articlesVo);
 	public List<ArticlesVo> findByBoutique(BoutiquesVo boutiquesVo);
 	public List<ArticlesVo> findByCategories(CategoriesVo categoriesVo);
-	public List<ArticlesVo> findByCommandes(CommandesVo commandesVo);
 	public List<ArticlesVo> findByComposition(String composition);
 	public List<ArticlesVo> findByImages(ImagesVo imagesVo);
-	public List<ArticlesVo> findByPaniers(PaniersVo paniersVo);
 	public List<ArticlesVo> findByMarques(MarquesVo marquesVo);
 	public List<ArticlesVo> findByPrix(Long prix);
-	public List<ArticlesVo> findByPromotions(PromotionsVo promotionsVo);
 	public List<ArticlesVo> findByQuantite(int quantite);
 	public List<ArticlesVo> findByStatusArticles(StatusArticlesVo statusArticlesVo);
 	public List<ArticlesVo> findByTitle(String title);

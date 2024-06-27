@@ -1,10 +1,10 @@
 package com.buyconnex.buyconnex.repository.user;
 
-import com.buyconnex.buyconnex.entity.user.Users;
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.buyconnex.buyconnex.entity.user.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 

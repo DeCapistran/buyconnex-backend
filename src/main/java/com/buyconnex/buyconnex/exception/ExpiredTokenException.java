@@ -1,8 +1,9 @@
 package com.buyconnex.buyconnex.exception;
 
 import javax.naming.AuthenticationException;
-import org.springframework.web.bind.annotation.ResponseStatus;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @SuppressWarnings("serial")
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)

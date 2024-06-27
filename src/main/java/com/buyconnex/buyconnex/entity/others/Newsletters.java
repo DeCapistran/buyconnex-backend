@@ -51,7 +51,7 @@ public class Newsletters {
 	@Column(name = "EMAIL")
     private String email;
 	
-	@JoinColumn(name = "ID_USER")
+	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
     private Users users;
 	

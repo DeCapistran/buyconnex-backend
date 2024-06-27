@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Couleurs;
 import com.buyconnex.buyconnex.mapper.article.CouleurMapper;
-import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.repository.article.CouleurRepository;
 import com.buyconnex.buyconnex.vo.article.CouleursVo;
-import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -56,11 +54,6 @@ public class CouleurService implements ICouleurService{
 	@Override
 	public List<CouleursVo> findByCouleur(String couleur) {
 		return couleurRepository.findByCouleur(couleur).stream().map(CouleurMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<CouleursVo> findByImages(ImagesVo imagesVo) {
-		return couleurRepository.findByImages(ImageMapper.toEntity(imagesVo)).stream().map(CouleurMapper::toVO).collect(Collectors.toList());
 	}
 
 }

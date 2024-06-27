@@ -42,7 +42,7 @@ public class Sliders {
     private String tittle;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_IMAGES")
+	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
     @OneToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
     private Images images;
 }

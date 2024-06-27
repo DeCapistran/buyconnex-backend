@@ -55,7 +55,7 @@ public class Facturations {
     private Commandes commandes;
 	
 	@Getter @Setter
-	@JoinColumn(name = "ID_ADRESSE")
+	@JoinColumn(name = "ID_ADRESSE", referencedColumnName = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;
 	

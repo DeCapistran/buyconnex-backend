@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.client.PaniersVo;
 import com.buyconnex.buyconnex.vo.user.UsersVo;
 
@@ -14,7 +13,6 @@ public interface IPanierService {
 	public PaniersVo savePaniers(PaniersVo paniersVo);
 	public void deletePaniers(PaniersVo paniersVo);
 	public PaniersVo updatePaniers(Long id, PaniersVo paniersVo);
-	public List<PaniersVo> findByArticles(ArticlesVo articlesVo);
 	public List<PaniersVo> findBydatePaniers(Date date);
 	public List<PaniersVo> findByUsers(UsersVo usersVo);
 }

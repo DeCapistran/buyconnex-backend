@@ -38,15 +38,15 @@ public class Adresses {
     @Column(name = "ID_ADRESSE")
     private Long adresse_id;
 	
-	@JoinColumn(name = "ID_PAYS")
+	@JoinColumn(name = "ID_PAYS", referencedColumnName = "ID_PAYS")
     @OneToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)
     private Pays pays;
 	
-	@JoinColumn(name = "ID_VILLE")
+	@JoinColumn(name = "ID_VILLE", referencedColumnName = "ID_VILLE")
     @OneToOne(targetEntity = Villes.class, fetch = FetchType.EAGER, optional = false)
     private Villes ville;
 	
-	@JoinColumn(name = "ID_COMMUNE")
+	@JoinColumn(name = "ID_COMMUNE", referencedColumnName = "ID_COMMUNE")
     @OneToOne(targetEntity = Communes.class, fetch = FetchType.EAGER, optional = false)
     private Communes commune;
 	

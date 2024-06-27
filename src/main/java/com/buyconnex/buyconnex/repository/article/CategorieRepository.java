@@ -17,4 +17,5 @@ public interface CategorieRepository extends JpaRepository<Categories, Long> {
 	List<Categories> findByImages(Images images);
 	List<Categories> findByLibelle(String libelle);
 	List<Categories> findBySousCategorie(SousCategories sousCategorie);
+	//boolean existByLibelle(String libelle);
 }

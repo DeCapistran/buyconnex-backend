@@ -10,10 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -69,7 +66,6 @@ public class Images {
 	private Sliders sliders;
 	
 	@Getter @Setter
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "IMAGES_COULEURS", joinColumns = { @JoinColumn(name = "image_id") }, inverseJoinColumns = { @JoinColumn(name = "couleur_id") })
-	Set<Couleurs> couleurs;
+	@OneToMany(mappedBy="images", cascade = CascadeType.ALL)
+    private Set<CouleursImages> couleursImages;
 }

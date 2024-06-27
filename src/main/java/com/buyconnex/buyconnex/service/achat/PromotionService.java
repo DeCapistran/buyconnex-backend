@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.achat.Promotions;
 import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
-import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.repository.achat.PromotionRepository;
 import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
-import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -49,11 +47,6 @@ public class PromotionService implements IPromotionService {
 			Promotions promotionsUpdated = promotionRepository.save(promotion);
 			return PromotionMapper.toVo(promotionsUpdated);
 		}).orElse(null);
-	}
-
-	@Override
-	public List<PromotionsVo> findByArticles(ArticlesVo articlesVo) {
-		return promotionRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(PromotionMapper::toVo).collect(Collectors.toList());
 	}
 
 	@Override

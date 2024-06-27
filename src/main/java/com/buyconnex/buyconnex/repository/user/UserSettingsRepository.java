@@ -1,8 +1,9 @@
 package com.buyconnex.buyconnex.repository.user;
 
-import com.buyconnex.buyconnex.entity.user.UserSettings;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.buyconnex.buyconnex.entity.user.UserSettings;
 
 public interface UserSettingsRepository extends JpaRepository<UserSettings, Long> {
 

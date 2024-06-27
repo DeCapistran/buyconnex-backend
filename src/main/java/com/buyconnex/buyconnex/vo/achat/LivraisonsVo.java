@@ -2,7 +2,6 @@ package com.buyconnex.buyconnex.vo.achat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Set;
 
 import com.buyconnex.buyconnex.vo.client.AdresseVo;
 
@@ -23,5 +22,5 @@ public class LivraisonsVo {
 	private String commentaire;
 	private StatusLivraisonsVo statusLivraisons;
 	private AdresseVo adresses;
-	private Set<CommandesVo> commandes;
+	private CommandesVo commandes;
 }

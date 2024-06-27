@@ -2,7 +2,7 @@ package com.buyconnex.buyconnex.exception;
 
 import org.springframework.http.HttpStatus;
 
-import lombok.*;
+import lombok.Getter;
 
 @Getter
 public class AppException extends RuntimeException {
