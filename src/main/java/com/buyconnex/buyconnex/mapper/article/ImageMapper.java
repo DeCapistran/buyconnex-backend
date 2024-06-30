@@ -16,6 +16,7 @@ public class ImageMapper {
 		imagesVo.setArticles(images.getArticles().stream().map(ArticleMapper::toVO).collect(Collectors.toSet()));
 		imagesVo.setCategories(CategorieMapper.toVO(images.getCategories()));
 		imagesVo.setSliders(SliderMapper.toVO(images.getSliders()));
+		imagesVo.setCouleursImages(images.getCouleursImages().stream().map(CouleurImageMapper::toVO).collect(Collectors.toSet()));
 		
 		return imagesVo;
 	}
@@ -28,6 +29,7 @@ public class ImageMapper {
 		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
+		images.setCouleursImages(imagesVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
 		
 		return images;
 	}
@@ -40,6 +42,7 @@ public class ImageMapper {
 		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
+		images.setCouleursImages(imagesVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
 		
 	}
 }

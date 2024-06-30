@@ -19,6 +19,7 @@ public class CommandeMapper {
 		commandesVo.setExpeditions(commandes.getExpeditions().stream().map(ExpeditionMapper::toVO).collect(Collectors.toSet()));
 		commandesVo.setFacturations(commandes.getFacturations().stream().map(FacturationMapper::toVO).collect(Collectors.toSet()));
 		commandesVo.setLivraisons(commandes.getLivraisons().stream().map(LivraisonMapper::toVO).collect(Collectors.toSet()));
+		commandesVo.setCommandesDetails(commandes.getCommandesDetails().stream().map(CommandeDetailMapper::toVO).collect(Collectors.toSet()));
 		
 		return commandesVo;
 	}
@@ -34,6 +35,7 @@ public class CommandeMapper {
 		commandes.setExpeditions(commandesVo.getExpeditions().stream().map(ExpeditionMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setFacturations(commandesVo.getFacturations().stream().map(FacturationMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setLivraisons(commandesVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
+		commandes.setCommandesDetails(commandesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return commandes;
 	}
@@ -48,6 +50,6 @@ public class CommandeMapper {
 		commandes.setExpeditions(commandesVo.getExpeditions().stream().map(ExpeditionMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setFacturations(commandesVo.getFacturations().stream().map(FacturationMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setLivraisons(commandesVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
-		
+		commandes.setCommandesDetails(commandesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 	}
 }

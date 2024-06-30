@@ -62,4 +62,14 @@ public class PaiementService implements IPaiementService{
 		return paiementRepository.findByStatusPaiements(StatusPaiementMapper.toEntity(statusPaiementsVo)).stream().map(PaiementMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<PaiementsVo> findAll() {
+		return paiementRepository.findAll().stream().map(PaiementMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deletePaiementsById(Long id) {
+		paiementRepository.deleteById(id);
+	}
+
 }

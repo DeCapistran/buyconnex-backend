@@ -61,4 +61,14 @@ public class FacturationService implements IFacturationService {
 		return facturationRepository.findByCommandes(CommandeMapper.toEntity(commandesVo)).stream().map(FacturationMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<FacturationsVo> findAll() {
+		return facturationRepository.findAll().stream().map(FacturationMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deletefacturationsById(Long id) {
+		facturationRepository.deleteById(id);
+	}
+
 }

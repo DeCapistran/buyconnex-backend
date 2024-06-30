@@ -65,4 +65,14 @@ public class MarqueService implements IMarqueService {
 		return marqueRepository.findByLibelle(libelle).stream().map(MarqueMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<MarquesVo> findAll() {
+		return marqueRepository.findAll().stream().map(MarqueMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteMarquesById(Long id) {
+		marqueRepository.deleteById(id);
+	}
+
 }

@@ -1,15 +1,18 @@
 package com.buyconnex.buyconnex.service.user;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.buyconnex.buyconnex.entity.user.Notifications;
-import com.buyconnex.buyconnex.entity.user.Users;
+import com.buyconnex.buyconnex.vo.user.NotificationsVo;
+import com.buyconnex.buyconnex.vo.user.UsersVo;
 
 public interface INotificationService {
 
-	public Notifications findById(Long id);
-	public Notifications saveNotificatiosn(Notifications notifications);
-	public void deleteNotifications(Notifications notifications);
-	public Notifications updateNotifications(Notifications notifications);
-	public List<Notifications> findByUsers(Users users);
+	public Optional<NotificationsVo> findById(Long id);
+	public List<NotificationsVo> findAll();
+	public NotificationsVo saveNotifications(NotificationsVo notificationsVo);
+	public void deleteNotifications(NotificationsVo notificationsVo);
+	public void deleteNotificationsById(Long id);
+	public NotificationsVo updateNotifications(Long id, NotificationsVo notificationsVo);
+	public List<NotificationsVo> findByUsers(UsersVo usersVo);
 }

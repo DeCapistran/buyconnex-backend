@@ -71,4 +71,14 @@ public class NewsletterService implements INewsletterService {
 		return newsletterRepository.findByUsers(UserMapper.toEntity(usersVo)).stream().map(NewsletterMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<NewslettersVo> findAll() {
+		return newsletterRepository.findAll().stream().map(NewsletterMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteNewslettersById(Long id) {
+		newsletterRepository.deleteById(id);
+	}
+
 }

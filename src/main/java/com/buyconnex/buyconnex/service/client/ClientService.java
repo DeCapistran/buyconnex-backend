@@ -84,4 +84,14 @@ public class ClientService implements IClientService {
 		return clientRepository.findByUsers(UserMapper.toEntity(usersVo)).map(ClientMapper::toVO);
 	}
 
+	@Override
+	public List<ClientsVo> findAll() {
+		return clientRepository.findAll().stream().map(ClientMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteClientsById(Long id) {
+		clientRepository.deleteById(id);
+	}
+
 }

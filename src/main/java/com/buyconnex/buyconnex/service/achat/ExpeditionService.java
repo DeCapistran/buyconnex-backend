@@ -61,4 +61,14 @@ public class ExpeditionService implements IExpeditionService{
 		return expeditionRepository.findByDateExpedition(date).stream().map(ExpeditionMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<ExpeditionsVo> findAll() {
+		return expeditionRepository.findAll().stream().map(ExpeditionMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteExpeditionsById(Long id) {
+		expeditionRepository.deleteById(id);
+	}
+
 }

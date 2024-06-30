@@ -60,4 +60,14 @@ public class StatusLivraisonService implements IStatusLivraisonService {
 		return statusLivraisonRepository.findByStatus(status).stream().map(StatusLivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<StatusLivraisonsVo> findAll() {
+		return statusLivraisonRepository.findAll().stream().map(StatusLivraisonMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteStatusLivraisonsById(Long id) {
+		statusLivraisonRepository.deleteById(id);
+	}
+
 }

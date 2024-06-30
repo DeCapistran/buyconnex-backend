@@ -65,4 +65,14 @@ public class VilleService implements IVilleService {
 		return villeRepository.findByVille(ville).stream().map(VilleMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<VillesVo> findAll() {
+		return villeRepository.findAll().stream().map(VilleMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteVillesByid(Long id) {
+		villeRepository.deleteById(id);
+	}
+
 }

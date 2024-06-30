@@ -80,4 +80,14 @@ public class LivraisonService implements ILivraisonService {
 		return livraisonRepository.findByStatusLivraisons(StatusLivraisonMapper.toEntity(statusLivraisonsVo)).stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<LivraisonsVo> findAll() {
+		return livraisonRepository.findAll().stream().map(LivraisonMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteLivraisonsById(Long id) {
+		livraisonRepository.deleteById(id);
+	}
+
 }

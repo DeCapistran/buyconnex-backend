@@ -10,8 +10,10 @@ import com.buyconnex.buyconnex.vo.client.PaniersVo;
 public interface IPanierDetailService {
 
 	public Optional<PaniersDetailsVo> findById(Long id);
+	public List<PaniersDetailsVo> findAll();
 	public PaniersDetailsVo savePaniersDetails(PaniersDetailsVo paniersDetailsVo);
 	public void deletePaniersDetails(PaniersDetailsVo paniersDetailsVo);
+	public void deletepaniersDetailsById(Long id);
 	public PaniersDetailsVo updatePaniersDetails(PaniersDetailsVo paniersDetailsVo);
 	public List<PaniersDetailsVo> findByPaniers(PaniersVo paniersVo);
 	public List<PaniersDetailsVo> findByArticles(ArticlesVo articlesVo);

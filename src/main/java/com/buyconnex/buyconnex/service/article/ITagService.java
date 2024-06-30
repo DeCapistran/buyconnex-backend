@@ -9,8 +9,10 @@ import com.buyconnex.buyconnex.vo.article.TagsVo;
 public interface ITagService {
 
 	public Optional<TagsVo> findById(Long id);
+	public List<TagsVo> findAll();
 	public TagsVo saveTags(TagsVo tagsVo);
 	public void deleteTags(TagsVo tagsVo);
+	public void deleteTagsById(Long id);
 	public TagsVo updateTags(Long id, TagsVo tagsVo);
 	public List<TagsVo> findByArticles(ArticlesVo articlesVo);
 	public List<TagsVo> findByNom(String nom);

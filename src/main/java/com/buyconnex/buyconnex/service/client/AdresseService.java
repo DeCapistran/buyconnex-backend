@@ -83,4 +83,14 @@ public class AdresseService implements IAdresseService {
 		return adresseRepository.findByClients(ClientMapper.toEntity(clientsVo)).stream().map(AdresseMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<AdresseVo> findAll() {
+		return adresseRepository.findAll().stream().map(AdresseMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteAdresseById(Long id) {
+		adresseRepository.deleteById(id);
+	}
+
 }

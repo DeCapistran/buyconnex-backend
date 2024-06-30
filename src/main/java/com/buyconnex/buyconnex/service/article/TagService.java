@@ -60,4 +60,14 @@ public class TagService implements ITagService {
 		return tagRepository.findByNom(nom).stream().map(TagMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<TagsVo> findAll() {
+		return tagRepository.findAll().stream().map(TagMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteTagsById(Long id) {
+		tagRepository.deleteById(id);
+	}
+
 }

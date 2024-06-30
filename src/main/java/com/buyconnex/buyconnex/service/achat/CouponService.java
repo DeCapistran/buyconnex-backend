@@ -61,4 +61,14 @@ public class CouponService implements ICouponService {
 		return couponRepository.findBySousCategories(SousCategorieMapper.toEntity(sousCategoriesVo)).stream().map(CouponMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<CouponsVo> findAll() {
+		return couponRepository.findAll().stream().map(CouponMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deletCouponsById(Long id) {
+		couponRepository.deleteById(id);
+	}
+
 }

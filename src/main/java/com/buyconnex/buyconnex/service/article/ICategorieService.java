@@ -11,8 +11,10 @@ import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 public interface ICategorieService {
 
 	public Optional<CategoriesVo> findById(Long id);
+	public List<CategoriesVo> findAll();
 	public CategoriesVo saveCategorie(CategoriesVo categoriesVo);
 	public void deleteCategorie(CategoriesVo categoriesVo);
+	public void deleteCategorieById(Long id);
 	public CategoriesVo updateCategorie(Long id, CategoriesVo categoriesVo);
 	public List<CategoriesVo> findByArticles(ArticlesVo articlesVo);
 	public List<CategoriesVo> findByImages(ImagesVo imagesVo);

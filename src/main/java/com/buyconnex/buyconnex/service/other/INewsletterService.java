@@ -10,8 +10,10 @@ import com.buyconnex.buyconnex.vo.user.UsersVo;
 public interface INewsletterService {
 
 	public Optional<NewslettersVo> findById(Long id);
+	public List<NewslettersVo> findAll();
 	public NewslettersVo saveNewsletters(NewslettersVo newslettersVo);
 	public void deleteNewsletters(NewslettersVo newslettersVo);
+	public void deleteNewslettersById(Long id);
 	public NewslettersVo updateNewsletters(Long id, NewslettersVo newslettersVo);
 	public List<NewslettersVo> findByDateDesinscription(Date date);
 	public List<NewslettersVo> findByDateInscription(Date date);

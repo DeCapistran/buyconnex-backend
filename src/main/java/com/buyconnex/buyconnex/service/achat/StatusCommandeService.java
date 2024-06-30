@@ -60,4 +60,14 @@ public class StatusCommandeService implements IStatusCommandeService {
 		return statusCommandeRepository.findByStatus(status).stream().map(StatusCommandeMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<StatusCommandesVo> findAll() {
+		return statusCommandeRepository.findAll().stream().map(StatusCommandeMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteStatusCommandesById(Long id) {
+		statusCommandeRepository.deleteById(id);
+	}
+
 }

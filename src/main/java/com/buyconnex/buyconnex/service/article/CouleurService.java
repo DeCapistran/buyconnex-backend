@@ -56,4 +56,14 @@ public class CouleurService implements ICouleurService{
 		return couleurRepository.findByCouleur(couleur).stream().map(CouleurMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<CouleursVo> findAll() {
+		return couleurRepository.findAll().stream().map(CouleurMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteCouleursById(Long id) {
+		couleurRepository.deleteById(id);
+	}
+
 }

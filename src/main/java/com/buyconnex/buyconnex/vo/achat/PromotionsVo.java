@@ -22,4 +22,5 @@ public class PromotionsVo {
 	private Date dateFin;
 	private int pourcentage;
 	private Set<ArticlesVo> articles;
+	private Set<PromotionsDetailsVo> promotionsDetails;
 }

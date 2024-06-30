@@ -9,8 +9,10 @@ import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 public interface IBoutiqueService {
 
 	public Optional<BoutiquesVo> findById(Long id);
+	public List<BoutiquesVo> findAll();
 	public BoutiquesVo saveBoutique(BoutiquesVo boutiquesVo);
 	public void deleteBoutique(BoutiquesVo boutiquesVo);
+	public void deleteBoutiqueById(Long id);
 	public BoutiquesVo updateBoutique(Long id, BoutiquesVo boutiquesVo);
 	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo);
 	public List<BoutiquesVo> findByNom(String nom);

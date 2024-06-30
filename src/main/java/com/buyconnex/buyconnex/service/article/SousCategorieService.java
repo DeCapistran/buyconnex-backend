@@ -67,4 +67,14 @@ public class SousCategorieService implements ISousCategorieService{
 		return sousCategorieRepository.findByLibelle(libelle).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<SousCategoriesVo> findAll() {
+		return sousCategorieRepository.findAll().stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteSousCategorieById(Long id) {
+		sousCategorieRepository.deleteById(id);
+	}
+
 }

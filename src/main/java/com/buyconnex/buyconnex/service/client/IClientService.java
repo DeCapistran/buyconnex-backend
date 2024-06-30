@@ -11,8 +11,10 @@ import com.buyconnex.buyconnex.vo.user.UsersVo;
 public interface IClientService {
 
 	public Optional<ClientsVo> findById(Long id);
+	public List<ClientsVo> findAll();
 	public ClientsVo saveClients(ClientsVo clientsVo);
 	public void deleteClients(ClientsVo clientsVo);
+	public void deleteClientsById(Long id);
 	public ClientsVo updateClients(Long id, ClientsVo clientsVo);
 	public List<ClientsVo> findByadresses(AdresseVo adresseVo);
 	public List<ClientsVo> findByCommandes(CommandesVo commandesVo);

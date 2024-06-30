@@ -9,8 +9,10 @@ import com.buyconnex.buyconnex.vo.achat.StatusLivraisonsVo;
 public interface IStatusLivraisonService {
 
 	public Optional<StatusLivraisonsVo> findById(Long id);
+	public List<StatusLivraisonsVo> findAll();
 	public StatusLivraisonsVo saveStatusLivraisons(StatusLivraisonsVo statusLivraisonsVo);
 	public void deleteStatusLivraison(StatusLivraisonsVo statusLivraisonsVo);
+	public void deleteStatusLivraisonsById(Long id);
 	public StatusLivraisonsVo updateStatusLivraisons(Long id, StatusLivraisonsVo statusLivraisonsVo);
 	public List<StatusLivraisonsVo> findByLivraisons(LivraisonsVo livraisonsVo);
 	public List<StatusLivraisonsVo> findByStatus(String status);

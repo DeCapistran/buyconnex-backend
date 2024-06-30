@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.achat.Promotions;
 import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
 
@@ -11,6 +13,7 @@ public class PromotionMapper {
 		promotionsVo.setDateDebut(promotions.getDateDebut());
 		promotionsVo.setDateFin(promotions.getDateFin());
 		promotionsVo.setPourcentage(promotions.getPourcentage());
+		promotionsVo.setPromotionsDetails(promotions.getPromotionsDetails().stream().map(PromotionDetailMapper::toVO).collect(Collectors.toSet()));
 		
 		return promotionsVo;
 	}
@@ -21,6 +24,7 @@ public class PromotionMapper {
 		promotions.setDateDebut(promotionsVo.getDateDebut());
 		promotions.setDateFin(promotionsVo.getDateFin());
 		promotions.setPourcentage(promotionsVo.getPourcentage());
+		promotions.setPromotionsDetails(promotionsVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return promotions;
 	}
@@ -31,5 +35,7 @@ public class PromotionMapper {
 		promotions.setDateDebut(promotionsVo.getDateDebut());
 		promotions.setDateFin(promotionsVo.getDateFin());
 		promotions.setPourcentage(promotionsVo.getPourcentage());
-		}
+		promotions.setPromotionsDetails(promotionsVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
+		
+	}
 }

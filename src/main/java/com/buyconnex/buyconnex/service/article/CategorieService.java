@@ -72,4 +72,14 @@ public class CategorieService implements ICategorieService{
 		return categorieRepository.findBySousCategorie(SousCategorieMapper.toEntity(sousCategoriesVo)).stream().map(CategorieMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<CategoriesVo> findAll() {
+		return categorieRepository.findAll().stream().map(CategorieMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteCategorieById(Long id) {
+		categorieRepository.deleteById(id);
+	}
+
 }

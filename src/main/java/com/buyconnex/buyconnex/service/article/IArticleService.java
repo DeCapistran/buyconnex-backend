@@ -13,8 +13,10 @@ import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
 public interface IArticleService {
 
 	public Optional<ArticlesVo> findById(Long id);
+	public List<ArticlesVo> findAll();
 	public ArticlesVo saveArticle(ArticlesVo articlesVo);
 	public void deleteArticles(ArticlesVo articlesVo);
+	public void deleteArticlesById(Long id);
 	public ArticlesVo updateArticles(Long id, ArticlesVo articlesVo);
 	public List<ArticlesVo> findByBoutique(BoutiquesVo boutiquesVo);
 	public List<ArticlesVo> findByCategories(CategoriesVo categoriesVo);

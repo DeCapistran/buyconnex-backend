@@ -60,4 +60,14 @@ public class PaysService implements IPaysService {
 		return paysRepository.findByVilles(VilleMapper.toEntity(villesVo)).stream().map(PaysMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<PaysVo> findAll() {
+		return paysRepository.findAll().stream().map(PaysMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deletePaysById(Long id) {
+		paysRepository.deleteById(id);
+	}
+
 }

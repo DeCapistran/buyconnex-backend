@@ -3,6 +3,9 @@ package com.buyconnex.buyconnex.mapper.article;
 import java.util.stream.Collectors;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.mapper.achat.CommandeDetailMapper;
+import com.buyconnex.buyconnex.mapper.achat.PromotionDetailMapper;
+import com.buyconnex.buyconnex.mapper.client.PanierDetailMapper;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 public class ArticleMapper {
@@ -25,6 +28,9 @@ public class ArticleMapper {
 		articlesVo.setTags(articles.getTags().stream().map(TagMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setAvis(articles.getAvis().stream().map(AvisMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setImages(ImageMapper.toVO(articles.getImages()));
+		articlesVo.setCommandesDetails(articles.getCommandesDetails().stream().map(CommandeDetailMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setPromotionsDetails(articles.getPromotionsDetails().stream().map(PromotionDetailMapper::toVO).collect(Collectors.toSet()));
+		articlesVo.setPaniersDetails(articles.getPaniersDetails().stream().map(PanierDetailMapper::toVo).collect(Collectors.toSet()));
 		
 		return articlesVo;
 	}
@@ -47,6 +53,9 @@ public class ArticleMapper {
 		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
+		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPromotionsDetails(articlesVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPaniersDetails(articlesVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return articles;
 	}
@@ -68,5 +77,9 @@ public class ArticleMapper {
 		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setImages(ImageMapper.toEntity(articlesVo.getImages()));
+		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPromotionsDetails(articlesVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
+		articles.setPaniersDetails(articlesVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));
+		
 	}
 }

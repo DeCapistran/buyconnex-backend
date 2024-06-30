@@ -59,4 +59,14 @@ public class PanierService implements IPanierService {
 		return panierRepository.findByUsers(UserMapper.toEntity(usersVo)).stream().map(PanierMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<PaniersVo> findAll() {
+		return panierRepository.findAll().stream().map(PanierMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deletePaniersById(Long id) {
+		panierRepository.deleteById(id);
+	}
+
 }

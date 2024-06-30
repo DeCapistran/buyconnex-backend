@@ -67,4 +67,14 @@ public class AvisService implements IAvisService{
 		return avisRepository.findByUsers(UserMapper.toEntity(usersVo)).stream().map(AvisMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<AvisVo> findAll() {
+		return avisRepository.findAll().stream().map(AvisMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteAvisById(Long id) {
+		avisRepository.deleteById(id);
+	}
+
 }

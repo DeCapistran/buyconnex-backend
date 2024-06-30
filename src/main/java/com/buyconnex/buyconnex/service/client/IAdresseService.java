@@ -13,8 +13,10 @@ import com.buyconnex.buyconnex.vo.client.VillesVo;
 public interface IAdresseService {
 	
 	public Optional<AdresseVo> findById(Long id);
+	public List<AdresseVo> findAll();
 	public AdresseVo saveAdresse(AdresseVo adresseVo);
 	public void deleteAdresse(AdresseVo adresseVo);
+	public void deleteAdresseById(Long id);
 	public AdresseVo updateAdresse(Long id, AdresseVo adresseVo);
 	public List<AdresseVo> findByFacturations(FacturationsVo facturationsVo);
 	public List<AdresseVo> findByLivraisons(LivraisonsVo livraisonsVo);

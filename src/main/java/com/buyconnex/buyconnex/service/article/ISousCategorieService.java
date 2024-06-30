@@ -10,8 +10,10 @@ import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 public interface ISousCategorieService {
 
 	public Optional<SousCategoriesVo> findById(Long id);
+	public List<SousCategoriesVo> findAll();
 	public SousCategoriesVo saveSousCategorie(SousCategoriesVo sousCategoriesVo);
 	public void deleteSousCategorie(SousCategoriesVo sousCategoriesVo);
+	public void deleteSousCategorieById(Long id);
 	public SousCategoriesVo updateSousCategorie(Long id, SousCategoriesVo sousCategoriesVo);
 	public List<SousCategoriesVo> findByCategories(CategoriesVo categoriesVo);
 	public List<SousCategoriesVo> findByCoupons(CouponsVo couponsVo);

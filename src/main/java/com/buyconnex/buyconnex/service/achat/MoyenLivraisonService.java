@@ -60,4 +60,14 @@ public class MoyenLivraisonService implements IMoyenLivraisonService {
 		return moyenLivraisonRepository.findByMoyenLivraison(moyenLivraison).stream().map(MoyenLivraisonMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<MoyensLivraisonsVo> findAll() {
+		return moyenLivraisonRepository.findAll().stream().map(MoyenLivraisonMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteMoyensLivraisonsById(Long id) {
+		moyenLivraisonRepository.deleteById(id);
+	}
+
 }

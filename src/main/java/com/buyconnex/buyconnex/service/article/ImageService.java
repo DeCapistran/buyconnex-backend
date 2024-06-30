@@ -94,6 +94,16 @@ public class ImageService implements IImageService {
 		final Optional<Images> dbImage = imageRepository.findById(id);
 		return ResponseEntity.ok().contentType(MediaType.valueOf(dbImage.get().getType())).body(dbImage.get().getImage());
 	}
+
+	@Override
+	public List<ImagesVo> findAll() {
+		return imageRepository.findAll().stream().map(ImageMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteImagesById(Long id) {
+		imageRepository.deleteById(id);
+	}
 	
 	/*@Override
 	public ImagesVo uploadImageArticle(MultipartFile file, Long id) throws IOException {

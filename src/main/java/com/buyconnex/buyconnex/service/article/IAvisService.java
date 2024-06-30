@@ -10,8 +10,10 @@ import com.buyconnex.buyconnex.vo.user.UsersVo;
 public interface IAvisService {
 
 	public Optional<AvisVo> findById(Long id);
+	public List<AvisVo> findAll();
 	public AvisVo saveAvis(AvisVo avisVo);
 	public void deleteAvis(AvisVo avisVo);
+	public void deleteAvisById(Long id);
 	public AvisVo updateAvis(Long id, AvisVo avisVo);
 	public List<AvisVo> findByArticles(ArticlesVo articlesVo);
 	public List<AvisVo> findByEtoile(int etoile);

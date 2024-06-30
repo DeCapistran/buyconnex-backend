@@ -61,4 +61,14 @@ public class StatusPaiementService implements IStatusPaiementService{
 ;
 	}
 
+	@Override
+	public List<StatusPaiementsVo> findAll() {
+		return statusPaiementRepository.findAll().stream().map(StatusPaiementMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteStatusPaiementsById(Long id) {
+		statusPaiementRepository.deleteById(id);
+	}
+
 }

@@ -58,4 +58,14 @@ public class CommuneService implements ICommuneService {
 		return communeRepository.findByVilles(VilleMapper.toEntity(villesVo)).stream().map(CommuneMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<CommunesVo> findAll() {
+		return communeRepository.findAll().stream().map(CommuneMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteCommunesById(Long id) {
+		communeRepository.deleteById(id);
+	}
+
 }

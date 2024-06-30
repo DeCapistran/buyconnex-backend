@@ -60,4 +60,14 @@ public class StatusArticleService implements IStatusArticle {
 		return statusArticleRepository.findByStatus(status).stream().map(StatusArticleMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<StatusArticlesVo> findAll() {
+		return statusArticleRepository.findAll().stream().map(StatusArticleMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteStatusArticlesById(Long id) {
+		statusArticleRepository.deleteById(id);
+	}
+
 }

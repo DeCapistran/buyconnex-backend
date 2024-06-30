@@ -20,4 +20,5 @@ public class PaniersVo {
 	private LocalDateTime datePanier;
 	private UsersVo users;
 	private Set<ArticlesVo> articles;
+	private Set<PaniersDetailsVo> paniersDetails;
 }

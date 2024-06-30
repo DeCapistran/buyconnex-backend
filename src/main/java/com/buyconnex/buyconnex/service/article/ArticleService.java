@@ -103,4 +103,14 @@ public class ArticleService implements IArticleService {
 		return articleRepository.findByTitle(title).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<ArticlesVo> findAll() {
+		return articleRepository.findAll().stream().map(ArticleMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteArticlesById(Long id) {
+		articleRepository.deleteById(id);
+	}
+
 }

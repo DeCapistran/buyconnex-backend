@@ -63,4 +63,14 @@ public class BoutiqueService implements IBoutiqueService {
 		return boutiqueRepository.findByImg(img).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<BoutiquesVo> findAll() {
+		return boutiqueRepository.findAll().stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteBoutiqueById(Long id) {
+		boutiqueRepository.deleteById(id);
+	}
+
 }

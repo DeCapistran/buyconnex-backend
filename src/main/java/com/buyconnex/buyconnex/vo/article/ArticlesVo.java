@@ -3,8 +3,11 @@ package com.buyconnex.buyconnex.vo.article;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.buyconnex.buyconnex.vo.achat.CommandesDetailsVo;
 import com.buyconnex.buyconnex.vo.achat.CommandesVo;
+import com.buyconnex.buyconnex.vo.achat.PromotionsDetailsVo;
 import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
+import com.buyconnex.buyconnex.vo.client.PaniersDetailsVo;
 import com.buyconnex.buyconnex.vo.client.PaniersVo;
 
 import lombok.AllArgsConstructor;
@@ -36,4 +39,7 @@ public class ArticlesVo {
 	private Set<PaniersVo> paniers;
 	private Set<AvisVo> avis;
 	private ImagesVo images;
+	private Set<CommandesDetailsVo> commandesDetails;
+	private Set<PromotionsDetailsVo> promotionsDetails;
+	private Set<PaniersDetailsVo> paniersDetails;
 }

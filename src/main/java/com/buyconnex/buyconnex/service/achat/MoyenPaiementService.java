@@ -58,4 +58,14 @@ public class MoyenPaiementService implements IMoyenPaiementService {
 		return moyenPaiementRepository.findByPaiements(PaiementMapper.toEntity(paiementsVo)).stream().map(MoyenPaiementMapper::toVO).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<MoyensPaiementsVo> findAll() {
+		return moyenPaiementRepository.findAll().stream().map(MoyenPaiementMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteMoyensPaiementsById(Long id) {
+		moyenPaiementRepository.deleteById(id);
+	}
+
 }

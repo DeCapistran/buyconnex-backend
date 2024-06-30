@@ -12,8 +12,10 @@ import com.buyconnex.buyconnex.vo.client.ClientsVo;
 public interface ICommandeService {
 
 	public Optional<CommandesVo> findById(Long id);
+	public List<CommandesVo> findAll();
 	public CommandesVo saveCommandes(CommandesVo commandesVo);
 	public void deleteCommandes(CommandesVo commandesVo);
+	public void deleteCommandesById(Long id);
 	public CommandesVo updateCommandes(Long id, CommandesVo commandesVo);
 	public CommandesVo findByNumeroCommande(String numeroCommande);
 	public List<CommandesVo> findByClients(ClientsVo clients);

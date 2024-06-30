@@ -15,8 +15,10 @@ import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
 public interface IImageService {
 
 	public Optional<ImagesVo> findById(Long id);
+	public List<ImagesVo> findAll();
 	public ImagesVo saveImages(ImagesVo imagesVo);
 	public void deleteImages(ImagesVo imagesVo);
+	public void deleteImagesById(Long id);
 	public ImagesVo updateImages(Long id, ImagesVo imagesVo);
 	public List<ImagesVo> findByArticles(ArticlesVo articlesVo);
 	public List<ImagesVo> findByCategories(CategoriesVo categoriesVo);
