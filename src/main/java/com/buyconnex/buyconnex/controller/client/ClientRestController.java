@@ -20,7 +20,7 @@ import com.buyconnex.buyconnex.vo.client.ClientsVo;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/client")
+@RequestMapping("/api/clients")
 @CrossOrigin(origins = "*")
 public class ClientRestController {
 	
