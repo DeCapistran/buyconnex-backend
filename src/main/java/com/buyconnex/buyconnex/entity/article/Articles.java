@@ -37,9 +37,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Articles {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "ARTICLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
@@ -123,6 +120,10 @@ public class Articles {
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
     private Set<ArticlesImages> articlesImages;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<TagsArticles> tagsArticles;
 	
 	@PrePersist
     protected void onCreate() {

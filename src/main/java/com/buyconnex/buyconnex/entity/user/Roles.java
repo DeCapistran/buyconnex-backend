@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -23,7 +24,8 @@ public class Roles {
 
 	@Id 
 	@Getter
-	@GeneratedValue (strategy=GenerationType.IDENTITY) 
+	@SequenceGenerator(name = "ROLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLES_SEQ_ID") 
 	private Long role_id;
 	
 	@Getter @Setter

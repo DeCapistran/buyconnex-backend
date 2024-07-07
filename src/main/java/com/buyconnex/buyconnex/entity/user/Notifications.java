@@ -27,9 +27,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Notifications {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "NOTIFICATIONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

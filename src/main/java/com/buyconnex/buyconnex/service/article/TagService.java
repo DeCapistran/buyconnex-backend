@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Tags;
-import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.TagMapper;
 import com.buyconnex.buyconnex.repository.article.TagRepository;
-import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.TagsVo;
 
 import jakarta.transaction.Transactional;
@@ -48,11 +46,6 @@ public class TagService implements ITagService {
 			Tags tagsUpdated = tagRepository.save(tag);
 			return TagMapper.toVO(tagsUpdated);
 		}).orElse(null);
-	}
-
-	@Override
-	public List<TagsVo> findByArticles(ArticlesVo articlesVo) {
-		return tagRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(TagMapper::toVO).collect(Collectors.toList());
 	}
 	
 	@Override

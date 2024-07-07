@@ -43,4 +43,5 @@ public class ArticlesVo {
 	private Set<PromotionsDetailsVo> promotionsDetails;
 	private Set<PaniersDetailsVo> paniersDetails;
 	private Set<ArticlesImagesVo> articlesImages;
+	private Set<TagsArticlesVo> tagsArticles;
 }

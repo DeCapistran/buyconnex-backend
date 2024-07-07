@@ -38,12 +38,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Users {
 
-    /**
-	 * 
-	 */
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "USERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

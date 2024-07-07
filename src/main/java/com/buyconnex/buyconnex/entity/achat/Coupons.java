@@ -31,9 +31,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Coupons {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "COUPONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

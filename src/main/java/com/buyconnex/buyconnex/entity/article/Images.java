@@ -33,9 +33,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Images {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "IMAGES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

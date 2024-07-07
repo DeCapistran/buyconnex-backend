@@ -31,6 +31,7 @@ public class ArticleMapper {
 		articlesVo.setCommandesDetails(articles.getCommandesDetails().stream().map(CommandeDetailMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setPromotionsDetails(articles.getPromotionsDetails().stream().map(PromotionDetailMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setPaniersDetails(articles.getPaniersDetails().stream().map(PanierDetailMapper::toVo).collect(Collectors.toSet()));
+		articlesVo.setTagsArticles(articles.getTagsArticles().stream().map(TagArticleMapper::toVO).collect(Collectors.toSet()));
 		
 		return articlesVo;
 	}
@@ -56,6 +57,7 @@ public class ArticleMapper {
 		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 		articles.setPromotionsDetails(articlesVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
 		articles.setPaniersDetails(articlesVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));
+		articles.setTagsArticles(articlesVo.getTagsArticles().stream().map(TagArticleMapper::toEntity).collect(Collectors.toSet()));
 		
 		return articles;
 	}
@@ -80,6 +82,6 @@ public class ArticleMapper {
 		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 		articles.setPromotionsDetails(articlesVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
 		articles.setPaniersDetails(articlesVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));
-		
+		articles.setTagsArticles(articlesVo.getTagsArticles().stream().map(TagArticleMapper::toEntity).collect(Collectors.toSet()));
 	}
 }

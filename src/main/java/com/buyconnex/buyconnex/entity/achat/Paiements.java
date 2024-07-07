@@ -28,9 +28,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Paiements {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "PAIEMENTS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

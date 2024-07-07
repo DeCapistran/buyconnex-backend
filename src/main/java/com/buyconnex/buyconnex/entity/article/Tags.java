@@ -2,12 +2,13 @@ package com.buyconnex.buyconnex.entity.article;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Tags {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "TAGS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
@@ -44,6 +42,6 @@ public class Tags {
     private String description;
 	
 	@Getter @Setter
-	@ManyToMany(mappedBy = "tags")
-    private Set<Articles> articles;
+	@OneToMany(mappedBy="tags", cascade = CascadeType.ALL)
+    private Set<TagsArticles> tagsArticles;
 }

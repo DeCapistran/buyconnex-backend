@@ -29,9 +29,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Villes {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "VILLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

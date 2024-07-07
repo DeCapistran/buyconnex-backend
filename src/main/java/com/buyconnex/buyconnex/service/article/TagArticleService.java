@@ -5,60 +5,60 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
-import com.buyconnex.buyconnex.vo.article.ImagesVo;
+import com.buyconnex.buyconnex.vo.article.TagsArticlesVo;
+import com.buyconnex.buyconnex.vo.article.TagsVo;
 
 import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class ArticleImageService implements IArticleImageService{
+public class TagArticleService implements ITagArticleService {
 
 	@Override
-	public Optional<ArticlesImagesVo> findById(Long id) {
+	public Optional<TagsArticlesVo> findById(Long id) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
-	public List<ArticlesImagesVo> findAll() {
+	public List<TagsArticlesVo> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArticlesImagesVo saveArticlesImages(ArticlesImagesVo articlesImagesVo) {
+	public TagsArticlesVo saveTagsArticles(TagsArticlesVo tagsArticlesVo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteArticlesImages(ArticlesImagesVo articlesImagesVo) {
+	public void deleteTagsArticles(TagsArticlesVo tagsArticlesVo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteArticlesImagesById(Long id) {
+	public void deleteTagsArticlesById(Long id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArticlesImagesVo updateArticlesImages(Long id, ArticlesImagesVo articlesImagesVo) {
+	public TagsArticlesVo updateTagsArticles(Long id, TagsArticlesVo tagsArticlesVo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ArticlesImagesVo> findByCouleurs(ArticlesVo articlesVo) {
+	public List<TagsArticlesVo> findByArticles(ArticlesVo ArticlesVo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ArticlesImagesVo> findByImages(ImagesVo imagesVo) {
+	public List<TagsArticlesVo> findByTags(TagsVo tagsVo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -21,9 +21,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Footers {
-	
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Getter

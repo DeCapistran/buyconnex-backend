@@ -26,9 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MoyensLivraisons {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "MOYENS_LIVRAISONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

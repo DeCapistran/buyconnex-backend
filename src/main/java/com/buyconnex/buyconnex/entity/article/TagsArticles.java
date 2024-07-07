@@ -1,8 +1,7 @@
-package com.buyconnex.buyconnex.entity.client;
+package com.buyconnex.buyconnex.entity.article;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,26 +17,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "COMMUNES")
+@Table(name = "TAGS_ARTICLES")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Communes {
+public class TagsArticles {
 
 	@Id
 	@Getter
-    @SequenceGenerator(name = "COMMUNES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMMUNES_SEQ_ID")
-    @Column(name = "ID_COMMUNE")
-    private Long commune_id;
+	@SequenceGenerator(name = "TAGS_ARTICLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TAGS_ARTICLES_SEQ_ID")
+    @Column(name = "ID_TAGS_ARTICLES")
+    private Long tag_article_id;
 	
 	@Getter @Setter
-	@Column(name = "COMMUNE")
-    private String commune;
+    @ManyToOne
+	@JoinColumn(name = "ID_ARTICLES")
+    private Articles articles;
 	
 	@Getter @Setter
-    @ManyToOne(targetEntity = Villes.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_VILLE", referencedColumnName = "ID_VILLE")
-    private Villes villes;
+    @ManyToOne
+	@JoinColumn(name = "ID_TAGS")
+    private Tags tags;
 }

@@ -27,9 +27,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Sliders {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "SLIDERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

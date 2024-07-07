@@ -31,9 +31,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Facturations {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "FACTURATIONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)

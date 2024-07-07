@@ -31,9 +31,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Clients {
-	
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Getter

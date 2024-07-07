@@ -26,9 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Couleurs {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Getter
     @SequenceGenerator(name = "COULEURS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
