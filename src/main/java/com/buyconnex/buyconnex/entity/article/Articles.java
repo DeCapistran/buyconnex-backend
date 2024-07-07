@@ -6,7 +6,6 @@ import java.util.Set;
 import com.buyconnex.buyconnex.entity.achat.CommandesDetails;
 import com.buyconnex.buyconnex.entity.achat.PromotionsDetails;
 import com.buyconnex.buyconnex.entity.client.PaniersDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -121,10 +120,9 @@ public class Articles {
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
     private Set<Avis> avis;
 	
-	@ManyToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
-	@JsonIgnore
-	private Images images;
+	@Getter @Setter
+	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+    private Set<ArticlesImages> articlesImages;
 	
 	@PrePersist
     protected void onCreate() {

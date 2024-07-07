@@ -39,7 +39,7 @@ public class PanierDetailService implements IPanierDetailService {
 	}
 
 	@Override
-	public PaniersDetailsVo updatePaniersDetails(PaniersDetailsVo paniersDetailsVo) {
+	public PaniersDetailsVo updatePaniersDetails(Long id, PaniersDetailsVo paniersDetailsVo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

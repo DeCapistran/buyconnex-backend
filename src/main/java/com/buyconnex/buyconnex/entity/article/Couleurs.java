@@ -46,5 +46,5 @@ public class Couleurs {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="couleurs", cascade = CascadeType.ALL)
-    private Set<CouleursImages> couleursImages;
+    private Set<Images> images;
 }

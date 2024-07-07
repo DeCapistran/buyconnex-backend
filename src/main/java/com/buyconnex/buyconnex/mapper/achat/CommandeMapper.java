@@ -18,7 +18,7 @@ public class CommandeMapper {
 		commandesVo.setMoyensLivraisons(MoyenLivraisonMapper.toVO(commandes.getMoyensLivraisons()));
 		commandesVo.setExpeditions(commandes.getExpeditions().stream().map(ExpeditionMapper::toVO).collect(Collectors.toSet()));
 		commandesVo.setFacturations(commandes.getFacturations().stream().map(FacturationMapper::toVO).collect(Collectors.toSet()));
-		commandesVo.setLivraisons(commandes.getLivraisons().stream().map(LivraisonMapper::toVO).collect(Collectors.toSet()));
+		commandesVo.setLivraisonsDetails(commandes.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toVO).collect(Collectors.toSet()));
 		commandesVo.setCommandesDetails(commandes.getCommandesDetails().stream().map(CommandeDetailMapper::toVO).collect(Collectors.toSet()));
 		
 		return commandesVo;
@@ -34,7 +34,7 @@ public class CommandeMapper {
 		commandes.setMoyensLivraisons(MoyenLivraisonMapper.toEntity(commandesVo.getMoyensLivraisons()));
 		commandes.setExpeditions(commandesVo.getExpeditions().stream().map(ExpeditionMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setFacturations(commandesVo.getFacturations().stream().map(FacturationMapper::toEntity).collect(Collectors.toSet()));
-		commandes.setLivraisons(commandesVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
+		commandes.setLivraisonsDetails(commandesVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setCommandesDetails(commandesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return commandes;
@@ -49,7 +49,7 @@ public class CommandeMapper {
 		commandes.setMoyensLivraisons(MoyenLivraisonMapper.toEntity(commandesVo.getMoyensLivraisons()));
 		commandes.setExpeditions(commandesVo.getExpeditions().stream().map(ExpeditionMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setFacturations(commandesVo.getFacturations().stream().map(FacturationMapper::toEntity).collect(Collectors.toSet()));
-		commandes.setLivraisons(commandesVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
+		commandes.setLivraisonsDetails(commandesVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
 		commandes.setCommandesDetails(commandesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
 	}
 }

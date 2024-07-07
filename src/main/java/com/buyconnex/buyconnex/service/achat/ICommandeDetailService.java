@@ -10,7 +10,7 @@ import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 public interface ICommandeDetailService {
 
 	public Optional<CommandesDetailsVo> findById(Long id);
-	public Optional<CommandesDetailsVo> findByAll();
+	public List<CommandesDetailsVo> findAll();
 	public CommandesDetailsVo saveCommandesDetails(CommandesDetailsVo commandesDetailsVo);
 	public void deleteCommandesDetails(CommandesDetailsVo commandesDetailsVo);
 	public void deleteCommandesDetailsById(Long id);

@@ -1,5 +1,7 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
+import java.util.stream.Collectors;
+
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
 import com.buyconnex.buyconnex.mapper.client.AdresseMapper;
 import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
@@ -14,7 +16,7 @@ public class LivraisonMapper {
 		livraisonsVo.setCommentaire(livraisons.getCommentaire());
 		livraisonsVo.setStatusLivraisons(StatusLivraisonMapper.toVO(livraisons.getStatusLivraisons()));
 		livraisonsVo.setAdresses(AdresseMapper.toVO(livraisons.getAdresses()));
-		livraisonsVo.setCommandes(CommandeMapper.toVO(livraisons.getCommandes()));
+		livraisonsVo.setLivraisonsDetails(livraisons.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toVO).collect(Collectors.toSet()));
 		
 		return livraisonsVo;
 	}
@@ -27,7 +29,7 @@ public class LivraisonMapper {
 		livraisons.setCommentaire(livraisonsVo.getCommentaire());
 		livraisons.setStatusLivraisons(StatusLivraisonMapper.toEntity(livraisonsVo.getStatusLivraisons()));
 		livraisons.setAdresses(AdresseMapper.toEntity(livraisonsVo.getAdresses()));
-		livraisons.setCommandes(CommandeMapper.toEntity(livraisonsVo.getCommandes()));
+		livraisons.setLivraisonsDetails(livraisonsVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return livraisons;
 	}
@@ -40,6 +42,7 @@ public class LivraisonMapper {
 		livraisons.setCommentaire(livraisonsVo.getCommentaire());
 		livraisons.setStatusLivraisons(StatusLivraisonMapper.toEntity(livraisonsVo.getStatusLivraisons()));
 		livraisons.setAdresses(AdresseMapper.toEntity(livraisonsVo.getAdresses()));
-		livraisons.setCommandes(CommandeMapper.toEntity(livraisonsVo.getCommandes()));
+		livraisons.setLivraisonsDetails(livraisonsVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
+		
 	}
 }

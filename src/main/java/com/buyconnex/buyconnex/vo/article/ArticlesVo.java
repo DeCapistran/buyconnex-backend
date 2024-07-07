@@ -42,4 +42,5 @@ public class ArticlesVo {
 	private Set<CommandesDetailsVo> commandesDetails;
 	private Set<PromotionsDetailsVo> promotionsDetails;
 	private Set<PaniersDetailsVo> paniersDetails;
+	private Set<ArticlesImagesVo> articlesImages;
 }

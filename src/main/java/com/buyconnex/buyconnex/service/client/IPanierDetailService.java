@@ -14,7 +14,7 @@ public interface IPanierDetailService {
 	public PaniersDetailsVo savePaniersDetails(PaniersDetailsVo paniersDetailsVo);
 	public void deletePaniersDetails(PaniersDetailsVo paniersDetailsVo);
 	public void deletepaniersDetailsById(Long id);
-	public PaniersDetailsVo updatePaniersDetails(PaniersDetailsVo paniersDetailsVo);
+	public PaniersDetailsVo updatePaniersDetails(Long id, PaniersDetailsVo paniersDetailsVo);
 	public List<PaniersDetailsVo> findByPaniers(PaniersVo paniersVo);
 	public List<PaniersDetailsVo> findByArticles(ArticlesVo articlesVo);
 }

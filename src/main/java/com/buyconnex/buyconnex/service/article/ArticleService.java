@@ -11,14 +11,12 @@ import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
-import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
 import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
-import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
 
@@ -71,11 +69,6 @@ public class ArticleService implements IArticleService {
 	@Override
 	public List<ArticlesVo> findByComposition(String composition) {
 		return articleRepository.findByComposition(composition).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ArticlesVo> findByImages(ImagesVo imagesVo) {
-		return articleRepository.findByImages(ImageMapper.toEntity(imagesVo)).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

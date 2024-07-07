@@ -16,5 +16,4 @@ public class CouleursVo {
 	private String couleur;
 	private String codeCouleur;
 	private Set<ImagesVo> images;
-	private Set<CouleursImagesVo> couleursImages;
 }

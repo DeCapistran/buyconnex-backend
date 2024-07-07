@@ -71,15 +71,15 @@ public class Commandes {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
+    private Set<LivraisonsDetails> livraisonsDetails;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
     private Set<Expeditions> expeditions;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
     private Set<Facturations> facturations;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="commandes", cascade = CascadeType.ALL)
-    private Set<Livraisons> livraisons;
 	
 	@PrePersist
     protected void onCreate() {

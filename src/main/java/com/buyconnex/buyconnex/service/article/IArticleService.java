@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
-import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
 
@@ -21,7 +20,6 @@ public interface IArticleService {
 	public List<ArticlesVo> findByBoutique(BoutiquesVo boutiquesVo);
 	public List<ArticlesVo> findByCategories(CategoriesVo categoriesVo);
 	public List<ArticlesVo> findByComposition(String composition);
-	public List<ArticlesVo> findByImages(ImagesVo imagesVo);
 	public List<ArticlesVo> findByMarques(MarquesVo marquesVo);
 	public List<ArticlesVo> findByPrix(Long prix);
 	public List<ArticlesVo> findByQuantite(int quantite);

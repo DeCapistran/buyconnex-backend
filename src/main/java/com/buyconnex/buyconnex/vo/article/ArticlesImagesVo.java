@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CouleursImagesVo {
+public class ArticlesImagesVo {
 
 	private Long id;
-	private CouleursVo couleursVo;
+	private ArticlesVo articlesVo;
 	private ImagesVo imagesVo;
 }

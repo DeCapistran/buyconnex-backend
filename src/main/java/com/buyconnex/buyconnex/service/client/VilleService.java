@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.client.Villes;
@@ -21,6 +22,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class VilleService implements IVilleService {
 
+	@Autowired
 	VilleRepository villeRepository;
 	
 	@Override

@@ -57,7 +57,21 @@ public class WebSecurityConfiguration {
 			    UsernamePasswordAuthenticationFilter.class)
 		
 		.authorizeHttpRequests( requests -> requests
-				.requestMatchers("/login","/register/**","/verifyEmail/**","/update-password/**").permitAll()
+				.requestMatchers("/login",
+						"/register/**",
+						"/verifyEmail/**",
+						"/update-password/**",
+						"/all-users",
+						"/api/articles/**",
+						"/api/avis/**",
+						"/api/boutiques/**",
+						"/api/images/**",
+						"/api/marques/**",
+						"/api/sous-categories/**",
+						"/api/status-articles/**",
+						"/api/tags/**",
+						"/api/articles-images/**"
+						).permitAll()
 				.requestMatchers("/all").hasAuthority("ADMIN")
 				.anyRequest().authenticated())
 		

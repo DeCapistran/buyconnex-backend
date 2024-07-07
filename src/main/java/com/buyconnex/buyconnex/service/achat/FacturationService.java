@@ -67,7 +67,7 @@ public class FacturationService implements IFacturationService {
 	}
 
 	@Override
-	public void deletefacturationsById(Long id) {
+	public void deleteFacturationsById(Long id) {
 		facturationRepository.deleteById(id);
 	}
 

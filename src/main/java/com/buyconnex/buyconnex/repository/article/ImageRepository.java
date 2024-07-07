@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.entity.visuel.Sliders;
@@ -13,7 +12,6 @@ import com.buyconnex.buyconnex.entity.visuel.Sliders;
 
 public interface ImageRepository extends JpaRepository<Images, Long> {
 
-	List<Images> findByArticles(Articles articles);
 	List<Images> findByCategories(Categories categories);
 	List<Images> findByName(String name);
 	List<Images> findBySliders(Sliders sliders);

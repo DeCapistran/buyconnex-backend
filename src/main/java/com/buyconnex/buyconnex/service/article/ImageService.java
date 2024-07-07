@@ -1,6 +1,7 @@
 package com.buyconnex.buyconnex.service.article;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,13 +12,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
+import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
+import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
-import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
@@ -30,6 +34,9 @@ public class ImageService implements IImageService {
 
 	@Autowired
 	ImageRepository imageRepository;
+	
+	@Autowired
+	ArticleImageRepository articleImageRepository;
 	
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
@@ -59,11 +66,6 @@ public class ImageService implements IImageService {
 	}
 
 	@Override
-	public List<ImagesVo> findByArticles(ArticlesVo articlesVo) {
-		return imageRepository.findByArticles(ArticleMapper.toEntity(articlesVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
 	public List<ImagesVo> findByCategories(CategoriesVo categoriesVo) {
 		return imageRepository.findByCategories(CategorieMapper.toEntity(categoriesVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
 	}
@@ -76,11 +78,6 @@ public class ImageService implements IImageService {
 	@Override
 	public List<ImagesVo> findBySlider(SlidersVo slidersVo) {
 		return imageRepository.findBySliders(SliderMapper.toEntity(slidersVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
-	}
-	
-	@Override
-	public ImagesVo uploadImage(MultipartFile file) throws IOException {
-		return ImageMapper.toVO(imageRepository.save(Images.builder().name(file.getOriginalFilename()).type(file.getContentType()).image(file.getBytes()).build()));
 	}
 	
 	@Override
@@ -105,11 +102,45 @@ public class ImageService implements IImageService {
 		imageRepository.deleteById(id);
 	}
 	
-	/*@Override
-	public ImagesVo uploadImageArticle(MultipartFile file, Long id) throws IOException {
-		Set<Articles> article = new Articles();
-		article.setArticle_id(id);
-		return imageRepository.save(Images.builder().name(file.getOriginalFilename()).type(file.getContentType()).image(file.getBytes()).articles(article))
-	}*/
+	@Override
+	public List<ArticlesImagesVo> uploadImageArticle(List<MultipartFile> files, Long id) throws IOException {
+		
+		List<ArticlesImagesVo> saveImage = new ArrayList<>();
+		Articles articles = new Articles();
+		articles.setArticle_id(id);
+		
+		for (MultipartFile file : files) {
+            Images image = Images.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .image(file.getBytes())
+                .build();
+            
+            Images savedImages = imageRepository.save(image);
+            
+            ArticlesImages articlesImages = new ArticlesImages();
+            articlesImages.setArticles(articles);
+            articlesImages.setImages(savedImages);
+            
+            saveImage.add(ArticleImageMapper.toVO(articleImageRepository.save(articlesImages)));
+        }
+		return saveImage;
+	}
+
+	@Override
+	public List<ImagesVo> uploadImage(List<MultipartFile> files) throws IOException {
+		List<ImagesVo> saveImages = new ArrayList<>();
+		
+		for (MultipartFile file : files) {
+            Images image = Images.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .image(file.getBytes())
+                .build();
+            
+            saveImages.add(ImageMapper.toVO(imageRepository.save(image)));
+        }
+		return saveImages;
+	}
 
 }

@@ -12,7 +12,7 @@ public interface ICouponService {
 	public List<CouponsVo> findAll();
 	public CouponsVo saveCoupons(CouponsVo couponsVo);
 	public void deleteCoupons(CouponsVo couponsVo);
-	public void deletCouponsById(Long id);
+	public void deleteCouponsById(Long id);
 	public CouponsVo updateCoupons(Long id, CouponsVo couponsVo);
 	public CouponsVo findByCodeCoupons(String codeCoupon);
 	public List<CouponsVo> findBySousCategories(SousCategoriesVo sousCategoriesVo);

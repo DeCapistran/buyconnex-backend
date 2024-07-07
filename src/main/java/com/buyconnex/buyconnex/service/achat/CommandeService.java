@@ -47,6 +47,7 @@ public class CommandeService implements ICommandeService {
 			Articles articles = articleRepository.findById(commandeDetail.getArticles().getArticle_id())
 					.orElseThrow(() -> new RuntimeException("Article non trouvé."));
 					commandeDetail.setArticles(articles);
+					commandeDetail.setCommandes(commandes);
 		});
 		Commandes commandeSave = commandeRepository.save(commandes);
 		return CommandeMapper.toVO(commandeSave);
@@ -66,6 +67,7 @@ public class CommandeService implements ICommandeService {
 				Articles articles = articleRepository.findById(comDetail.getArticles().getArticle_id())
 						.orElseThrow(() -> new RuntimeException("Article introuvable"));
 				comDetail.setArticles(articles);
+				comDetail.setCommandes(existCommande);
 			});
 			Commandes commandeUpdated = commandeRepository.save(existCommande);
 			return CommandeMapper.toVO(commandeUpdated);

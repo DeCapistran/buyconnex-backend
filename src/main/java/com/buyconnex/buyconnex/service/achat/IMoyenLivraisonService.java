@@ -8,7 +8,7 @@ import com.buyconnex.buyconnex.vo.achat.MoyensLivraisonsVo;
 
 public interface IMoyenLivraisonService {
 
-	public Optional<MoyensLivraisonsVo> findByid(Long id);
+	public Optional<MoyensLivraisonsVo> findById(Long id);
 	public List<MoyensLivraisonsVo> findAll();
 	public MoyensLivraisonsVo saveMoyensLivraisons(MoyensLivraisonsVo moyensLivraisonsVo);
 	public void deleteMoyensLivraisons(MoyensLivraisonsVo moyensLivraisonsVo);

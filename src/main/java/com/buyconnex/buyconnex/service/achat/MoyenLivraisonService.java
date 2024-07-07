@@ -24,7 +24,7 @@ public class MoyenLivraisonService implements IMoyenLivraisonService {
 	MoyenLivraisonRepository moyenLivraisonRepository;
 	
 	@Override
-	public Optional<MoyensLivraisonsVo> findByid(Long id) {
+	public Optional<MoyensLivraisonsVo> findById(Long id) {
 		return moyenLivraisonRepository.findById(id).map(MoyenLivraisonMapper::toVO);
 	}
 

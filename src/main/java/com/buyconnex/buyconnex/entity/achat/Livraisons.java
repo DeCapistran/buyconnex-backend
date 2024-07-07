@@ -3,9 +3,11 @@ package com.buyconnex.buyconnex.entity.achat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 import com.buyconnex.buyconnex.entity.client.Adresses;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
@@ -70,9 +73,8 @@ public class Livraisons {
     private Adresses adresses;
 	
 	@Getter @Setter
-    @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
-    private Commandes commandes;
+	@OneToMany(mappedBy="livraisons", cascade = CascadeType.ALL)
+    private Set<LivraisonsDetails> livraisonsDetails;
 	
 	@PrePersist
     protected void onCreate() {

@@ -56,16 +56,17 @@ public class CommandeDetailService implements ICommandeDetailService {
 		return null;
 	}
 
-	@Override
-	public Optional<CommandesDetailsVo> findByAll() {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
 
 	@Override
 	public void deleteCommandesDetailsById(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<CommandesDetailsVo> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	 

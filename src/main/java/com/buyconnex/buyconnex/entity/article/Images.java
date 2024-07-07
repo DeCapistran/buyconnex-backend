@@ -7,10 +7,13 @@ import com.buyconnex.buyconnex.entity.visuel.Sliders;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -52,10 +55,10 @@ public class Images {
 	@Lob
 	private byte[] image; 
 	
-
 	@Getter @Setter
-	@OneToMany(mappedBy="images", cascade = CascadeType.ALL)
-    private Set<Articles> articles;
+    @ManyToOne(targetEntity = Couleurs.class, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_COULEURS", referencedColumnName = "ID_COULEURS")
+    private Couleurs couleurs;
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "images")
@@ -67,5 +70,5 @@ public class Images {
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="images", cascade = CascadeType.ALL)
-    private Set<CouleursImages> couleursImages;
+    private Set<ArticlesImages> articlesImages;
 }

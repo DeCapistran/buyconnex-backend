@@ -16,23 +16,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "COULEURS_IMAGES")
+@Table(name = "ARTICLES_IMAGES")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CouleursImages {
+public class ArticlesImages {
 
 	@Id
 	@Getter
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_COULEURS_IMAGES")
-    private Long livraisonDetail_id;
+    @Column(name = "ID_ARTICLES_IMAGES")
+    private Long article_image_id;
 	
 	@Getter @Setter
     @ManyToOne
-	@JoinColumn(name = "ID_COULEURS")
-    private Couleurs couleurs;
+	@JoinColumn(name = "ID_ARTICLES")
+    private Articles articles;
 	
 	@Getter @Setter
     @ManyToOne

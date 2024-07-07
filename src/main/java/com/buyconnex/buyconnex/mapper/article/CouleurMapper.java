@@ -11,7 +11,7 @@ public class CouleurMapper {
 		CouleursVo couleursVo = new CouleursVo();
 		couleursVo.setCouleur(couleurs.getCouleur());
 		couleursVo.setCodeCouleur(couleurs.getCodeCouleur());
-		couleursVo.setCouleursImages(couleurs.getCouleursImages().stream().map(CouleurImageMapper::toVO).collect(Collectors.toSet()));
+		couleursVo.setImages(couleurs.getImages().stream().map(ImageMapper::toVO).collect(Collectors.toSet()));
 		
 		return couleursVo;
 	}
@@ -20,7 +20,7 @@ public class CouleurMapper {
 		Couleurs couleurs = new Couleurs();
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
-		couleurs.setCouleursImages(couleursVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
+		couleurs.setImages(couleursVo.getImages().stream().map(ImageMapper::toEntity).collect(Collectors.toSet()));
 		
 		return couleurs;
 	}
@@ -29,7 +29,7 @@ public class CouleurMapper {
 		
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
-		couleurs.setCouleursImages(couleursVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
+		couleurs.setImages(couleursVo.getImages().stream().map(ImageMapper::toEntity).collect(Collectors.toSet()));
 		
 	}
 }

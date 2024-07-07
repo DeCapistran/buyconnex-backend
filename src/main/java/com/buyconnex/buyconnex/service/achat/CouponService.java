@@ -67,7 +67,7 @@ public class CouponService implements ICouponService {
 	}
 
 	@Override
-	public void deletCouponsById(Long id) {
+	public void deleteCouponsById(Long id) {
 		couponRepository.deleteById(id);
 	}
 

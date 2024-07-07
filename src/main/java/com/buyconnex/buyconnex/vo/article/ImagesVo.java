@@ -22,5 +22,5 @@ public class ImagesVo {
 	private CategoriesVo categories;
 	private SlidersVo sliders;
 	private Set<CouleursVo> couleurs;
-	private Set<CouleursImagesVo> couleursImages;
+	private Set<ArticlesImagesVo> articlesImages;
 }

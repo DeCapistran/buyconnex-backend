@@ -28,5 +28,6 @@ public class CommandesVo {
 	private Set<FacturationsVo> facturations;
 	private Set<LivraisonsVo> livraisons;
 	private Set<CommandesDetailsVo> commandesDetails;
+	private Set<LivraisonsDetailsVo> livraisonsDetails;
 	
 }

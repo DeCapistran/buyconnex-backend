@@ -13,10 +13,9 @@ public class ImageMapper {
 		imagesVo.setName(images.getName());
 		imagesVo.setType(images.getType());
 		imagesVo.setImage(images.getImage());
-		imagesVo.setArticles(images.getArticles().stream().map(ArticleMapper::toVO).collect(Collectors.toSet()));
 		imagesVo.setCategories(CategorieMapper.toVO(images.getCategories()));
 		imagesVo.setSliders(SliderMapper.toVO(images.getSliders()));
-		imagesVo.setCouleursImages(images.getCouleursImages().stream().map(CouleurImageMapper::toVO).collect(Collectors.toSet()));
+		imagesVo.setArticlesImages(images.getArticlesImages().stream().map(ArticleImageMapper::toVO).collect(Collectors.toSet()));
 		
 		return imagesVo;
 	}
@@ -26,10 +25,9 @@ public class ImageMapper {
 		images.setName(imagesVo.getName());
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
-		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
-		images.setCouleursImages(imagesVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
+		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		
 		return images;
 	}
@@ -39,10 +37,9 @@ public class ImageMapper {
 		images.setName(imagesVo.getName());
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
-		images.setArticles(imagesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
-		images.setCouleursImages(imagesVo.getCouleursImages().stream().map(CouleurImageMapper::toEntity).collect(Collectors.toSet()));
+		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		
 	}
 }
