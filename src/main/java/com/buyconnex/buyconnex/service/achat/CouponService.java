@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.achat.Coupons;
 import com.buyconnex.buyconnex.mapper.achat.CouponMapper;
-import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.repository.achat.CouponRepository;
 import com.buyconnex.buyconnex.vo.achat.CouponsVo;
-import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -53,12 +51,6 @@ public class CouponService implements ICouponService {
 	@Override
 	public CouponsVo findByCodeCoupons(String codeCoupon) {
 		return CouponMapper.toVO(couponRepository.findByCodeCoupon(codeCoupon));
-	}
-
-	@Override
-	public List<CouponsVo> findBySousCategories(SousCategoriesVo sousCategoriesVo) {
-		
-		return couponRepository.findBySousCategories(SousCategorieMapper.toEntity(sousCategoriesVo)).stream().map(CouponMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

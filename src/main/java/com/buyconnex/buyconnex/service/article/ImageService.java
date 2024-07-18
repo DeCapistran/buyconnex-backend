@@ -16,12 +16,14 @@ import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
+import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
@@ -141,6 +143,11 @@ public class ImageService implements IImageService {
             saveImages.add(ImageMapper.toVO(imageRepository.save(image)));
         }
 		return saveImages;
+	}
+
+	@Override
+	public List<ImagesVo> findByBoutique(BoutiquesVo boutiquesVo) {
+		return imageRepository.findByBoutiques(BoutiqueMapper.toEntity(boutiquesVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
 	}
 
 }

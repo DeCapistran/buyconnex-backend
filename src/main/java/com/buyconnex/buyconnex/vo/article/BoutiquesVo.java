@@ -15,4 +15,5 @@ public class BoutiquesVo {
 	private String email;
 	private String telephone;
 	private String img;
+	private ImagesVo images;
 }

@@ -14,6 +14,7 @@ public class ImageMapper {
 		imagesVo.setType(images.getType());
 		imagesVo.setImage(images.getImage());
 		imagesVo.setCategories(CategorieMapper.toVO(images.getCategories()));
+		imagesVo.setBoutiques(BoutiqueMapper.toVO(images.getBoutiques()));
 		imagesVo.setSliders(SliderMapper.toVO(images.getSliders()));
 		imagesVo.setArticlesImages(images.getArticlesImages().stream().map(ArticleImageMapper::toVO).collect(Collectors.toSet()));
 		
@@ -26,6 +27,7 @@ public class ImageMapper {
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
+		images.setBoutiques(BoutiqueMapper.toEntity(imagesVo.getBoutiques()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
 		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		
@@ -38,6 +40,7 @@ public class ImageMapper {
 		images.setType(imagesVo.getType());
 		images.setImage(imagesVo.getImage());
 		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
+		images.setBoutiques(BoutiqueMapper.toEntity(imagesVo.getBoutiques()));
 		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
 		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		

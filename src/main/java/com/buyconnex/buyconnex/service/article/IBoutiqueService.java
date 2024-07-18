@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 public interface IBoutiqueService {
 
@@ -17,4 +18,5 @@ public interface IBoutiqueService {
 	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo);
 	public List<BoutiquesVo> findByNom(String nom);
 	public List<BoutiquesVo> findByImg(String img);
+	public List<BoutiquesVo> findByImages(ImagesVo imagesVo);
 }

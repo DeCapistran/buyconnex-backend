@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.other;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.buyconnex.buyconnex.vo.user.UsersVo;
 
@@ -15,8 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NewslettersVo {
 	private Long id;
-	private Date dateInscription;
-	private Date dateDesincription;
+	private LocalDateTime dateInscription;
+	private LocalDateTime dateDesincription;
 	private String email;
 	private UsersVo users;
 }

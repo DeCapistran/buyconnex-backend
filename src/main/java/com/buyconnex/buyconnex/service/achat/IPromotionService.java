@@ -17,4 +17,6 @@ public interface IPromotionService {
 	public List<PromotionsVo> findByDateFin(Date date);
 	public List<PromotionsVo> findByDateDebut(Date date);
 	public List<PromotionsVo> findByPourcentage(int pourcentage);
+	public List<PromotionsVo> findByLibelle(String libelle);
+	public List<PromotionsVo> findByDescription(String description);
 }

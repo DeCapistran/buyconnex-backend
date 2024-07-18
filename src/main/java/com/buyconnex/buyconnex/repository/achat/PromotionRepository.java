@@ -14,4 +14,6 @@ public interface PromotionRepository extends JpaRepository<Promotions, Long> {
 	List<Promotions> findByDateFin(Date dateFin);
 	List<Promotions> findByDateDebut(Date dateDebut);
 	List<Promotions> findByPourcentage(int pourcentage);
+	List<Promotions> findByLibelle(String libelle);
+	List<Promotions> findByDescription(String description);
 }

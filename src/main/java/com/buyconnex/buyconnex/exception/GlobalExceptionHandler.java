@@ -25,6 +25,19 @@ public class GlobalExceptionHandler extends RuntimeException {
 	 return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 	 }
 	
+	@ExceptionHandler(ConnexionException.class)
+	 public ResponseEntity<ErrorDetails> handleConnexionException(ConnexionException exception,
+	 WebRequest webRequest){
+		
+	 ErrorDetails errorDetails = new ErrorDetails(
+			 LocalDateTime.now(),
+			 exception.getMessage(),
+			 webRequest.getDescription(false),
+			 "NO_CONNEXION"
+	 );
+	 return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
+	 }
+	
 	@ExceptionHandler(BadPasswordException.class)
 	 public ResponseEntity<ErrorDetails> handleBadPasswordException(BadPasswordException exception,
 	 WebRequest webRequest){

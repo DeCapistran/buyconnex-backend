@@ -83,21 +83,25 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void unsuccessfulAuthentication(HttpServletRequest request,
 			HttpServletResponse response, AuthenticationException failed)
 					throws IOException, ServletException {
+
+		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		response.setContentType("application/json");
+		Map<String, Object> data = new HashMap<>();
+		
 		if (failed instanceof DisabledException ) {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			response.setContentType("application/json");
-			Map<String, Object> data = new HashMap<>();
 
 			data.put("errorCause", "disabled");
 			data.put("message", "L'utilisateur est désactivé !");
-			ObjectMapper objectMapper = new ObjectMapper();
-			String json = objectMapper.writeValueAsString(data);
-			PrintWriter writer = response.getWriter();
-			writer.println(json);
-			writer.flush();
 
-		} else {
-			super.unsuccessfulAuthentication(request, response, failed);
 		}
+		else {
+			data.put("errorCause", "authenticationFailed");
+            data.put("message", "Échec de l'authentification !");
+		}
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = objectMapper.writeValueAsString(data);
+		PrintWriter writer = response.getWriter();
+		writer.println(json);
+		writer.flush();
 	}
 }

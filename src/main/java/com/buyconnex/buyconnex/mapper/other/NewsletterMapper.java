@@ -8,7 +8,7 @@ public class NewsletterMapper {
 
 	public static NewslettersVo toVO(Newsletters newsletters) {
 		NewslettersVo newslettersVo = new NewslettersVo();
-		newslettersVo.setDateInscription(newsletters.getDateDesinscription());
+		newslettersVo.setDateInscription(newsletters.getDateInscription());
 		newslettersVo.setDateDesincription(newsletters.getDateDesinscription());
 		newslettersVo.setEmail(newsletters.getEmail());
 		newslettersVo.setUsers(UserMapper.toVO(newsletters.getUsers()));

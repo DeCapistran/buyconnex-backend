@@ -13,6 +13,8 @@ public class PromotionMapper {
 		promotionsVo.setDateDebut(promotions.getDateDebut());
 		promotionsVo.setDateFin(promotions.getDateFin());
 		promotionsVo.setPourcentage(promotions.getPourcentage());
+		promotionsVo.setLibelle(promotions.getLibelle());
+		promotionsVo.setDescription(promotions.getDescription());
 		promotionsVo.setPromotionsDetails(promotions.getPromotionsDetails().stream().map(PromotionDetailMapper::toVO).collect(Collectors.toSet()));
 		
 		return promotionsVo;
@@ -24,6 +26,8 @@ public class PromotionMapper {
 		promotions.setDateDebut(promotionsVo.getDateDebut());
 		promotions.setDateFin(promotionsVo.getDateFin());
 		promotions.setPourcentage(promotionsVo.getPourcentage());
+		promotions.setLibelle(promotionsVo.getLibelle());
+		promotions.setDescription(promotionsVo.getDescription());
 		promotions.setPromotionsDetails(promotionsVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 		return promotions;
@@ -35,6 +39,8 @@ public class PromotionMapper {
 		promotions.setDateDebut(promotionsVo.getDateDebut());
 		promotions.setDateFin(promotionsVo.getDateFin());
 		promotions.setPourcentage(promotionsVo.getPourcentage());
+		promotions.setLibelle(promotionsVo.getLibelle());
+		promotions.setDescription(promotionsVo.getDescription());
 		promotions.setPromotionsDetails(promotionsVo.getPromotionsDetails().stream().map(PromotionDetailMapper::toEntity).collect(Collectors.toSet()));
 		
 	}

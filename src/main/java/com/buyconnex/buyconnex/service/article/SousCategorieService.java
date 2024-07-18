@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.SousCategories;
-import com.buyconnex.buyconnex.mapper.achat.CouponMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.repository.article.SousCategorieRepository;
-import com.buyconnex.buyconnex.vo.achat.CouponsVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
@@ -55,11 +53,6 @@ public class SousCategorieService implements ISousCategorieService{
 	@Override
 	public List<SousCategoriesVo> findByCategories(CategoriesVo categoriesVo) {
 		return sousCategorieRepository.findByCategories(CategorieMapper.toEntity(categoriesVo)).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<SousCategoriesVo> findByCoupons(CouponsVo couponsVo) {
-		return sousCategorieRepository.findByCoupons(CouponMapper.toEntity(couponsVo)).stream().map(SousCategorieMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

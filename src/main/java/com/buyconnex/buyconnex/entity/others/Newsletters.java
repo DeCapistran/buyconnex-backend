@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.others;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.buyconnex.buyconnex.entity.user.Users;
 
@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -38,11 +39,11 @@ public class Newsletters {
 	
 	@Getter @Setter
     @Column(name = "DATE_INSCRIPTION")
-    private Date dateInscription;
+    private LocalDateTime dateInscription;
 	
 	@Getter @Setter
     @Column(name = "DATE_DESINCRIPTION")
-    private Date dateDesinscription;
+    private LocalDateTime dateDesinscription;
 	
 	@Getter @Setter
 	@Column(name = "EMAIL")
@@ -52,4 +53,8 @@ public class Newsletters {
     @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
     private Users users;
 	
+	@PrePersist
+    protected void onCreate() {
+		dateInscription = LocalDateTime.now();
+    }
 }

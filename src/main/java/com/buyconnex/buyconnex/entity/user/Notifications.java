@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.entity.user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,10 +49,15 @@ public class Notifications {
 	
 	@Getter @Setter
 	@Column(name = "DATE_NOTIF")
-    private Date dateNotif;
+    private LocalDateTime dateNotif;
 	
 	@Getter @Setter
     @ManyToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     private Users users;
+	
+	@PrePersist
+    protected void onCreate() {
+		dateNotif = LocalDateTime.now();
+    }
 }

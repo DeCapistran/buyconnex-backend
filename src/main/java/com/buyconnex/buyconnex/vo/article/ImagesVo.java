@@ -20,6 +20,7 @@ public class ImagesVo {
 	private byte[] image;
 	private Set<ArticlesVo> articles;
 	private CategoriesVo categories;
+	private BoutiquesVo boutiques;
 	private SlidersVo sliders;
 	private Set<CouleursVo> couleurs;
 	private Set<ArticlesImagesVo> articlesImages;

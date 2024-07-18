@@ -53,6 +53,14 @@ public class Promotions {
     private int pourcentage;
 	
 	@Getter @Setter
+	@Column(name = "LIBELLE")
+    private String libelle;
+	
+	@Getter @Setter
+	@Column(name = "DESCRIPTION")
+    private String description;
+	
+	@Getter @Setter
 	@OneToMany(mappedBy="promotions", cascade = CascadeType.ALL)
     private Set<PromotionsDetails> promotionsDetails;
 	

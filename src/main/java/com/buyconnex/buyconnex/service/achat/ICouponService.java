@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.buyconnex.buyconnex.vo.achat.CouponsVo;
-import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 public interface ICouponService {
 
@@ -15,5 +14,4 @@ public interface ICouponService {
 	public void deleteCouponsById(Long id);
 	public CouponsVo updateCoupons(Long id, CouponsVo couponsVo);
 	public CouponsVo findByCodeCoupons(String codeCoupon);
-	public List<CouponsVo> findBySousCategories(SousCategoriesVo sousCategoriesVo);
 }

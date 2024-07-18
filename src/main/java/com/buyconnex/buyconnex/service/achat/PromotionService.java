@@ -85,4 +85,14 @@ public class PromotionService implements IPromotionService {
 		promotionRepository.deleteById(id);
 	}
 
+	@Override
+	public List<PromotionsVo> findByLibelle(String libelle) {
+		return promotionRepository.findByLibelle(libelle).stream().map(PromotionMapper::toVo).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<PromotionsVo> findByDescription(String description) {
+		return promotionRepository.findByDescription(description).stream().map(PromotionMapper::toVo).collect(Collectors.toList());
+	}
+
 }

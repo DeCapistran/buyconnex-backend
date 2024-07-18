@@ -25,7 +25,6 @@ public class ArticleMapper {
 		articlesVo.setMarques(MarqueMapper.toVO(articles.getMarques()));
 		articlesVo.setBoutiques(BoutiqueMapper.toVO(articles.getBoutiques()));
 		articlesVo.setStatusArticles(StatusArticleMapper.toVO(articles.getStatusArticles()));
-		articlesVo.setTags(articles.getTags().stream().map(TagMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setAvis(articles.getAvis().stream().map(AvisMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setArticlesImages(articles.getArticlesImages().stream().map(ArticleImageMapper::toVO).collect(Collectors.toSet()));
 		articlesVo.setCommandesDetails(articles.getCommandesDetails().stream().map(CommandeDetailMapper::toVO).collect(Collectors.toSet()));
@@ -51,7 +50,6 @@ public class ArticleMapper {
 		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
 		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
 		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
-		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setArticlesImages(articlesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));
@@ -76,7 +74,6 @@ public class ArticleMapper {
 		articles.setMarques(MarqueMapper.toEntity(articlesVo.getMarques()));
 		articles.setBoutiques(BoutiqueMapper.toEntity(articlesVo.getBoutiques()));
 		articles.setStatusArticles(StatusArticleMapper.toEntity(articlesVo.getStatusArticles()));
-		articles.setTags(articlesVo.getTags().stream().map(TagMapper::toEntity).collect(Collectors.toSet()));
 		articles.setAvis(articlesVo.getAvis().stream().map(AvisMapper::toEntity).collect(Collectors.toSet()));
 		articles.setArticlesImages(articlesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
 		articles.setCommandesDetails(articlesVo.getCommandesDetails().stream().map(CommandeDetailMapper::toEntity).collect(Collectors.toSet()));

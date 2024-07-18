@@ -3,8 +3,6 @@ package com.buyconnex.buyconnex.vo.achat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +22,4 @@ public class CouponsVo {
 	private Date dateFin;
 	private int pourcentage;
 	private Long montantMinimum;
-	private SousCategoriesVo sousCategories;
 }

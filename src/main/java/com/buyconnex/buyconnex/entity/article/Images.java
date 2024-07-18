@@ -66,6 +66,10 @@ public class Images {
 	private Sliders sliders;
 	
 	@Getter @Setter
+	@OneToOne(mappedBy = "images")
+	private Boutiques boutiques;
+	
+	@Getter @Setter
 	@OneToMany(mappedBy="images", cascade = CascadeType.ALL)
     private Set<ArticlesImages> articlesImages;
 }

@@ -21,6 +21,8 @@ public class PromotionsVo {
 	private Date dateDebut;
 	private Date dateFin;
 	private int pourcentage;
+	private String libelle;
+	private String description;
 	private Set<ArticlesVo> articles;
 	private Set<PromotionsDetailsVo> promotionsDetails;
 }

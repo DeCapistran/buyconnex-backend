@@ -11,6 +11,7 @@ public class BoutiqueMapper {
 		boutiquesVo.setEmail(boutiques.getEmail());
 		boutiquesVo.setTelephone(boutiques.getTelephone());
 		boutiquesVo.setImg(boutiques.getImg());
+		boutiquesVo.setImages(ImageMapper.toVO(boutiques.getImages()));
 		
 		return boutiquesVo;
 	}
@@ -21,6 +22,7 @@ public class BoutiqueMapper {
 		boutiques.setEmail(boutiquesVo.getEmail());
 		boutiques.setTelephone(boutiquesVo.getTelephone());
 		boutiques.setImg(boutiquesVo.getImg());
+		boutiques.setImages(ImageMapper.toEntity(boutiquesVo.getImages()));
 		
 		return boutiques;
 	}
@@ -31,5 +33,6 @@ public class BoutiqueMapper {
 		boutiques.setEmail(boutiquesVo.getEmail());
 		boutiques.setTelephone(boutiquesVo.getTelephone());
 		boutiques.setImg(boutiquesVo.getImg());
+		boutiques.setImages(ImageMapper.toEntity(boutiquesVo.getImages()));
 	}
 }

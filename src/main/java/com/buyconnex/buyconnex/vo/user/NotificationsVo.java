@@ -1,6 +1,6 @@
 package com.buyconnex.buyconnex.vo.user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +16,6 @@ public class NotificationsVo {
 	private String libelle;
 	private String description;
 	private String status;
-	private Date dateNotif;
+	private LocalDateTime dateNotif;
 	private UsersVo users;
 }

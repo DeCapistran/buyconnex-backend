@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
+import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
+import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -75,4 +77,8 @@ public class BoutiqueService implements IBoutiqueService {
 		boutiqueRepository.deleteById(id);
 	}
 
+	@Override
+	public List<BoutiquesVo> findByImages(ImagesVo imagesVo) {
+		return boutiqueRepository.findByImages(ImageMapper.toEntity(imagesVo)).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
+	}
 }

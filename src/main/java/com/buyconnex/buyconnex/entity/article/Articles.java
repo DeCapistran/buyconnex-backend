@@ -15,8 +15,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
@@ -99,11 +97,6 @@ public class Articles {
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
     private Set<PromotionsDetails> promotionsDetails;
-	
-	@Getter @Setter
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "TAGS_DETAILS", joinColumns = { @JoinColumn(name = "article_id") }, inverseJoinColumns = { @JoinColumn(name = "tags_id") })
-	Set<Tags> tags;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)

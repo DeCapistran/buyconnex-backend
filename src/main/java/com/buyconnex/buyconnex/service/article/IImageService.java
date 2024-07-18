@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
+import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
@@ -21,6 +22,7 @@ public interface IImageService {
 	public void deleteImagesById(Long id);
 	public ImagesVo updateImages(Long id, ImagesVo imagesVo);
 	public List<ImagesVo> findByCategories(CategoriesVo categoriesVo);
+	public List<ImagesVo> findByBoutique(BoutiquesVo boutiquesVo);
 	public List<ImagesVo> findByName(String name);
 	public List<ImagesVo> findBySlider(SlidersVo slidersVo);
 	public List<ImagesVo> uploadImage(List<MultipartFile> file) throws IOException;

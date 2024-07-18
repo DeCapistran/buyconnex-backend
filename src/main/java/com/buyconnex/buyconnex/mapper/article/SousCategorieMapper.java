@@ -1,9 +1,6 @@
 package com.buyconnex.buyconnex.mapper.article;
 
-import java.util.stream.Collectors;
-
 import com.buyconnex.buyconnex.entity.article.SousCategories;
-import com.buyconnex.buyconnex.mapper.achat.CouponMapper;
 import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 public class SousCategorieMapper {
@@ -12,7 +9,6 @@ public class SousCategorieMapper {
 		SousCategoriesVo sousCategoriesVo = new SousCategoriesVo();
 		sousCategoriesVo.setLibelle(sousCategories.getLibelle());
 		sousCategoriesVo.setCategories(CategorieMapper.toVO(sousCategories.getCategories()));
-		sousCategoriesVo.setCoupons(sousCategories.getCoupons().stream().map(CouponMapper::toVO).collect(Collectors.toSet()));
 		
 		return sousCategoriesVo;
 	}
@@ -21,7 +17,6 @@ public class SousCategorieMapper {
 		SousCategories sousCategories = new SousCategories();
 		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
 		sousCategories.setCategories(CategorieMapper.toEntity(sousCategoriesVo.getCategories()));
-		sousCategories.setCoupons(sousCategoriesVo.getCoupons().stream().map(CouponMapper::toEntity).collect(Collectors.toSet()));
 		
 		return sousCategories;
 	}
@@ -30,7 +25,6 @@ public class SousCategorieMapper {
 		
 		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
 		sousCategories.setCategories(CategorieMapper.toEntity(sousCategoriesVo.getCategories()));
-		sousCategories.setCoupons(sousCategoriesVo.getCoupons().stream().map(CouponMapper::toEntity).collect(Collectors.toSet()));
 		
 	}
 }
