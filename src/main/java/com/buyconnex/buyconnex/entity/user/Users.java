@@ -87,15 +87,15 @@ public class Users {
     private Set<Avis> avis;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Paniers paniers;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Clients clients;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Newsletters newsletters;
 	
 	@PrePersist

@@ -1,14 +1,10 @@
 package com.buyconnex.buyconnex.entity.article;
 
-import java.util.Set;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,7 +37,4 @@ public class Couleurs {
 	@Column(name = "CODE_COULEUR")
     private String codeCouleur;
 	
-	@Getter @Setter
-	@OneToMany(mappedBy="couleurs", cascade = CascadeType.ALL)
-    private Set<Images> images;
 }

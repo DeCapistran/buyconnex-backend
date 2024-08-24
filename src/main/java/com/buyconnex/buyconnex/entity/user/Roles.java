@@ -3,6 +3,7 @@ package com.buyconnex.buyconnex.entity.user;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +34,6 @@ public class Roles {
 	private String role;
 	
 	@Getter @Setter
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     private Set<Users> users = new HashSet<>();
 }

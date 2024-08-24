@@ -1,48 +1,30 @@
 package com.buyconnex.buyconnex.mapper.article;
 
-import java.util.stream.Collectors;
-
 import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 public class ImageMapper {
+    public static ImagesVo toVO(Images image) {
+        if (image == null) {
+            return null;
+        }
+        return ImagesVo.builder()
+                       .name(image.getName())
+                       .type(image.getType())
+                       .image(image.getImage())
+                       .url(image.getUrl())
+                       .build();
+    }
 
-	public static ImagesVo toVO(Images images) {
-		ImagesVo imagesVo = new ImagesVo();
-		imagesVo.setName(images.getName());
-		imagesVo.setType(images.getType());
-		imagesVo.setImage(images.getImage());
-		imagesVo.setCategories(CategorieMapper.toVO(images.getCategories()));
-		imagesVo.setBoutiques(BoutiqueMapper.toVO(images.getBoutiques()));
-		imagesVo.setSliders(SliderMapper.toVO(images.getSliders()));
-		imagesVo.setArticlesImages(images.getArticlesImages().stream().map(ArticleImageMapper::toVO).collect(Collectors.toSet()));
-		
-		return imagesVo;
-	}
-	
-	public static Images toEntity(ImagesVo imagesVo) {
-		Images images = new Images();
-		images.setName(imagesVo.getName());
-		images.setType(imagesVo.getType());
-		images.setImage(imagesVo.getImage());
-		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
-		images.setBoutiques(BoutiqueMapper.toEntity(imagesVo.getBoutiques()));
-		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
-		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
-		
-		return images;
-	}
-	
-	public static void updateEntityFromVO(ImagesVo imagesVo, Images images) {
-		
-		images.setName(imagesVo.getName());
-		images.setType(imagesVo.getType());
-		images.setImage(imagesVo.getImage());
-		images.setCategories(CategorieMapper.toEntity(imagesVo.getCategories()));
-		images.setBoutiques(BoutiqueMapper.toEntity(imagesVo.getBoutiques()));
-		images.setSliders(SliderMapper.toEntity(imagesVo.getSliders()));
-		images.setArticlesImages(imagesVo.getArticlesImages().stream().map(ArticleImageMapper::toEntity).collect(Collectors.toSet()));
-		
-	}
+    public static Images toEntity(ImagesVo imagesVo) {
+        if (imagesVo == null) {
+            return null;
+        }
+        return Images.builder()
+                     .name(imagesVo.getName())
+                     .type(imagesVo.getType())
+                     .image(imagesVo.getImage())
+                     .url(imagesVo.getUrl())
+                     .build();
+    }
 }

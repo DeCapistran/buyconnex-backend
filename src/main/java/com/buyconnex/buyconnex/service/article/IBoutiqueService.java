@@ -17,6 +17,5 @@ public interface IBoutiqueService {
 	public BoutiquesVo updateBoutique(Long id, BoutiquesVo boutiquesVo);
 	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo);
 	public List<BoutiquesVo> findByNom(String nom);
-	public List<BoutiquesVo> findByImg(String img);
 	public List<BoutiquesVo> findByImages(ImagesVo imagesVo);
 }

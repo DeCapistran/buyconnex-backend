@@ -14,6 +14,5 @@ public interface BoutiqueRepository extends JpaRepository<Boutiques, Long> {
 	List<Boutiques> findByArticles(Articles articles);
 	List<Boutiques> findByImages(Images images);
 	List<Boutiques> findByNom(String nom);
-	List<Boutiques> findByImg(String img);
 	//boolean existByLibelle(String libelle);
 }

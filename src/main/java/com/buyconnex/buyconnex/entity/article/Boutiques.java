@@ -49,10 +49,6 @@ public class Boutiques {
     private String telephone;
 	
 	@Getter @Setter
-	@Column(name = "IMG")
-    private String img;
-	
-	@Getter @Setter
 	@OneToMany(mappedBy="boutiques", cascade = CascadeType.ALL)
     private Set<Articles> articles;
 	

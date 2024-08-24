@@ -3,6 +3,7 @@ package com.buyconnex.buyconnex.entity.client;
 import com.buyconnex.buyconnex.entity.achat.Facturations;
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -64,15 +65,15 @@ public class Adresses {
     private String description;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "adresses")
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Clients clients;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "adresses")
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Facturations facturations;
 	
 	@Getter @Setter
-	@OneToOne(mappedBy = "adresses")
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Livraisons livraisons;
 	
 }

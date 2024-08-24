@@ -14,6 +14,5 @@ public class BoutiquesVo {
 	private String nom;
 	private String email;
 	private String telephone;
-	private String img;
 	private ImagesVo images;
 }

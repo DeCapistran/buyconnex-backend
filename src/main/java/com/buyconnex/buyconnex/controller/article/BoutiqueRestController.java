@@ -41,6 +41,8 @@ public class BoutiqueRestController {
 	
 	@PostMapping
 	public ResponseEntity<BoutiquesVo> saveBoutiques(@Valid @RequestBody BoutiquesVo boutiquesVo) {
+		System.out.println("Afficher : "+boutiquesVo.getEmail());
+		System.out.println("Image : "+boutiquesVo.getImages().getName());
 		BoutiquesVo boutique = boutiqueService.saveBoutique(boutiquesVo);
 		return ResponseEntity.status(201).body(boutique);
 	}

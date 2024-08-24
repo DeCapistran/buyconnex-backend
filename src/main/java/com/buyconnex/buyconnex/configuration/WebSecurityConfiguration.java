@@ -96,7 +96,8 @@ public class WebSecurityConfiguration {
 						"/api/promotions/**",
 						"/api/status-commandes/**",
 						"/api/status-livraisons/**",
-						"/api/status-paiements/**"
+						"/api/status-paiements/**",
+						"/images/**"
 						).permitAll()
 				.requestMatchers("/all").hasAuthority("ADMIN")
 				.anyRequest().authenticated())
