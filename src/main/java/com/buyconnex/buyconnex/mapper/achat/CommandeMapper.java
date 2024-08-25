@@ -10,6 +10,7 @@ public class CommandeMapper {
 
 	public static CommandesVo toVO(Commandes commandes) {
 		CommandesVo commandesVo = new CommandesVo();
+		commandesVo.setId(commandes.getCommande_id());
 		commandesVo.setNumeroCommande(commandes.getNumeroCommande());
 		commandesVo.setDateCommande(commandes.getDateCommande());
 		commandesVo.setCodeCoupon(commandes.getCodeCoupon());
@@ -26,6 +27,7 @@ public class CommandeMapper {
 	
 	public static Commandes toEntity(CommandesVo commandesVo) {
 		Commandes commandes = new Commandes();
+		commandes.setCommande_id(commandesVo.getId());
 		commandes.setNumeroCommande(commandesVo.getNumeroCommande());
 		commandes.setDateCommande(commandesVo.getDateCommande());
 		commandes.setCodeCoupon(commandesVo.getCodeCoupon());
@@ -41,6 +43,7 @@ public class CommandeMapper {
 	}
 	
 	public static void updateEntityFromVO(CommandesVo commandesVo, Commandes commandes) {
+		commandes.setCommande_id(commandesVo.getId());
 		commandes.setNumeroCommande(commandesVo.getNumeroCommande());
 		commandes.setDateCommande(commandesVo.getDateCommande());
 		commandes.setCodeCoupon(commandesVo.getCodeCoupon());

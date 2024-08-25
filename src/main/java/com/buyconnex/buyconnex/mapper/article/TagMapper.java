@@ -9,6 +9,7 @@ public class TagMapper {
 
 	public static TagsVo toVO(Tags tags) {
 		TagsVo tagsVo = new TagsVo();
+		tagsVo.setId(tags.getTags_id());
 		tagsVo.setTagsArticles(tags.getTagsArticles().stream().map(TagArticleMapper::toVO).collect(Collectors.toSet()));
 		tagsVo.setDescription(tags.getDescription());
 		tagsVo.setNom(tags.getNom());
@@ -18,6 +19,7 @@ public class TagMapper {
 	
 	public static Tags toEntity(TagsVo tagsVo) {
 		Tags tags = new Tags();
+		tags.setTags_id(tagsVo.getId());
 		tags.setTagsArticles(tagsVo.getTagsArticles().stream().map(TagArticleMapper::toEntity).collect(Collectors.toSet()));
 		tags.setDescription(tagsVo.getDescription());
 		tags.setNom(tagsVo.getNom());
@@ -26,7 +28,7 @@ public class TagMapper {
 	}
 	
 	public static void updateEntityFromVO(TagsVo tagsVo, Tags tags) {
-		
+		tags.setTags_id(tagsVo.getId());
 		tags.setTagsArticles(tagsVo.getTagsArticles().stream().map(TagArticleMapper::toEntity).collect(Collectors.toSet()));
 		tags.setDescription(tagsVo.getDescription());
 		tags.setNom(tagsVo.getNom());

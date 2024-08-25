@@ -10,6 +10,7 @@ public class PanierMapper {
 
 	public static PaniersVo toVO(Paniers paniers) {
 		PaniersVo paniersVo = new PaniersVo();
+		paniersVo.setId(paniers.getPaniers_id());
 		paniersVo.setDatePanier(paniers.getDatePanier());
 		paniersVo.setUsers(UserMapper.toVO(paniers.getUsers()));
 		paniersVo.setPaniersDetails(paniers.getPaniersDetails().stream().map(PanierDetailMapper::toVo).collect(Collectors.toSet()));
@@ -19,6 +20,7 @@ public class PanierMapper {
 	
 	public static Paniers toEntity(PaniersVo paniersVo) {
 		Paniers paniers = new Paniers();
+		paniers.setPaniers_id(paniersVo.getId());
 		paniers.setDatePanier(paniersVo.getDatePanier());
 		paniers.setUsers(UserMapper.toEntity(paniersVo.getUsers()));
 		paniers.setPaniersDetails(paniersVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));
@@ -27,7 +29,7 @@ public class PanierMapper {
 	}
 	
 	public static void updateEntityFromVO(PaniersVo paniersVo, Paniers paniers) {
-		
+		paniers.setPaniers_id(paniersVo.getId());
 		paniers.setDatePanier(paniersVo.getDatePanier());
 		paniers.setUsers(UserMapper.toEntity(paniersVo.getUsers()));
 		paniers.setPaniersDetails(paniersVo.getPaniersDetails().stream().map(PanierDetailMapper::toEntity).collect(Collectors.toSet()));

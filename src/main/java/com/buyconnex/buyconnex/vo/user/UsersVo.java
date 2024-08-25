@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsersVo {
-	
+	private Long id;
     private String firstname;   
     private String lastname; 
     private String username;

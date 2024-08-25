@@ -7,6 +7,7 @@ public class NotificationMapper {
 
 	public static NotificationsVo toVO(Notifications notifications) {
 		NotificationsVo notificationsVo = new NotificationsVo();
+		notificationsVo.setId(notifications.getNotification_id());
 		notificationsVo.setDateNotif(notifications.getDateNotif());
 		notificationsVo.setDescription(notifications.getDescription());
 		notificationsVo.setLibelle(notifications.getLibelle());
@@ -18,6 +19,7 @@ public class NotificationMapper {
 	
 	public static Notifications toEntity(NotificationsVo notificationsVo) {
 		Notifications notifications = new Notifications();
+		notifications.setNotification_id(notificationsVo.getId());
 		notifications.setDateNotif(notificationsVo.getDateNotif());
 		notifications.setDescription(notificationsVo.getDescription());
 		notifications.setLibelle(notificationsVo.getLibelle());
@@ -28,7 +30,7 @@ public class NotificationMapper {
 	}
 	
 	public static void updateEntityFromVO(NotificationsVo notificationsVo, Notifications notifications) {
-		
+		notifications.setNotification_id(notificationsVo.getId());
 		notifications.setDateNotif(notificationsVo.getDateNotif());
 		notifications.setDescription(notificationsVo.getDescription());
 		notifications.setLibelle(notificationsVo.getLibelle());

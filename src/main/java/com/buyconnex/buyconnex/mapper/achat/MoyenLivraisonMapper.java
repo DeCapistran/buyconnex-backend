@@ -10,6 +10,7 @@ public class MoyenLivraisonMapper {
 	public static MoyensLivraisonsVo toVO(MoyensLivraisons moyensLivraisons) {
 		
 		MoyensLivraisonsVo moyensLivraisonsVo = new MoyensLivraisonsVo();
+		moyensLivraisonsVo.setId(moyensLivraisons.getMoyen_livraison_id());
 		moyensLivraisonsVo.setCommandes(moyensLivraisons.getCommandes().stream().map(CommandeMapper::toVO).collect(Collectors.toSet()));
 		moyensLivraisonsVo.setDescription(moyensLivraisons.getDescription());
 		moyensLivraisonsVo.setMoyenLivraisons(moyensLivraisons.getMoyenLivraison());
@@ -20,6 +21,7 @@ public class MoyenLivraisonMapper {
 	public static MoyensLivraisons toEntity(MoyensLivraisonsVo moyensLivraisonsVo) {
 		
 		MoyensLivraisons moyensLivraisons = new MoyensLivraisons();
+		moyensLivraisons.setMoyen_livraison_id(moyensLivraisonsVo.getId());
 		moyensLivraisons.setCommandes(moyensLivraisonsVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
 		moyensLivraisons.setDescription(moyensLivraisonsVo.getDescription());
 		moyensLivraisons.setMoyenLivraison(moyensLivraisonsVo.getMoyenLivraisons());
@@ -28,7 +30,7 @@ public class MoyenLivraisonMapper {
 	}
 
 	public static void updateEntityFromVO(MoyensLivraisonsVo moyensLivraisonsVo, MoyensLivraisons moyensLivraisons) {
-		
+		moyensLivraisons.setMoyen_livraison_id(moyensLivraisonsVo.getId());
 		moyensLivraisons.setCommandes(moyensLivraisonsVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
 		moyensLivraisons.setDescription(moyensLivraisonsVo.getDescription());
 		moyensLivraisons.setMoyenLivraison(moyensLivraisonsVo.getMoyenLivraisons());

@@ -9,6 +9,7 @@ public class PaysMapper {
 
 	public static PaysVo toVO(Pays pays) {
 		PaysVo paysVo = new PaysVo();
+		paysVo.setId(pays.getPays_id());
 		paysVo.setPays(pays.getPays());
 		paysVo.setVilles(pays.getVilles().stream().map(VilleMapper::toVO).collect(Collectors.toSet()));
 		
@@ -17,6 +18,7 @@ public class PaysMapper {
 	
 	public static Pays toEntity(PaysVo paysVo) {
 		Pays pays = new Pays();
+		pays.setPays_id(paysVo.getId());
 		pays.setPays(paysVo.getPays());
 		pays.setVilles(paysVo.getVilles().stream().map(VilleMapper::toEntity).collect(Collectors.toSet()));
 		
@@ -24,7 +26,7 @@ public class PaysMapper {
 	}
 	
 	public static void updateEntityFromVO(PaysVo paysVo, Pays pays) {
-		
+		pays.setPays_id(paysVo.getId());
 		pays.setPays(paysVo.getPays());
 		pays.setVilles(paysVo.getVilles().stream().map(VilleMapper::toEntity).collect(Collectors.toSet()));
 	}

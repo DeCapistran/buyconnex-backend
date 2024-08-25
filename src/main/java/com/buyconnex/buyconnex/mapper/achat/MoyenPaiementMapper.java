@@ -9,6 +9,7 @@ public class MoyenPaiementMapper {
 
 	public static MoyensPaiementsVo toVO(MoyensPaiements moyensPaiements) {
 		MoyensPaiementsVo moyensPaiementsVo = new MoyensPaiementsVo();
+		moyensPaiementsVo.setId(moyensPaiements.getMoyen_paiement_id());
 		moyensPaiementsVo.setMoyensPaiements(moyensPaiements.getMoyenPaiement());
 		moyensPaiementsVo.setDescription(moyensPaiements.getDescription());
 		moyensPaiementsVo.setPaiements(moyensPaiements.getPaiements().stream().map(PaiementMapper::toVO).collect(Collectors.toSet()));
@@ -18,6 +19,7 @@ public class MoyenPaiementMapper {
 	
 	public static MoyensPaiements toEntity(MoyensPaiementsVo moyensPaiementsVo) {
 		MoyensPaiements moyensPaiements = new MoyensPaiements();
+		moyensPaiements.setMoyen_paiement_id(moyensPaiementsVo.getId());
 		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
 		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
 		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));
@@ -26,7 +28,7 @@ public class MoyenPaiementMapper {
 	}
 	
 	public static void updateEntityFromVO(MoyensPaiementsVo moyensPaiementsVo, MoyensPaiements moyensPaiements) {
-		
+		moyensPaiements.setMoyen_paiement_id(moyensPaiementsVo.getId());
 		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
 		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
 		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));

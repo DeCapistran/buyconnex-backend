@@ -8,6 +8,7 @@ public class FacturationMapper {
 
 	public static FacturationsVo toVO(Facturations facturations) {
 		FacturationsVo facturationsVo = new FacturationsVo();
+		facturationsVo.setId(facturations.getFacturation_id());
 		facturationsVo.setDateFacturation(facturations.getDateFacturation());
 		facturationsVo.setDescription(facturations.getDescription());
 		facturationsVo.setCommandes(CommandeMapper.toVO(facturations.getCommandes()));
@@ -18,6 +19,7 @@ public class FacturationMapper {
 	
 	public static Facturations toEntity(FacturationsVo facturationsVo) {
 		Facturations facturations = new Facturations();
+		facturations.setFacturation_id(facturationsVo.getId());
 		facturations.setDateFacturation(facturationsVo.getDateFacturation());
 		facturations.setDescription(facturationsVo.getDescription());
 		facturations.setCommandes(CommandeMapper.toEntity(facturationsVo.getCommandes()));
@@ -27,7 +29,7 @@ public class FacturationMapper {
 	}
 	
 	public static void updateEntityFromVO(FacturationsVo facturationsVo, Facturations facturations) {
-		
+		facturations.setFacturation_id(facturationsVo.getId());
 		facturations.setDateFacturation(facturationsVo.getDateFacturation());
 		facturations.setDescription(facturationsVo.getDescription());
 		facturations.setCommandes(CommandeMapper.toEntity(facturationsVo.getCommandes()));

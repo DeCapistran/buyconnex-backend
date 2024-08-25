@@ -7,6 +7,7 @@ public class CouleurMapper {
 
 	public static CouleursVo toVO(Couleurs couleurs) {
 		CouleursVo couleursVo = new CouleursVo();
+		couleursVo.setId(couleurs.getCouleur_id());
 		couleursVo.setCouleur(couleurs.getCouleur());
 		couleursVo.setCodeCouleur(couleurs.getCodeCouleur());
 		
@@ -15,6 +16,7 @@ public class CouleurMapper {
 	
 	public static Couleurs toEntity(CouleursVo couleursVo) {
 		Couleurs couleurs = new Couleurs();
+		couleurs.setCouleur_id(couleursVo.getId());
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
 		
@@ -22,7 +24,7 @@ public class CouleurMapper {
 	}
 	
 	public static void updateEntityFromVO(CouleursVo couleursVo, Couleurs couleurs) {
-		
+		couleurs.setCouleur_id(couleursVo.getId());
 		couleurs.setCouleur(couleursVo.getCouleur());
 		couleurs.setCodeCouleur(couleursVo.getCodeCouleur());
 		

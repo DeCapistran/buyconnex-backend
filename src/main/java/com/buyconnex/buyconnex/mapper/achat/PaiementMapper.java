@@ -7,6 +7,7 @@ public class PaiementMapper {
 
 	public static PaiementsVo toVO(Paiements paiements) {
 		PaiementsVo paiementsVo = new PaiementsVo();
+		paiementsVo.setId(paiements.getPaiement_id());
 		paiementsVo.setDatePaiement(paiements.getDatePaiement());
 		paiementsVo.setMontant(paiements.getMontant());
 		paiementsVo.setMoyensPaiements(MoyenPaiementMapper.toVO(paiements.getMoyensPaiements()));
@@ -17,6 +18,7 @@ public class PaiementMapper {
 	
 	public static Paiements toEntity(PaiementsVo paiementsVo) {
 		Paiements paiements = new Paiements();
+		paiements.setPaiement_id(paiementsVo.getId());
 		paiements.setDatePaiement(paiementsVo.getDatePaiement());
 		paiements.setMontant(paiementsVo.getMontant());
 		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));
@@ -26,7 +28,7 @@ public class PaiementMapper {
 	}
 	
 	public static void updateEntityFromVO(PaiementsVo paiementsVo, Paiements paiements) {
-		
+		paiements.setPaiement_id(paiementsVo.getId());
 		paiements.setDatePaiement(paiementsVo.getDatePaiement());
 		paiements.setMontant(paiementsVo.getMontant());
 		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));

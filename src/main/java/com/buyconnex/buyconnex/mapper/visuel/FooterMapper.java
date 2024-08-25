@@ -7,6 +7,7 @@ public class FooterMapper {
 
 	public static FootersVo toVO(Footers footers) {
 		FootersVo footersVo = new FootersVo();
+		footersVo.setId(footers.getFooter_id());
 		footersVo.setAdresse(footers.getAdresse());
 		footersVo.setMailSupport(footers.getMailSupport());
 		footersVo.setTelephone(footers.getTelephone());
@@ -16,6 +17,7 @@ public class FooterMapper {
 	
 	public static Footers toEntity(FootersVo footersVo) {
 		Footers footers = new Footers();
+		footers.setFooter_id(footersVo.getId());
 		footers.setAdresse(footersVo.getAdresse());
 		footers.setMailSupport(footersVo.getMailSupport());
 		footers.setTelephone(footersVo.getTelephone());
@@ -24,7 +26,7 @@ public class FooterMapper {
 	}
 	
 	public static void updateEntityFromVO(FootersVo footersVo, Footers footers) {
-		
+		footers.setFooter_id(footersVo.getId());
 		footers.setAdresse(footersVo.getAdresse());
 		footers.setMailSupport(footersVo.getMailSupport());
 		footers.setTelephone(footersVo.getTelephone());

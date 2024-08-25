@@ -7,6 +7,7 @@ public class SousCategorieMapper {
 
 	public static SousCategoriesVo toVO(SousCategories sousCategories) {
 		SousCategoriesVo sousCategoriesVo = new SousCategoriesVo();
+		sousCategoriesVo.setId(sousCategories.getSous_categorie_id());
 		sousCategoriesVo.setLibelle(sousCategories.getLibelle());
 		sousCategoriesVo.setCategories(CategorieMapper.toVO(sousCategories.getCategories()));
 		
@@ -15,6 +16,7 @@ public class SousCategorieMapper {
 	
 	public static SousCategories toEntity(SousCategoriesVo sousCategoriesVo) {
 		SousCategories sousCategories = new SousCategories();
+		sousCategories.setSous_categorie_id(sousCategoriesVo.getId());
 		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
 		sousCategories.setCategories(CategorieMapper.toEntity(sousCategoriesVo.getCategories()));
 		
@@ -22,7 +24,7 @@ public class SousCategorieMapper {
 	}
 	
 	public static void updetEntityFromVO(SousCategoriesVo sousCategoriesVo, SousCategories sousCategories) {
-		
+		sousCategories.setSous_categorie_id(sousCategoriesVo.getId());
 		sousCategories.setLibelle(sousCategoriesVo.getLibelle());
 		sousCategories.setCategories(CategorieMapper.toEntity(sousCategoriesVo.getCategories()));
 		

@@ -8,6 +8,7 @@ public class NewsletterMapper {
 
 	public static NewslettersVo toVO(Newsletters newsletters) {
 		NewslettersVo newslettersVo = new NewslettersVo();
+		newslettersVo.setId(newsletters.getNewletter_id());
 		newslettersVo.setDateInscription(newsletters.getDateInscription());
 		newslettersVo.setDateDesincription(newsletters.getDateDesinscription());
 		newslettersVo.setEmail(newsletters.getEmail());
@@ -18,6 +19,7 @@ public class NewsletterMapper {
 	
 	public static Newsletters toEntity(NewslettersVo newslettersVo) {
 		Newsletters newsletters = new Newsletters();
+		newsletters.setNewletter_id(newslettersVo.getId());
 		newsletters.setDateInscription(newslettersVo.getDateInscription());
 		newsletters.setDateDesinscription(newslettersVo.getDateDesincription());
 		newsletters.setEmail(newslettersVo.getEmail());
@@ -27,7 +29,7 @@ public class NewsletterMapper {
 	}
 	
 	public static void updateEntityFromVO(NewslettersVo newslettersVo, Newsletters newsletters) {
-		
+		newsletters.setNewletter_id(newslettersVo.getId());
 		newsletters.setDateInscription(newslettersVo.getDateInscription());
 		newsletters.setDateDesinscription(newslettersVo.getDateDesincription());
 		newsletters.setEmail(newslettersVo.getEmail());

@@ -8,6 +8,7 @@ public class SliderMapper {
 
 	public static SlidersVo toVO(Sliders sliders) {
 		SlidersVo slidersVo = new SlidersVo();
+		slidersVo.setId(sliders.getSlider_id());
 		slidersVo.setImages(ImageMapper.toVO(sliders.getImages()));
 		slidersVo.setTitle(sliders.getTittle());
 		
@@ -16,6 +17,7 @@ public class SliderMapper {
 	
 	public static Sliders toEntity(SlidersVo slidersVo) {
 		Sliders sliders = new Sliders();
+		sliders.setSlider_id(slidersVo.getId());
 		sliders.setImages(ImageMapper.toEntity(slidersVo.getImages()));
 		sliders.setTittle(slidersVo.getTitle());
 		
@@ -23,7 +25,7 @@ public class SliderMapper {
 	}
 	
 	public static void updateEntityFromVO(SlidersVo slidersVo, Sliders sliders) {
-		
+		sliders.setSlider_id(slidersVo.getId());
 		sliders.setImages(ImageMapper.toEntity(slidersVo.getImages()));
 		sliders.setTittle(slidersVo.getTitle());
 	}

@@ -26,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/images/**")
                 .addResourceLocations("file:/C:/dev/buyconnex/admin/src/assets/images/")
+                .addResourceLocations("file:/C:/dev/buyconnex/admin/src/assets/images/categories/")
                 .setCachePeriod(0) // Disable cache by setting it to 0
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver() {

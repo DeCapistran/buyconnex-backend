@@ -11,6 +11,7 @@ public class ClientMapper {
 	
 	public static ClientsVo toVO(Clients clients) {
 		ClientsVo clientsVo = new ClientsVo();
+		clientsVo.setId(clients.getClient_id());
 		clientsVo.setFirstname(clients.getFristname());
 		clientsVo.setLastname(clients.getLastname());
 		clientsVo.setEntreprise(clients.getEntreprise());
@@ -28,6 +29,7 @@ public class ClientMapper {
 	
 	public static Clients toEntity(ClientsVo clientsVo) {
 		Clients clients = new Clients();
+		clients.setClient_id(clientsVo.getId());
 		clients.setFristname(clientsVo.getFirstname());
 		clients.setLastname(clientsVo.getLastname());
 		clients.setEntreprise(clientsVo.getEntreprise());
@@ -44,7 +46,7 @@ public class ClientMapper {
 	}
 	
 	public static void updateEntityFromVO(ClientsVo clientsVo, Clients clients) {
-		
+		clients.setClient_id(clientsVo.getId());
 		clients.setFristname(clientsVo.getFirstname());
 		clients.setLastname(clientsVo.getLastname());
 		clients.setEntreprise(clientsVo.getEntreprise());

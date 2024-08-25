@@ -9,6 +9,7 @@ public class StatusCommandeMapper {
 
 	public static StatusCommandesVo toVO(StatusCommandes statusCommandes) {
 		StatusCommandesVo statusCommandesVo = new StatusCommandesVo();
+		statusCommandesVo.setId(statusCommandes.getStatus_commande_id());
 		statusCommandesVo.setCommandes(statusCommandes.getCommandes().stream().map(CommandeMapper::toVO).collect(Collectors.toSet()));
 		statusCommandesVo.setDescription(statusCommandes.getDescription());
 		statusCommandesVo.setStatus(statusCommandes.getStatus());
@@ -18,6 +19,7 @@ public class StatusCommandeMapper {
 	
 	public static StatusCommandes toEntity(StatusCommandesVo statusCommandesVo) {
 		StatusCommandes statusCommandes = new StatusCommandes();
+		statusCommandes.setStatus_commande_id(statusCommandesVo.getId());
 		statusCommandes.setCommandes(statusCommandesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
 		statusCommandes.setDescription(statusCommandesVo.getDescription());
 		statusCommandes.setStatus(statusCommandesVo.getStatus());
@@ -26,7 +28,7 @@ public class StatusCommandeMapper {
 	}
 	
 	public static void updateEntityFromVO(StatusCommandesVo statusCommandesVo, StatusCommandes statusCommandes) {
-		
+		statusCommandes.setStatus_commande_id(statusCommandesVo.getId());
 		statusCommandes.setCommandes(statusCommandesVo.getCommandes().stream().map(CommandeMapper::toEntity).collect(Collectors.toSet()));
 		statusCommandes.setDescription(statusCommandesVo.getDescription());
 		statusCommandes.setStatus(statusCommandesVo.getStatus());

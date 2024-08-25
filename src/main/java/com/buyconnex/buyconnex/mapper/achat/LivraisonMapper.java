@@ -10,6 +10,7 @@ public class LivraisonMapper {
 
 	public static LivraisonsVo toVO(Livraisons livraisons) {
 		LivraisonsVo livraisonsVo = new LivraisonsVo();
+		livraisonsVo.setId(livraisons.getLivraison_id());
 		livraisonsVo.setNumeroLivraison(livraisons.getNumeroLivraison());
 		livraisonsVo.setDateLivraisonEstimee(livraisons.getDateLivraisonEstimee());
 		livraisonsVo.setDateLivraison(livraisons.getDateLivraison());
@@ -23,6 +24,7 @@ public class LivraisonMapper {
 	
 	public static Livraisons toEntity(LivraisonsVo livraisonsVo) {
 		Livraisons livraisons = new Livraisons();
+		livraisons.setLivraison_id(livraisonsVo.getId());
 		livraisons.setNumeroLivraison(livraisonsVo.getNumeroLivraison());
 		livraisons.setDateLivraisonEstimee(livraisonsVo.getDateLivraisonEstimee());
 		livraisons.setDateLivraison(livraisonsVo.getDateLivraison());
@@ -35,7 +37,7 @@ public class LivraisonMapper {
 	}
 	
 	public static void updateEntityFromVO(LivraisonsVo livraisonsVo, Livraisons livraisons) {
-		
+		livraisons.setLivraison_id(livraisonsVo.getId());
 		livraisons.setNumeroLivraison(livraisonsVo.getNumeroLivraison());
 		livraisons.setDateLivraisonEstimee(livraisonsVo.getDateLivraisonEstimee());
 		livraisons.setDateLivraison(livraisonsVo.getDateLivraison());

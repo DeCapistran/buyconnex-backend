@@ -9,6 +9,7 @@ public class AdresseMapper {
 
 	public static AdresseVo toVO(Adresses adresses) {
 		AdresseVo adresseVo = new AdresseVo();
+		adresseVo.setId(adresses.getAdresse_id());
 		adresseVo.setAdresse1(adresses.getAdresse1());
 		adresseVo.setAdresse2(adresses.getAdresse2());
 		adresseVo.setCodePostal(adresses.getCodePostal());
@@ -25,6 +26,7 @@ public class AdresseMapper {
 	
 	public static Adresses toEntity(AdresseVo adressesVo) {
 		Adresses adresses = new Adresses();
+		adresses.setAdresse_id(adressesVo.getId());
 		adresses.setAdresse1(adressesVo.getAdresse1());
 		adresses.setAdresse2(adressesVo.getAdresse2());
 		adresses.setCodePostal(adressesVo.getCodePostal());
@@ -40,7 +42,7 @@ public class AdresseMapper {
 	}
 	
 	public static void updateEntityFromVO(AdresseVo adressesVo, Adresses adresses) {
-		
+		adresses.setAdresse_id(adressesVo.getId());
 		adresses.setAdresse1(adressesVo.getAdresse1());
 		adresses.setAdresse2(adressesVo.getAdresse2());
 		adresses.setCodePostal(adressesVo.getCodePostal());

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
+import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
@@ -26,6 +27,7 @@ import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
+import com.buyconnex.buyconnex.repository.article.CategorieRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
@@ -48,6 +50,9 @@ public class ImageService implements IImageService {
 
 	@Autowired
 	BoutiqueRepository boutiqueRepository;
+	
+	@Autowired
+	CategorieRepository categorieRepository;
 
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
@@ -321,6 +326,141 @@ public class ImageService implements IImageService {
 
 	    // Supprimer la boutique de la base de données
 	    boutiqueRepository.delete(boutique);
+
+	    return true;
+	}
+
+	@Override
+	public CategoriesVo uploadImageCategorie(MultipartFile file, String libelle) throws IOException {
+				String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\categories";
+				Path imagesDir = Paths.get(imagesDirPath);
+				if (!Files.exists(imagesDir)) {
+					Files.createDirectories(imagesDir);
+				}
+
+				String imageName = file.getOriginalFilename();
+				if (imageName != null && imageName.contains(".")) {
+					imageName = libelle + "." + imageName.substring(imageName.lastIndexOf(".") + 1);
+				}
+				Path imagePath = imagesDir.resolve(imageName);
+				Files.write(imagePath, file.getBytes());
+
+				// Create and save the image object in the database
+				Images image = Images.builder()
+						.name(imageName)
+						.type(file.getContentType())
+						.image(file.getBytes())
+						.url("/assets/images/categories/" + imageName)
+						.build();
+
+				Images savedImage = imageRepository.save(image);
+
+				// Create the categorie entity
+				Categories categorie = new Categories();
+				categorie.setLibelle(libelle);
+				categorie.setImages(savedImage); // Associate the saved image with the categorie
+
+				// Save the categorie entity
+				Categories savedCategorie = categorieRepository.save(categorie);
+
+				// Map savedCategorie to CategorieVo (including ImagesVo mapping)
+				CategoriesVo categoriesVo = new CategoriesVo();
+				categoriesVo.setLibelle(savedCategorie.getLibelle());
+
+				ImagesVo imagesVo = new ImagesVo();
+				imagesVo.setName(savedImage.getName());
+				imagesVo.setType(savedImage.getType());
+				imagesVo.setUrl(savedImage.getUrl());
+
+				categoriesVo.setImages(imagesVo);
+				return categoriesVo;
+	}
+
+	@Override
+	public CategoriesVo updateImageCategorie(Long id, MultipartFile file, String libelle) throws IOException {
+		// Récupérer la categorie existante par son ID
+				Optional<Categories> optionalCategorie = categorieRepository.findById(id);
+				if (!optionalCategorie.isPresent()) {
+					throw new IllegalArgumentException("Categorie non trouvée pour l'ID: " + id);
+				}
+
+				Categories categories = optionalCategorie.get();
+
+				// Gérer la mise à jour de l'image si un nouveau fichier est fourni
+				if (file != null && !file.isEmpty()) {
+					String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\categories";
+					Path imagesDir = Paths.get(imagesDirPath);
+					if (!Files.exists(imagesDir)) {
+						Files.createDirectories(imagesDir);
+					}
+
+					String imageName = file.getOriginalFilename();
+					if (imageName != null && imageName.contains(".")) {
+						imageName = libelle + "." + imageName.substring(imageName.lastIndexOf(".") + 1);
+					}
+					Path imagePath = imagesDir.resolve(imageName);
+					Files.write(imagePath, file.getBytes());
+
+					// Créer et enregistrer le nouvel objet image dans la base de données
+					Images image = Images.builder()
+							.name(imageName)
+							.type(file.getContentType())
+							.image(file.getBytes())
+							.url("/assets/images/categories/" + imageName)
+							.build();
+
+					Images savedImage = imageRepository.save(image);
+
+					// Associer l'image enregistrée à la categorie
+					categories.setImages(savedImage);
+				}
+
+				// Mettre à jour les autres informations de la categorie
+				categories.setLibelle(libelle);
+
+				// Enregistrer la categorie mise à jour
+				Categories savedCategorie = categorieRepository.save(categories);
+
+				// Mapper savedCategorie vers CategoriesVo (y compris le mappage de ImagesVo)
+				CategoriesVo categoriesVo = new CategoriesVo();
+				categoriesVo.setLibelle(savedCategorie.getLibelle());
+
+				ImagesVo imagesVo = new ImagesVo();
+				Images savedImage = savedCategorie.getImages();
+				imagesVo.setName(savedImage.getName());
+				imagesVo.setType(savedImage.getType());
+				imagesVo.setUrl(savedImage.getUrl());
+
+				categoriesVo.setImages(imagesVo);
+
+				return categoriesVo;
+	}
+
+	@Override
+	public boolean deleteCategorie(Long categorieId) throws IOException {
+		// Récupérer la categorie avec l'image associée
+	    Optional<Categories> optionalCategorie = categorieRepository.findById(categorieId);
+	    if (optionalCategorie.isEmpty()) {
+	        throw new EntityNotFoundException("Categorie not found with ID: " + categorieId);
+	    }
+
+	    Categories categories = optionalCategorie.get();
+	    Images image = categories.getImages();
+
+	    // Supprimer l'image du système de fichiers
+	    if (image != null) {
+	        String imagePath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\categories\\" + image.getName();
+	        Path path = Paths.get(imagePath);
+	        if (Files.exists(path)) {
+	            Files.delete(path); // Supprime le fichier image
+	        }
+
+	        // Supprimer l'image de la base de données
+	        imageRepository.delete(image);
+	    }
+
+	    // Supprimer la categorie de la base de données
+	    categorieRepository.delete(categories);
 
 	    return true;
 	}

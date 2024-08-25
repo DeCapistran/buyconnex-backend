@@ -24,6 +24,7 @@ import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.service.article.BoutiqueService;
 import com.buyconnex.buyconnex.service.article.ImageService;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
+import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -105,10 +106,36 @@ public class ImageRestController {
 	    return ResponseEntity.ok(boutiqueVo);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete-boutique/{id}")
     public ResponseEntity<Void> deleteBoutique(@PathVariable Long id) {
         try {
             imageService.deleteBoutique(id);
+            return ResponseEntity.noContent().build(); // Retourne un statut 204 No Content
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build(); // Retourne un statut 404 Not Found
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Retourne un statut 500 Internal Server Error
+        }
+    }
+	
+	@PostMapping(value = "/uploadfs-categorie", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<CategoriesVo> uploadFSCategorie(@RequestParam("img") MultipartFile file,  
+			@RequestParam("libelle") String libelle) throws IOException {
+	    CategoriesVo categoriesVo = imageService.uploadImageCategorie(file, libelle);
+	    return ResponseEntity.ok(categoriesVo);
+	}
+	
+	@PostMapping(value = "/updatefs-categorie/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<CategoriesVo> updateFSCategorie(@RequestParam("id") Long id,@RequestParam(value = "img", required = false) MultipartFile file,  
+			@RequestParam("libelle") String libelle) throws IOException {
+	    CategoriesVo categoriesVo = imageService.updateImageCategorie(id, file, libelle);
+	    return ResponseEntity.ok(categoriesVo);
+	}
+	
+	@DeleteMapping("/delete-categorie/{id}")
+    public ResponseEntity<Void> deleteCategorie(@PathVariable Long id) {
+        try {
+            imageService.deleteCategorie(id);
             return ResponseEntity.noContent().build(); // Retourne un statut 204 No Content
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build(); // Retourne un statut 404 Not Found

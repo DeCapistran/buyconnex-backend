@@ -34,5 +34,8 @@ public interface IImageService {
 	public BoutiquesVo uploadImageBoutique(MultipartFile file, String nom, String email, String telephone) throws IOException;
 	public BoutiquesVo updateImageBoutique(Long id, MultipartFile file, String nom, String email, String telephone) throws IOException;
 	public boolean deleteBoutique(Long boutiqueId) throws IOException;
+	public CategoriesVo uploadImageCategorie(MultipartFile file, String libelle) throws IOException;
+	public CategoriesVo updateImageCategorie(Long id, MultipartFile file, String libelle) throws IOException;
+	public boolean deleteCategorie(Long categorieId) throws IOException;
 }
 	

@@ -13,6 +13,7 @@ public class UserMapper {
 
 	public static UsersVo toVO(Users users) {
 		UsersVo usersVo = new UsersVo();
+		usersVo.setId(users.getUser_id());
 		usersVo.setUsername(users.getUsername());
 		usersVo.setEmail(users.getEmail());
 		usersVo.setPassword(users.getPassword());
@@ -31,6 +32,7 @@ public class UserMapper {
 	
 	public static Users toEntity(UsersVo usersVo) {
 		Users users = new Users();
+		users.setUser_id(usersVo.getId());
 		users.setUsername(usersVo.getUsername());
 		users.setEmail(usersVo.getEmail());
 		users.setPassword(usersVo.getPassword());
@@ -48,6 +50,7 @@ public class UserMapper {
 	}
 	
 	public static void updateEntityFromVO(UsersVo usersVo, Users users) {
+		users.setUser_id(usersVo.getId());
 		users.setUsername(usersVo.getUsername());
 		users.setEmail(usersVo.getEmail());
 		users.setPassword(usersVo.getPassword());

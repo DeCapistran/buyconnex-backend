@@ -1,13 +1,5 @@
 package com.buyconnex.buyconnex.vo.article;
 
-import java.util.Set;
-
-import com.buyconnex.buyconnex.entity.article.ArticlesImages;
-import com.buyconnex.buyconnex.entity.article.Boutiques;
-import com.buyconnex.buyconnex.entity.article.Categories;
-import com.buyconnex.buyconnex.entity.article.Images;
-import com.buyconnex.buyconnex.entity.visuel.Sliders;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

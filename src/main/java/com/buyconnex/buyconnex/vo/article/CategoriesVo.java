@@ -1,7 +1,5 @@
 package com.buyconnex.buyconnex.vo.article;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +12,5 @@ import lombok.Setter;
 public class CategoriesVo {
 	private Long id;
 	private String libelle;
-	private String img;
-	private Set<ArticlesVo> articles;
-	private Set<SousCategoriesVo> sousCategories;
 	private ImagesVo images;
 }

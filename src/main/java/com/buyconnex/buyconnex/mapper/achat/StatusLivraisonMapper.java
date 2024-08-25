@@ -9,6 +9,7 @@ public class StatusLivraisonMapper {
 
 	public static StatusLivraisonsVo toVO(StatusLivraisons statusLivraisons) {
 		StatusLivraisonsVo statusLivraisonsVo = new StatusLivraisonsVo();
+		statusLivraisonsVo.setId(statusLivraisons.getStatus_livraison_id());
 		statusLivraisonsVo.setDescription(statusLivraisons.getDescription());
 		statusLivraisonsVo.setLivraisons(statusLivraisons.getLivraisons().stream().map(LivraisonMapper::toVO).collect(Collectors.toSet()));
 		statusLivraisonsVo.setStatus(statusLivraisons.getStatus());
@@ -18,6 +19,7 @@ public class StatusLivraisonMapper {
 	
 	public static StatusLivraisons toEntity(StatusLivraisonsVo statusLivraisonsVo) {
 		StatusLivraisons statusLivraisons = new StatusLivraisons();
+		statusLivraisons.setStatus_livraison_id(statusLivraisonsVo.getId());
 		statusLivraisons.setDescription(statusLivraisonsVo.getDescription());
 		statusLivraisons.setLivraisons(statusLivraisonsVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
 		statusLivraisons.setStatus(statusLivraisonsVo.getStatus());
@@ -26,7 +28,7 @@ public class StatusLivraisonMapper {
 	}
 	
 	public static void updateEntityFromVO(StatusLivraisonsVo statusLivraisonsVo, StatusLivraisons statusLivraisons) {
-		
+		statusLivraisons.setStatus_livraison_id(statusLivraisonsVo.getId());
 		statusLivraisons.setDescription(statusLivraisonsVo.getDescription());
 		statusLivraisons.setLivraisons(statusLivraisonsVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
 		statusLivraisons.setStatus(statusLivraisonsVo.getStatus());

@@ -41,10 +41,6 @@ public class Categories {
     private String libelle;
 	
 	@Getter @Setter
-	@Column(name = "IMG")
-    private String img;
-	
-	@Getter @Setter
 	@OneToMany(mappedBy="categories", cascade = CascadeType.ALL)
     private Set<Articles> articles;
 	

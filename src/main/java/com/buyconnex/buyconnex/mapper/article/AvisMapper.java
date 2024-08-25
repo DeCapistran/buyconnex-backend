@@ -8,6 +8,7 @@ public class AvisMapper {
 
 	public static AvisVo toVO(Avis avis) {
 		AvisVo avisVo = new AvisVo();
+		avisVo.setId(avis.getAvis_id());
 		avisVo.setDateAvis(avis.getDateAvis());
 		avisVo.setEtoile(avis.getEtoile());
 		avisVo.setCommentaire(avis.getCommentaire());
@@ -19,6 +20,7 @@ public class AvisMapper {
 	
 	public static Avis toEntity(AvisVo avisVo) {
 		Avis avis = new Avis();
+		avis.setAvis_id(avisVo.getId());
 		avis.setDateAvis(avisVo.getDateAvis());
 		avis.setEtoile(avisVo.getEtoile());
 		avis.setCommentaire(avisVo.getCommentaire());
@@ -29,7 +31,7 @@ public class AvisMapper {
 	}
 	
 	public static void updateEntityFromVO(AvisVo avisVo, Avis avis) {
-		
+		avis.setAvis_id(avisVo.getId());
 		avis.setDateAvis(avisVo.getDateAvis());
 		avis.setEtoile(avisVo.getEtoile());
 		avis.setCommentaire(avisVo.getCommentaire());
