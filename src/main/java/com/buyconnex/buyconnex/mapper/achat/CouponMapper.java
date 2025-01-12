@@ -10,7 +10,6 @@ public class CouponMapper {
 		CouponsVo couponsVo = new CouponsVo();
 		couponsVo.setId(coupons.getCoupon_id());
 		couponsVo.setLibelle(coupons.getLibelle());
-		couponsVo.setLogo(coupons.getLogo());
 		couponsVo.setCodeCoupon(coupons.getCodeCoupon());
 		couponsVo.setDateCreation(coupons.getDateCreation());
 		couponsVo.setDateDebut(coupons.getDateDebut());
@@ -26,7 +25,6 @@ public class CouponMapper {
 		Coupons coupons = new Coupons();
 		coupons.setCoupon_id(couponsVo.getId());
 		coupons.setLibelle(couponsVo.getLibelle());
-		coupons.setLogo(couponsVo.getLogo());
 		coupons.setCodeCoupon(couponsVo.getCodeCoupon());
 		coupons.setDateCreation(couponsVo.getDateCreation());
 		coupons.setDateDebut(couponsVo.getDateDebut());
@@ -38,9 +36,7 @@ public class CouponMapper {
 	}
 	
 	public static void updateEntityFromVO(CouponsVo couponsVo, Coupons coupons) {
-		coupons.setCoupon_id(couponsVo.getId());
 		coupons.setLibelle(couponsVo.getLibelle());
-		coupons.setLogo(couponsVo.getLogo());
 		coupons.setCodeCoupon(couponsVo.getCodeCoupon());
 		coupons.setDateCreation(couponsVo.getDateCreation());
 		coupons.setDateDebut(couponsVo.getDateDebut());

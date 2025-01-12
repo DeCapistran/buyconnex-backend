@@ -1,5 +1,6 @@
 package com.buyconnex.buyconnex.entity.achat;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -38,10 +39,6 @@ public class Coupons {
     private String libelle;
 	
 	@Getter @Setter
-	@Column(name = "LOGO")
-    private String logo;
-	
-	@Getter @Setter
 	@Column(name = "CODE_COUPON")
     private String codeCoupon;
 	
@@ -59,11 +56,11 @@ public class Coupons {
 	
 	@Getter @Setter
 	@Column(name = "POURCENTAGE")
-    private int pourcentage;
+    private BigDecimal pourcentage;
 	
 	@Getter @Setter
 	@Column(name = "MONTANT_MINIMUM")
-    private Long montantMinimum;
+    private BigDecimal montantMinimum;
 	
 	@PrePersist
     protected void onCreate() {

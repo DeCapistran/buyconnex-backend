@@ -38,8 +38,8 @@ public class Marques {
     private String libelle;
 	
 	@Getter @Setter
-	@Column(name = "IMG")
-    private String img;
+	@Column(name = "DESCRIPTION")
+    private String description;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="marques", cascade = CascadeType.ALL)

@@ -20,16 +20,19 @@ import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Images;
+import com.buyconnex.buyconnex.exception.NameException;
 import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
+import com.buyconnex.buyconnex.repository.article.ArticleRepository;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
 import com.buyconnex.buyconnex.repository.article.CategorieRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
@@ -53,6 +56,18 @@ public class ImageService implements IImageService {
 	
 	@Autowired
 	CategorieRepository categorieRepository;
+	
+	@Autowired
+	ArticleRepository articleRepository;
+	
+	@Autowired
+	CategorieService categorieService;
+	
+	@Autowired
+	ArticleService articleService;
+	
+	@Autowired
+	BoutiqueService boutiqueService;
 
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
@@ -187,6 +202,12 @@ public class ImageService implements IImageService {
 	@Override
 	public BoutiquesVo uploadImageBoutique(MultipartFile file, String nom, String email,
 			String telephone) throws IOException {
+		
+		// Vérification si le libelle existe déjà
+	    if (boutiqueService.existsByNomBoutique(nom)) {
+	        throw new NameException("Le nom de la boutique existe déjà.");
+	    }
+	    
 		//String userHomeDir = System.getProperty("user.home");
 		String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images";
 		Path imagesDir = Paths.get(imagesDirPath);
@@ -239,11 +260,15 @@ public class ImageService implements IImageService {
 	@Override
 	public BoutiquesVo updateImageBoutique(Long boutiqueId, MultipartFile file, String nom, String email,
 			String telephone) throws IOException {
+		
 		// Récupérer la boutique existante par son ID
 		Optional<Boutiques> optionalBoutique = boutiqueRepository.findById(boutiqueId);
 		if (!optionalBoutique.isPresent()) {
 			throw new IllegalArgumentException("Boutique non trouvée pour l'ID: " + boutiqueId);
 		}
+		if (boutiqueService.existsByNomBoutiqueAndNotId(nom, boutiqueId)) {
+            throw new NameException("Le libellé existe déjà pour une autre boutique.");
+        }
 
 		Boutiques boutique = optionalBoutique.get();
 
@@ -332,6 +357,12 @@ public class ImageService implements IImageService {
 
 	@Override
 	public CategoriesVo uploadImageCategorie(MultipartFile file, String libelle) throws IOException {
+		
+		// Vérification si le libelle existe déjà
+	    if (categorieService.existsByLibelleCategorie(libelle)) {
+	        throw new NameException("Le libelle de la catégorie existe déjà.");
+	    }
+	    
 				String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\categories";
 				Path imagesDir = Paths.get(imagesDirPath);
 				if (!Files.exists(imagesDir)) {
@@ -378,11 +409,17 @@ public class ImageService implements IImageService {
 
 	@Override
 	public CategoriesVo updateImageCategorie(Long id, MultipartFile file, String libelle) throws IOException {
-		// Récupérer la categorie existante par son ID
+		
+				// Récupérer la categorie existante par son ID
+		
 				Optional<Categories> optionalCategorie = categorieRepository.findById(id);
 				if (!optionalCategorie.isPresent()) {
 					throw new IllegalArgumentException("Categorie non trouvée pour l'ID: " + id);
 				}
+				
+				if (categorieService.existsByLibelleCategorieAndNotId(libelle, id)) {
+		            throw new NameException("Le libellé existe déjà pour une autre boutique.");
+		        }
 
 				Categories categories = optionalCategorie.get();
 
@@ -461,6 +498,147 @@ public class ImageService implements IImageService {
 
 	    // Supprimer la categorie de la base de données
 	    categorieRepository.delete(categories);
+
+	    return true;
+	}
+
+	@Override
+	public ArticlesVo uploadImageArticle(MultipartFile file, String title) throws IOException {
+		// Vérification si le libelle existe déjà
+	    if (articleService.existsByLibelleArticle(title)) {
+	        throw new NameException("Le libelle de l'article existe déjà.");
+	    }
+	    
+				String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\articles";
+				Path imagesDir = Paths.get(imagesDirPath);
+				if (!Files.exists(imagesDir)) {
+					Files.createDirectories(imagesDir);
+				}
+
+				String imageName = file.getOriginalFilename();
+				if (imageName != null && imageName.contains(".")) {
+					imageName = title + "." + imageName.substring(imageName.lastIndexOf(".") + 1);
+				}
+				Path imagePath = imagesDir.resolve(imageName);
+				Files.write(imagePath, file.getBytes());
+
+				// Create and save the image object in the database
+				Images image = Images.builder()
+						.name(imageName)
+						.type(file.getContentType())
+						.image(file.getBytes())
+						.url("/assets/images/articles/" + imageName)
+						.build();
+
+				Images savedImage = imageRepository.save(image);
+
+				// Create the article entity
+				Articles article = new Articles();
+				article.setTitle(title);
+				article.setImages(savedImage); // Associate the saved image with the article
+
+				// Save the article entity
+				Articles savedArticle = articleRepository.save(article);
+
+				// Map savedArticle to ArticleVo (including ImagesVo mapping)
+				ArticlesVo articlesVo = new ArticlesVo();
+				articlesVo.setTitle(savedArticle.getTitle());
+
+				ImagesVo imagesVo = new ImagesVo();
+				imagesVo.setName(savedImage.getName());
+				imagesVo.setType(savedImage.getType());
+				imagesVo.setUrl(savedImage.getUrl());
+
+				articlesVo.setImages(imagesVo);
+				return articlesVo;
+	}
+
+	@Override
+	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle) throws IOException {
+		// Récupérer l'article existante par son ID
+		
+				Optional<Articles> optionalArticle = articleRepository.findById(id);
+				if (!optionalArticle.isPresent()) {
+					throw new IllegalArgumentException("Article non trouvée pour l'ID: " + id);
+				}
+
+				Articles articles = optionalArticle.get();
+
+				// Gérer la mise à jour de l'image si un nouveau fichier est fourni
+				if (file != null && !file.isEmpty()) {
+					String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\articles";
+					Path imagesDir = Paths.get(imagesDirPath);
+					if (!Files.exists(imagesDir)) {
+						Files.createDirectories(imagesDir);
+					}
+
+					String imageName = file.getOriginalFilename();
+					if (imageName != null && imageName.contains(".")) {
+						imageName = libelle + "." + imageName.substring(imageName.lastIndexOf(".") + 1);
+					}
+					Path imagePath = imagesDir.resolve(imageName);
+					Files.write(imagePath, file.getBytes());
+
+					// Créer et enregistrer le nouvel objet image dans la base de données
+					Images image = Images.builder()
+							.name(imageName)
+							.type(file.getContentType())
+							.image(file.getBytes())
+							.url("/assets/images/articles/" + imageName)
+							.build();
+
+					Images savedImage = imageRepository.save(image);
+
+					// Associer l'image enregistrée à l'article
+					articles.setImages(savedImage);
+				}
+
+				// Mettre à jour les autres informations de l'article
+				articles.setTitle(libelle);
+
+				// Enregistrer l'article mise à jour
+				Articles savedArticle = articleRepository.save(articles);
+
+				// Mapper savedArticle vers ArticlesVo (y compris le mappage de ImagesVo)
+				ArticlesVo articlesVo = new ArticlesVo();
+				articlesVo.setTitle(savedArticle.getTitle());
+
+				ImagesVo imagesVo = new ImagesVo();
+				Images savedImage = savedArticle.getImages();
+				imagesVo.setName(savedImage.getName());
+				imagesVo.setType(savedImage.getType());
+				imagesVo.setUrl(savedImage.getUrl());
+
+				articlesVo.setImages(imagesVo);
+
+				return articlesVo;
+	}
+
+	@Override
+	public boolean deleteArticle(Long articleId) throws IOException {
+		// Récupérer l'article avec l'image associée
+	    Optional<Articles> optionalArticle = articleRepository.findById(articleId);
+	    if (optionalArticle.isEmpty()) {
+	        throw new EntityNotFoundException("Article not found with ID: " + articleId);
+	    }
+
+	    Articles articles = optionalArticle.get();
+	    Images image = articles.getImages();
+
+	    // Supprimer l'image du système de fichiers
+	    if (image != null) {
+	        String imagePath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\articles\\" + image.getName();
+	        Path path = Paths.get(imagePath);
+	        if (Files.exists(path)) {
+	            Files.delete(path); // Supprime le fichier image
+	        }
+
+	        // Supprimer l'image de la base de données
+	        imageRepository.delete(image);
+	    }
+
+	    // Supprimer l'article de la base de données
+	    articleRepository.delete(articles);
 
 	    return true;
 	}

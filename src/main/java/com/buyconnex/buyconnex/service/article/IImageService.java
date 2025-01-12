@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
@@ -37,5 +38,8 @@ public interface IImageService {
 	public CategoriesVo uploadImageCategorie(MultipartFile file, String libelle) throws IOException;
 	public CategoriesVo updateImageCategorie(Long id, MultipartFile file, String libelle) throws IOException;
 	public boolean deleteCategorie(Long categorieId) throws IOException;
+	public ArticlesVo uploadImageArticle(MultipartFile file, String libelle) throws IOException;
+	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle) throws IOException;
+	public boolean deleteArticle(Long articleId) throws IOException;
 }
 	

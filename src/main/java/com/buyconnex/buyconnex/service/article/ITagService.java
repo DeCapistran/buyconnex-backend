@@ -14,4 +14,6 @@ public interface ITagService {
 	public void deleteTagsById(Long id);
 	public TagsVo updateTags(Long id, TagsVo tagsVo);
 	public List<TagsVo> findByNom(String nom);
+	public boolean existsByNomTag(String nom);
+	public boolean existsByNomTagAndNotId(String nom, Long id);
 }

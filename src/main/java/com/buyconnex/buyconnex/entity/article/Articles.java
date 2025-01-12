@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -93,6 +94,11 @@ public class Articles {
     @ManyToOne(targetEntity = StatusArticles.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_STATUS_ARTICLES", referencedColumnName = "ID_STATUS_ARTICLES")
     private StatusArticles statusArticles;
+	
+	@Getter @Setter
+	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
+    @OneToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
+    private Images images;
 	
 	@Getter @Setter
 	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)

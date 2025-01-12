@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buyconnex.buyconnex.service.article.MarqueService;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/marques")
@@ -40,13 +38,19 @@ public class MarqueRestController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<MarquesVo> saveMarque(@Valid @RequestBody MarquesVo marquesVo) {
+	public ResponseEntity<MarquesVo> saveMarque(@RequestParam("libelle") String libelle, @RequestParam("description") String description) {
+		MarquesVo marquesVo = new MarquesVo();
+		marquesVo.setLibelle(libelle);
+		marquesVo.setDescription(description);
 		MarquesVo marque = marqueService.saveMarques(marquesVo);
 		return ResponseEntity.status(201).body(marque);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<MarquesVo> updateMarque(@PathVariable Long id, @Valid @RequestBody MarquesVo marquesVo) {
+	public ResponseEntity<MarquesVo> updateMarque(@RequestParam("id") Long id, @RequestParam("libelle") String libelle, @RequestParam("description") String description) {
+		MarquesVo marquesVo = new MarquesVo();
+		marquesVo.setLibelle(libelle);
+		marquesVo.setDescription(description);
 		MarquesVo marque = marqueService.updateMarques(id, marquesVo);
 		return marque != null ? ResponseEntity.ok(marque) : ResponseEntity.notFound().build();
 	}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Tags;
+import com.buyconnex.buyconnex.exception.NameException;
 import com.buyconnex.buyconnex.mapper.article.TagMapper;
 import com.buyconnex.buyconnex.repository.article.TagRepository;
 import com.buyconnex.buyconnex.vo.article.TagsVo;
@@ -28,6 +29,10 @@ public class TagService implements ITagService {
 
 	@Override
 	public TagsVo saveTags(TagsVo tagsVo) {
+		// Vérification si le libelle existe déjà
+	    if (existsByNomTag(tagsVo.getNom())) {
+	        throw new NameException("Le libelle du tag existe déjà.");
+	    }
 		Tags tags = TagMapper.toEntity(tagsVo);
 		Tags tagsSave = tagRepository.save(tags);
 		return TagMapper.toVO(tagsSave);
@@ -42,6 +47,9 @@ public class TagService implements ITagService {
 	@Override
 	public TagsVo updateTags(Long id, TagsVo tagsVo) {
 		return tagRepository.findById(id).map(tag -> {
+			if (existsByNomTagAndNotId(tagsVo.getNom(), id)) {
+	            throw new NameException("Le libellé existe déjà pour un autre coupon.");
+	        }
 			TagMapper.updateEntityFromVO(tagsVo, tag);
 			Tags tagsUpdated = tagRepository.save(tag);
 			return TagMapper.toVO(tagsUpdated);
@@ -61,6 +69,16 @@ public class TagService implements ITagService {
 	@Override
 	public void deleteTagsById(Long id) {
 		tagRepository.deleteById(id);
+	}
+
+	@Override
+	public boolean existsByNomTag(String nom) {
+		return tagRepository.existsByNomTagIgnoreCase(nom);
+	}
+
+	@Override
+	public boolean existsByNomTagAndNotId(String nom, Long id) {
+		return tagRepository.existsByNomTagAndNotId(nom, id);
 	}
 
 }

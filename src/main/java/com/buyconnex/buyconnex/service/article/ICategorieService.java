@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
-import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 public interface ICategorieService {
 
@@ -19,5 +18,6 @@ public interface ICategorieService {
 	public List<CategoriesVo> findByArticles(ArticlesVo articlesVo);
 	public List<CategoriesVo> findByImages(ImagesVo imagesVo);
 	public List<CategoriesVo> findByLibelle(String libelle);
-	public List<CategoriesVo> findBySousCategories(SousCategoriesVo sousCategoriesVo);
+	public boolean existsByLibelleCategorie(String libelle);
+	public boolean existsByLibelleCategorieAndNotId(String libelle, Long id);
 }

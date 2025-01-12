@@ -11,12 +11,10 @@ import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
-import com.buyconnex.buyconnex.mapper.article.SousCategorieMapper;
 import com.buyconnex.buyconnex.repository.article.CategorieRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
-import com.buyconnex.buyconnex.vo.article.SousCategoriesVo;
 
 import jakarta.transaction.Transactional;
 
@@ -70,11 +68,6 @@ public class CategorieService implements ICategorieService{
 	}
 
 	@Override
-	public List<CategoriesVo> findBySousCategories(SousCategoriesVo sousCategoriesVo) {
-		return categorieRepository.findBySousCategorie(SousCategorieMapper.toEntity(sousCategoriesVo)).stream().map(CategorieMapper::toVO).collect(Collectors.toList());
-	}
-
-	@Override
 	public List<CategoriesVo> findAll() {
 		return categorieRepository.findAll().stream().map(CategorieMapper::toVO).collect(Collectors.toList());
 	}
@@ -83,5 +76,16 @@ public class CategorieService implements ICategorieService{
 	public void deleteCategorieById(Long id) {
 		categorieRepository.deleteById(id);
 	}
+
+	@Override
+	public boolean existsByLibelleCategorie(String libelle) {
+		return categorieRepository.existsByLibelleCategorieIgnoreCase(libelle);
+	}
+
+	@Override
+	public boolean existsByLibelleCategorieAndNotId(String libelle, Long id) {
+		return categorieRepository.existsByLibelleCategorieAndNotId(libelle, id);
+	}
+
 
 }

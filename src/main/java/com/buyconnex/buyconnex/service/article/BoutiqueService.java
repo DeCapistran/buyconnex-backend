@@ -76,4 +76,14 @@ public class BoutiqueService implements IBoutiqueService {
 	public List<BoutiquesVo> findByImages(ImagesVo imagesVo) {
 		return boutiqueRepository.findByImages(ImageMapper.toEntity(imagesVo)).stream().map(BoutiqueMapper::toVO).collect(Collectors.toList());
 	}
+
+	@Override
+	public boolean existsByNomBoutique(String nom) {
+		return boutiqueRepository.existsByLibelleBoutiqueIgnoreCase(nom);
+	}
+
+	@Override
+	public boolean existsByNomBoutiqueAndNotId(String nom, Long id) {
+		return boutiqueRepository.existsByLibelleBoutiqueAndNotId(nom, id);
+	}
 }

@@ -59,6 +59,10 @@ public class Images {
 	
 	@Getter @Setter
 	@OneToOne(mappedBy = "images", cascade = CascadeType.ALL)
+	private Articles articles;
+	
+	@Getter @Setter
+	@OneToOne(mappedBy = "images", cascade = CascadeType.ALL)
 	private Sliders sliders;
 	
 	@Getter @Setter

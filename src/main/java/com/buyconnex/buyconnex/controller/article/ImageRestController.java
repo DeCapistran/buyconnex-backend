@@ -23,6 +23,7 @@ import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.service.article.BoutiqueService;
 import com.buyconnex.buyconnex.service.article.ImageService;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
@@ -136,6 +137,32 @@ public class ImageRestController {
     public ResponseEntity<Void> deleteCategorie(@PathVariable Long id) {
         try {
             imageService.deleteCategorie(id);
+            return ResponseEntity.noContent().build(); // Retourne un statut 204 No Content
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build(); // Retourne un statut 404 Not Found
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Retourne un statut 500 Internal Server Error
+        }
+    }
+	
+	@PostMapping(value = "/uploadfs-article", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<ArticlesVo> uploadFSArticle(@RequestParam("img") MultipartFile file,  
+			@RequestParam("title") String title) throws IOException {
+	    ArticlesVo articlesVo = imageService.uploadImageArticle(file, title);
+	    return ResponseEntity.ok(articlesVo);
+	}
+	
+	@PostMapping(value = "/updatefs-article/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<ArticlesVo> updateFSArticle(@RequestParam("id") Long id,@RequestParam(value = "img", required = false) MultipartFile file,  
+			@RequestParam("title") String title) throws IOException {
+	    ArticlesVo articlesVo = imageService.updateImageArticle(id, file, title);
+	    return ResponseEntity.ok(articlesVo);
+	}
+	
+	@DeleteMapping("/delete-article/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+        try {
+            imageService.deleteArticle(id);
             return ResponseEntity.noContent().build(); // Retourne un statut 204 No Content
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build(); // Retourne un statut 404 Not Found

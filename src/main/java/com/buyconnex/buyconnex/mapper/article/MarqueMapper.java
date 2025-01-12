@@ -1,7 +1,5 @@
 package com.buyconnex.buyconnex.mapper.article;
 
-import java.util.stream.Collectors;
-
 import com.buyconnex.buyconnex.entity.article.Marques;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 
@@ -11,8 +9,7 @@ public class MarqueMapper {
 		MarquesVo marquesVo = new MarquesVo();
 		marquesVo.setId(marques.getMarque_id());
 		marquesVo.setLibelle(marques.getLibelle());
-		marquesVo.setImg(marques.getImg());
-		marquesVo.setArticles(marques.getArticles().stream().map(ArticleMapper::toVO).collect(Collectors.toSet()));
+		marquesVo.setDescription(marques.getDescription());
 		
 		return marquesVo;
 	}
@@ -21,16 +18,13 @@ public class MarqueMapper {
 		Marques marques = new Marques();
 		marques.setMarque_id(marquesVo.getId());
 		marques.setLibelle(marquesVo.getLibelle());
-		marques.setImg(marquesVo.getImg());
-		marques.setArticles(marquesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
+		marques.setDescription(marquesVo.getDescription());
 		
 		return marques;
 	}
 	
 	public static void updateEntityFromVO(MarquesVo marquesVo, Marques marques) {
-		marques.setMarque_id(marquesVo.getId());
 		marques.setLibelle(marquesVo.getLibelle());
-		marques.setImg(marquesVo.getImg());
-		marques.setArticles(marquesVo.getArticles().stream().map(ArticleMapper::toEntity).collect(Collectors.toSet()));
+		marques.setDescription(marquesVo.getDescription());	
 	}
 }

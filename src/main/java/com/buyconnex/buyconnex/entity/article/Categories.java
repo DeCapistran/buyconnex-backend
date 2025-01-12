@@ -45,10 +45,6 @@ public class Categories {
     private Set<Articles> articles;
 	
 	@Getter @Setter
-	@OneToMany(mappedBy="categories", cascade = CascadeType.ALL)
-    private Set<SousCategories> sousCategorie;
-	
-	@Getter @Setter
 	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
     @OneToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
     private Images images;

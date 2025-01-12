@@ -1,5 +1,6 @@
 package com.buyconnex.buyconnex.vo.achat;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -15,11 +16,10 @@ import lombok.Setter;
 public class CouponsVo {
 	private Long id;
 	private String libelle;
-	private String logo;
 	private String codeCoupon;
 	private LocalDateTime dateCreation;
 	private Date dateDebut;
 	private Date dateFin;
-	private int pourcentage;
-	private Long montantMinimum;
+	private BigDecimal pourcentage;
+	private BigDecimal montantMinimum;
 }

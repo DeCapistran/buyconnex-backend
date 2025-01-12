@@ -18,4 +18,6 @@ public interface IBoutiqueService {
 	public List<BoutiquesVo> findByArticle(ArticlesVo articlesVo);
 	public List<BoutiquesVo> findByNom(String nom);
 	public List<BoutiquesVo> findByImages(ImagesVo imagesVo);
+	public boolean existsByNomBoutique(String nom);
+	public boolean existsByNomBoutiqueAndNotId(String nom, Long id);
 }

@@ -15,6 +15,8 @@ public interface IMarqueService {
 	public void deleteMarquesById(Long id);
 	public MarquesVo updateMarques(Long id, MarquesVo marquesVo);
 	public List<MarquesVo> findByArticles(ArticlesVo articlesVo);
-	public List<MarquesVo> findByImg(String img);
+	public List<MarquesVo> findByDescription(String description);
 	public List<MarquesVo> findByLibelle(String libelle);
+	public boolean existsByLibelleMarque(String libelle);
+	public boolean existsByLibelleMarqueAndNotId(String libelle, Long id);
 }

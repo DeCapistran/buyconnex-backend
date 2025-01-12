@@ -50,6 +50,19 @@ public class GlobalExceptionHandler extends RuntimeException {
 	 );
 	 return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 	 }
+	
+	@ExceptionHandler(NameException.class)
+	 public ResponseEntity<ErrorDetails> handleNameException(NameException exception,
+	 WebRequest webRequest){
+		
+	 ErrorDetails errorDetails = new ErrorDetails(
+			 LocalDateTime.now(),
+			 exception.getMessage(),
+			 webRequest.getDescription(false),
+			 "SAME_NAME"
+	 );
+	 return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+	}
 	 
 	
 	@ExceptionHandler(ExpiredTokenException.class)
