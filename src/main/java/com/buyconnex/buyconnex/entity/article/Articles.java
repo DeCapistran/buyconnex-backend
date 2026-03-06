@@ -6,6 +6,7 @@ import java.util.Set;
 import com.buyconnex.buyconnex.entity.achat.CommandesDetails;
 import com.buyconnex.buyconnex.entity.achat.PromotionsDetails;
 import com.buyconnex.buyconnex.entity.client.PaniersDetails;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,109 +24,97 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "ARTICLES")
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@EqualsAndHashCode(exclude = {"categories", "marques", "boutiques", "tags", "statusArticles", "images",
+    "promotionsDetails", "commandesDetails", "paniersDetails", "avis", "articlesImages"})
+@ToString(exclude = {"categories", "marques", "boutiques", "tags", "statusArticles", "images",
+    "promotionsDetails", "commandesDetails", "paniersDetails", "avis", "articlesImages"})
 public class Articles {
 
-	@Id
-	@Getter
+    @Id
     @SequenceGenerator(name = "ARTICLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ARTICLES_SEQ_ID")
     @Column(name = "ID_ARTICLES")
     private Long article_id;
-	
-	@Getter @Setter
-	@Column(name = "SKU")
+
+    @Column(name = "SKU")
     private String sku;
-	
-	@Getter @Setter
-	@Column(name = "IMG_PATH")
+
+    @Column(name = "IMG_PATH")
     private String imgPath;
-	
-	@Getter @Setter
-	@Column(name = "TITLE")
+
+    @Column(name = "TITLE")
     private String title;
-	
-	@Getter @Setter
-	@Column(name = "PRIX")
+
+    @Column(name = "PRIX")
     private Long prix;
-	
-	@Getter @Setter
-	@Column(name = "QUANTITE")
+
+    @Column(name = "QUANTITE")
     private int quantite;
-	
-	@Getter @Setter
-	@Column(name = "DESCRIPTION")
+
+    @Column(name = "DESCRIPTION")
     private String description;
-	
-	@Getter @Setter
-	@Column(name = "COMPOSITION")
+
+    @Column(name = "COMPOSITION")
     private String composition;
-	
-	@Getter @Setter
-	@Column(name = "DATE_AJOUT")
+
+    @Column(name = "DATE_AJOUT")
     private LocalDateTime dateAjout;
-	
-	@Getter @Setter
-    @ManyToOne(targetEntity = Categories.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_CATEGORIE", referencedColumnName = "ID_CATEGORIE")
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_CATEGORIE")
     private Categories categories;
-	
-	@Getter @Setter
-    @ManyToOne(targetEntity = Marques.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_MARQUES", referencedColumnName = "ID_MARQUES")
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_MARQUES")
     private Marques marques;
-	
-	@Getter @Setter
-    @ManyToOne(targetEntity = Boutiques.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_BOUTIQUES", referencedColumnName = "ID_BOUTIQUES")
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_BOUTIQUES")
     private Boutiques boutiques;
-	
-	@Getter @Setter
-    @ManyToOne(targetEntity = StatusArticles.class, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_STATUS_ARTICLES", referencedColumnName = "ID_STATUS_ARTICLES")
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_TAGS")
+    private Tags tags;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_STATUS_ARTICLES")
     private StatusArticles statusArticles;
-	
-	@Getter @Setter
-	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
-    @OneToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
+
+    @JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JsonManagedReference(value = "article-image")
     private Images images;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "articles", cascade = CascadeType.ALL)
     private Set<PromotionsDetails> promotionsDetails;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
-    private Set<CommandesDetails> commandesDetails;	
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "articles", cascade = CascadeType.ALL)
+    private Set<CommandesDetails> commandesDetails;
+
+    @OneToMany(mappedBy = "articles", cascade = CascadeType.ALL)
     private Set<PaniersDetails> paniersDetails;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "articles", cascade = CascadeType.ALL)
     private Set<Avis> avis;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "articles", cascade = CascadeType.ALL)
     private Set<ArticlesImages> articlesImages;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="articles", cascade = CascadeType.ALL)
-    private Set<TagsArticles> tagsArticles;
-	
-	@PrePersist
+
+    @PrePersist
     protected void onCreate() {
-		dateAjout = LocalDateTime.now();
+        dateAjout = LocalDateTime.now();
     }
 }

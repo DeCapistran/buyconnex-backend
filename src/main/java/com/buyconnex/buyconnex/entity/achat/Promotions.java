@@ -16,51 +16,47 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "PROMOTIONS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Promotions {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "PROMOTIONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROMOTIONS_SEQ_ID")
     @Column(name = "ID_PROMOTIONS")
     private Long promotion_id;
 	
-	@Getter @Setter
 	@Column(name = "DATE_CREATION")
     private LocalDateTime dateCreation;
 	
-	@Getter @Setter
 	@Column(name = "DATE_DEBUT")
     private Date dateDebut;
 	
-	@Getter @Setter
 	@Column(name = "DATE_FIN")
     private Date dateFin;
 	
-	@Getter @Setter
 	@Column(name = "POURCENTAGE")
     private int pourcentage;
 	
-	@Getter @Setter
 	@Column(name = "LIBELLE")
     private String libelle;
 	
-	@Getter @Setter
 	@Column(name = "DESCRIPTION")
     private String description;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="promotions", cascade = CascadeType.ALL)
     private Set<PromotionsDetails> promotionsDetails;
 	

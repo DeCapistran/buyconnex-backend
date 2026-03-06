@@ -17,6 +17,6 @@ public class FacturationsVo {
 	private Long id;
 	private LocalDateTime dateFacturation;
 	private String description;
-	private CommandesVo commandes;
+	private Long idCommande;
 	private AdresseVo adresses;
 }

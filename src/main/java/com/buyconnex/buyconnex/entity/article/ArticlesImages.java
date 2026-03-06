@@ -11,32 +11,33 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "ARTICLES_IMAGES")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticlesImages {
 
 	@Id
-	@Getter
 	@SequenceGenerator(name = "ARTICLES_IMAGES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ARTICLES_IMAGES_SEQ_ID")
     @Column(name = "ID_ARTICLES_IMAGES")
     private Long article_image_id;
 	
-	@Getter @Setter
     @ManyToOne
 	@JoinColumn(name = "ID_ARTICLES")
     private Articles articles;
 	
-	@Getter @Setter
     @ManyToOne
 	@JoinColumn(name = "ID_IMAGES")
     private Images images;

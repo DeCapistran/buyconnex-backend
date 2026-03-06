@@ -15,5 +15,5 @@ public class ExpeditionsVo {
 	private Long id;
 	private String commentaire;
 	private LocalDateTime dateExpedition;
-	private CommandesVo commandes;
+	private Long idCommande;
 }

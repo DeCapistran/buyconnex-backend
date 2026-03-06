@@ -6,6 +6,7 @@ import com.buyconnex.buyconnex.vo.user.NotificationsVo;
 public class NotificationMapper {
 
 	public static NotificationsVo toVO(Notifications notifications) {
+		if(notifications == null) return null;
 		NotificationsVo notificationsVo = new NotificationsVo();
 		notificationsVo.setId(notifications.getNotification_id());
 		notificationsVo.setDateNotif(notifications.getDateNotif());
@@ -18,6 +19,7 @@ public class NotificationMapper {
 	}
 	
 	public static Notifications toEntity(NotificationsVo notificationsVo) {
+		if(notificationsVo == null) return null;
 		Notifications notifications = new Notifications();
 		notifications.setNotification_id(notificationsVo.getId());
 		notifications.setDateNotif(notificationsVo.getDateNotif());

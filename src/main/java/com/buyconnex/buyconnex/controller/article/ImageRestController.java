@@ -147,15 +147,30 @@ public class ImageRestController {
 	
 	@PostMapping(value = "/uploadfs-article", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<ArticlesVo> uploadFSArticle(@RequestParam("img") MultipartFile file,  
-			@RequestParam("title") String title) throws IOException {
-	    ArticlesVo articlesVo = imageService.uploadImageArticle(file, title);
+			@RequestParam("title") String title, 
+			@RequestParam("quantite") int quantite, 
+			@RequestParam("marque_id") Long marque_id, 
+			@RequestParam("prix") Long prix, 
+			@RequestParam("categorie_id") Long categorie_id, 
+			@RequestParam("boutique_id") Long boutique_id, 
+			@RequestParam("tag_id") Long tag_id, 
+			@RequestParam("description") String description) throws IOException {
+	    ArticlesVo articlesVo = imageService.uploadImageArticle(file, title, quantite, marque_id, prix, categorie_id, boutique_id, tag_id, description);
 	    return ResponseEntity.ok(articlesVo);
 	}
 	
 	@PostMapping(value = "/updatefs-article/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<ArticlesVo> updateFSArticle(@RequestParam("id") Long id,@RequestParam(value = "img", required = false) MultipartFile file,  
-			@RequestParam("title") String title) throws IOException {
-	    ArticlesVo articlesVo = imageService.updateImageArticle(id, file, title);
+	public ResponseEntity<ArticlesVo> updateFSArticle(@RequestParam("id") Long id,
+			@RequestParam(value = "img", required = false) MultipartFile file,  
+			@RequestParam("title") String title,
+			@RequestParam("quantite") int quantite, 
+			@RequestParam("marque_id") Long marque_id, 
+			@RequestParam("prix") Long prix, 
+			@RequestParam("categorie_id") Long categorie_id, 
+			@RequestParam("boutique_id") Long boutique_id, 
+			@RequestParam("tag_id") Long tag_id, 
+			@RequestParam("description") String description) throws IOException {
+	    ArticlesVo articlesVo = imageService.updateImageArticle(id, file, title, quantite, marque_id, prix, categorie_id, boutique_id, tag_id, description);
 	    return ResponseEntity.ok(articlesVo);
 	}
 	

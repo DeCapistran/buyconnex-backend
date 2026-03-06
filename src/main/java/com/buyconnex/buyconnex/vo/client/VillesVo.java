@@ -15,5 +15,5 @@ public class VillesVo {
 	private Long id;
 	private String ville;
 	private Set<CommunesVo> communes;
-	private PaysVo pays;
+	private Long idPays;
 }

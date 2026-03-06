@@ -6,6 +6,7 @@ import com.buyconnex.buyconnex.vo.visuel.FootersVo;
 public class FooterMapper {
 
 	public static FootersVo toVO(Footers footers) {
+		if(footers == null) return null;
 		FootersVo footersVo = new FootersVo();
 		footersVo.setId(footers.getFooter_id());
 		footersVo.setAdresse(footers.getAdresse());
@@ -16,6 +17,7 @@ public class FooterMapper {
 	}
 	
 	public static Footers toEntity(FootersVo footersVo) {
+		if(footersVo == null) return null;
 		Footers footers = new Footers();
 		footers.setFooter_id(footersVo.getId());
 		footers.setAdresse(footersVo.getAdresse());

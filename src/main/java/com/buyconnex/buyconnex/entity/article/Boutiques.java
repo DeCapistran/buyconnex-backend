@@ -2,6 +2,8 @@ package com.buyconnex.buyconnex.entity.article;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,44 +18,43 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "BOUTIQUES")
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@EqualsAndHashCode(exclude = {"articles", "images"})
+@ToString(exclude = {"articles", "images"})
 public class Boutiques {
 
-	@Id
-	@Getter
+    @Id
     @SequenceGenerator(name = "BOUTIQUES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOUTIQUES_SEQ_ID")
     @Column(name = "ID_BOUTIQUES")
     private Long boutique_id;
-	
-	@Getter @Setter
-	@Column(name = "NOM")
+
+    @Column(name = "NOM")
     private String nom;
-	
-	@Getter @Setter
-	@Column(name = "EMAIL")
+
+    @Column(name = "EMAIL")
     private String email;
-	
-	@Getter @Setter
-	@Column(name = "TELEPHONE")
+
+    @Column(name = "TELEPHONE")
     private String telephone;
-	
-	@Getter @Setter
-	@OneToMany(mappedBy="boutiques", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "boutiques", cascade = CascadeType.ALL)
     private Set<Articles> articles;
-	
-	@Getter @Setter
-	@JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
-    @OneToOne(targetEntity = Images.class, fetch = FetchType.EAGER, optional = false)
+
+    @JoinColumn(name = "ID_IMAGES", referencedColumnName = "ID_IMAGES")
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JsonManagedReference(value = "boutique-image")
     private Images images;
 }

@@ -6,6 +6,7 @@ import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 public class ArticleImageMapper {
 
 	public static ArticlesImagesVo toVO(ArticlesImages articlesImages) {
+		if(articlesImages == null) return null;
 		ArticlesImagesVo articlesImagesVo = new ArticlesImagesVo();
 		articlesImagesVo.setArticlesVo(ArticleMapper.toVO(articlesImages.getArticles()));
 		articlesImagesVo.setImagesVo(ImageMapper.toVO(articlesImages.getImages()));
@@ -14,6 +15,7 @@ public class ArticleImageMapper {
 	}
 	
 	public static ArticlesImages toEntity(ArticlesImagesVo articlesImagesVo) {
+		if(articlesImagesVo == null) return null;
 		ArticlesImages articlesImages = new ArticlesImages();
 		articlesImages.setArticles(ArticleMapper.toEntity(articlesImagesVo.getArticlesVo()));
 		articlesImages.setImages(ImageMapper.toEntity(articlesImagesVo.getImagesVo()));

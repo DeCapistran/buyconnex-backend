@@ -54,7 +54,7 @@ public class PromotionService implements IPromotionService {
 	@Override
 	public PromotionsVo updatePromotions(Long id, PromotionsVo promotionsVo) {
 		return promotionRepository.findById(id).map(promotion -> {
-			PromotionMapper.updateEntityFromVO(promotionsVo, promotion);
+			PromotionMapper.updateEntityFromVo(promotion, promotionsVo);
 			Promotions promotionsUpdated = promotionRepository.save(promotion);
 			return PromotionMapper.toVo(promotionsUpdated);
 		}).orElse(null);

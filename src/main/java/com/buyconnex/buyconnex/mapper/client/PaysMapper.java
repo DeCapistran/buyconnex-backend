@@ -8,6 +8,7 @@ import com.buyconnex.buyconnex.vo.client.PaysVo;
 public class PaysMapper {
 
 	public static PaysVo toVO(Pays pays) {
+		if(pays == null) return null;
 		PaysVo paysVo = new PaysVo();
 		paysVo.setId(pays.getPays_id());
 		paysVo.setPays(pays.getPays());
@@ -17,6 +18,7 @@ public class PaysMapper {
 	}
 	
 	public static Pays toEntity(PaysVo paysVo) {
+		if(paysVo == null) return null;
 		Pays pays = new Pays();
 		pays.setPays_id(paysVo.getId());
 		pays.setPays(paysVo.getPays());
@@ -29,5 +31,14 @@ public class PaysMapper {
 		pays.setPays_id(paysVo.getId());
 		pays.setPays(paysVo.getPays());
 		pays.setVilles(paysVo.getVilles().stream().map(VilleMapper::toEntity).collect(Collectors.toSet()));
+	}
+	
+	public static PaysVo toVO_Simple(Pays pays) {
+	    if (pays == null) return null;
+	    PaysVo paysVo = new PaysVo();
+	    paysVo.setId(pays.getPays_id());
+	    paysVo.setPays(pays.getPays());
+	    paysVo.setVilles(null); // IMPORTANT
+	    return paysVo;
 	}
 }

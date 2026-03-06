@@ -12,5 +12,5 @@ import lombok.Setter;
 public class CommunesVo {
 	private Long id;
 	private String commune;
-	private VillesVo villes;
+	private Long idVille;
 }

@@ -38,8 +38,8 @@ public interface IImageService {
 	public CategoriesVo uploadImageCategorie(MultipartFile file, String libelle) throws IOException;
 	public CategoriesVo updateImageCategorie(Long id, MultipartFile file, String libelle) throws IOException;
 	public boolean deleteCategorie(Long categorieId) throws IOException;
-	public ArticlesVo uploadImageArticle(MultipartFile file, String libelle) throws IOException;
-	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle) throws IOException;
+	public ArticlesVo uploadImageArticle(MultipartFile file, String libelle, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException;
+	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException;
 	public boolean deleteArticle(Long articleId) throws IOException;
 }
 	

@@ -12,6 +12,6 @@ import lombok.Setter;
 public class LivraisonsDetailsVo {
 
 	private Long id;
-	private CommandesVo commandesVo;
+	private Long idCommande;
 	private LivraisonsVo livraisonsVo;
 }

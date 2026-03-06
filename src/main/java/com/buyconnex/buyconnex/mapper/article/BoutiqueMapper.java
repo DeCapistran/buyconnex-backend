@@ -8,6 +8,7 @@ import com.buyconnex.buyconnex.vo.article.ImagesVo;
 public class BoutiqueMapper {
 
 	public static BoutiquesVo toVO(Boutiques boutiques) {
+		if(boutiques == null) return null;
 		BoutiquesVo boutiquesVo = new BoutiquesVo();
 		boutiquesVo.setId(boutiques.getBoutique_id());
 		boutiquesVo.setNom(boutiques.getNom());
@@ -28,6 +29,7 @@ public class BoutiqueMapper {
 	}
 	
 	public static Boutiques toEntity(BoutiquesVo boutiquesVo) {
+		if(boutiquesVo == null) return null;
 		Boutiques boutiques = new Boutiques();
 		boutiques.setBoutique_id(boutiquesVo.getId());
 		boutiques.setNom(boutiquesVo.getNom());

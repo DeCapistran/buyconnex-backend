@@ -7,6 +7,7 @@ import com.buyconnex.buyconnex.vo.other.NewslettersVo;
 public class NewsletterMapper {
 
 	public static NewslettersVo toVO(Newsletters newsletters) {
+		if(newsletters == null) return null;
 		NewslettersVo newslettersVo = new NewslettersVo();
 		newslettersVo.setId(newsletters.getNewletter_id());
 		newslettersVo.setDateInscription(newsletters.getDateInscription());
@@ -18,6 +19,7 @@ public class NewsletterMapper {
 	}
 	
 	public static Newsletters toEntity(NewslettersVo newslettersVo) {
+		if(newslettersVo == null) return null;
 		Newsletters newsletters = new Newsletters();
 		newsletters.setNewletter_id(newslettersVo.getId());
 		newsletters.setDateInscription(newslettersVo.getDateInscription());

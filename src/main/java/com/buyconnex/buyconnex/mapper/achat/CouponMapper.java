@@ -6,7 +6,7 @@ import com.buyconnex.buyconnex.vo.achat.CouponsVo;
 public class CouponMapper {
 
 	public static CouponsVo toVO(Coupons coupons) {
-		
+		if(coupons == null) return null;
 		CouponsVo couponsVo = new CouponsVo();
 		couponsVo.setId(coupons.getCoupon_id());
 		couponsVo.setLibelle(coupons.getLibelle());
@@ -21,7 +21,7 @@ public class CouponMapper {
 	}
 	
 	public static Coupons toEntity(CouponsVo couponsVo) {
-		
+		if(couponsVo == null) return null;
 		Coupons coupons = new Coupons();
 		coupons.setCoupon_id(couponsVo.getId());
 		coupons.setLibelle(couponsVo.getLibelle());

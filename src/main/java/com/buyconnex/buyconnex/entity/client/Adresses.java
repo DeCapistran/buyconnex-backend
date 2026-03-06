@@ -16,21 +16,24 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "ADRESSES")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Adresses {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "ADRESSES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADRESSES_SEQ_ID")
     @Column(name = "ID_ADRESSE")
@@ -48,31 +51,24 @@ public class Adresses {
     @OneToOne(targetEntity = Communes.class, fetch = FetchType.EAGER, optional = false)
     private Communes commune;
 	
-	@Getter @Setter
 	@Column(name = "ADRESSE1")
     private String adresse1;
 	
-	@Getter @Setter
 	@Column(name = "ADRESSE2")
     private String adresse2;
 	
-	@Getter @Setter
 	@Column(name = "CODE_POSTAL")
     private int codePostal;
 	
-	@Getter @Setter
 	@Column(name = "DESCRIPTION")
     private String description;
 	
-	@Getter @Setter
 	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Clients clients;
 	
-	@Getter @Setter
 	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Facturations facturations;
 	
-	@Getter @Setter
 	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
 	private Livraisons livraisons;
 	

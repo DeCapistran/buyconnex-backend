@@ -16,35 +16,35 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "VILLES")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Villes {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "VILLES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VILLES_SEQ_ID")
     @Column(name = "ID_VILLE")
     private Long ville_id;
 	
-	@Getter @Setter
 	@Column(name = "VILLE")
     private String ville;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="villes", cascade = CascadeType.ALL)
     private Set<Communes> communes;
 	
-	@Getter @Setter
     @ManyToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_PAYS", referencedColumnName = "ID_PAYS")
     private Pays pays;

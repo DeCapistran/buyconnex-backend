@@ -25,76 +25,66 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "USERS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "USERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ_ID")
     @Column(name = "ID_USER")
     private Long user_id;
 
-	@Getter @Setter
 	@Column(name = "USERNAME")
     private String username;
 	
-	@Getter @Setter
     @Column(name = "EMAIL")
     private String email;
 
-	@Getter @Setter
     @Column(name = "PASSWORD")
     private String password;
     
-	@Getter @Setter
     @Column(name = "FIRSTNAME")
     private String firstname;
     
-	@Getter @Setter
     @Column(name = "LASTNAME")
     private String lastname;
 
-	@Getter @Setter
     @Column(name = "B_ACTIVATED")
     private boolean bActivated;
 
-	@Getter @Setter
     @Column(name = "DATE_CREATION")
     private LocalDateTime dateCreation;
     
-	@Getter @Setter
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id")) 
 	Set<Roles> roles;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
     private Set<Notifications> notifications;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="users", cascade = CascadeType.ALL)
     private Set<Avis> avis;
 	
-	@Getter @Setter
 	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Paniers paniers;
 	
-	@Getter @Setter
 	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Clients clients;
-	
-	@Getter @Setter
+
 	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Newsletters newsletters;
 	

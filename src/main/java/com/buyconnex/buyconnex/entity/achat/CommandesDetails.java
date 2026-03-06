@@ -13,36 +13,36 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "COMMANDES_DETAILS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommandesDetails {
 
 	@Id
-	@Getter
 	@SequenceGenerator(name = "COMMANDES_DETAILS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMMANDES_DETAILS_SEQ_ID")
     @Column(name = "ID_COMMANDES_DETAILS")
     private Long commandeDetails_id;
 	
-	@Getter @Setter
 	@Column(name = "QUANTITE")
     private int quantite;
 	
-	@Getter @Setter
     @ManyToOne
 	@JoinColumn(name = "ID_ARTICLES")
     private Articles articles;
 	
-	@Getter @Setter
     @ManyToOne
 	@JoinColumn(name = "ID_COMMANDES")
     private Commandes commandes;

@@ -1,36 +1,54 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
-import java.util.stream.Collectors;
-
 import com.buyconnex.buyconnex.entity.achat.StatusLivraisons;
 import com.buyconnex.buyconnex.vo.achat.StatusLivraisonsVo;
 
 public class StatusLivraisonMapper {
 
 	public static StatusLivraisonsVo toVO(StatusLivraisons statusLivraisons) {
-		StatusLivraisonsVo statusLivraisonsVo = new StatusLivraisonsVo();
-		statusLivraisonsVo.setId(statusLivraisons.getStatus_livraison_id());
-		statusLivraisonsVo.setDescription(statusLivraisons.getDescription());
-		statusLivraisonsVo.setLivraisons(statusLivraisons.getLivraisons().stream().map(LivraisonMapper::toVO).collect(Collectors.toSet()));
-		statusLivraisonsVo.setStatus(statusLivraisons.getStatus());
-		
-		return statusLivraisonsVo;
-	}
-	
-	public static StatusLivraisons toEntity(StatusLivraisonsVo statusLivraisonsVo) {
-		StatusLivraisons statusLivraisons = new StatusLivraisons();
-		statusLivraisons.setStatus_livraison_id(statusLivraisonsVo.getId());
-		statusLivraisons.setDescription(statusLivraisonsVo.getDescription());
-		statusLivraisons.setLivraisons(statusLivraisonsVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
-		statusLivraisons.setStatus(statusLivraisonsVo.getStatus());
-		
-		return statusLivraisons;
-	}
-	
-	public static void updateEntityFromVO(StatusLivraisonsVo statusLivraisonsVo, StatusLivraisons statusLivraisons) {
-		statusLivraisons.setStatus_livraison_id(statusLivraisonsVo.getId());
-		statusLivraisons.setDescription(statusLivraisonsVo.getDescription());
-		statusLivraisons.setLivraisons(statusLivraisonsVo.getLivraisons().stream().map(LivraisonMapper::toEntity).collect(Collectors.toSet()));
-		statusLivraisons.setStatus(statusLivraisonsVo.getStatus());
-	}
+        if (statusLivraisons == null) return null;
+
+        StatusLivraisonsVo vo = new StatusLivraisonsVo();
+        vo.setId(statusLivraisons.getStatus_livraison_id());
+        vo.setDescription(statusLivraisons.getDescription());
+        vo.setStatus(statusLivraisons.getStatus());
+
+        // IMPORTANT
+        vo.setLivraisons(null);
+
+        return vo;
+    }
+
+    public static StatusLivraisonsVo toVO_Simple(StatusLivraisons statusLivraisons) {
+        return toVO(statusLivraisons);
+    }
+
+    public static StatusLivraisons toEntityRef(StatusLivraisonsVo vo) {
+        if (vo == null || vo.getId() == null) return null;
+        StatusLivraisons ref = new StatusLivraisons();
+        ref.setStatus_livraison_id(vo.getId());
+        return ref;
+    }
+
+    public static StatusLivraisons toEntity(StatusLivraisonsVo vo) {
+        if (vo == null) return null;
+
+        StatusLivraisons entity = new StatusLivraisons();
+        entity.setStatus_livraison_id(vo.getId());
+        entity.setDescription(vo.getDescription());
+        entity.setStatus(vo.getStatus());
+
+        entity.setLivraisons(null);
+        return entity;
+    }
+
+    public static void updateEntityFromVO(StatusLivraisonsVo vo, StatusLivraisons entity) {
+        if (vo == null || entity == null) return;
+
+        entity.setStatus_livraison_id(vo.getId());
+        entity.setDescription(vo.getDescription());
+        entity.setStatus(vo.getStatus());
+
+        entity.setLivraisons(null);
+    }
 }

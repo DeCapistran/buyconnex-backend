@@ -1,7 +1,6 @@
 package com.buyconnex.buyconnex.entity.others;
 
 import java.time.LocalDateTime;
-
 import com.buyconnex.buyconnex.entity.user.Users;
 
 import jakarta.persistence.Column;
@@ -17,21 +16,24 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "NEWSLETTERS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Newsletters {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "NEWSLETTERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NEWSLETTERS_SEQ_ID")
     @Column(name = "ID_NEWSLETTERS")
@@ -45,7 +47,6 @@ public class Newsletters {
     @Column(name = "DATE_DESINCRIPTION")
     private LocalDateTime dateDesinscription;
 	
-	@Getter @Setter
 	@Column(name = "EMAIL")
     private String email;
 	

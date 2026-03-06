@@ -18,40 +18,39 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "FACTURATIONS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Facturations {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "FACTURATIONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FACTURATIONS_SEQ_ID")
     @Column(name = "ID_FACTURATIONS")
     private Long facturation_id;
 	
-	@Getter @Setter
     @Column(name = "DATE_FACTURATION")
     private LocalDateTime dateFacturation;
 	
-	@Getter @Setter
 	@Column(name = "DESCRIPTION")
     private String description;
 	
-	@Getter @Setter
     @ManyToOne(targetEntity = Commandes.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_COMMANDES", referencedColumnName = "ID_COMMANDES")
     private Commandes commandes;
 	
-	@Getter @Setter
 	@JoinColumn(name = "ID_ADRESSE", referencedColumnName = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;

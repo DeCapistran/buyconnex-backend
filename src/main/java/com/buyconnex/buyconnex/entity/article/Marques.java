@@ -13,35 +13,35 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "MARQUES")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Marques {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "MARQUES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MARQUES_SEQ_ID")
     @Column(name = "ID_MARQUES")
     private Long marque_id;
 	
-	@Getter @Setter
 	@Column(name = "LIBELLE")
     private String libelle;
 	
-	@Getter @Setter
 	@Column(name = "DESCRIPTION")
     private String description;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="marques", cascade = CascadeType.ALL)
     private Set<Articles> articles;
 }

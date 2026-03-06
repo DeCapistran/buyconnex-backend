@@ -12,11 +12,13 @@ import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.entity.article.Marques;
 import com.buyconnex.buyconnex.entity.article.StatusArticles;
+import com.buyconnex.buyconnex.entity.article.Tags;
 
 
 public interface ArticleRepository extends JpaRepository<Articles, Long> {
 
 	List<Articles> findByBoutiques(Boutiques boutiques);
+	List<Articles> findByTags(Tags tags);
 	List<Articles> findByCategories(Categories categories);
 	List<Articles> findByComposition(String composition);
 	List<Articles> findByMarques(Marques marques);

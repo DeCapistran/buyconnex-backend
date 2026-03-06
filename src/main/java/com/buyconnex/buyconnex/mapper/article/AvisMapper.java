@@ -7,6 +7,7 @@ import com.buyconnex.buyconnex.vo.article.AvisVo;
 public class AvisMapper {
 
 	public static AvisVo toVO(Avis avis) {
+		if(avis == null) return null;
 		AvisVo avisVo = new AvisVo();
 		avisVo.setId(avis.getAvis_id());
 		avisVo.setDateAvis(avis.getDateAvis());
@@ -19,6 +20,7 @@ public class AvisMapper {
 	}
 	
 	public static Avis toEntity(AvisVo avisVo) {
+		if(avisVo == null) return null;
 		Avis avis = new Avis();
 		avis.setAvis_id(avisVo.getId());
 		avis.setDateAvis(avisVo.getDateAvis());

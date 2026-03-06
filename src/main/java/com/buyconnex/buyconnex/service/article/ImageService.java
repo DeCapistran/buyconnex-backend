@@ -20,11 +20,17 @@ import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.entity.article.Categories;
 import com.buyconnex.buyconnex.entity.article.Images;
+import com.buyconnex.buyconnex.entity.article.Marques;
+import com.buyconnex.buyconnex.entity.article.Tags;
 import com.buyconnex.buyconnex.exception.NameException;
 import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
+import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
+import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
+import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
+import com.buyconnex.buyconnex.mapper.article.TagMapper;
 import com.buyconnex.buyconnex.mapper.visuel.SliderMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
@@ -68,6 +74,15 @@ public class ImageService implements IImageService {
 	
 	@Autowired
 	BoutiqueService boutiqueService;
+	
+	@Autowired
+	MarqueService marqueService;
+	
+	@Autowired
+	TagService tagService;
+	
+	@Autowired
+	StatusArticleService statusArticleService;
 
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
@@ -503,7 +518,7 @@ public class ImageService implements IImageService {
 	}
 
 	@Override
-	public ArticlesVo uploadImageArticle(MultipartFile file, String title) throws IOException {
+	public ArticlesVo uploadImageArticle(MultipartFile file, String title, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException {
 		// Vérification si le libelle existe déjà
 	    if (articleService.existsByLibelleArticle(title)) {
 	        throw new NameException("Le libelle de l'article existe déjà.");
@@ -534,7 +549,38 @@ public class ImageService implements IImageService {
 
 				// Create the article entity
 				Articles article = new Articles();
+				Marques marque = MarqueMapper.toEntity(marqueService.findById(marque_id).get());
+				Categories categorie = CategorieMapper.toEntity(categorieService.findById(categorie_id).get());
+				Boutiques boutique = BoutiqueMapper.toEntity(boutiqueService.findById(boutique_id).get());
+				Tags tag = TagMapper.toEntity(tagService.findById(tag_id).get());
+				List<ArticlesVo> articleList = articleService.findByTitle(title);
+				if(articleList.size() != 0) {
+					Articles articleStock = ArticleMapper.toEntity(articleService.findByTitle(title).get(0));
+					int stock = Optional.ofNullable(articleStock.getQuantite()).orElse(0) + quantite;
+					if (stock > 0 && stock <= 10) {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(3L).get()));
+					} else if (stock == 0) {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(2L).get()));
+					} else {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(1L).get()));
+					}
+				} else {
+					if (quantite > 0 && quantite <= 10) {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(3L).get()));
+					} else if (quantite == 0) {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(2L).get()));
+					} else {
+					    article.setStatusArticles(StatusArticleMapper.toEntity(statusArticleService.findById(1L).get()));
+					}
+				}
 				article.setTitle(title);
+				article.setQuantite(quantite);
+				article.setMarques(marque);
+				article.setPrix(prix);
+				article.setCategories(categorie);
+				article.setBoutiques(boutique);
+				article.setTags(tag);
+				article.setDescription(description);
 				article.setImages(savedImage); // Associate the saved image with the article
 
 				// Save the article entity
@@ -554,14 +600,17 @@ public class ImageService implements IImageService {
 	}
 
 	@Override
-	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle) throws IOException {
+	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException {
 		// Récupérer l'article existante par son ID
 		
 				Optional<Articles> optionalArticle = articleRepository.findById(id);
 				if (!optionalArticle.isPresent()) {
 					throw new IllegalArgumentException("Article non trouvée pour l'ID: " + id);
 				}
-
+				Marques marque = MarqueMapper.toEntity(marqueService.findById(marque_id).get());
+				Categories categorie = CategorieMapper.toEntity(categorieService.findById(categorie_id).get());
+				Boutiques boutique = BoutiqueMapper.toEntity(boutiqueService.findById(boutique_id).get());
+				Tags tag = TagMapper.toEntity(tagService.findById(tag_id).get());
 				Articles articles = optionalArticle.get();
 
 				// Gérer la mise à jour de l'image si un nouveau fichier est fourni
@@ -595,6 +644,13 @@ public class ImageService implements IImageService {
 
 				// Mettre à jour les autres informations de l'article
 				articles.setTitle(libelle);
+				articles.setQuantite(quantite);
+				articles.setMarques(marque);
+				articles.setPrix(prix);
+				articles.setCategories(categorie);
+				articles.setBoutiques(boutique);
+				articles.setTags(tag);
+				articles.setDescription(description);
 
 				// Enregistrer l'article mise à jour
 				Articles savedArticle = articleRepository.save(articles);

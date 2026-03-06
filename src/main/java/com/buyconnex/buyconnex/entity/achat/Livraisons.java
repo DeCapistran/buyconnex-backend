@@ -23,35 +23,35 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "LIVRAISONS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Livraisons {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "LIVRAISONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LIVRAISONS_SEQ_ID")
     @Column(name = "ID_LIVRAISONS")
     private Long livraison_id;
 	
-	@Getter @Setter
 	@Column(name = "NUMERO_LIVRAISON")
     private String numeroLivraison;
 	
-	@Getter @Setter
     @Column(name = "DATE_LIVRAISON_ESTIMEE")
     private Date dateLivraisonEstimee;
 	
-	@Getter @Setter
     @Column(name = "DATE_LIVRAISON")
     private LocalDateTime dateLivraison;
 	
@@ -59,17 +59,14 @@ public class Livraisons {
 	@Column(name = "COMMENTAIRE")
     private String commentaire;
 	
-	@Getter @Setter
     @ManyToOne(targetEntity = StatusLivraisons.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ID_STATUS_LIVRAISONS", referencedColumnName = "ID_STATUS_LIVRAISONS")
     private StatusLivraisons statusLivraisons;
 	
-	@Getter @Setter
 	@JoinColumn(name = "ID_ADRESSE", referencedColumnName = "ID_ADRESSE")
     @OneToOne(targetEntity = Adresses.class, fetch = FetchType.EAGER, optional = false)
     private Adresses adresses;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="livraisons", cascade = CascadeType.ALL)
     private Set<LivraisonsDetails> livraisonsDetails;
 	

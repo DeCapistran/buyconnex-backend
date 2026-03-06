@@ -8,6 +8,7 @@ import com.buyconnex.buyconnex.vo.article.ImagesVo;
 public class CategorieMapper {
 
 	public static CategoriesVo toVO(Categories categories) {
+		if(categories == null) return null;
 		CategoriesVo categoriesVo = new CategoriesVo();
 		categoriesVo.setId(categories.getCategorie_id());
 		categoriesVo.setLibelle(categories.getLibelle());
@@ -25,6 +26,7 @@ public class CategorieMapper {
 	}
 	
 	public static Categories toEntity(CategoriesVo categoriesVo) {
+		if(categoriesVo == null) return null;
 		Categories categories = new Categories();
 		categories.setCategorie_id(categoriesVo.getId());
 		categories.setLibelle(categoriesVo.getLibelle());

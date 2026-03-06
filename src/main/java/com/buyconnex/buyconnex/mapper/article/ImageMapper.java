@@ -4,7 +4,7 @@ import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 public class ImageMapper {
-    public static ImagesVo toVO(Images image) {
+	public static ImagesVo toVO(Images image) {
         if (image == null) {
             return null;
         }

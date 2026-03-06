@@ -14,51 +14,47 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "COUPONS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Coupons {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "COUPONS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPONS_SEQ_ID")
     @Column(name = "ID_COUPONS")
     private Long coupon_id;
 	
-	@Getter @Setter
 	@Column(name = "LIBELLE")
     private String libelle;
 	
-	@Getter @Setter
 	@Column(name = "CODE_COUPON")
     private String codeCoupon;
 	
-	@Getter @Setter
 	@Column(name = "DATE_CREATION")
     private LocalDateTime dateCreation;
 	
-	@Getter @Setter
 	@Column(name = "DATE_DEBUT")
     private Date dateDebut;
 	
-	@Getter @Setter
 	@Column(name = "DATE_FIN")
     private Date dateFin;
 	
-	@Getter @Setter
 	@Column(name = "POURCENTAGE")
     private BigDecimal pourcentage;
 	
-	@Getter @Setter
 	@Column(name = "MONTANT_MINIMUM")
     private BigDecimal montantMinimum;
 	

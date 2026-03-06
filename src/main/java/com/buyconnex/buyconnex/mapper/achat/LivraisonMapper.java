@@ -1,50 +1,109 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.buyconnex.buyconnex.entity.achat.Livraisons;
+import com.buyconnex.buyconnex.entity.achat.LivraisonsDetails;
 import com.buyconnex.buyconnex.mapper.client.AdresseMapper;
 import com.buyconnex.buyconnex.vo.achat.LivraisonsVo;
 
 public class LivraisonMapper {
 
 	public static LivraisonsVo toVO(Livraisons livraisons) {
-		LivraisonsVo livraisonsVo = new LivraisonsVo();
-		livraisonsVo.setId(livraisons.getLivraison_id());
-		livraisonsVo.setNumeroLivraison(livraisons.getNumeroLivraison());
-		livraisonsVo.setDateLivraisonEstimee(livraisons.getDateLivraisonEstimee());
-		livraisonsVo.setDateLivraison(livraisons.getDateLivraison());
-		livraisonsVo.setCommentaire(livraisons.getCommentaire());
-		livraisonsVo.setStatusLivraisons(StatusLivraisonMapper.toVO(livraisons.getStatusLivraisons()));
-		livraisonsVo.setAdresses(AdresseMapper.toVO(livraisons.getAdresses()));
-		livraisonsVo.setLivraisonsDetails(livraisons.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toVO).collect(Collectors.toSet()));
-		
-		return livraisonsVo;
-	}
-	
-	public static Livraisons toEntity(LivraisonsVo livraisonsVo) {
-		Livraisons livraisons = new Livraisons();
-		livraisons.setLivraison_id(livraisonsVo.getId());
-		livraisons.setNumeroLivraison(livraisonsVo.getNumeroLivraison());
-		livraisons.setDateLivraisonEstimee(livraisonsVo.getDateLivraisonEstimee());
-		livraisons.setDateLivraison(livraisonsVo.getDateLivraison());
-		livraisons.setCommentaire(livraisonsVo.getCommentaire());
-		livraisons.setStatusLivraisons(StatusLivraisonMapper.toEntity(livraisonsVo.getStatusLivraisons()));
-		livraisons.setAdresses(AdresseMapper.toEntity(livraisonsVo.getAdresses()));
-		livraisons.setLivraisonsDetails(livraisonsVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
-		
-		return livraisons;
-	}
-	
-	public static void updateEntityFromVO(LivraisonsVo livraisonsVo, Livraisons livraisons) {
-		livraisons.setLivraison_id(livraisonsVo.getId());
-		livraisons.setNumeroLivraison(livraisonsVo.getNumeroLivraison());
-		livraisons.setDateLivraisonEstimee(livraisonsVo.getDateLivraisonEstimee());
-		livraisons.setDateLivraison(livraisonsVo.getDateLivraison());
-		livraisons.setCommentaire(livraisonsVo.getCommentaire());
-		livraisons.setStatusLivraisons(StatusLivraisonMapper.toEntity(livraisonsVo.getStatusLivraisons()));
-		livraisons.setAdresses(AdresseMapper.toEntity(livraisonsVo.getAdresses()));
-		livraisons.setLivraisonsDetails(livraisonsVo.getLivraisonsDetails().stream().map(LivraisonDetailMapper::toEntity).collect(Collectors.toSet()));
-		
-	}
+        if (livraisons == null) return null;
+
+        LivraisonsVo vo = new LivraisonsVo();
+        vo.setId(livraisons.getLivraison_id());
+        vo.setNumeroLivraison(livraisons.getNumeroLivraison());
+        vo.setDateLivraisonEstimee(livraisons.getDateLivraisonEstimee());
+        vo.setDateLivraison(livraisons.getDateLivraison());
+        vo.setCommentaire(livraisons.getCommentaire());
+
+        vo.setStatusLivraisons(StatusLivraisonMapper.toVO_Simple(livraisons.getStatusLivraisons()));
+        vo.setAdresses(AdresseMapper.toVO(livraisons.getAdresses()));
+
+        vo.setLivraisonsDetails(
+                livraisons.getLivraisonsDetails() == null ? null :
+                        livraisons.getLivraisonsDetails().stream()
+                                .map(LivraisonDetailMapper::toVO)
+                                .collect(Collectors.toSet())
+        );
+
+        return vo;
+    }
+
+    public static LivraisonsVo toVO_Simple(Livraisons livraisons) {
+        if (livraisons == null) return null;
+
+        LivraisonsVo vo = new LivraisonsVo();
+        vo.setId(livraisons.getLivraison_id());
+        vo.setNumeroLivraison(livraisons.getNumeroLivraison());
+        vo.setDateLivraisonEstimee(livraisons.getDateLivraisonEstimee());
+        vo.setDateLivraison(livraisons.getDateLivraison());
+        vo.setCommentaire(livraisons.getCommentaire());
+
+        vo.setStatusLivraisons(StatusLivraisonMapper.toVO_Simple(livraisons.getStatusLivraisons()));
+        vo.setAdresses(AdresseMapper.toVO(livraisons.getAdresses()));
+
+        vo.setLivraisonsDetails(null);
+        return vo;
+    }
+
+    public static Livraisons toEntityRef(LivraisonsVo vo) {
+        if (vo == null || vo.getId() == null) return null;
+        Livraisons ref = new Livraisons();
+        ref.setLivraison_id(vo.getId());
+        return ref;
+    }
+
+    public static Livraisons toEntity(LivraisonsVo vo) {
+        if (vo == null) return null;
+
+        Livraisons entity = new Livraisons();
+        entity.setLivraison_id(vo.getId());
+        entity.setNumeroLivraison(vo.getNumeroLivraison());
+        entity.setDateLivraisonEstimee(vo.getDateLivraisonEstimee());
+        entity.setDateLivraison(vo.getDateLivraison());
+        entity.setCommentaire(vo.getCommentaire());
+
+        entity.setStatusLivraisons(StatusLivraisonMapper.toEntityRef(vo.getStatusLivraisons()));
+        entity.setAdresses(AdresseMapper.toEntity(vo.getAdresses()));
+
+        if (vo.getLivraisonsDetails() != null) {
+            Set<LivraisonsDetails> details = vo.getLivraisonsDetails().stream()
+                    .map(LivraisonDetailMapper::toEntity)
+                    .collect(Collectors.toSet());
+
+            details.forEach(d -> d.setLivraisons(entity));
+            entity.setLivraisonsDetails(details);
+        } else {
+            entity.setLivraisonsDetails(null);
+        }
+
+        return entity;
+    }
+
+    public static void updateEntityFromVO(LivraisonsVo vo, Livraisons entity) {
+        if (vo == null || entity == null) return;
+
+        entity.setLivraison_id(vo.getId());
+        entity.setNumeroLivraison(vo.getNumeroLivraison());
+        entity.setDateLivraisonEstimee(vo.getDateLivraisonEstimee());
+        entity.setDateLivraison(vo.getDateLivraison());
+        entity.setCommentaire(vo.getCommentaire());
+
+        entity.setStatusLivraisons(StatusLivraisonMapper.toEntityRef(vo.getStatusLivraisons()));
+        entity.setAdresses(AdresseMapper.toEntity(vo.getAdresses()));
+
+        if (vo.getLivraisonsDetails() != null) {
+            Set<LivraisonsDetails> details = vo.getLivraisonsDetails().stream()
+                    .map(LivraisonDetailMapper::toEntity)
+                    .collect(Collectors.toSet());
+            details.forEach(d -> d.setLivraisons(entity));
+            entity.setLivraisonsDetails(details);
+        } else {
+            entity.setLivraisonsDetails(null);
+        }
+    }
 }

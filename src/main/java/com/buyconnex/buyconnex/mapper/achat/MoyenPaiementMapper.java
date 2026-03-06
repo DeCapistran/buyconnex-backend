@@ -1,36 +1,54 @@
 package com.buyconnex.buyconnex.mapper.achat;
 
-import java.util.stream.Collectors;
-
 import com.buyconnex.buyconnex.entity.achat.MoyensPaiements;
 import com.buyconnex.buyconnex.vo.achat.MoyensPaiementsVo;
 
 public class MoyenPaiementMapper {
 
 	public static MoyensPaiementsVo toVO(MoyensPaiements moyensPaiements) {
-		MoyensPaiementsVo moyensPaiementsVo = new MoyensPaiementsVo();
-		moyensPaiementsVo.setId(moyensPaiements.getMoyen_paiement_id());
-		moyensPaiementsVo.setMoyensPaiements(moyensPaiements.getMoyenPaiement());
-		moyensPaiementsVo.setDescription(moyensPaiements.getDescription());
-		moyensPaiementsVo.setPaiements(moyensPaiements.getPaiements().stream().map(PaiementMapper::toVO).collect(Collectors.toSet()));
-		
-		return moyensPaiementsVo;
-	}
-	
-	public static MoyensPaiements toEntity(MoyensPaiementsVo moyensPaiementsVo) {
-		MoyensPaiements moyensPaiements = new MoyensPaiements();
-		moyensPaiements.setMoyen_paiement_id(moyensPaiementsVo.getId());
-		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
-		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
-		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));
-		
-		return moyensPaiements;
-	}
-	
-	public static void updateEntityFromVO(MoyensPaiementsVo moyensPaiementsVo, MoyensPaiements moyensPaiements) {
-		moyensPaiements.setMoyen_paiement_id(moyensPaiementsVo.getId());
-		moyensPaiements.setMoyenPaiement(moyensPaiementsVo.getMoyensPaiements());
-		moyensPaiements.setDescription(moyensPaiementsVo.getDescription());
-		moyensPaiements.setPaiements(moyensPaiementsVo.getPaiements().stream().map(PaiementMapper::toEntity).collect(Collectors.toSet()));
-	}
+        if (moyensPaiements == null) return null;
+
+        MoyensPaiementsVo vo = new MoyensPaiementsVo();
+        vo.setId(moyensPaiements.getMoyen_paiement_id());
+        vo.setMoyensPaiements(moyensPaiements.getMoyenPaiement());
+        vo.setDescription(moyensPaiements.getDescription());
+
+        // IMPORTANT
+        vo.setPaiements(null);
+
+        return vo;
+    }
+
+    public static MoyensPaiementsVo toVO_Simple(MoyensPaiements moyensPaiements) {
+        return toVO(moyensPaiements);
+    }
+
+    public static MoyensPaiements toEntityRef(MoyensPaiementsVo vo) {
+        if (vo == null || vo.getId() == null) return null;
+        MoyensPaiements ref = new MoyensPaiements();
+        ref.setMoyen_paiement_id(vo.getId());
+        return ref;
+    }
+
+    public static MoyensPaiements toEntity(MoyensPaiementsVo vo) {
+        if (vo == null) return null;
+
+        MoyensPaiements entity = new MoyensPaiements();
+        entity.setMoyen_paiement_id(vo.getId());
+        entity.setMoyenPaiement(vo.getMoyensPaiements());
+        entity.setDescription(vo.getDescription());
+
+        entity.setPaiements(null);
+        return entity;
+    }
+
+    public static void updateEntityFromVO(MoyensPaiementsVo vo, MoyensPaiements entity) {
+        if (vo == null || entity == null) return;
+
+        entity.setMoyen_paiement_id(vo.getId());
+        entity.setMoyenPaiement(vo.getMoyensPaiements());
+        entity.setDescription(vo.getDescription());
+
+        entity.setPaiements(null);
+    }
 }

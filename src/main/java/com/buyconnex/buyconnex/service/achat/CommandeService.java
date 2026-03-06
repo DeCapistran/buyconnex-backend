@@ -27,10 +27,10 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class CommandeService implements ICommandeService {
-	
+
 	@Autowired
 	CommandeRepository commandeRepository;
-	
+
 	@Autowired
 	ArticleRepository articleRepository;
 
@@ -38,7 +38,7 @@ public class CommandeService implements ICommandeService {
 	public Optional<CommandesVo> findById(Long id) {
 		return commandeRepository.findById(id).map(CommandeMapper::toVO);
 	}
-	
+
 	@Override
 	public CommandesVo saveCommandes(CommandesVo commandesVo) {
 		validateCommande(commandesVo);
@@ -46,19 +46,19 @@ public class CommandeService implements ICommandeService {
 		commandes.getCommandesDetails().forEach(commandeDetail -> {
 			Articles articles = articleRepository.findById(commandeDetail.getArticles().getArticle_id())
 					.orElseThrow(() -> new RuntimeException("Article non trouvé."));
-					commandeDetail.setArticles(articles);
-					commandeDetail.setCommandes(commandes);
+			commandeDetail.setArticles(articles);
+			commandeDetail.setCommandes(commandes);
 		});
 		Commandes commandeSave = commandeRepository.save(commandes);
 		return CommandeMapper.toVO(commandeSave);
 	}
-	
+
 	@Override
 	public void deleteCommandes(CommandesVo commandesVo) {
 		Commandes commandes = CommandeMapper.toEntity(commandesVo);
 		commandeRepository.delete(commandes);
 	}
-	
+
 	@Override
 	public CommandesVo updateCommandes(Long id, CommandesVo commandesVo) {
 		return commandeRepository.findById(id).map(existCommande -> {
@@ -81,37 +81,42 @@ public class CommandeService implements ICommandeService {
 
 	@Override
 	public List<CommandesVo> findByClients(ClientsVo clientsVo) {
-		return commandeRepository.findByClients(ClientMapper.toEntity(clientsVo)).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
+		return commandeRepository.findByClients(ClientMapper.toEntity(clientsVo)).stream().map(CommandeMapper::toVO)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public List<CommandesVo> findByDateCommande(Date date) {
-		return commandeRepository.findByDateCommande(date).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
+		return commandeRepository.findByDateCommande(date).stream().map(CommandeMapper::toVO)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public List<CommandesVo> findByStatusCommandes(StatusCommandesVo statusCommandesVo) {
-		return commandeRepository.findByStatusCommandes(StatusCommandeMapper.toEntity(statusCommandesVo)).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
+		return commandeRepository.findByStatusCommandes(StatusCommandeMapper.toEntity(statusCommandesVo)).stream()
+				.map(CommandeMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<CommandesVo> findBymoyensLivraisons(MoyensLivraisonsVo moyensLivraisonsVo) {
-		return commandeRepository.findByMoyensLivraisons(MoyenLivraisonMapper.toEntity(moyensLivraisonsVo)).stream().map(CommandeMapper::toVO).collect(Collectors.toList());
+		return commandeRepository.findByMoyensLivraisons(MoyenLivraisonMapper.toEntity(moyensLivraisonsVo)).stream()
+				.map(CommandeMapper::toVO).collect(Collectors.toList());
 	}
-	
+
 	private void validateCommande(CommandesVo commandesVo) {
-		if(commandesVo.getArticles() == null || commandesVo.getArticles().isEmpty()) {
+		if (commandesVo.getArticles() == null || commandesVo.getArticles().isEmpty()) {
 			throw new IllegalArgumentException("La commande ne contient pas d'articles.");
 		} else {
-			for(CommandesDetailsVo comDetailVo : commandesVo.getCommandesDetails()) {
+			for (CommandesDetailsVo comDetailVo : commandesVo.getCommandesDetails()) {
 				if (comDetailVo.getQuantite() <= 0) {
 					throw new IllegalArgumentException("La quantité ne doit pas être nulle.");
-				} 
-				if(comDetailVo.getArticlesVo() == null || comDetailVo.getArticlesVo().getIdArticle() == null) {
+				}
+				if (comDetailVo.getArticlesVo() == null || comDetailVo.getArticlesVo().getId() == null) {
 					throw new IllegalArgumentException("Tous les articles doivent être valides.");
 				}
-				if(articleRepository.existsById(comDetailVo.getArticlesVo().getIdArticle())) {
-					throw new IllegalArgumentException("Le produit avec ID : " + comDetailVo.getArticlesVo().getIdArticle() + " n'existe pas.");
+				if (articleRepository.existsById(comDetailVo.getArticlesVo().getId())) {
+					throw new IllegalArgumentException(
+							"Le produit avec ID : " + comDetailVo.getArticlesVo().getId() + " n'existe pas.");
 				}
 			}
 		}
@@ -125,7 +130,7 @@ public class CommandeService implements ICommandeService {
 	@Override
 	public void deleteCommandesById(Long id) {
 		commandeRepository.deleteById(id);
-		
+
 	}
-	
+
 }

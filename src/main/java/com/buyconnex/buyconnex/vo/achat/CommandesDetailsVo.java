@@ -14,7 +14,7 @@ import lombok.Setter;
 public class CommandesDetailsVo {
 
 	private Long id;
-	private CommandesVo commandesVo;
+	private Long idCommande;
 	private ArticlesVo articlesVo;
 	private int quantite;
 }

@@ -7,6 +7,7 @@ import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
 public class SliderMapper {
 
 	public static SlidersVo toVO(Sliders sliders) {
+		if(sliders == null) return null;
 		SlidersVo slidersVo = new SlidersVo();
 		slidersVo.setId(sliders.getSlider_id());
 		slidersVo.setImages(ImageMapper.toVO(sliders.getImages()));
@@ -16,6 +17,7 @@ public class SliderMapper {
 	}
 	
 	public static Sliders toEntity(SlidersVo slidersVo) {
+		if(slidersVo == null) return null;
 		Sliders sliders = new Sliders();
 		sliders.setSlider_id(slidersVo.getId());
 		sliders.setImages(ImageMapper.toEntity(slidersVo.getImages()));

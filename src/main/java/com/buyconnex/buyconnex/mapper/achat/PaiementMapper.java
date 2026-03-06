@@ -6,32 +6,41 @@ import com.buyconnex.buyconnex.vo.achat.PaiementsVo;
 public class PaiementMapper {
 
 	public static PaiementsVo toVO(Paiements paiements) {
-		PaiementsVo paiementsVo = new PaiementsVo();
-		paiementsVo.setId(paiements.getPaiement_id());
-		paiementsVo.setDatePaiement(paiements.getDatePaiement());
-		paiementsVo.setMontant(paiements.getMontant());
-		paiementsVo.setMoyensPaiements(MoyenPaiementMapper.toVO(paiements.getMoyensPaiements()));
-		paiementsVo.setStatusPaiements(StatusPaiementMapper.toVO(paiements.getStatusPaiements()));
-		
-		return paiementsVo;
-	}
-	
-	public static Paiements toEntity(PaiementsVo paiementsVo) {
-		Paiements paiements = new Paiements();
-		paiements.setPaiement_id(paiementsVo.getId());
-		paiements.setDatePaiement(paiementsVo.getDatePaiement());
-		paiements.setMontant(paiementsVo.getMontant());
-		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));
-		paiements.setStatusPaiements(StatusPaiementMapper.toEntity(paiementsVo.getStatusPaiements()));
-		
-		return paiements;
-	}
-	
-	public static void updateEntityFromVO(PaiementsVo paiementsVo, Paiements paiements) {
-		paiements.setPaiement_id(paiementsVo.getId());
-		paiements.setDatePaiement(paiementsVo.getDatePaiement());
-		paiements.setMontant(paiementsVo.getMontant());
-		paiements.setMoyensPaiements(MoyenPaiementMapper.toEntity(paiementsVo.getMoyensPaiements()));
-		paiements.setStatusPaiements(StatusPaiementMapper.toEntity(paiementsVo.getStatusPaiements()));
-	}
+        if (paiements == null) return null;
+
+        PaiementsVo vo = new PaiementsVo();
+        vo.setId(paiements.getPaiement_id());
+        vo.setDatePaiement(paiements.getDatePaiement());
+        vo.setMontant(paiements.getMontant());
+
+        vo.setMoyensPaiements(MoyenPaiementMapper.toVO_Simple(paiements.getMoyensPaiements()));
+        vo.setStatusPaiements(StatusPaiementMapper.toVO_Simple(paiements.getStatusPaiements()));
+
+        return vo;
+    }
+
+    public static Paiements toEntity(PaiementsVo vo) {
+        if (vo == null) return null;
+
+        Paiements entity = new Paiements();
+        entity.setPaiement_id(vo.getId());
+        entity.setDatePaiement(vo.getDatePaiement());
+        entity.setMontant(vo.getMontant());
+
+        entity.setMoyensPaiements(MoyenPaiementMapper.toEntityRef(vo.getMoyensPaiements()));
+        entity.setStatusPaiements(StatusPaiementMapper.toEntityRef(vo.getStatusPaiements()));
+
+        return entity;
+    }
+
+    public static void updateEntityFromVO(PaiementsVo vo, Paiements entity) {
+        if (vo == null || entity == null) return;
+
+        entity.setPaiement_id(vo.getId());
+        entity.setDatePaiement(vo.getDatePaiement());
+        entity.setMontant(vo.getMontant());
+
+        entity.setMoyensPaiements(MoyenPaiementMapper.toEntityRef(vo.getMoyensPaiements()));
+        entity.setStatusPaiements(StatusPaiementMapper.toEntityRef(vo.getStatusPaiements()));
+    }
 }

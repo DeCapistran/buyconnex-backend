@@ -7,23 +7,29 @@ import com.buyconnex.buyconnex.vo.client.PaniersDetailsVo;
 public class PanierDetailMapper {
 
 	public static PaniersDetailsVo toVo(PaniersDetails paniersDetails) {
-		PaniersDetailsVo paniersDetailsVo = new PaniersDetailsVo();
-		paniersDetailsVo.setArticlesVo(ArticleMapper.toVO(paniersDetails.getArticles()));
-		paniersDetailsVo.setPaniersVo(PanierMapper.toVO(paniersDetails.getPaniers()));
-		
-		return paniersDetailsVo;
-	}
-	
-	public static PaniersDetails toEntity(PaniersDetailsVo paniersDetailsVo) {
-		PaniersDetails paniersDetails = new PaniersDetails();
-		paniersDetails.setArticles(ArticleMapper.toEntity(paniersDetailsVo.getArticlesVo()));
-		paniersDetails.setPaniers(PanierMapper.toEntity(paniersDetailsVo.getPaniersVo()));
-		
-		return paniersDetails;
-	}
-	
-	public static void updateEntityFromVo(PaniersDetails paniersDetails, PaniersDetailsVo paniersDetailsVo) {
-		paniersDetails.setArticles(ArticleMapper.toEntity(paniersDetailsVo.getArticlesVo()));
-		paniersDetails.setPaniers(PanierMapper.toEntity(paniersDetailsVo.getPaniersVo()));
-	}
+        if (paniersDetails == null) return null;
+
+        PaniersDetailsVo vo = new PaniersDetailsVo();
+        vo.setArticlesVo(ArticleMapper.toVO(paniersDetails.getArticles()));
+        vo.setPaniersVo(PanierMapper.toVO_Simple(paniersDetails.getPaniers()));
+
+        return vo;
+    }
+
+    public static PaniersDetails toEntity(PaniersDetailsVo vo) {
+        if (vo == null) return null;
+
+        PaniersDetails entity = new PaniersDetails();
+        entity.setArticles(ArticleMapper.toEntity(vo.getArticlesVo()));
+        entity.setPaniers(PanierMapper.toEntityRef(vo.getPaniersVo()));
+
+        return entity;
+    }
+
+    public static void updateEntityFromVo(PaniersDetails entity, PaniersDetailsVo vo) {
+        if (entity == null || vo == null) return;
+
+        entity.setArticles(ArticleMapper.toEntity(vo.getArticlesVo()));
+        entity.setPaniers(PanierMapper.toEntityRef(vo.getPaniersVo()));
+    }
 }

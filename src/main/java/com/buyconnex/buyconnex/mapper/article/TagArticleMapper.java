@@ -6,6 +6,7 @@ import com.buyconnex.buyconnex.vo.article.TagsArticlesVo;
 public class TagArticleMapper {
 
 	public static TagsArticlesVo toVO(TagsArticles tagsArticles) {
+		if(tagsArticles == null) return null;
 		TagsArticlesVo tagsArticlesVo = new TagsArticlesVo();
 		tagsArticlesVo.setArticlesVo(ArticleMapper.toVO(tagsArticles.getArticles()));
 		tagsArticlesVo.setTagsVo(TagMapper.toVO(tagsArticles.getTags()));
@@ -14,6 +15,7 @@ public class TagArticleMapper {
 	}
 	
 	public static TagsArticles toEntity(TagsArticlesVo tagsArticlesVo) {
+		if(tagsArticlesVo == null) return null;
 		TagsArticles tagsArticles = new TagsArticles();
 		tagsArticles.setArticles(ArticleMapper.toEntity(tagsArticlesVo.getArticlesVo()));
 		tagsArticles.setTags(TagMapper.toEntity(tagsArticlesVo.getTagsVo()));

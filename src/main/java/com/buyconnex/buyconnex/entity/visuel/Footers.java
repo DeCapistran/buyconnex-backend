@@ -9,35 +9,35 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "FOOTERS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Footers {
 
 	@Id
-	@Getter
     @SequenceGenerator(name = "FOOTERS_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FOOTERS_SEQ_ID")
     @Column(name = "ID_FOOTERS")
     private Long footer_id;
 	
-	@Getter @Setter
 	@Column(name = "TELEPHONE")
     private String telephone;
 	
-	@Getter @Setter
 	@Column(name = "ADRESSE")
     private String adresse;
 	
-	@Getter @Setter
 	@Column(name = "MAIL_SUPPORT")
     private String mailSupport;
 

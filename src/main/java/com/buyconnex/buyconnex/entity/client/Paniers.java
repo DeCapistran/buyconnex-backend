@@ -20,14 +20,18 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "PANIERS")
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,16 +44,13 @@ public class Paniers {
     @Column(name = "ID_PANIERS")
     private Long paniers_id;
 	
-	@Getter @Setter
     @Column(name = "DATE_PANIERS")
     private LocalDateTime datePanier;
 	
-	@Getter @Setter
 	@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")
     @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER, optional = false)
     private Users users;
 	
-	@Getter @Setter
 	@OneToMany(mappedBy="paniers", cascade = CascadeType.ALL)
     private Set<PaniersDetails> paniersDetails;
 	
