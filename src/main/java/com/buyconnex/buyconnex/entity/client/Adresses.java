@@ -1,0 +1,75 @@
+package com.buyconnex.buyconnex.entity.client;
+
+import com.buyconnex.buyconnex.entity.achat.Facturations;
+import com.buyconnex.buyconnex.entity.achat.Livraisons;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "ADRESSES")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Adresses {
+
+	@Id
+    @SequenceGenerator(name = "ADRESSES_SEQ_ID", sequenceName = "SEQ_OID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADRESSES_SEQ_ID")
+    @Column(name = "ID_ADRESSE")
+    private Long adresse_id;
+	
+	@JoinColumn(name = "ID_PAYS", referencedColumnName = "ID_PAYS")
+    @OneToOne(targetEntity = Pays.class, fetch = FetchType.EAGER, optional = false)
+    private Pays pays;
+	
+	@JoinColumn(name = "ID_VILLE", referencedColumnName = "ID_VILLE")
+    @OneToOne(targetEntity = Villes.class, fetch = FetchType.EAGER, optional = false)
+    private Villes ville;
+	
+	@JoinColumn(name = "ID_COMMUNE", referencedColumnName = "ID_COMMUNE")
+    @OneToOne(targetEntity = Communes.class, fetch = FetchType.EAGER, optional = false)
+    private Communes commune;
+	
+	@Column(name = "ADRESSE1")
+    private String adresse1;
+	
+	@Column(name = "ADRESSE2")
+    private String adresse2;
+	
+	@Column(name = "CODE_POSTAL")
+    private int codePostal;
+	
+	@Column(name = "DESCRIPTION")
+    private String description;
+	
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
+	private Clients clients;
+	
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
+	private Facturations facturations;
+	
+	@OneToOne(mappedBy = "adresses", cascade = CascadeType.ALL)
+	private Livraisons livraisons;
+	
+}
