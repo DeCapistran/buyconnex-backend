@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "management.security.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'management.security.enabled'"
+  },
+  {
+    "name": "management.endpoints.web.exposure.inclure",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.web.exposure.inclure'"
+  },
+  {
+    "name": "management.endpoint.health.show-details",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoint.health.show-details'"
+  },
+  {
+    "name": "management.endpoint.shutdown.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoint.shutdown.enabled'"
+  },
+  {
+    "name": "create.user.cron.expression",
+    "type": "java.lang.String",
+    "description": "A description for 'create.user.cron.expression'"
+  },
+  {
+    "name": "purge.cron.expression",
+    "type": "java.lang.String",
+    "description": "A description for 'purge.cron.expression'"
+  },
+  {
+    "name": "jwt.token.validity",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.token.validity'"
+  },
+  {
+    "name": "spring.mail.debug",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.debug'"
+  },
+  {
+    "name": "application.security.jwt.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.secret-key'"
+  },
+  {
+    "name": "application.security.jwt.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.expiration'"
+  },
+  {
+    "name": "application.security.jwt.refresh-token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.refresh-token.expiration'"
+  }
+]}
