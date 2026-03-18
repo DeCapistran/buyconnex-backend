@@ -19,6 +19,7 @@ import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.entity.article.ArticlesImages;
 import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.entity.article.Categories;
+import com.buyconnex.buyconnex.entity.article.Couleurs;
 import com.buyconnex.buyconnex.entity.article.Images;
 import com.buyconnex.buyconnex.entity.article.Marques;
 import com.buyconnex.buyconnex.entity.article.Tags;
@@ -27,6 +28,7 @@ import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
+import com.buyconnex.buyconnex.mapper.article.CouleurMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
 import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
@@ -36,11 +38,13 @@ import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
 import com.buyconnex.buyconnex.repository.article.CategorieRepository;
+import com.buyconnex.buyconnex.repository.article.CouleurRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.CouleursVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
 
@@ -84,6 +88,9 @@ public class ImageService implements IImageService {
 	@Autowired
 	StatusArticleService statusArticleService;
 
+	@Autowired
+	CouleurRepository couleurRepository;
+
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
 		return imageRepository.findById(id).map(ImageMapper::toVO);
@@ -115,6 +122,12 @@ public class ImageService implements IImageService {
 	@Override
 	public List<ImagesVo> findBySlider(SlidersVo slidersVo) {
 		return imageRepository.findBySliders(SliderMapper.toEntity(slidersVo)).stream().map(ImageMapper::toVO).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ImagesVo> findByCouleur(CouleursVo couleursVo) {
+		Couleurs couleurs = CouleurMapper.toEntity(couleursVo);
+		return imageRepository.findByCouleurs(couleurs).stream().map(ImageMapper::toVO).collect(Collectors.toList());
 	}
 
 	@Override

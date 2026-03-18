@@ -12,6 +12,7 @@ import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.CouleursVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.visuel.SlidersVo;
 
@@ -26,6 +27,7 @@ public interface IImageService {
 	public List<ImagesVo> findByBoutique(BoutiquesVo boutiquesVo);
 	public List<ImagesVo> findByName(String name);
 	public List<ImagesVo> findBySlider(SlidersVo slidersVo);
+	public List<ImagesVo> findByCouleur(CouleursVo couleursVo);
 	public List<ImagesVo> uploadImage(List<MultipartFile> file) throws IOException;
 	public ImagesVo uploadImageSingle(MultipartFile file) throws IOException;
 	public ImagesVo getImageDetail(Long id) throws IOException;

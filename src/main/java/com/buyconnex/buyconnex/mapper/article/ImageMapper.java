@@ -9,10 +9,12 @@ public class ImageMapper {
             return null;
         }
         return ImagesVo.builder()
+                       .id(image.getImage_id())
                        .name(image.getName())
                        .type(image.getType())
                        .image(image.getImage())
                        .url(image.getUrl())
+                       .couleur(CouleurMapper.toVO(image.getCouleurs()))
                        .build();
     }
 
@@ -25,6 +27,7 @@ public class ImageMapper {
                      .type(imagesVo.getType())
                      .image(imagesVo.getImage())
                      .url(imagesVo.getUrl())
+                     .couleurs(CouleurMapper.toEntity(imagesVo.getCouleur()))
                      .build();
     }
 }

@@ -22,10 +22,12 @@ import com.buyconnex.buyconnex.entity.article.Boutiques;
 import com.buyconnex.buyconnex.repository.article.BoutiqueRepository;
 import com.buyconnex.buyconnex.repository.article.ImageRepository;
 import com.buyconnex.buyconnex.service.article.BoutiqueService;
+import com.buyconnex.buyconnex.service.article.CouleurService;
 import com.buyconnex.buyconnex.service.article.ImageService;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.CouleursVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -43,6 +45,9 @@ public class ImageRestController {
 	BoutiqueService boutiqueService;
 	
 	@Autowired
+	CouleurService couleurService;
+	
+	@Autowired
 	ImageRepository imageRepository;
 	
 	@Autowired
@@ -52,6 +57,16 @@ public class ImageRestController {
 	public ResponseEntity<List<ImagesVo>> findAllImages() {
 		List<ImagesVo> image = imageService.findAll();
 		return ResponseEntity.ok(image);
+	}
+	
+	@GetMapping("/by-couleur/{couleurId}")
+	public ResponseEntity<List<ImagesVo>> findImagesByCouleur(@PathVariable Long couleurId) {
+		CouleursVo couleursVo = couleurService.findById(couleurId).orElse(null);
+		if (couleursVo == null) {
+			return ResponseEntity.notFound().build();
+		}
+		List<ImagesVo> images = imageService.findByCouleur(couleursVo);
+		return ResponseEntity.ok(images);
 	}
 	
 	@GetMapping("/{id}")

@@ -17,4 +17,5 @@ public class ImagesVo {
 	private String type;
 	private String url;
 	private byte[] image;
+	private CouleursVo couleur;
 }
