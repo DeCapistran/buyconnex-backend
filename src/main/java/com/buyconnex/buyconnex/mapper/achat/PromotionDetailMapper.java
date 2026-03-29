@@ -10,6 +10,7 @@ public class PromotionDetailMapper {
         if (promotionsDetails == null) return null;
 
         PromotionsDetailsVo vo = new PromotionsDetailsVo();
+        vo.setId(promotionsDetails.getPromotionDetail_id());
         vo.setArticlesVo(ArticleMapper.toVO(promotionsDetails.getArticles()));
         vo.setPromotionsVo(PromotionMapper.toVO_Simple(promotionsDetails.getPromotions()));
 
