@@ -10,6 +10,7 @@ public class PromotionDetailMapper {
         if (promotionsDetails == null) return null;
 
         PromotionsDetailsVo vo = new PromotionsDetailsVo();
+        vo.setId(promotionsDetails.getPromotionDetail_id());
         vo.setArticlesVo(ArticleMapper.toVO(promotionsDetails.getArticles()));
         vo.setPromotionsVo(PromotionMapper.toVO_Simple(promotionsDetails.getPromotions()));
 
@@ -20,6 +21,7 @@ public class PromotionDetailMapper {
         if (vo == null) return null;
 
         PromotionsDetails entity = new PromotionsDetails();
+        entity.setPromotionDetail_id(vo.getId());
         entity.setArticles(ArticleMapper.toEntity(vo.getArticlesVo()));
         entity.setPromotions(PromotionMapper.toEntityRef(vo.getPromotionsVo()));
 
