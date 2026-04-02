@@ -10,10 +10,10 @@ public interface IPromotionService {
 
 	public List<PromotionsVo> findAll();
 	public Optional<PromotionsVo> findById(Long id);
-	public PromotionsVo savePromotions(PromotionsVo promotionsVo);
+	public PromotionsVo savePromotions(String libelle, int pourcentage, Date dateDebut, Date dateFin, String description, List<Long> articlesIds);
 	public void deletePromotions(PromotionsVo promotionsVo);
 	public void deletePromotionsById(Long id);
-	public PromotionsVo updatePromotions(Long id, PromotionsVo promotionsVo);
+	public PromotionsVo updatePromotions(Long id, String libelle, int pourcentage, Date dateDebut, Date dateFin, String description, List<Long> articlesIds);
 	public List<PromotionsVo> findByDateFin(Date date);
 	public List<PromotionsVo> findByDateDebut(Date date);
 	public List<PromotionsVo> findByPourcentage(int pourcentage);
