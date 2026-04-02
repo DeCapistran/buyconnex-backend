@@ -1,14 +1,18 @@
 package com.buyconnex.buyconnex.service.achat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.achat.Promotions;
+import com.buyconnex.buyconnex.entity.achat.PromotionsDetails;
 import com.buyconnex.buyconnex.entity.article.Articles;
 import com.buyconnex.buyconnex.mapper.achat.PromotionMapper;
 import com.buyconnex.buyconnex.repository.achat.PromotionRepository;
@@ -33,16 +37,16 @@ public class PromotionService implements IPromotionService {
 	}
 
 	@Override
-	public PromotionsVo savePromotions(PromotionsVo promotionsVo) {
-		Promotions promotions = PromotionMapper.toEntity(promotionsVo);
-		if (promotions.getPromotionsDetails() != null) {
-			promotions.getPromotionsDetails().forEach(promotionDetail -> {
-				Articles articles = articleRepository.findById(promotionDetail.getArticles().getArticle_id())
-						.orElseThrow(() -> new RuntimeException("Article non trouvé."));
-						promotionDetail.setArticles(articles);
-						promotionDetail.setPromotions(promotions);
-			});
-		}
+	public PromotionsVo savePromotions(String libelle, int pourcentage, Date dateDebut, Date dateFin, String description, List<Long> articlesIds) {
+		Promotions promotions = new Promotions();
+		promotions.setLibelle(libelle);
+		promotions.setPourcentage(pourcentage);
+		promotions.setDateDebut(dateDebut);
+		promotions.setDateFin(dateFin);
+		promotions.setDescription(description);
+		promotions.setDateCreation(LocalDateTime.now());
+		promotions.setPromotionsDetails(buildDetails(promotions, articlesIds));
+
 		Promotions promotionsSave = promotionRepository.save(promotions);
 		return PromotionMapper.toVo(promotionsSave);
 	}
@@ -54,12 +58,35 @@ public class PromotionService implements IPromotionService {
 	}
 
 	@Override
-	public PromotionsVo updatePromotions(Long id, PromotionsVo promotionsVo) {
+	public PromotionsVo updatePromotions(Long id, String libelle, int pourcentage, Date dateDebut, Date dateFin, String description, List<Long> articlesIds) {
 		return promotionRepository.findById(id).map(promotion -> {
-			PromotionMapper.updateEntityFromVo(promotion, promotionsVo);
+			promotion.setLibelle(libelle);
+			promotion.setPourcentage(pourcentage);
+			promotion.setDateDebut(dateDebut);
+			promotion.setDateFin(dateFin);
+			promotion.setDescription(description);
+
+			promotion.getPromotionsDetails().clear();
+			promotion.getPromotionsDetails().addAll(buildDetails(promotion, articlesIds));
+
 			Promotions promotionsUpdated = promotionRepository.save(promotion);
 			return PromotionMapper.toVo(promotionsUpdated);
 		}).orElse(null);
+	}
+
+	private Set<PromotionsDetails> buildDetails(Promotions promotion, List<Long> articlesIds) {
+		Set<PromotionsDetails> details = new HashSet<>();
+		if (articlesIds != null && !articlesIds.isEmpty()) {
+			for (Long articleId : articlesIds) {
+				Articles article = articleRepository.findById(articleId)
+						.orElseThrow(() -> new RuntimeException("Article non trouvé avec l'id : " + articleId));
+				PromotionsDetails detail = new PromotionsDetails();
+				detail.setArticles(article);
+				detail.setPromotions(promotion);
+				details.add(detail);
+			}
+		}
+		return details;
 	}
 
 	@Override

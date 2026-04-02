@@ -1,8 +1,10 @@
 package com.buyconnex.buyconnex.controller.achat;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,14 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buyconnex.buyconnex.service.achat.PromotionService;
 import com.buyconnex.buyconnex.vo.achat.PromotionsVo;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/promotions")
@@ -40,14 +40,27 @@ public class PromotionRestController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PromotionsVo> savePromotion(@Valid @RequestBody PromotionsVo promotionsVo) {
-		PromotionsVo promotion = promotionService.savePromotions(promotionsVo);
+	public ResponseEntity<PromotionsVo> savePromotion(
+			@RequestParam("libelle") String libelle,
+			@RequestParam("pourcentage") int pourcentage,
+			@RequestParam("dateDebut") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateDebut,
+			@RequestParam("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateFin,
+			@RequestParam("description") String description,
+			@RequestParam(value = "articlesIds", required = false) List<Long> articlesIds) {
+		PromotionsVo promotion = promotionService.savePromotions(libelle, pourcentage, dateDebut, dateFin, description, articlesIds);
 		return ResponseEntity.status(201).body(promotion);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PromotionsVo> updatePromotion(@PathVariable Long id, @Valid @RequestBody PromotionsVo promotionsVo) {
-		PromotionsVo promotion = promotionService.updatePromotions(id, promotionsVo);
+	public ResponseEntity<PromotionsVo> updatePromotion(
+			@PathVariable Long id,
+			@RequestParam("libelle") String libelle,
+			@RequestParam("pourcentage") int pourcentage,
+			@RequestParam("dateDebut") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateDebut,
+			@RequestParam("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateFin,
+			@RequestParam("description") String description,
+			@RequestParam(value = "articlesIds", required = false) List<Long> articlesIds) {
+		PromotionsVo promotion = promotionService.updatePromotions(id, libelle, pourcentage, dateDebut, dateFin, description, articlesIds);
 		return promotion != null ? ResponseEntity.ok(promotion) : ResponseEntity.notFound().build();
 	}
 	
