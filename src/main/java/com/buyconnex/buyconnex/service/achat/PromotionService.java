@@ -35,12 +35,14 @@ public class PromotionService implements IPromotionService {
 	@Override
 	public PromotionsVo savePromotions(PromotionsVo promotionsVo) {
 		Promotions promotions = PromotionMapper.toEntity(promotionsVo);
-		promotions.getPromotionsDetails().forEach(promotionDetail -> {
-			Articles articles = articleRepository.findById(promotionDetail.getArticles().getArticle_id())
-					.orElseThrow(() -> new RuntimeException("Article non trouvé."));
-					promotionDetail.setArticles(articles);
-					promotionDetail.setPromotions(promotions);
-		});
+		if (promotions.getPromotionsDetails() != null) {
+			promotions.getPromotionsDetails().forEach(promotionDetail -> {
+				Articles articles = articleRepository.findById(promotionDetail.getArticles().getArticle_id())
+						.orElseThrow(() -> new RuntimeException("Article non trouvé."));
+						promotionDetail.setArticles(articles);
+						promotionDetail.setPromotions(promotions);
+			});
+		}
 		Promotions promotionsSave = promotionRepository.save(promotions);
 		return PromotionMapper.toVo(promotionsSave);
 	}
