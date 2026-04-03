@@ -14,6 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.buyconnex.buyconnex.service.user.SecParams;
 
@@ -41,18 +42,22 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		//enlever le préfixe Bearer du  jwt
 		jwt = jwt.substring(7); // 7 caractères dans "Bearer "
 		
-		DecodedJWT decodedJWT  = verifier.verify(jwt);
-		String username = decodedJWT.getSubject();
-		List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class);
-	
-		Collection <GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (String r : roles)
-			authorities.add(new SimpleGrantedAuthority(r));
+		try {
+			DecodedJWT decodedJWT  = verifier.verify(jwt);
+			String username = decodedJWT.getSubject();
+			List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class);
 		
-		UsernamePasswordAuthenticationToken user =
-				 new UsernamePasswordAuthenticationToken(username,null,authorities);
-		
-		SecurityContextHolder.getContext().setAuthentication(user);
+			Collection <GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+			for (String r : roles)
+				authorities.add(new SimpleGrantedAuthority(r));
+			
+			UsernamePasswordAuthenticationToken user =
+					 new UsernamePasswordAuthenticationToken(username,null,authorities);
+			
+			SecurityContextHolder.getContext().setAuthentication(user);
+		} catch (JWTVerificationException e) {
+			// Token invalide ou expiré : on continue sans authentifier l'utilisateur
+		}
 		filterChain.doFilter(request, response);
 	}
 }
