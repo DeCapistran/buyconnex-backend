@@ -57,6 +57,12 @@ public class ArticleRestController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@GetMapping("/promotion/{id}")
+	public ResponseEntity<List<ArticlesVo>> findArticlesByPromotionId(@PathVariable Long id) {
+		List<ArticlesVo> articles = articleService.findByPromotionId(id);
+		return ResponseEntity.ok(articles);
+	}
+
 	/*@GetMapping
 	public ResponseEntity<List<ArticlesVo>> findByBoutique(@PathVariable BoutiquesVo boutiquesVo) {
 		List<ArticlesVo> articles = articleService.findByBoutique(boutiquesVo);

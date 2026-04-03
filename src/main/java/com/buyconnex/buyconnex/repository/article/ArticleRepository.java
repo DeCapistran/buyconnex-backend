@@ -33,4 +33,7 @@ public interface ArticleRepository extends JpaRepository<Articles, Long> {
 	
 	@Query("SELECT CASE WHEN COUNT(a) > 0 THEN TRUE ELSE FALSE END FROM Articles a WHERE LOWER(a.title) = LOWER(:title)")
 	boolean existsByLibelleArticleIgnoreCase(@Param("title") String title);
+
+	@Query("SELECT pd.articles FROM PromotionsDetails pd WHERE pd.promotions.promotion_id = :promotionId")
+	List<Articles> findByPromotionId(@Param("promotionId") Long promotionId);
 }

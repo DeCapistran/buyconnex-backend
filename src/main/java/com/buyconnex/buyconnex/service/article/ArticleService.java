@@ -123,4 +123,9 @@ public class ArticleService implements IArticleService {
 		return articleRepository.existsByLibelleArticleAndNotId(title, id);
 	}
 
+	@Override
+	public List<ArticlesVo> findByPromotionId(Long promotionId) {
+		return articleRepository.findByPromotionId(promotionId).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
+	}
+
 }
