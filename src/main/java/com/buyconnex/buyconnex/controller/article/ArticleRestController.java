@@ -66,8 +66,9 @@ public class ArticleRestController {
 
 	@GetMapping("/{id}/images")
 	public ResponseEntity<List<ImagesVo>> findImagesByArticleId(@PathVariable Long id) {
-		List<ImagesVo> images = articleService.getImagesByArticleId(id);
-		return ResponseEntity.ok(images);
+		return articleService.getImagesByArticleId(id)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	/*@GetMapping

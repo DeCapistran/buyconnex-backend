@@ -118,12 +118,11 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public List<ImagesVo> getImagesByArticleId(Long articleId) {
+	public Optional<List<ImagesVo>> getImagesByArticleId(Long articleId) {
 		return articleRepository.findById(articleId)
 				.map(article -> articleImageRepository.findByArticles(article).stream()
 						.map(ai -> ImageMapper.toVO(ai.getImages()))
-						.collect(Collectors.toList()))
-				.orElse(List.of());
+						.collect(Collectors.toList()));
 	}
 
 	@Override
