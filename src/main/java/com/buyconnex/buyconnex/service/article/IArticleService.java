@@ -27,6 +27,7 @@ public interface IArticleService {
 	public List<ArticlesVo> findByStatusArticles(StatusArticlesVo statusArticlesVo);
 	public List<ArticlesVo> findByTitle(String title);
 	List<ArticlesVo> findByImages(ImagesVo imagesVo);
+	List<ImagesVo> getImagesByArticleId(Long articleId);
 	public boolean existsByLibelleArticle(String title);
 	public boolean existsByLibelleArticleAndNotId(String title, Long id);
 	public List<ArticlesVo> findByPromotionId(Long promotionId);
