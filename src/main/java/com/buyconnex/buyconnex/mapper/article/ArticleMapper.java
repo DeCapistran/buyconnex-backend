@@ -93,4 +93,29 @@ public class ArticleMapper {
 	    }
 	    
 	}
+	
+	public static ArticlesVo toVO_Simple(Articles article) {
+	    if (article == null) return null;
+
+	    ArticlesVo articleVo = new ArticlesVo();
+	    articleVo.setId(article.getArticle_id());
+	    articleVo.setTitle(article.getTitle());
+	    articleVo.setDescription(article.getDescription());
+	    articleVo.setQuantite(22);
+	    Images images = article.getImages();
+	    if (images != null) {
+	        ImagesVo imageVo = new ImagesVo();
+	        imageVo.setId(images.getImage_id());
+	        imageVo.setName(images.getName());
+	        imageVo.setUrl(images.getUrl());
+	        imageVo.setType(images.getType());
+	        articleVo.setImages(imageVo);
+	    }
+	    
+
+	    // casser la récursion
+	    articleVo.setAvis(null);
+
+	    return articleVo;
+	}
 }

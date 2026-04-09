@@ -1,5 +1,4 @@
 package com.buyconnex.buyconnex.controller.article;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.buyconnex.buyconnex.service.article.ArticleService;
 import com.buyconnex.buyconnex.service.article.AvisService;
+import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.AvisVo;
 
 import jakarta.validation.Valid;
@@ -26,6 +27,9 @@ public class AvisRestController {
 
 	@Autowired
 	AvisService avisService;
+	
+	@Autowired
+	ArticleService articleService;
 	
 	@GetMapping
 	public ResponseEntity<List<AvisVo>> findAllAvis() {
@@ -55,5 +59,13 @@ public class AvisRestController {
 	public ResponseEntity<Void> deleteByIdAvis(@PathVariable Long id) {
 		avisService.deleteAvisById(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/article/{articleId}")
+	public ResponseEntity<List<AvisVo>> findAvisByArticleId(@PathVariable Long articleId) {
+		ArticlesVo articlesVo = new ArticlesVo();
+		articlesVo = articleService.findById(articleId).get();
+	    List<AvisVo> avis = avisService.findByArticles(articlesVo);
+	    return ResponseEntity.ok(avis);
 	}
 }
