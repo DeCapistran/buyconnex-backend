@@ -14,4 +14,5 @@ public class ArticlesImagesVo {
 	private Long id;
 	private ArticlesVo articlesVo;
 	private ImagesVo imagesVo;
+	private CouleursVo couleursVo;
 }

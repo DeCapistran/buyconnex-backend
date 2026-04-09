@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ImagesVo;
 import com.buyconnex.buyconnex.vo.article.MarquesVo;
 import com.buyconnex.buyconnex.vo.article.StatusArticlesVo;
@@ -27,7 +28,9 @@ public interface IArticleService {
 	public List<ArticlesVo> findByStatusArticles(StatusArticlesVo statusArticlesVo);
 	public List<ArticlesVo> findByTitle(String title);
 	List<ArticlesVo> findByImages(ImagesVo imagesVo);
+	Optional<List<ArticlesImagesVo>> getImagesByArticleId(Long articleId);
 	public boolean existsByLibelleArticle(String title);
 	public boolean existsByLibelleArticleAndNotId(String title, Long id);
+	public List<ArticlesVo> findByPromotionId(Long promotionId);
 	
 }

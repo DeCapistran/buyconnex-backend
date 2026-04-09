@@ -8,8 +8,10 @@ public class ArticleImageMapper {
 	public static ArticlesImagesVo toVO(ArticlesImages articlesImages) {
 		if(articlesImages == null) return null;
 		ArticlesImagesVo articlesImagesVo = new ArticlesImagesVo();
+		articlesImagesVo.setId(articlesImages.getArticle_image_id());
 		articlesImagesVo.setArticlesVo(ArticleMapper.toVO(articlesImages.getArticles()));
 		articlesImagesVo.setImagesVo(ImageMapper.toVO(articlesImages.getImages()));
+		articlesImagesVo.setCouleursVo(CouleurMapper.toVO(articlesImages.getCouleurs()));
 		
 		return articlesImagesVo;
 	}
@@ -19,6 +21,7 @@ public class ArticleImageMapper {
 		ArticlesImages articlesImages = new ArticlesImages();
 		articlesImages.setArticles(ArticleMapper.toEntity(articlesImagesVo.getArticlesVo()));
 		articlesImages.setImages(ImageMapper.toEntity(articlesImagesVo.getImagesVo()));
+		articlesImages.setCouleurs(CouleurMapper.toEntity(articlesImagesVo.getCouleursVo()));
 		
 		return articlesImages;
 	}
@@ -26,5 +29,6 @@ public class ArticleImageMapper {
 	public static void updateEntityfromVo(ArticlesImages articlesImages, ArticlesImagesVo articlesImagesVo) {
 		articlesImages.setArticles(ArticleMapper.toEntity(articlesImagesVo.getArticlesVo()));
 		articlesImages.setImages(ImageMapper.toEntity(articlesImagesVo.getImagesVo()));
+		articlesImages.setCouleurs(CouleurMapper.toEntity(articlesImagesVo.getCouleursVo()));
 	}
 }

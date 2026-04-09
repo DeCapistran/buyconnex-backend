@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
 import com.buyconnex.buyconnex.mapper.article.ImageMapper;
 import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
 import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
+import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
@@ -30,6 +33,9 @@ public class ArticleService implements IArticleService {
 
 	@Autowired
 	ArticleRepository articleRepository;
+
+	@Autowired
+	ArticleImageRepository articleImageRepository;
 	
 	@Override
 	public Optional<ArticlesVo> findById(Long id) {
@@ -114,6 +120,14 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
+	public Optional<List<ArticlesImagesVo>> getImagesByArticleId(Long articleId) {
+		return articleRepository.findById(articleId)
+				.map(article -> articleImageRepository.findByArticles(article).stream()
+						.map(ArticleImageMapper::toVO)
+						.collect(Collectors.toList()));
+	}
+
+	@Override
 	public boolean existsByLibelleArticle(String title) {
 		return articleRepository.existsByLibelleArticleIgnoreCase(title);
 	}
@@ -121,6 +135,11 @@ public class ArticleService implements IArticleService {
 	@Override
 	public boolean existsByLibelleArticleAndNotId(String title, Long id) {
 		return articleRepository.existsByLibelleArticleAndNotId(title, id);
+	}
+
+	@Override
+	public List<ArticlesVo> findByPromotionId(Long promotionId) {
+		return articleRepository.findByPromotionId(promotionId).stream().map(ArticleMapper::toVO).collect(Collectors.toList());
 	}
 
 }

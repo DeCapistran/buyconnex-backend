@@ -57,7 +57,7 @@ public class Promotions {
 	@Column(name = "DESCRIPTION")
     private String description;
 	
-	@OneToMany(mappedBy="promotions", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="promotions", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PromotionsDetails> promotionsDetails;
 	
 	@PrePersist

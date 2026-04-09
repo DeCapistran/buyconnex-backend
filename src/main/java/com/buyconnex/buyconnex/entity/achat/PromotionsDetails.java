@@ -36,6 +36,7 @@ public class PromotionsDetails {
     @Column(name = "ID_PROMOTIONS_DETAILS")
     private Long promotionDetail_id;
 	
+    @EqualsAndHashCode.Include
     @ManyToOne
 	@JoinColumn(name = "ID_ARTICLES")
     private Articles articles;

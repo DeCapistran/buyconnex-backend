@@ -27,4 +27,5 @@ public class ArticlesVo {
 	private StatusArticlesVo statusArticles;
 	private ImagesVo images;
 	private TagsVo tags;
+	private AvisVo avis;
 }

@@ -71,6 +71,9 @@ public class ImageService implements IImageService {
 	ArticleRepository articleRepository;
 	
 	@Autowired
+	CouleurRepository couleurRepository;
+	
+	@Autowired
 	CategorieService categorieService;
 	
 	@Autowired
@@ -710,6 +713,53 @@ public class ImageService implements IImageService {
 	    articleRepository.delete(articles);
 
 	    return true;
+	}
+
+	@Override
+	public ArticlesImagesVo uploadImageArticleCouleur(MultipartFile file, Long article_id, Long couleur_id) throws IOException {
+		Optional<Articles> optionalArticle = articleRepository.findById(article_id);
+		if (optionalArticle.isEmpty()) {
+			throw new EntityNotFoundException("Article non trouvé pour l'ID: " + article_id);
+		}
+
+		Optional<Couleurs> optionalCouleur = couleurRepository.findById(couleur_id);
+		if (optionalCouleur.isEmpty()) {
+			throw new EntityNotFoundException("Couleur non trouvée pour l'ID: " + couleur_id);
+		}
+
+		String imagesDirPath = "C:\\dev\\buyconnex\\admin\\src\\assets\\images\\articles";
+		Path imagesDir = Paths.get(imagesDirPath);
+		if (!Files.exists(imagesDir)) {
+			Files.createDirectories(imagesDir);
+		}
+
+		String imageName = file.getOriginalFilename();
+		String articleTitle = optionalArticle.get().getTitle().replaceAll("[^a-zA-Z0-9_\\-]", "_");
+		String couleurCode = optionalCouleur.get().getCouleur().replaceAll("[^a-zA-Z0-9_\\-]", "_");
+		if (imageName != null && imageName.contains(".")) {
+			String ext = imageName.substring(imageName.lastIndexOf(".") + 1).replaceAll("[^a-zA-Z0-9]", "");
+			imageName = articleTitle + "_" + couleurCode + "." + ext;
+		}
+		Path imagePath = imagesDir.resolve(imageName).normalize();
+		if (!imagePath.startsWith(imagesDir)) {
+			throw new IOException("Chemin de fichier invalide.");
+		}
+		Files.write(imagePath, file.getBytes());
+
+		Images image = Images.builder()
+				.name(imageName)
+				.type(file.getContentType())
+				.image(file.getBytes())
+				.url("/assets/images/articles/" + imageName)
+				.build();
+		Images savedImage = imageRepository.save(image);
+
+		ArticlesImages articlesImages = new ArticlesImages();
+		articlesImages.setArticles(optionalArticle.get());
+		articlesImages.setImages(savedImage);
+		articlesImages.setCouleurs(optionalCouleur.get());
+
+		return ArticleImageMapper.toVO(articleImageRepository.save(articlesImages));
 	}
 
 

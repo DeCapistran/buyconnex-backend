@@ -25,6 +25,7 @@ import com.buyconnex.buyconnex.service.article.BoutiqueService;
 import com.buyconnex.buyconnex.service.article.CouleurService;
 import com.buyconnex.buyconnex.service.article.ImageService;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
 import com.buyconnex.buyconnex.vo.article.CouleursVo;
@@ -200,4 +201,13 @@ public class ImageRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Retourne un statut 500 Internal Server Error
         }
     }
+
+	@PostMapping(value = "/uploadfs-article-couleur", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<ArticlesImagesVo> uploadFSArticleCouleur(
+			@RequestParam("img") MultipartFile file,
+			@RequestParam("article_id") Long article_id,
+			@RequestParam("couleur_id") Long couleur_id) throws IOException {
+		ArticlesImagesVo articlesImagesVo = imageService.uploadImageArticleCouleur(file, article_id, couleur_id);
+		return ResponseEntity.status(201).body(articlesImagesVo);
+	}
 }

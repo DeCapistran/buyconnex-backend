@@ -43,5 +43,6 @@ public interface IImageService {
 	public ArticlesVo uploadImageArticle(MultipartFile file, String libelle, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException;
 	public ArticlesVo updateImageArticle(Long id, MultipartFile file, String libelle, int quantite, Long marque_id, Long prix, Long categorie_id, Long boutique_id, Long tag_id, String description) throws IOException;
 	public boolean deleteArticle(Long articleId) throws IOException;
+	public ArticlesImagesVo uploadImageArticleCouleur(MultipartFile file, Long article_id, Long couleur_id) throws IOException;
 }
 	

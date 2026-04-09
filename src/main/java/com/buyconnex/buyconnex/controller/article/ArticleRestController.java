@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buyconnex.buyconnex.service.article.ArticleService;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 
 import jakarta.validation.Valid;
@@ -57,6 +58,19 @@ public class ArticleRestController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@GetMapping("/promotion/{id}")
+	public ResponseEntity<List<ArticlesVo>> findArticlesByPromotionId(@PathVariable Long id) {
+		List<ArticlesVo> articles = articleService.findByPromotionId(id);
+		return ResponseEntity.ok(articles);
+	}
+
+	@GetMapping("/images/{id}")
+	public ResponseEntity<List<ArticlesImagesVo>> findImagesByArticleId(@PathVariable Long id) {
+		return articleService.getImagesByArticleId(id)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
+
 	/*@GetMapping
 	public ResponseEntity<List<ArticlesVo>> findByBoutique(@PathVariable BoutiquesVo boutiquesVo) {
 		List<ArticlesVo> articles = articleService.findByBoutique(boutiquesVo);
