@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.buyconnex.buyconnex.entity.article.Articles;
+import com.buyconnex.buyconnex.mapper.article.ArticleImageMapper;
 import com.buyconnex.buyconnex.mapper.article.ArticleMapper;
 import com.buyconnex.buyconnex.mapper.article.BoutiqueMapper;
 import com.buyconnex.buyconnex.mapper.article.CategorieMapper;
@@ -16,6 +17,7 @@ import com.buyconnex.buyconnex.mapper.article.MarqueMapper;
 import com.buyconnex.buyconnex.mapper.article.StatusArticleMapper;
 import com.buyconnex.buyconnex.repository.article.ArticleImageRepository;
 import com.buyconnex.buyconnex.repository.article.ArticleRepository;
+import com.buyconnex.buyconnex.vo.article.ArticlesImagesVo;
 import com.buyconnex.buyconnex.vo.article.ArticlesVo;
 import com.buyconnex.buyconnex.vo.article.BoutiquesVo;
 import com.buyconnex.buyconnex.vo.article.CategoriesVo;
@@ -118,10 +120,10 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public Optional<List<ImagesVo>> getImagesByArticleId(Long articleId) {
+	public Optional<List<ArticlesImagesVo>> getImagesByArticleId(Long articleId) {
 		return articleRepository.findById(articleId)
 				.map(article -> articleImageRepository.findByArticles(article).stream()
-						.map(ai -> ImageMapper.toVO(ai.getImages()))
+						.map(ArticleImageMapper::toVO)
 						.collect(Collectors.toList()));
 	}
 
