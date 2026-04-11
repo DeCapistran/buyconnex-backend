@@ -30,7 +30,8 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class UserService implements IUserService {
-	
+
+	private static final String DEFAULT_LANGUE = "fr-FR";
 
 	@Autowired
 	UserRepository userRep;
@@ -117,11 +118,12 @@ public class UserService implements IUserService {
 		 sendEmailUser(newUser, token.getToken());
 
 		 //créer les paramètres utilisateur par défaut (users_details)
-		 UserSettings userSettings = new UserSettings();
-		 userSettings.setUsers(newUser);
-		 userSettings.setLangue("fr-FR");
-		 userSettings.setMfaActive(false);
-		 userSettings.setNotifActive(true);
+		 UserSettings userSettings = UserSettings.builder()
+				 .users(newUser)
+				 .langue(DEFAULT_LANGUE)
+				 .mfaActive(false)
+				 .notifActive(true)
+				 .build();
 		 userSettingsRep.save(userSettings);
 
 		return userRep.save(newUser);
