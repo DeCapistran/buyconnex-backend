@@ -34,7 +34,8 @@ public class UserSettingService implements IUserSettingService {
 
     @Override
     public Locale getLangueSettingByEmail(String email) {
-        return getLangueSettingByEmail(email);
+        UserSettings userSettings = userSettingsRepository.getUserSettingByEmail(email);
+        return getLangueSettingByUserSetting(userSettings);
     }
 
     @Override

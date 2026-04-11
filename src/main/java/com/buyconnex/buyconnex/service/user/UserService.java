@@ -17,6 +17,8 @@ import com.buyconnex.buyconnex.exception.EmailAlreadyExistsException;
 import com.buyconnex.buyconnex.exception.ExpiredTokenException;
 import com.buyconnex.buyconnex.exception.InvalidTokenException;
 import com.buyconnex.buyconnex.repository.security.VerificationTokenRepository;
+import com.buyconnex.buyconnex.entity.user.UserSettings;
+import com.buyconnex.buyconnex.repository.user.UserSettingsRepository;
 import com.buyconnex.buyconnex.repository.user.RoleRepository;
 import com.buyconnex.buyconnex.repository.user.UserRepository;
 import com.buyconnex.buyconnex.service.utils.EmailService;
@@ -36,6 +38,8 @@ public class UserService implements IUserService {
 	@Autowired
 	RoleRepository roleRep;
 	
+	@Autowired
+	UserSettingsRepository userSettingsRep;
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -110,8 +114,15 @@ public class UserService implements IUserService {
 		 verificationTokenRepo.save(token);
 		 
 		 //envoyer le code par email à l'utilisateur
-		  sendEmailUser(newUser,token.getToken());
-		
+		 sendEmailUser(newUser, token.getToken());
+
+		 //créer les paramètres utilisateur par défaut (users_details)
+		 UserSettings userSettings = new UserSettings();
+		 userSettings.setUsers(newUser);
+		 userSettings.setLangue("fr-FR");
+		 userSettings.setMfaActive(false);
+		 userSettings.setNotifActive(true);
+		 userSettingsRep.save(userSettings);
 
 		return userRep.save(newUser);
 	}

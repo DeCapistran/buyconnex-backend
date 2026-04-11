@@ -15,7 +15,7 @@ public class UserMapper {
         if (users == null) return null;
 
         UsersVo usersVo = new UsersVo();
-        usersVo.setId(users.getUser_id());
+        usersVo.setId(users.getUserId());
         usersVo.setUsername(users.getUsername());
         usersVo.setEmail(users.getEmail());
         usersVo.setPassword(users.getPassword());
@@ -51,7 +51,7 @@ public class UserMapper {
         if (users == null) return null;
 
         UsersVo usersVo = new UsersVo();
-        usersVo.setId(users.getUser_id());
+        usersVo.setId(users.getUserId());
         usersVo.setUsername(users.getUsername());
         usersVo.setEmail(users.getEmail());
         usersVo.setPassword(users.getPassword());
@@ -73,7 +73,7 @@ public class UserMapper {
         if (usersVo == null) return null;
 
         Users users = new Users();
-        users.setUser_id(usersVo.getId());
+        users.setUserId(usersVo.getId());
         users.setUsername(usersVo.getUsername());
         users.setEmail(usersVo.getEmail());
         users.setPassword(usersVo.getPassword());
@@ -112,7 +112,7 @@ public class UserMapper {
     public static void updateEntityFromVO(UsersVo usersVo, Users users) {
         if (usersVo == null || users == null) return;
 
-        users.setUser_id(usersVo.getId());
+        users.setUserId(usersVo.getId());
         users.setUsername(usersVo.getUsername());
         users.setEmail(usersVo.getEmail());
         users.setPassword(usersVo.getPassword());

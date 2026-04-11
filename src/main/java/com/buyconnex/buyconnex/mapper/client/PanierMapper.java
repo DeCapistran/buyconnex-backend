@@ -60,7 +60,7 @@ public class PanierMapper {
         // Users : en référence (id only) pour éviter reconstruction
         if (vo.getUsers() != null && vo.getUsers().getId() != null) {
             Users u = new Users();
-            u.setUser_id(vo.getUsers().getId());
+            u.setUserId(vo.getUsers().getId());
             entity.setUsers(u);
         } else {
             entity.setUsers(null);
@@ -89,7 +89,7 @@ public class PanierMapper {
 
         if (vo.getUsers() != null && vo.getUsers().getId() != null) {
             Users u = new Users();
-            u.setUser_id(vo.getUsers().getId());
+            u.setUserId(vo.getUsers().getId());
             entity.setUsers(u);
         } else {
             entity.setUsers(null);
