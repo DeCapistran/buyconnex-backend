@@ -91,9 +91,6 @@ public class ImageService implements IImageService {
 	@Autowired
 	StatusArticleService statusArticleService;
 
-	@Autowired
-	CouleurRepository couleurRepository;
-
 	@Override
 	public Optional<ImagesVo> findById(Long id) {
 		return imageRepository.findById(id).map(ImageMapper::toVO);
