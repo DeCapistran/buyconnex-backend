@@ -95,7 +95,7 @@ public class ClientMapper {
         // User en référence (id only)
         if (vo.getUsers() != null && vo.getUsers().getId() != null) {
             Users user = new Users();
-            user.setUser_id(vo.getUsers().getId());
+            user.setUserId(vo.getUsers().getId());
             entity.setUsers(user);
         } else {
             entity.setUsers(null);
@@ -130,7 +130,7 @@ public class ClientMapper {
 
         if (vo.getUsers() != null && vo.getUsers().getId() != null) {
             Users user = new Users();
-            user.setUser_id(vo.getUsers().getId());
+            user.setUserId(vo.getUsers().getId());
             entity.setUsers(user);
         } else {
             entity.setUsers(null);

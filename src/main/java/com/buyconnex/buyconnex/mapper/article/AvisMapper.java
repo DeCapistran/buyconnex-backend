@@ -84,7 +84,7 @@ public class AvisMapper {
         }
 
         Users user = new Users();
-        user.setUser_id(avisVo.getUsers().getId());
+        user.setUserId(avisVo.getUsers().getId());
         return user;
     }
 }

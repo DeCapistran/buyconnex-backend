@@ -37,7 +37,7 @@ public class SettingUserController extends DefaultRestController{
 		UserSettingVo userSettingVo = new UserSettingVo();
 		Optional<Users> user = getUser(principal);
 		if(user.isPresent()) {
-			UserSettings userSettings = userSettingService.getUserSettingByUserId(user.get().getUser_id());
+			UserSettings userSettings = userSettingService.getUserSettingByUserId(user.get().getUserId());
 			if(userSettings != null) {
 				userSettingVo.setLangue(userSettings.getLangue());
 				userSettingVo.setMfaActive(userSettings.isMfaActive());
@@ -54,7 +54,7 @@ public class SettingUserController extends DefaultRestController{
 	public GenericResponseVo updateSetting(Principal principal, @RequestBody UserSettingVo userSettingVo) {
 		Optional<Users> user = getUser(principal);
 		if(user.isPresent() && userSettingVo != null) {
-			UserSettings userSettings = userSettingService.getUserSettingByUserId(user.get().getUser_id());
+			UserSettings userSettings = userSettingService.getUserSettingByUserId(user.get().getUserId());
 			if(userSettings == null) {
 				userSettings = new UserSettings();
 				userSettings.setUsers(user.get());
